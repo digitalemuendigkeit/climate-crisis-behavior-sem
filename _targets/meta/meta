@@ -1,0 +1,22 @@
+name|type|data|command|depend|seed|path|time|size|bytes|format|iteration|parent|children|seconds|warnings|error
+raw_S2_file|stem|9538f2b9362fc66c|b827d35c19e9b35e|ef46db3751d8e999|149737562|data/raw/S2-Raw-Data-20210208.csv|t18712.4602662037s|eb7c8412171aca68|124123|file|vector|||0.02||
+raw_S1_text_file|stem|a4417d7f5b63cc2e|48332bb15e035c47|ef46db3751d8e999|-1338603805|data/raw/S1-data-choicetext.csv|t18695.7072222222s|9930211b1380b22a|2012662|file|vector|||0||
+raw_S1_file|stem|220a6d847a063e9e|e756fb6a74aa1d70|ef46db3751d8e999|1048270708|data/raw/S1-Raw-Data-20210118.csv|t18712.4602777778s|01aec6af8ffaf5d3|489137|file|vector|||0.02||
+sica|function|9f5315e009a79478||||||||||||||
+survey_data_incidence|stem|0fe5fba284c13555|aa063f9317364012|8c685ceeb4ec3f1c|2108623390||t18780.591069402s|76a8801c8df060b1|111032|rds|vector|||0.37|Duplicated column names deduplicated COKN2  COKN2_1 115|
+survey_data_inc_param|stem|45022ea0dc47db2d|c88684eb6aaa08af|3a25161f7e9229a6|-830879061||t18780.5991848482s|268b3703eebc82d1|106308|rds|vector|||0.06||
+code_data|function|5b58941dc575e27d||||||||||||||
+cc_model_1|stem|7df286ecd3d9e64e|f83b8efa02e8b836|151f7508060ef34a|-1277016034||t18780.6661264803s|30465945c9782793|110488|rds|vector|||2.84|package forcats was built under R version 4.0.4|
+include_incidence|function|1ce226a469e3138d||||||||||||||
+param_clean|function|ac144302908372bc||||||||||||||
+import_clean|function|9f5315e009a79478||||||||||||||
+sillytestfunction|function|7f751aef04cd03cd||||||||||||||
+treat_missing|function|b07ba16808e3c35e||||||||||||||
+estimate_cc_1|function|88d3e20981dd59c7||||||||||||||
+raw_incidence_20210201|stem|a2db4c8e0b677ae8|2f2bec5a18e026cf|ef46db3751d8e999|-157069921|data/external/20210201-Fallzahlen.csv|t18728.5748768323s|ca345c8d76731ee2|12286|file|vector|||0||
+raw_incidence_20210112|stem|4b7192906ea6bace|1e8b83d8e83f9e3f|ef46db3751d8e999|526832504|data/external/20210112-Fallzahlen.csv|t18728.5748768208s|1b6b680efef046da|12574|file|vector|||0||
+survey_data_cleaned|stem|193cf801cf54b504|7f14611a93d79cb2|7c8c5a3c0adcd643|-1054804408||t18780.5893934321s|430f9549f229accf|92411|rds|vector|||1.37|Duplicated column names deduplicated COKN2  COKN2_1 115|
+survey_data_param|stem|301485ee7bea06e9|65d7255aaa067bd4|c7f577b02fa821b7|-1209272354||t18780.5991834825s|cce3110ed0dff705|89518|rds|vector|||1.92|package forcats was built under R version 4.0.4|
+survey_data_sem|stem|5ed13b836305a9e8|6dea3a087d1d439d|0a1a5c12fafa1928|-1237433596||t18780.6037125722s|dd1712273b338ee6|87336|rds|vector|||1.61|package forcats was built under R version 4.0.4|
+survey_data_cc_sem|stem|63e99e66c172c320|da05855fc21cce94|f0c85548abd285bb|1887112977||t18780.6386608144s|9d0c27414bcffa35|14740|rds|vector|||2.69|package forcats was built under R version 4.0.4|
+cc_model_1_boot|stem|8f2bf66c7de23686|3b991204ab53f1ad|be0b9025d90628ae|1554526382||t18780.6703477929s|18576d8dfd4b6100|5973958|rds|vector|||287|package forcats was built under R version 4.0.4|
