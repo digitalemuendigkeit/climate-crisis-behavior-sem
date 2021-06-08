@@ -1,8 +1,7 @@
 # Prepare redundancy analyses ----
-model1 =  tar_read(cc_model_1)
-redundancy_cc = function(model, data) {
-  # list of possible formative constructs and their ra indicators
-  formative_list = data.frame(
+redundancy_cc = function(model) {
+  # list of possible mode B constructs and their ra indicators
+  B_list = data.frame(
     Constructs = c(
       "Perceived Self-Efficacy",
       "Perceived Response Efficacy",
@@ -11,7 +10,7 @@ redundancy_cc = function(model, data) {
       "Injunctive Norm",
       "Behavioral Intention"
   ),
-  A_Indicators = c(
+  A_indicators = c(
       "CCRB10",
       "CCRB11",
       "CCRB12",
@@ -20,54 +19,39 @@ redundancy_cc = function(model, data) {
       "CCBI4"
   )
   )
-  # initiate empty list
-  ra_list = vector(mode = "list")
-  # estimate models for all formative constructs
-  for (i in 1:length(model$measurement_model)) {
-  # Compare existing formative constructs with list of possible formative constructs
-    if (
-      #model$measurement_model[i]$composite[1] %in% formative_list[[1]] #&
-        model$measurement_model[i]$composite[[3]] == "B"
-        ) {
-  # Estimate RA models for all existing formative constructs
-    # ra <- estimate_pls(
-    #   data,
-    #   measurement_model = constructs(
-    #     composite(paste0(.data[[model$measurement_model[i]$composite[1]]],
-    #                      " mode B"),
-    #               item_names = c(
-    #                 .data[[model$measurement_model[i]$composite[2]]],
-    #                 .data[[model$measurement_model[i]$composite[5]]],
-    #                 .data[[model$measurement_model[i]$composite[8]]]
-    #               ),
-    #               weights = mode_B
-    #               ),
-    #     composite(paste0(.data[[model$measurement_model[i]$composite[1]]],
-    #                      " mode A"),
-    #               single_item(
-    #                 formative_list[match(.data[[model$measurement_model[i]$composite[1]]], formative_list[[1]]), 2]
-    #               )
-    #     )
-    #   ),
-    #  structural_model = relationships(
-    #    from = paste0(.data[[model$measurement_model[i]$composite[1]]],
-    #                  " mode B"),
-    #    to = paste0(.data[[model$measurement_model[i]$composite[1]]],
-    #                " mode A")
-    #  )
-    # )
-    # ra_list <- append(ra_list, ra)
-      ra_list <- c(
-        .data[[model$measurement_model[i]$composite[2]]],
-        .data[[model$measurement_model[i]$composite[5]]],
-        .data[[model$measurement_model[i]$composite[8]]])
-    }
-  }
-  # return a list of those models
+  # Find existing mode B constructs
+  B_existing = model[[4]] %>%
+    as.data.frame() %>%
+    filter(construct %in% B_list[,1] & type == "B")
+  B_constructs = unique(B_existing[,1])
+  # estimate ra models for all mode B constructs
+  ra_list = lapply(B_constructs,
+                   FUN = function(x)
+                   estimate_pls(
+                     model$data,
+                     measurement_model = constructs(
+                     composite(paste0(x,
+                                      " mode B"),
+                               item_names = (B_existing %>% filter(construct == x))[,2],
+                               weights = mode_B
+                               ),
+                           composite(paste0(x,
+                                            " mode A"),
+                                     single_item(
+                                       B_list[match(x, B_list[,1]), 2]
+                                     )
+                           )
+                         ),
+                        structural_model = relationships(
+                          from = paste0(x,
+                                        " mode B"),
+                          to = paste0(x,
+                                       " mode A")
+                          )
+                   )
+  )
   return(ra_list)
 }
-
-test <- redundancy_cc(model1, model1$data)
 
 # Estimate CC-1 ----
 estimate_cc_1 = function(data) {

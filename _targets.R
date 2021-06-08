@@ -1,5 +1,6 @@
 library(targets)
-source(here::here("R", "functions.R"))
+library(tarchetypes)
+#source(here::here("R", "functions.R"))
 source("R/00_data-wrangling.R")
 source("R/01_sem-estimation.R")
 # If you don't have hcictools installed
@@ -67,7 +68,15 @@ list(
   tar_target(
     cc_model_1_boot,
     bootstrap_model(cc_model_1, 5000)
+  ),
+  tar_target(
+    cc_model_1_ra,
+    redundancy_cc(cc_model_1)
   )
+  # ,
+  # tar_render(
+  #
+  # )
 )
 
 # Data import
