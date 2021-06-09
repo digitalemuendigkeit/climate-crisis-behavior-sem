@@ -8,17 +8,88 @@ survey_data_inc_param|stem|45022ea0dc47db2d|c88684eb6aaa08af|3a25161f7e9229a6|-8
 code_data|function|5b58941dc575e27d||||||||||||||
 cc_model_1|stem|7df286ecd3d9e64e|f83b8efa02e8b836|151f7508060ef34a|-1277016034||t18780.6661264803s|30465945c9782793|110488|rds|vector|||2.84|package forcats was built under R version 4.0.4|
 cc_model_1_boot|stem|8f2bf66c7de23686|3b991204ab53f1ad|be0b9025d90628ae|1554526382||t18780.6703477929s|18576d8dfd4b6100|5973958|rds|vector|||287|package forcats was built under R version 4.0.4|
-include_incidence|function|1ce226a469e3138d||||||||||||||
-param_clean|function|ac144302908372bc||||||||||||||
-redundancy_cc|function|d37e148af9faa371||||||||||||||
-import_clean|function|9f5315e009a79478||||||||||||||
+cc_model_1_ra|stem|e3d30e5965e7af79|5ad69413f8eaf110|a0f4946b6d85db79|449103418||t18786.608574769s|f6e86f9de8b6e352|352154|rds|vector|||4.21|package forcats was built under R version 4.0.4|
+cc_model_1_fs_boot|stem|ec985282668d95f9|5922229687568c34|5faae437dc28d498|1539372430||t18787.333413963s|7e4cc9ec8fd918ea|8907947|rds|vector|||473.25|package forcats was built under R version 4.0.4|
+cc_1_mmeval|stem||0e3f3021b90d5553|7a365c15f7fe0e49|-151183212||||0|file|vector|||81.67|package forcats was built under R version 4.0.4|object model not found
+cc_model_2|stem||512cd413e8949eac|7818174f96c758b0|-1507349335||||0|rds|vector|||2.43|package forcats was built under R version 4.0.4|could not find function estimate_cc_2
 sillytestfunction|function|7f751aef04cd03cd||||||||||||||
-treat_missing|function|b07ba16808e3c35e||||||||||||||
+cc_model_2_a_1_fs_boot|stem|535fd1934ec02a89|a296eaf681b5748a|fac1853218110d16|-2036483613||t18787.3884809747s|57a183c33a2a21bd|7815134|rds|vector|||60.37||
+cc_model_2_a_1_boot|stem|688f27c5437a521a|28302ec2c34b6eed|d05dc7b079bf3c81|-1646875417||t18787.3894158638s|e18276cf3b0fe2f6|4954858|rds|vector|||79.97||
+cc_model_2_a_1_ra|stem|8495f084f93d424d|0eeae8a0cf18925f|47ba57b582d45756|-37394569||t18787.389416975s|eddd732da7604ab1|101321|rds|vector|||0.05||
+cc_model_2_a_2_boot|stem|f538cecc5b7ad33e|e8c9a08abccad949|2ca9eb606c8b0252|412037694||t18787.4033688988s|c98b0ed86a45040b|4762698|rds|vector|||87.7||
+cc_model_2_a_2_fs_boot|stem|77c9e119f9dde7eb|71bc303766e113ce|bbc06ac8027e2e00|475219112||t18787.4039770796s|5bc30ced7fb097cb|6899906|rds|vector|||51.84||
+pls_predict_cc_2_a_2|function|a59a842067f8d8a5||||||||||||||
+cc_model_2_a_2_proxy_boot|stem|db4dd3f01d8027c1|328a70e8ba8aba39|ba4953f13dad1da3|1642858729||t18787.5035228768s|e4a081338a3d5cb8|416661|rds|vector|||14.85|package forcats was built under R version 4.0.4|
+cc_model_2_a_3_fs_boot|stem|468d41da5e6f2720|f283af95f6c91e58|d885b29434827e4c|-89502861||t18787.6047318268s|3f805f9a4295753e|2814059|rds|vector|||23.17||
+cc_model_2_a_3_boot|stem|ea6c40b086c7a48f|1ae9f6e8e57fc5bd|7871d48000890e4a|781605023||t18787.6052350375s|e5663e19f1eb8fdb|2063999|rds|vector|||43.14||
+cc_model_2_a_4_boot|stem|f3a520c3bb3117f9|8efe8ddb0969d603|5b98663c75d297d1|-1348549660||t18787.6152830778s|35840645e976a622|1777609|rds|vector|||41.28||
+cc_model_2_a_4_fs_boot|stem|fa29170b683aecfd|89913bc6afd9cd8c|1e0593bcc0431ea1|1249312234||t18787.6155068859s|1ac146fbf134cc2a|2203012|rds|vector|||19.1||
+correlation_matrix|function|5cefd0a55a32d89f||||||||||||||
+redundancy_analysis_graph|function|c836d696e2ff415f||||||||||||||
+estimate_cc_2_a_1|function|5ad72999267c6874||||||||||||||
+estimate_cc_2_a_3_proxy|function|25c1714b1c6adc6e||||||||||||||
+estimate_cc_2_a_2|function|282a34210eebe9d1||||||||||||||
+estimate_cc_2_a_3|function|b17bfe83109f92ea||||||||||||||
+closestpos|function|2983ffaa82e6b8ec||||||||||||||
+has_fs_model|function|00c97bf3ac13c63c||||||||||||||
+correlation_matrix_full|function|bf2090e38456ed58||||||||||||||
+estimate_cc_2_a_4|function|98bd2cce834fa153||||||||||||||
+nonnormaltest|function|b8424395ea9d3bc3||||||||||||||
+get_reliabilty|function|9ead8c37d0a93161||||||||||||||
+correlation_matrix_2|function|4a573046c6ca11c1||||||||||||||
+redundancy_analysis|function|57d00248f3e99b44||||||||||||||
+make_f2_table|function|a16e0e408310fc88||||||||||||||
+bootSig|function|636e460ee97c2019||||||||||||||
+nonnormalgraph|function|737bccc32ab26794||||||||||||||
+estimate_cc_2_a_4_proxy|function|001d572c83ed2b45||||||||||||||
+estimate_cc_2_b_1|function|644fd2f1892db208||||||||||||||
+get_htmt_problems|function|091ba736252a4939||||||||||||||
+pls_predict|function|40aa01eb838a67cc||||||||||||||
+print_composite_A_evaluation_DT|function|f8aaa8d25ce0fdad||||||||||||||
+kruskaldt|function|85e967d6ecb7d200||||||||||||||
+make_vif_table|function|42213565e3226c78||||||||||||||
+redundancy_analysis_df|function|cf27b29b4955d3a7||||||||||||||
+cor.matrix.plot.new|function|01ed7dadbee6e22e||||||||||||||
+get_mm_details|function|20702b62152cb96f||||||||||||||
 estimate_cc_1|function|88d3e20981dd59c7||||||||||||||
-raw_incidence_20210201|stem|a2db4c8e0b677ae8|2f2bec5a18e026cf|ef46db3751d8e999|-157069921|data/external/20210201-Fallzahlen.csv|t18728.5748768323s|ca345c8d76731ee2|12286|file|vector|||0||
+cor.matrix.plot|function|587a025c1fe240ae||||||||||||||
+bootstrappedSignificance|function|31be51c6e2a0fff3||||||||||||||
+import_clean|function|9f5315e009a79478||||||||||||||
+resetfun|function|2358ea59638bad2b||||||||||||||
+nldf|function|72482f30ab65a63b||||||||||||||
+estimate_cc_2_a_2_proxy|function|a29226df014221a8||||||||||||||
+createCopula|function|263fbf8fcd0d1ffb||||||||||||||
+redundancy_cc|function|d37e148af9faa371||||||||||||||
+closest|function|52a2ff1878b7e50b||||||||||||||
+nldfdt|function|3c59b46a3342483f||||||||||||||
+include_incidence|function|1ce226a469e3138d||||||||||||||
+make_r2_table|function|b8a02bda995f3dbb||||||||||||||
+make_pc_table|function|03c39763662af0a3||||||||||||||
+make_summary_sm|function|049c636e6a366867||||||||||||||
+param_clean|function|ac144302908372bc||||||||||||||
+treat_missing|function|b07ba16808e3c35e||||||||||||||
+measurement_evaluation_composite_A|function|c1897d6cfabbf56f||||||||||||||
+get_htmt|function|edce9130e2277256||||||||||||||
 raw_incidence_20210112|stem|4b7192906ea6bace|1e8b83d8e83f9e3f|ef46db3751d8e999|526832504|data/external/20210112-Fallzahlen.csv|t18728.5748768208s|1b6b680efef046da|12574|file|vector|||0||
+raw_incidence_20210201|stem|a2db4c8e0b677ae8|2f2bec5a18e026cf|ef46db3751d8e999|-157069921|data/external/20210201-Fallzahlen.csv|t18728.5748768323s|ca345c8d76731ee2|12286|file|vector|||0||
 survey_data_cleaned|stem|193cf801cf54b504|7f14611a93d79cb2|7c8c5a3c0adcd643|-1054804408||t18780.5893934321s|430f9549f229accf|92411|rds|vector|||1.37|Duplicated column names deduplicated COKN2  COKN2_1 115|
 survey_data_param|stem|301485ee7bea06e9|65d7255aaa067bd4|c7f577b02fa821b7|-1209272354||t18780.5991834825s|cce3110ed0dff705|89518|rds|vector|||1.92|package forcats was built under R version 4.0.4|
 survey_data_sem|stem|5ed13b836305a9e8|6dea3a087d1d439d|0a1a5c12fafa1928|-1237433596||t18780.6037125722s|dd1712273b338ee6|87336|rds|vector|||1.61|package forcats was built under R version 4.0.4|
 survey_data_cc_sem|stem|63e99e66c172c320|da05855fc21cce94|f0c85548abd285bb|1887112977||t18780.6386608144s|9d0c27414bcffa35|14740|rds|vector|||2.69|package forcats was built under R version 4.0.4|
-cc_model_1_ra|stem|e3d30e5965e7af79|5ad69413f8eaf110|a0f4946b6d85db79|449103418||t18786.608574769s|f6e86f9de8b6e352|352154|rds|vector|||4.21|package forcats was built under R version 4.0.4|
+cc_model_2_a_3|stem|789e072b9202d224|8b4519db82a51dce|207c9806b21db441|1985660412||t18787.6044588882s|4e744a0cb755eb4e|78404|rds|vector|||3.23|package forcats was built under R version 4.0.4|
+cc_model_2_a_4_proxy|stem|5ab5148ae1fa657e|da6406dd008b3d48|267f9684ea2cea73|1195524482||t18787.614802165s|5ac50a57da8d4dd7|37947|rds|vector|||0.07||
+cc_model_2_b_1|stem|0c3a402b8232e279|931cc55744bb43b3|891bae91661dc91e|-2107438812||t18788.3501530614s|7b5276e6efcba098|96922|rds|vector|||4.74|package forcats was built under R version 4.0.4|
+cc_model_2_a_1|stem|3a5207c951153ee3|6649ac5ae381b47c|a7904659546e2a5b|161836175||t18787.3877738015s|178062fea92c45d1|97387|rds|vector|||2.55|package forcats was built under R version 4.0.4|
+cc_model_2_a_3_proxy|stem|b7fea92f8f717ae7|59019efb00a9a064|c3470ab4c0422137|812102472||t18787.604459872s|ef5232fc6d0a2b94|38545|rds|vector|||0.06||
+cc_model_2_a_2_proxy|stem|5b6ef0b5830b6ada|2311eb1391aac933|f8159385d8b76434|1276333516||t18787.5018234718s|1d33e2a153edf308|45054|rds|vector|||2.98|package forcats was built under R version 4.0.4|
+cc_model_2_a_2|stem|327eeb2a91eb7658|3cce5f61bec66f22|ce517967db348bec|-1689120790||t18787.4023443705s|33b8bcc1b1554708|95588|rds|vector|||2.73|package forcats was built under R version 4.0.4|
+cc_model_2_a_4|stem|552da4f6bcb27a1b|f89193297fa455ab|8463e0766d8cec76|-2079497887||t18787.6148008224s|7835ec01f3b6de90|77274|rds|vector|||2.5|package forcats was built under R version 4.0.4|
+cc_model_2_a_3_ra|stem|c456f099eb8deafd|b1d1c9e3dabfb965|a5291c7897d934ec|1569001180||t18787.6047325907s|2280291f19f9eba1|47|rds|vector|||0.04||
+cc_model_2_a_4_plspre|stem|05eed8b84069da8f|00db32b099ceb8c0|31de8605a3126a22|-1521397804||t18787.6155578001s|87dbd7a73e21ad31|9680|rds|vector|||4.34||
+cc_model_2_b_1_fs_boot|stem|ae7f6701cf88607a|a74199a11d5bf800|40d43fc9b360c740|-99589160||t18788.3510145s|f3f6435f4b4b9695|7821697|rds|vector|||73.47||
+cc_model_2_b_1_boot|stem|168c77d595d7fe34|2da379c6d1cefad6|bbe63a5f0a7569a7|1327518158||t18788.352324916s|27ad5dfb4d08108d|4968651|rds|vector|||112.33||
+cc_model_2_b_1_ra|stem|d0404ec97b2b7046|ca5b3dcecd7328c6|3f6a743b04facc56|-1352293216||t18788.3523263975s|f1e2d5f1aa5cb043|101045|rds|vector|||0.07||
+cc_model_2_a_3_plspre|stem|a26c84642fb60164|5a0efc1c4bd22b3c|373f30a0414c78f6|-2096165871||t18787.6086262112s|889a262d566adaae|9709|rds|vector|||7.56|package forcats was built under R version 4.0.4|
+cc_model_2_a_2_plspre|stem|8abd4e6f6ac82b74|3ab241f5034af316|99985113699e9893|-2079171026||t18787.5019381896s|ec20f916b5e259d5|30571|rds|vector|||9.87||
+cc_model_2_a_2_ra|stem|518cb02695eb73ce|b30f449559e45168|1a717be81a832b78|-1760347812||t18787.4023456784s|6447f34363f5ef5f|99834|rds|vector|||0.05||
+cc_model_2_a_4_ra|stem|c456f099eb8deafd|b6f6f4adb2401d57|925a5a75dbce6a18|61644076||t18787.6152835639s|2280291f19f9eba1|47|rds|vector|||0.02||
