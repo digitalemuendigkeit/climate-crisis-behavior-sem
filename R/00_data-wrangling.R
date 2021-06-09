@@ -966,5 +966,3 @@ return(datanomissing)
 #   datacodedfull <- datacodedkn %>% cbind(datarest)
 #   saveRDS(datacodedfull, "data/anonymized/datacodedfull.RDS")
 # }
-
-sillytestfunction = function(){}

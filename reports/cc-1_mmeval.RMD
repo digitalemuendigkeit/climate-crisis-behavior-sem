@@ -18,14 +18,18 @@ library(distill)
 library(targets)
 # source(here::here("R", "00_data-wrangling.R"))
 # source(here::here("R", "01_sem-estimation.R"))
-# source(here::here("R", "02_sem-evaluation.R"))
-# Update targets pipeline
+source(here::here("R", "02_sem-evaluation.R"))
+# Load models
 tar_config_set(here::here("_targets"))
-# tar_make()
-# Load models and create summaries
-# Load PLS Model
 model <- tar_read("cc_model_1")
-# bootmodel <- readRDS(here::here("sem-covid-19",
+bootmodel <- tar_read("cc_model_1_boot")
+bootfsmodel <- tar_read("cc_model_1_fs_boot")
+ralist <- tar_read("cc_model_1_ra")
+# Create summaries
+summo <- summary(model)
+sumfs <- summary(model$first_stage_model)
+sumbomo <- summary(bootmodel)
+sumbofsmo <- summary(bootfsmodel)
 #                                 "models",
 #                                 "model-boot-co-1.RDS"))
 # # Load bootstrapped first stage PLS model
@@ -55,16 +59,14 @@ model <- tar_read("cc_model_1")
 # rabi <- readRDS(here::here("sem-covid-19",
 #                                   "models",
 #                                   "rabi-co-1.RDS"))
-# # Set seminr plot theme
-# thm <-
-#   seminr_theme_create(
-#     construct.compositeA.arrow = "backward",
-#     construct.compositeA.use_weights = FALSE,
-#     construct.compositeA.shape = "oval",
-#     construct.compositeB.shape = "oval",
-#     plot.adj = FALSE
-#   )
-# seminr_theme_set(thm)
+# Set seminr plot theme
+thm <-
+  seminr_theme_create(
+    construct.compositeA.arrow = "backward",
+    construct.compositeA.use_weights = FALSE,
+    plot.adj = FALSE
+  )
+seminr_theme_set(thm)
 ```
 
 
@@ -76,6 +78,9 @@ This is the original estimate path model.
 
 ```{r plot model, echo=FALSE, layout="l-page"}
 plot(model, title = "Original Estimate Model")
+# p <- plot(model, title = "Original Estimate Model")
+# save_plot(here::here("reports", "figures", "plot_cc_1_model.svg"))
+# knitr::include_graphics(here::here("reports", "figures", "plot_cc_1_model.svg"))
 ```
 
 ## Bootstrapped Path Model
@@ -165,7 +170,7 @@ All constructs except Personal Moral Norm also show internal consistency reliabi
 This means that one indicator should be deleted.
 
 ```{r indicator deletion personal norm, echo = FALSE}
-unlist(summo$descriptives$correlations$items)[model$mmMatrix[33:35, 2], model$mmMatrix[33:35, 2]] %>%
+unlist(summo$descriptives$correlations$items)[model$mmMatrix[34:36, 2], model$mmMatrix[34:36, 2]] %>%
   data.frame() %>%
   datatable(caption = 'Personal Moral Norm Item Intercorrelations',
     autoHideNavigation = TRUE,
@@ -175,7 +180,7 @@ unlist(summo$descriptives$correlations$items)[model$mmMatrix[33:35, 2], model$mm
               digits = 3)
 
 ```
-COPN2 shows the highest intercorrelation with the other indicators and should therefore be deleted. All other reflective indicators can be retained as-is.
+CCPN2 shows the highest intercorrelation with the other indicators and should therefore be deleted. All other reflective indicators can be retained as-is.
 
 # Evaluation of the formative measurement model
 ```{r for-eval prep, echo = FALSE, include=FALSE}
@@ -189,7 +194,7 @@ forevalbase <- evalmm %>%
 To evaluate convergent validity, a redundancy analysis is conducted. The path coefficient $\beta$ should be $\geq$ 0.70 and R² should be $\geq$ 0.50.
 
 ```{r for-eval redundancy analysis, echo=FALSE}
-all_reduds <- list(model = list(rapse, rapre, raprc, radn, rain, rabi), 
+all_reduds <- list(model = ralist, 
                    title = list("Perceived Self-Efficacy", 
                                 "Perceived Response Efficacy",
                                 "Perceived Response Costs",
@@ -284,38 +289,28 @@ btwt <- btwtbase %>%
          Lower.Bounds.CI.Wt. = NULL,
          Upper.Bounds.CI.Wt. = NULL)
 # Make loadings df
-btldbase <- rownames_to_column(as.data.frame(sumbomo$bootstrapped_loadings)) %>% rename(
+btldbase <- rownames_to_column(as.data.frame(sumbomo$bootstrapped_loadings))[,1:2] %>% rename(
   Construct.Rel. = rowname,
-  Original.Est.Ld. = "Original Est.",
-  Bootstrap.Mean.Ld. = "Bootstrap Mean",
-  Bootstrap.SD.Ld. = "Bootstrap SD",
-  T.Stat.Ld. = "T Stat.",
-  Lower.Bounds.CI.Ld. = "2.5% CI",
-  Upper.Bounds.CI.Ld. = "97.5% CI"
+  Original.Est.Ld. = "Original Est."
 )
 btldsplit <- base::strsplit(btldbase$Construct.Rel., "  ->  ")
 btldsplit1 <- c()
 btldsplit2 <- c()
 for (i in 1:length(btldsplit)){
   btldsplit1 <- append(btldsplit1, btldsplit[[i]][1])
-  btldsplit2 <- append(btldsplit1, btldsplit[[i]][2])
+  btldsplit2 <- append(btldsplit2, btldsplit[[i]][2])
 }
 btld <- btldbase %>%
-  cbind(data.frame(Indicator = btldsplit1, Construct = btldsplit1)) %>%
-  mutate(Construct.Rel. = NULL,
-         Bootstrap.SD.Ld. = NULL,
-         '0.in.Ld.CI' = ifelse(Lower.Bounds.CI.Ld. < 0 &  Upper.Bounds.CI.Ld. > 0, TRUE, FALSE),
-         Lower.Bounds.CI.Ld. = NULL,
-         Upper.Bounds.CI.Ld. = NULL)
+  cbind(data.frame(Indicator = btldsplit1, Construct = btldsplit2)) %>%
+  mutate(Construct.Rel. = NULL)
 
 #Make final data frame
 forevalmm <- forevalbase %>% 
   left_join(forevalci) %>%
   left_join(mmvif[,2:3]) %>%
   left_join(btwt[,-5]) %>%
-  left_join(btld[,-5])
+  left_join(btld)
 colnames(forevalmm)[8] <- paste0("t(", nrow(model$data), ") (weight)")
-colnames(forevalmm)[12] <- paste0("t(", nrow(model$data), ") (loading)")
 ```
 
 ```{r for-eval, echo=FALSE, layout="l-page"}
@@ -328,27 +323,24 @@ datatable(forevalmm,
                        "Weight (original estimate)" = 6, 
                        "Weight (bootstrap mean)" = 7,
                        "0 in CI (weight)" = 9,
-                       "Loading (original estimate)" = 10,
-                       "Loading (bootstrap mean)" = 11,
-                       "0 in CI (loading)" = 13),
+                       "Loading (original estimate)" = 10
+                      ),
           caption = 'Results of the formative measurement model evaluation') %>%
-  formatRound(c(3:8, 10:12),
+  formatRound(c(3:8, 10),
               digits = 3) %>%
   formatStyle('CV R^2', backgroundColor = styleInterval(cuts = c(0.499), values = c('#ff9999', '#00'))) %>%
   formatStyle('CV pc', backgroundColor = styleInterval(cuts = c(0.699), values = c('#ff9999', '#00'))) %>%
   formatStyle('VIF', backgroundColor = styleInterval(cuts = c(3,5), values = c('#00', '#ffe5e5','#ff9999'))) %>%
   formatStyle(colnames(forevalmm)[8], backgroundColor = styleInterval(cuts = c(1.649), values = c('#ffe5e5', '#00'))) %>%
   formatStyle('Loading (original estimate)', backgroundColor = styleInterval(cuts = c(0.499), values = c('#ff9999', '#00'))) %>%
-  formatStyle('Loading (bootstrap mean)', backgroundColor = styleInterval(cuts = c(0.499), values = c('#ff9999', '#00'))) %>%
-  formatStyle(colnames(forevalmm)[12], backgroundColor = styleInterval(cuts = c(1.649), values = c('#ff9999', '#00'))) %>%
-  formatStyle('0 in CI (weight)', backgroundColor = styleEqual(c(1,0), c('#ffe5e5', '#00'), default = NULL)) %>%
-  formatStyle('0 in CI (loading)', backgroundColor = styleEqual(c(1,0), c('#ff9999', '#00'), default = NULL))
+  formatStyle('0 in CI (weight)', backgroundColor = styleEqual(c(1,0), c('#ffe5e5', '#00'), default = NULL))
 ```
 
+
 ## Results of the evaluation of the formative measurement model
-Convergent validity is insufficient only for Perceived Self-Efficacy.
+Convergent validity is insufficient only for all Response Beliefs lower-order constructs as well as for Behavioral Intention..
 There are no issues with collinearity as indicated by the VIF. 
-All weights are significant and relevant.
+Except for CCRB8, all weights are significant and relevant.
 As further indicator deletion is unlikely to improve convergent validity for Perceived Self-Efficacy, it should be replaced by the single-indicator reflective measure.
 
 # Evaluation of the formative higher-order constructs
@@ -405,37 +397,27 @@ bthocwt <- bthocwtbase %>%
          Lower.Bounds.CI.Wt. = NULL,
          Upper.Bounds.CI.Wt. = NULL)
 # Make loadings df
-bthocldbase <- rownames_to_column(as.data.frame(sumbomo$bootstrapped_loadings)) %>% rename(
+bthocldbase <- rownames_to_column(as.data.frame(sumbomo$bootstrapped_loadings))[,1:2] %>% rename(
   Construct.Rel. = rowname,
-  Original.Est.Ld. = "Original Est.",
-  Bootstrap.Mean.Ld. = "Bootstrap Mean",
-  Bootstrap.SD.Ld. = "Bootstrap SD",
-  T.Stat.Ld. = "T Stat.",
-  Lower.Bounds.CI.Ld. = "2.5% CI",
-  Upper.Bounds.CI.Ld. = "97.5% CI"
+  Original.Est.Ld. = "Original Est."
 )
 bthocldsplit <- base::strsplit(bthocldbase$Construct.Rel., "  ->  ")
 bthocldsplit1 <- c()
 bthocldsplit2 <- c()
 for (i in 1:length(bthocldsplit)){
   bthocldsplit1 <- append(bthocldsplit1, bthocldsplit[[i]][1])
-  bthocldsplit2 <- append(bthocldsplit1, bthocldsplit[[i]][2])
+  bthocldsplit2 <- append(bthocldsplit2, bthocldsplit[[i]][2])
 }
 bthocld <- btldbase %>%
-  cbind(data.frame(LOC = btldsplit1, HOC = btldsplit1)) %>%
-  mutate(Construct.Rel. = NULL,
-         Bootstrap.SD.Ld. = NULL,
-         '0.in.Ld.CI' = ifelse(Lower.Bounds.CI.Ld. < 0 &  Upper.Bounds.CI.Ld. > 0, TRUE, FALSE),
-         Lower.Bounds.CI.Ld. = NULL,
-         Upper.Bounds.CI.Ld. = NULL)
+  cbind(data.frame(LOC = btldsplit1, HOC = btldsplit2)) %>%
+  mutate(Construct.Rel. = NULL)
 
 #Make final data frame
 forhocevalmm <- forhocevalbase %>%
   left_join(hocvif[,2:3]) %>%
   left_join(bthocwt[,-5]) %>%
-  left_join(bthocld[,-5])
+  left_join(bthocld)
 colnames(forhocevalmm)[6] <- paste0("t(", nrow(model$data), ") (weight)")
-colnames(forhocevalmm)[10] <- paste0("t(", nrow(model$data), ") (loading)")
 ```
 
 ```{r hoc-for-eval, echo=FALSE, layout="l-page"}
@@ -446,28 +428,26 @@ datatable(forhocevalmm,
           colnames = c("Weight (original estimate)" = 4, 
                        "Weight (bootstrap mean)" = 5,
                        "0 in CI (weight)" = 7,
-                       "Loading (original estimate)" = 8,
-                       "Loading (bootstrap mean)" = 9,
-                       "0 in CI (loading)" = 11),
+                       "Loading (original estimate)" = 8
+                       ),
           caption = 'Results of the formative higher-order construct evaluation') %>%
-  formatRound(c(3:6, 8:10),
+  formatRound(c(3:6, 8),
               digits = 3) %>%
   formatStyle('VIF', backgroundColor = styleInterval(cuts = c(3,5), values = c('#00', '#ffe5e5','#ff9999'))) %>%
   formatStyle(colnames(forhocevalmm)[6], backgroundColor = styleInterval(cuts = c(1.649), values = c('#ffe5e5', '#00'))) %>%
   formatStyle('Loading (original estimate)', backgroundColor = styleInterval(cuts = c(0.499), values = c('#ff9999', '#00'))) %>%
-  formatStyle('Loading (bootstrap mean)', backgroundColor = styleInterval(cuts = c(0.499), values = c('#ff9999', '#00'))) %>%
-  formatStyle(colnames(forhocevalmm)[10], backgroundColor = styleInterval(cuts = c(1.649), values = c('#ff9999', '#00'))) %>%
-  formatStyle('0 in CI (weight)', backgroundColor = styleEqual(c(1,0), c('#ffe5e5', '#00'), default = NULL)) %>%
-  formatStyle('0 in CI (loading)', backgroundColor = styleEqual(c(1,0), c('#ff9999', '#00'), default = NULL))
+  formatStyle('0 in CI (weight)', backgroundColor = styleEqual(c(1,0), c('#ffe5e5', '#00'), default = NULL))
 ```
 
 
 ## Results of the formative higher-order constructs evaluation
 For the formative higher-order constructs, there are no issues with collinearity (VIF above 3, but below 5).
-The weight for Distrusting Beliefs Integrity is not significant, but the loading is sufficiently large.
+The weighst for Distrusting Beliefs Integrity and Injunctive Norm are not significant, but the loadings are sufficiently large.
 All other weights are significant and relevant.
 The formative higher-order constructs can be retained as hypothesized.
 
 # Results summary
-To improve internal consistency reliability of Personal Norm, COPN2 should be deleted.
-Because of a lack of convergent validity, the formative Perceived Self-Efficacy construct should be replaced by a single-indicator (CORB10) reflective Perceived Self-Efficacy construct.
+To improve internal consistency reliability of Personal Norm, CCPN2 should be deleted.
+Other than that, the reflective measurement model can be retained as-is.
+Because there are incorrigible problems with convergent validity for the Response Belief lower-order constructs and Behavioral Intention, four distinct behavior-specific models should be estimated next.
+The other formative higher-order constructs can be retained as-is.
