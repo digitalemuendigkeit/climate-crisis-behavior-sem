@@ -224,6 +224,7 @@ estimate_cc_2_a_4 = function(data) {
   return(model)
 }
 
+
 # Estimate CC-2-a-4 proxymodel ----
 estimate_cc_2_a_4_proxy = function(data) {
   data <- as.matrix(data %>% select(!starts_with("CCKN")) %>% cbind("CCKN" = rowMeans(data %>% select(starts_with("CCKN"))))) %>%
@@ -240,6 +241,7 @@ estimate_cc_2_a_4_proxy = function(data) {
   proxymodel <- estimate_pls(data, mm, sm)
   return(proxymodel)
 }
+
 
 # Estimate CC-2-b-1 ----
 estimate_cc_2_b_1 = function(data) {
