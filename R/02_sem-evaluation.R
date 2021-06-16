@@ -148,7 +148,7 @@ print_composite_A_evaluation_DT <- function(eval_table) {
         "Construct reliability" = 7,
         "1 in HTMT CI" = 8
       ),
-      caption = 'Results of the reflective measurement model evaluation'
+      caption = 'Results of the mode A measurement model evaluation'
     ) %>%
     formatRound(3:7,
                 digits = 3) %>%

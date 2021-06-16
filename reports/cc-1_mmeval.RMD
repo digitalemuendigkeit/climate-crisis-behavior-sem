@@ -104,7 +104,7 @@ plot(bootmodel, measurement_only = TRUE)
 evalmm <- get_mm_details(model)
 ```
 
-# Evaluation of the reflective measurement model
+# Evaluation of the mode A measurement model
 ```{r ref-eval prep, echo = FALSE, include=FALSE}
 # get measurement evaluation
 refevalmmbase <- measurement_evaluation_composite_A(model)
@@ -161,7 +161,7 @@ datatable(
   ))
 ```
 
-## Results of the evaluation of the reflective measurement model
+## Results of the evaluation of the mode A measurement model
 
 All indicators and constructs show sufficient convergent validity and discriminant validity. 
 The HTMT bootstrap CIs include 1 for all the Distrusting Beliefs lower-order constructs.
@@ -180,9 +180,9 @@ unlist(summo$descriptives$correlations$items)[model$mmMatrix[34:36, 2], model$mm
               digits = 3)
 
 ```
-CCPN2 shows the highest intercorrelation with the other indicators and should therefore be deleted. All other reflective indicators can be retained as-is.
+CCPN2 shows the highest intercorrelation with the other indicators and should therefore be deleted. All other mode A indicators can be retained as-is.
 
-# Evaluation of the formative measurement model
+# Evaluation of the mode B measurement model
 ```{r for-eval prep, echo = FALSE, include=FALSE}
 forevalbase <- evalmm %>% 
   filter(Mode == "B") %>% 
@@ -325,7 +325,7 @@ datatable(forevalmm,
                        "0 in CI (weight)" = 9,
                        "Loading (original estimate)" = 10
                       ),
-          caption = 'Results of the formative measurement model evaluation') %>%
+          caption = 'Results of the mode B measurement model evaluation') %>%
   formatRound(c(3:8, 10),
               digits = 3) %>%
   formatStyle('CV R^2', backgroundColor = styleInterval(cuts = c(0.499), values = c('#ff9999', '#00'))) %>%
@@ -337,13 +337,13 @@ datatable(forevalmm,
 ```
 
 
-## Results of the evaluation of the formative measurement model
+## Results of the evaluation of the mode B measurement model
 Convergent validity is insufficient only for all Response Beliefs lower-order constructs as well as for Behavioral Intention..
 There are no issues with collinearity as indicated by the VIF. 
 Except for CCRB8, all weights are significant and relevant.
-As further indicator deletion is unlikely to improve convergent validity for Perceived Self-Efficacy, it should be replaced by the single-indicator reflective measure.
+As further indicator deletion is unlikely to improve convergent validity for Perceived Self-Efficacy, it should be replaced by the single-indicator mode A measure.
 
-# Evaluation of the formative higher-order constructs
+# Evaluation of the mode B higher-order constructs
 ```{r hoc-eval base, echo=FALSE, include=FALSE}
 forhocevalbase <- evalmm %>% filter(Mode == "HOCB") %>% rename(HOC = Construct, LOC = Indicator.or.LOC) %>% 
   mutate(Type = NULL, Mode = NULL)
@@ -430,7 +430,7 @@ datatable(forhocevalmm,
                        "0 in CI (weight)" = 7,
                        "Loading (original estimate)" = 8
                        ),
-          caption = 'Results of the formative higher-order construct evaluation') %>%
+          caption = 'Results of the mode B higher-order construct evaluation') %>%
   formatRound(c(3:6, 8),
               digits = 3) %>%
   formatStyle('VIF', backgroundColor = styleInterval(cuts = c(3,5), values = c('#00', '#ffe5e5','#ff9999'))) %>%
@@ -440,14 +440,14 @@ datatable(forhocevalmm,
 ```
 
 
-## Results of the formative higher-order constructs evaluation
-For the formative higher-order constructs, there are no issues with collinearity (VIF above 3, but below 5).
+## Results of the mode B higher-order constructs evaluation
+For the mode B higher-order constructs, there are no issues with collinearity (VIF above 3, but below 5).
 The weighst for Distrusting Beliefs Integrity and Injunctive Norm are not significant, but the loadings are sufficiently large.
 All other weights are significant and relevant.
-The formative higher-order constructs can be retained as hypothesized.
+The mode B higher-order constructs can be retained as hypothesized.
 
 # Results summary
 To improve internal consistency reliability of Personal Norm, CCPN2 should be deleted.
-Other than that, the reflective measurement model can be retained as-is.
+Other than that, the mode A measurement model can be retained as-is.
 Because there are incorrigible problems with convergent validity for the Response Belief lower-order constructs and Behavioral Intention, four distinct behavior-specific models should be estimated next.
-The other formative higher-order constructs can be retained as-is.
+The other mode B higher-order constructs can be retained as-is.

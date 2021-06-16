@@ -73,7 +73,7 @@ plot(bootmodel, measurement_only = TRUE)
 evalmm <- get_mm_details(model)
 ```
 
-# Evaluation of the reflective measurement model
+# Evaluation of the mode A measurement model
 ```{r ref-eval prep, echo = FALSE, include=FALSE}
 # get measurement evaluation
 refevalmmbase <- measurement_evaluation_composite_A(model)
@@ -133,10 +133,10 @@ datatable(
 As before, the HTMT bootstrap confidence intervals are only problematic for the Distrusting Beliefs lower-order constructs.
 All others are below the critical thresholds.
 
-## Results of the evaluation of the reflective measurement model
-The reflective measurement model meets all quality criteria and can be retained as-is.
+## Results of the evaluation of the mode A measurement model
+The mode A measurement model meets all quality criteria and can be retained as-is.
 
-# Evaluation of the formative measurement model
+# Evaluation of the mode B measurement model
 
 ```{r for-eval prep, echo = FALSE, include=FALSE}
 forevalbase <- evalmm %>% 
@@ -262,7 +262,7 @@ datatable(forevalmm,
                        "0 in CI (weight)" = 9,
                        "Loading (original estimate)" = 10
                       ),
-          caption = 'Results of the formative measurement model evaluation') %>%
+          caption = 'Results of the mode B measurement model evaluation') %>%
   formatRound(c(3:8, 10),
               digits = 3) %>%
   formatStyle('CV R^2', backgroundColor = styleInterval(cuts = c(0.499), values = c('#ff9999', '#00'))) %>%
@@ -275,11 +275,11 @@ datatable(forevalmm,
 Convergent validity is established for both constructs and there is no collinearity.
 The weight of CCIN1 is insignificant on the basis of the bootstrap confidence interval, however, the loadings is sufficiently large.
 
-## Results of the evaluation of the formative measurement model
+## Results of the evaluation of the mode B measurement model
 
-The formative measurement model meets all quality criteria and can be retained as-is.
+The mode B measurement model meets all quality criteria and can be retained as-is.
 
-# Evaluation of the formative higher-order constructs
+# Evaluation of the mode B higher-order constructs
 
 ```{r hoc-eval base, echo=FALSE, include=FALSE}
 forhocevalbase <- evalmm %>% filter(Mode == "HOCB") %>% rename(HOC = Construct, LOC = Indicator.or.LOC) %>% 
@@ -371,7 +371,7 @@ datatable(forhocevalmm,
                        "0 in CI (weight)" = 7,
                        "Loading (original estimate)" = 8
                        ),
-          caption = 'Results of the formative higher-order construct evaluation') %>%
+          caption = 'Results of the mode B higher-order construct evaluation') %>%
   formatRound(c(3:6, 8),
               digits = 3) %>%
   formatStyle('VIF', backgroundColor = styleInterval(cuts = c(3,5), values = c('#00', '#ffe5e5','#ff9999'))) %>%
@@ -386,9 +386,9 @@ The weight for Perceived Response Costs is non-significant, and the loading is n
 Therefore, it should be removed.
 All other weights are significant and relevant.
 
-## Results of the formative higher-order constructs evaluation
+## Results of the mode B higher-order constructs evaluation
 
-Perceived Response Costs has to be removed, otherwise the formative higher-order constructs can be retained as-is.
+Perceived Response Costs has to be removed, otherwise the mode B higher-order constructs can be retained as-is.
 
 # Results summary
 
