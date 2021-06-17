@@ -3,7 +3,7 @@ library(tarchetypes)
 #source(here::here("R", "functions.R"))
 source("R/00_data-wrangling.R")
 source("R/01_sem-estimation.R")
-source("R/02_sem-evaluation.R")
+#source("R/02_sem-evaluation.R")
 # If you don't have hcictools installed
 # Uncomment and run this line
 # remotes::install_git("https://github.com/statisticsforsocialscience/hcictools")
@@ -156,6 +156,10 @@ list(
     estimate_cc_2_a_3_proxy(survey_data_cc_sem)
   ),
   tar_target(
+    cc_model_2_a_3_proxy_boot,
+    bootstrap_model(cc_model_2_a_3_proxy, 500)
+  ),
+  tar_target(
     cc_model_2_a_3_plspre,
     pls_predict(cc_model_2_a_3_proxy)
   ),
@@ -178,6 +182,10 @@ list(
   tar_target(
     cc_model_2_a_4_proxy,
     estimate_cc_2_a_4_proxy(survey_data_cc_sem)
+  ),
+  tar_target(
+    cc_model_2_a_4_proxy_boot,
+    bootstrap_model(cc_model_2_a_4_proxy, 500)
   ),
   tar_target(
     cc_model_2_a_4_plspre,
@@ -214,6 +222,90 @@ list(
   tar_target(
     cc_model_2_b_2_ra,
     redundancy_cc(cc_model_2_b_2)
+  ),
+  tar_target(
+    cc_model_2_b_2_proxy,
+    estimate_cc_2_b_2_proxy(survey_data_cc_sem)
+  ),
+  tar_target(
+    cc_model_2_b_2_proxy_boot,
+    bootstrap_model(cc_model_2_b_2_proxy, 500)
+  ),
+  tar_target(
+    cc_model_2_b_2_plspre,
+    pls_predict(cc_model_2_b_2_proxy)
+  ),
+  tar_target(
+    cc_model_2_b_3,
+    estimate_cc_2_b_3(survey_data_cc_sem)
+  ),
+  tar_target(
+    cc_model_2_b_3_boot,
+    bootstrap_model(cc_model_2_b_3, 5000)
+  ),
+  tar_target(
+    cc_model_2_b_3_fs_boot,
+    bootstrap_model(cc_model_2_b_3$first_stage_model, 5000)
+  ),
+  tar_target(
+    cc_model_2_b_3_ra,
+    redundancy_cc(cc_model_2_b_3)
+  ),
+  tar_target(
+    cc_model_2_b_3_proxy,
+    estimate_cc_2_b_3_proxy(survey_data_cc_sem)
+  ),
+  tar_target(
+    cc_model_2_b_3_proxy_boot,
+    bootstrap_model(cc_model_2_b_3_proxy, 500)
+  ),
+  tar_target(
+    cc_model_2_b_3_plspre,
+    pls_predict(cc_model_2_b_3_proxy)
+  ),
+  tar_target(
+    cc_model_2_c_1,
+    estimate_cc_2_c_1(survey_data_cc_sem)
+  ),
+  tar_target(
+    cc_model_2_c_1_boot,
+    bootstrap_model(cc_model_2_c_1, 5000)
+  ),
+  tar_target(
+    cc_model_2_c_1_fs_boot,
+    bootstrap_model(cc_model_2_c_1$first_stage_model, 5000)
+  ),
+  tar_target(
+    cc_model_2_c_1_ra,
+    redundancy_cc(cc_model_2_c_1)
+  ),
+  tar_target(
+    cc_model_2_c_2,
+    estimate_cc_2_c_2(survey_data_cc_sem)
+  ),
+  tar_target(
+    cc_model_2_c_2_boot,
+    bootstrap_model(cc_model_2_c_2, 5000)
+  ),
+  tar_target(
+    cc_model_2_c_2_fs_boot,
+    bootstrap_model(cc_model_2_c_2$first_stage_model, 5000)
+  ),
+  tar_target(
+    cc_model_2_c_2_ra,
+    redundancy_cc(cc_model_2_c_2)
+  ),
+  tar_target(
+    cc_model_2_c_2_proxy,
+    estimate_cc_2_c_2_proxy(survey_data_cc_sem)
+  ),
+  tar_target(
+    cc_model_2_c_2_proxy_boot,
+    bootstrap_model(cc_model_2_c_2_proxy, 500)
+  ),
+  tar_target(
+    cc_model_2_c_2_plspre,
+    pls_predict(cc_model_2_c_2_proxy)
   )
 )
 

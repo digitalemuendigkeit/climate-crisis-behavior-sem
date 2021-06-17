@@ -408,8 +408,8 @@ for (i in 1:length(bthocldsplit)){
   bthocldsplit1 <- append(bthocldsplit1, bthocldsplit[[i]][1])
   bthocldsplit2 <- append(bthocldsplit2, bthocldsplit[[i]][2])
 }
-bthocld <- btldbase %>%
-  cbind(data.frame(LOC = btldsplit1, HOC = btldsplit2)) %>%
+bthocld <- bthocldbase %>%
+  cbind(data.frame(LOC = bthocldsplit1, HOC = bthocldsplit2)) %>%
   mutate(Construct.Rel. = NULL)
 
 #Make final data frame

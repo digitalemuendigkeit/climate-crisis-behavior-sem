@@ -53,6 +53,13 @@ redundancy_cc = function(model) {
   return(ra_list)
 }
 
+# PLS-predict----
+pls_predict = function(proxymodel) {
+  predictsummary <- predict_pls(proxymodel, noFolds = 10, reps = 10) %>%
+    summary()
+  return(predictsummary)
+}
+
 # Estimate CC-1 ----
 estimate_cc_1 = function(data) {
   data <- as.matrix(data %>% select(!starts_with("CCKN")) %>% cbind("CCKN" = rowMeans(data %>% select(starts_with("CCKN")))))
@@ -290,6 +297,95 @@ estimate_cc_2_b_2 = function(data) {
     higher_composite("Threat Beliefs", c("Perceived Susceptibility", "Perceived Severity"), weights = mode_B),
     composite("Personal Moral Norm", multi_items("CCPN",c(1,3))),
     composite("Descriptive Norm", multi_items("CCDN", 1:2), mode_B),
+    composite("Behavioral Intention", single_item("CCBI2"))
+  )
+  sm <- relationships(
+    paths(from = c("Distrusting Beliefs", "Knowledge"), to = c("Response Beliefs", "Threat Beliefs")),
+    paths(from = c("Response Beliefs", "Threat Beliefs", "Personal Moral Norm", "Descriptive Norm"), to = "Behavioral Intention")
+  )
+  model <- estimate_pls(data, mm, sm)
+  return(model)
+}
+
+# Estimate CC-2-b-2 proxymodel ----
+estimate_cc_2_b_2_proxy = function(data) {
+  data <- as.matrix(data %>% select(!starts_with("CCKN")) %>% cbind("CCKN" = rowMeans(data %>% select(starts_with("CCKN"))))) %>%
+    as.data.frame()
+  mm <- constructs(
+    composite("Response Beliefs", multi_items("CCRB", c(2,5)), weights = mode_B),
+    composite("Distrusting Beliefs", multi_items("CCDI", 1:9), weights = mode_B),
+    composite("Knowledge", single_item("CCKN")),
+    composite("Threat Beliefs", multi_items("CCTB", 1:6)),
+    composite("Descriptive Norm",multi_items("CCDN", 1:2)),
+    composite("Personal Moral Norm", multi_items("CCPN", c(1,3))),
+    composite("Behavioral Intention", single_item("CCBI1"))
+  )
+  sm <- relationships(
+    paths(from = c("Distrusting Beliefs", "Knowledge"), to = c("Response Beliefs", "Threat Beliefs")),
+    paths(from = c("Response Beliefs", "Threat Beliefs", "Personal Moral Norm", "Descriptive Norm"), to = "Behavioral Intention")
+  )
+  proxymodel <- estimate_pls(data, mm, sm)
+  return(proxymodel)
+}
+
+# Estimate CC-2-b-3 ----
+estimate_cc_2_b_3 = function(data) {
+  data <- as.matrix(data %>% select(!starts_with("CCKN")) %>% cbind("CCKN" = rowMeans(data %>% select(starts_with("CCKN")))))
+  mm <- constructs(
+    composite("Perceived Self-Efficacy", single_item("CCRB2")),
+    composite("Perceived Response Efficacy", single_item("CCRB5")),
+    higher_composite("Response Beliefs", c("Perceived Self-Efficacy", "Perceived Response Efficacy"), weights = mode_B),
+    composite("Benevolence", multi_items("CCDI", 1:3)),
+    composite("Competence", multi_items("CCDI", 4:6)),
+    composite("Integrity", multi_items("CCDI", 7:9)),
+    higher_composite("Distrusting Beliefs", c("Benevolence", "Competence", "Integrity"), weights = mode_B),
+    composite("Personal Moral Norm", multi_items("CCPN",c(1,3))),
+    composite("Behavioral Intention", single_item("CCBI2"))
+  )
+  sm <- relationships(
+    paths(from = c("Distrusting Beliefs"), to = c("Response Beliefs")),
+    paths(from = c("Response Beliefs", "Personal Moral Norm"), to = "Behavioral Intention")
+  )
+  model <- estimate_pls(data, mm, sm)
+  return(model)
+}
+
+# Estimate CC-2-b-3 proxymodel ----
+estimate_cc_2_b_3_proxy = function(data) {
+  data <- as.matrix(data %>% select(!starts_with("CCKN")) %>% cbind("CCKN" = rowMeans(data %>% select(starts_with("CCKN"))))) %>%
+    as.data.frame()
+  mm <- constructs(
+    composite("Response Beliefs", multi_items("CCRB", c(2,5)), weights = mode_B),
+    composite("Distrusting Beliefs", multi_items("CCDI", 1:9), weights = mode_B),
+    composite("Personal Moral Norm", multi_items("CCPN", c(1,3))),
+    composite("Behavioral Intention", single_item("CCBI1"))
+  )
+  sm <- relationships(
+    paths(from = c("Distrusting Beliefs"), to = c("Response Beliefs")),
+    paths(from = c("Response Beliefs", "Personal Moral Norm"), to = "Behavioral Intention")
+  )
+  proxymodel <- estimate_pls(data, mm, sm)
+  return(proxymodel)
+}
+
+# Estimate CC-2-c-1 ----
+estimate_cc_2_c_1 = function(data) {
+  data <- as.matrix(data %>% select(!starts_with("CCKN")) %>% cbind("CCKN" = rowMeans(data %>% select(starts_with("CCKN")))))
+  mm <- constructs(
+    composite("Perceived Self-Efficacy", single_item("CCRB3")),
+    composite("Perceived Response Efficacy", single_item("CCRB6")),
+    composite("Perceived Response Costs", single_item("CCRB9")),
+    higher_composite("Response Beliefs", c("Perceived Self-Efficacy", "Perceived Response Efficacy", "Perceived Response Costs"), weights = mode_B),
+    composite("Benevolence", multi_items("CCDI", 1:3)),
+    composite("Competence", multi_items("CCDI", 4:6)),
+    composite("Integrity", multi_items("CCDI", 7:9)),
+    higher_composite("Distrusting Beliefs", c("Benevolence", "Competence", "Integrity"), weights = mode_B),
+    composite("Knowledge", single_item("CCKN")),
+    composite("Perceived Susceptibility", multi_items("CCTB", 1:3)),
+    composite("Perceived Severity", multi_items("CCTB", 4:6)),
+    higher_composite("Threat Beliefs", c("Perceived Susceptibility", "Perceived Severity"), weights = mode_B),
+    composite("Personal Moral Norm", multi_items("CCPN",c(1,3))),
+    composite("Descriptive Norm", multi_items("CCDN", 1:2), mode_B),
     composite("Injunctive Norm", multi_items("CCIN", 1:2), mode_B),
     higher_composite("Subjective Norm", c("Descriptive Norm", "Injunctive Norm"), weights = mode_B),
     composite("Behavioral Intention", single_item("CCBI2"))
@@ -300,4 +396,52 @@ estimate_cc_2_b_2 = function(data) {
   )
   model <- estimate_pls(data, mm, sm)
   return(model)
+}
+
+# Estimate CC-2-c-2 ----
+estimate_cc_2_c_2 = function(data) {
+  data <- as.matrix(data %>% select(!starts_with("CCKN")) %>% cbind("CCKN" = rowMeans(data %>% select(starts_with("CCKN")))))
+  mm <- constructs(
+    composite("Perceived Self-Efficacy", single_item("CCRB3")),
+    composite("Perceived Response Efficacy", single_item("CCRB6")),
+    higher_composite("Response Beliefs", c("Perceived Self-Efficacy", "Perceived Response Efficacy"), weights = mode_B),
+    composite("Benevolence", multi_items("CCDI", 1:3)),
+    composite("Competence", multi_items("CCDI", 4:6)),
+    composite("Integrity", multi_items("CCDI", 7:9)),
+    higher_composite("Distrusting Beliefs", c("Benevolence", "Competence", "Integrity"), weights = mode_B),
+    composite("Knowledge", single_item("CCKN")),
+    composite("Perceived Susceptibility", multi_items("CCTB", 1:3)),
+    composite("Perceived Severity", multi_items("CCTB", 4:6)),
+    higher_composite("Threat Beliefs", c("Perceived Susceptibility", "Perceived Severity"), weights = mode_B),
+    composite("Personal Moral Norm", multi_items("CCPN",c(1,3))),
+    composite("Descriptive Norm", multi_items("CCDN", 1:2), mode_B),
+    composite("Behavioral Intention", single_item("CCBI2"))
+  )
+  sm <- relationships(
+    paths(from = c("Distrusting Beliefs", "Knowledge"), to = c("Response Beliefs", "Threat Beliefs")),
+    paths(from = c("Response Beliefs", "Threat Beliefs", "Personal Moral Norm", "Descriptive Norm"), to = "Behavioral Intention")
+  )
+  model <- estimate_pls(data, mm, sm)
+  return(model)
+}
+
+# Estimate CC-2-c-2 proxymodel ----
+estimate_cc_2_c_2_proxy = function(data) {
+  data <- as.matrix(data %>% select(!starts_with("CCKN")) %>% cbind("CCKN" = rowMeans(data %>% select(starts_with("CCKN"))))) %>%
+    as.data.frame()
+  mm <- constructs(
+    composite("Response Beliefs", multi_items("CCRB", c(3,6)), weights = mode_B),
+    composite("Distrusting Beliefs", multi_items("CCDI", 1:9), weights = mode_B),
+    composite("Knowledge", single_item("CCKN")),
+    composite("Threat Beliefs", multi_items("CCTB", 1:6)),
+    composite("Descriptive Norm",multi_items("CCDN", 1:2)),
+    composite("Personal Moral Norm", multi_items("CCPN", c(1,3))),
+    composite("Behavioral Intention", single_item("CCBI1"))
+  )
+  sm <- relationships(
+    paths(from = c("Distrusting Beliefs", "Knowledge"), to = c("Response Beliefs", "Threat Beliefs")),
+    paths(from = c("Response Beliefs", "Threat Beliefs", "Personal Moral Norm", "Descriptive Norm"), to = "Behavioral Intention")
+  )
+  proxymodel <- estimate_pls(data, mm, sm)
+  return(proxymodel)
 }

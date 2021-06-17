@@ -745,12 +745,6 @@ make_summary_sm <- function(pcdf, f2, vif){
   return(sumsm)
 }
 
-# PLS-predict----
-pls_predict = function(proxymodel) {
-  predictsummary <- predict_pls(proxymodel, noFolds = 10, reps = 10) %>%
-    summary()
-  return(predictsummary)
-}
 
 # Endogeneity evaluation----
 # Function for Gaussian Capula Approach

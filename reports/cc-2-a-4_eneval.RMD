@@ -1,0 +1,194 @@
+---
+title: "Climate Crisis Iteration 2-a-4 (Diet) Endogeneity Evaluation"
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 1
+---
+
+```{r setup, echo =FALSE, include=FALSE}
+# Include libraries
+library(tidyverse)
+library(seminr)
+library(DT)
+library(htmltools)
+library(lmtest)
+library(nortest)
+library(car)
+library(distill)
+library(targets)
+source(here::here("R", "02_sem-evaluation.R"))
+# Load models
+tar_config_set(here::here("_targets"))
+model <- tar_read("cc_model_2_a_4")
+proxymodel <- tar_read("cc_model_2_a_4_proxy")
+# Make summaries
+summo <- summary(model)
+sumprmo <- summary(proxymodel)
+```
+
+The code for the assessment of endogeneity using the Gaussian Copula approach comes from
+
+Hult, G. T. M., J. F. Hair, D. Proksch, M. Sarstedt, A. Pinkwart, & C. M. Ringle (2018).
+Addressing Endogeneity in International Marketing Applications of Partial Least Squares Structural Equation Modeling. Journal of International Marketing, 26(3), 1–21. https://doi.org/10.1509/jim.17.0151
+
+
+# Test of parametricity
+
+The Gaussian Copula approach can only be used if the independent variable in question is not normally distributed.
+So we first test the distribution of the construct scores.
+A significant p value (p < 0.05) for either the Shapiro-Wilk or the Lilliefors test indicates that the data is not normally distributed.
+
+```{r distribution test, echo = FALSE}
+# Find out if independent (i.e., exogenous) variables are non-normally distributed
+# If yes, Gaussian Copula approach can be used.
+testlist <- c(rownames(summo$paths)[-c(1:2)])
+nntest <- data.frame('Variable' = character(),
+             'Shapiro-Wilk W' = double(),
+             'Shapiro Wilk p' = double(),
+             'Lilliefors D' = double(),
+             'Lilliefors p' = double())
+for (i in 1:length(testlist)) {
+  nntest <- nntest %>% base::rbind(nonnormaltest(model, testlist[i]),
+                             deparse.level = 0)
+}
+nntest %>%
+  datatable(
+    caption = 'Results of normality tests',
+    rownames = FALSE,
+    options = list(pageLength = nrow(nntest))
+  ) %>%
+  formatRound(-1,
+              digits = 3)
+```
+```{r distribution graph, echo = FALSE}
+for (i in 1:length(testlist)) {
+  nonnormalgraph(model, testlist[i])
+}
+```
+
+
+
+All independent (or endogenous) variables are non-normally distributed.
+Therefore, the Gaussian Copula approach can be used for all of them.
+
+
+# Regression of Response Beliefs on Distrusting Beliefs and Knowledge
+
+```{r gca rb, echo = FALSE, include = FALSE}
+# Define Variables for easy access
+DI <- model$construct_scores[,"Distrusting Beliefs"]
+RB <- model$construct_scores[,"Response Beliefs"]
+
+# Define number of bootstraps: 10.000 for reporting, 100 for testing
+bootrounds <- 10000
+
+# Estimate regression model
+rbmodel <- lm(RB ~ DI)
+summary(rbmodel)
+bootrb <- Boot(rbmodel, R=bootrounds)
+summary(bootrb)
+
+# Make base df
+rbdf <- data.frame(Construct = c("Distrusting Beliefs", "Copula Distrusting Beliefs"), 
+                   Original.Model.Value = c(summary(bootrb)[2,5],NA),
+                   Original.Model.p = c(bootSig(model$data, bootrb, 2, 0)[2],NA)
+)
+
+# Calculate copulas for independent variables
+DI_star <- createCopula(DI)
+
+
+# Calculate results with copula for Distrusting Beliefs
+# Input is regular model + copula + 0
+copuladirb <- lm(RB ~ DI + DI_star + 0)
+summary(copuladirb)
+# Bootstrap Standard Errors
+bootcopuladirb <- Boot(copuladirb, R=bootrounds)
+summary(bootcopuladirb)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopuladirb, 1,1)
+# Attach to df
+rbdf <- rbdf %>% cbind(
+  DI.Co.Model.Value = c(summary(bootcopuladirb)[,5]),
+  DI.Co.Model.p = c(bootSig(model$data, bootcopuladirb, 2,1))
+)
+colnames(rbdf) <- c("Construct",
+                    "Original model value",
+                    "Original model p",
+                    "DI copula model value",
+                    "DI copula model p"
+                    )
+```
+
+```{r gca rb table, echo = FALSE}
+rbdft <- rbdf[,-1] %>% t() %>% as.data.frame()
+colnames(rbdft) <- rbdf[,1]
+rbdft %>% 
+  datatable(caption = 'Results of the copula procedure for the regression of Response Beliefs') %>%
+  formatRound(1:ncol(rbdft),
+              digits = 3)
+```
+
+The Distrusting Beliefs is not significant, indicating that there is no endogeneity in the regression of Response Beliefs on its predictor.
+
+# Regression of Behavioral Intention on its predictors
+```{r gca bi, echo = FALSE, include = FALSE}
+# Define Variables for easy access
+BI <- model$construct_scores[,"Behavioral Intention"]
+
+# Define number of bootstraps: 10.000 for reporting, 100 for testing
+bootrounds <- 10000
+
+# Estimate regression model
+bimodel <- lm(BI ~ RB)
+summary(bimodel)
+bootbi <- Boot(bimodel, R=bootrounds)
+summary(bootbi)
+
+# Make base df
+bidf <- data.frame(Construct = c("Response Beliefs", "Copula Response Beliefs"), 
+                   Original.Model.Value = c(summary(bootbi)[2,5],NA),
+                   Original.Model.p = c(bootSig(model$data, bootbi, 4, 0)[2],NA)
+)
+
+# Calculate copulas for independent variables - already happened
+RB_star <- createCopula(RB)
+
+# Calculate results with copula for Response Beliefs
+# Input is regular model + copula + 0
+copularbbi <- lm(BI ~ RB + RB_star + 0)
+summary(copularbbi)
+# Bootstrap Standard Errors
+bootcopularbbi <- Boot(copularbbi)
+summary(bootcopularbbi)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopularbbi, 1,1)
+# Attach to df
+bidf <- bidf %>% cbind(
+  RB.Co.Model.Value = c(summary(bootcopularbbi)[,5]),
+  RB.Co.Model.p = c(bootSig(model$data, bootcopularbbi, 4,1))
+)
+
+colnames(bidf) <- c("Construct",
+                    "Original model value",
+                    "Original model p",
+                    "RB copula model value",
+                    "RB copula model p"
+                    )
+
+```
+```{r gca bi table, echo = FALSE, layout = "l-page"}
+bidft <- bidf[,-1] %>% t() %>% as.data.frame()
+colnames(bidft) <- bidf[,1]
+bidft %>% 
+  datatable(caption = 'Results of the copula procedure for the regression of Behavioral Intention') %>%
+  formatRound(1:ncol(bidft),
+              digits = 3)
+```
+The Response Beliefs copula does achieve a significant p-value, however, the inclusion does not increase the path coefficient for Response Beliefs.
+Therefore, it will not be included in the model.
+
+There is nothing pointing to endogeneity in any of the predictors.

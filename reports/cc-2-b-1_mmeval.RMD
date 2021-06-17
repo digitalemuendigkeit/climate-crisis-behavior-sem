@@ -275,9 +275,9 @@ datatable(forevalmm,
 Convergent validity is established for both constructs and there is no collinearity.
 The weight of CCIN1 is insignificant on the basis of the bootstrap confidence interval, however, the loadings is sufficiently large.
 
-## Results of the evaluation of the formative measurement model
+## Results of the evaluation of the mode B measurement model
 
-The formative measurement model meets all quality criteria and can be retained as-is.
+The mode B measurement model meets all quality criteria and can be retained as-is.
 
 # Evaluation of the mode B higher-order constructs
 
@@ -349,8 +349,8 @@ for (i in 1:length(bthocldsplit)){
   bthocldsplit1 <- append(bthocldsplit1, bthocldsplit[[i]][1])
   bthocldsplit2 <- append(bthocldsplit2, bthocldsplit[[i]][2])
 }
-bthocld <- btldbase %>%
-  cbind(data.frame(LOC = btldsplit1, HOC = btldsplit2)) %>%
+bthocld <- bthocldbase %>%
+  cbind(data.frame(LOC = bthocldsplit1, HOC = bthocldsplit2)) %>%
   mutate(Construct.Rel. = NULL)
 
 #Make final data frame
@@ -385,12 +385,14 @@ With that, there are no issues with collinearity.
 The weight for Perceived Response Costs is non-significant on the basis of the bootstrap confidence interval, and the loading is not sufficiently large.
 Therefore, the construct should be removed.
 The weight for Distrusting Beliefs Integrity is als non-significant, but with a sufficiently large loading, the construct can be retained.
+For Injunctive Norm, the weight is negative, not relevant, and the loading is bordering the 0.5 threshold.
+Therefore, it should also be removed as a lower-order construct.
 All other weights are significant and relevant.
 
 ## Results of the mode B higher-order constructs evaluation
 
-Perceived Response Costs has to be removed, otherwise the formative higher-order constructs can be retained as-is.
+Perceived Response Costs and Injunctive Norm have to be removed, otherwise the mode B higher-order constructs can be retained as-is.
 
 # Results summary
 
-Perceived Response Costs has to be removed as a lower-order construct.
+Perceived Response Costs and Injunvtive Norm have to be removed as a lower-order constructs.

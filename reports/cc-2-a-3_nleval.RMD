@@ -1,0 +1,128 @@
+---
+title: "Climate Crisis Iteration 2-a-3 (Diet) Nonlinearity Evaluation"
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, echo =FALSE, include=FALSE}
+# Include libraries
+library(tidyverse)
+library(seminr)
+library(DT)
+library(htmltools)
+library(lmtest)
+library(distill)
+library(targets)
+source(here::here("R", "02_sem-evaluation.R"))
+# Load models
+tar_config_set(here::here("_targets"))
+model <- tar_read("cc_model_2_a_3")
+bootmodel <- tar_read("cc_model_2_a_3_boot")
+proxymodel <- tar_read("cc_model_2_a_3_proxy")
+bootprmodel <- tar_read("cc_model_2_a_3_proxy_boot")
+# Make summaries
+summo <- summary(model)
+sumbomo <- summary(bootmodel)
+sumprmo <- summary(proxymodel)
+sumboprmo <- summary(bootprmodel)
+```
+
+# Test for possible nonlinearity
+
+First, we test for nonlinearity by applying Ramsey's RESET test for functional form to each partial linear model of the SEM.
+As quadratic effects of higher-order constructs cannot (yet) be estimated using PLS-SEM, we also apply the test to the corresponding partial linear models of the proxy SEM without higher order constructs.
+If the test statistic is significant, the respective partial regression might be nonlinear.
+
+```{r reset, echo = FALSE}
+# Make df with independent and response variable
+varlist <- as_tibble(model$smMatrix)
+# Make df
+resetdf <- data.frame(
+  'Independent variable' = character(),
+  'Response variable' = character(),
+  'Test statistic' = double(),
+  'p' = double(),
+  'DF 1' = double(),
+  'DF 2' = double()
+)
+# Fill df
+for (i in 1:nrow(varlist)) {
+  resetdf <- resetdf %>% rbind(resetfun(varlist[[i, 1]],
+                                        varlist[[i, 2]]))
+}
+resetdf %>%
+  datatable(
+    rownames = FALSE,
+    caption = 'Results of Ramsey\'s RESET test for nonlinearity') %>%
+  formatRound(c(3:4),
+              3)
+```
+Using p = 0.05 as a threshold, there is a potential nonlinear effect in the partial regression equation for the influence of Response Beliefs on Behavioral Intention.
+
+# Test alternate model with quadratic effects
+To test for nonlinearity, one can model an interaction term of the exogenous construct with itself.
+
+## Effect of Response Beliefs on Behavioral Intention
+```{r bi1 alt nonlinear estimate, echo = FALSE, include = FALSE}
+# Estimate alternate model with quadratic effect - HOCs as proxy
+mobi1alt <- estimate_pls(
+  data = model$data,
+  measurement_model = constructs(
+    composite("Response Beliefs 1", multi_items("CCRB", c(1,4)), weights = mode_B),
+    composite("Response Beliefs 2", multi_items("CCRB", c(1,4)), weights = mode_B),
+    interaction_term("Response Beliefs 1", "Response Beliefs 2", method = two_stage),
+    composite("Distrusting Beliefs", multi_items("CCDI", 1:9), weights = mode_B),
+    composite("Knowledge", single_item("CCKN")),
+    composite("Behavioral Intention", single_item("CCBI1"))
+  ),
+  structural_model = relationships(
+    paths(
+      from = c("Distrusting Beliefs", "Knowledge"),
+      to = c("Response Beliefs 1",
+              "Response Beliefs 2"
+             )
+    ),
+    paths(
+      from = c(
+        "Response Beliefs 1*Response Beliefs 2"
+      ),
+      to = "Behavioral Intention"
+    )
+  )
+)
+# Estimate second model for f2 with construct excluded
+mobi1altex <- estimate_pls(
+  data = model$data,
+  measurement_model = constructs(
+    composite("Benevolence", multi_items("CCDI", 1:3)),
+    composite("Competence", multi_items("CCDI", 4:6)),
+    composite("Integrity", multi_items("CCDI", 7:9)),
+    higher_composite("Distrusting Beliefs", c("Benevolence", "Competence", "Integrity"), weights = mode_B),
+    composite("Knowledge", single_item("CCKN")),
+    composite("Behavioral Intention", single_item("CCBI1"))
+  ),
+  structural_model = relationships(
+    paths(from = c("Distrusting Beliefs", "Knowledge"), to = "Behavioral Intention")
+  )
+)
+# Bootstrap model for significance (500 samples)
+sumbomobi1alt <- mobi1alt %>%
+  bootstrap_model() %>%
+  summary()
+```
+```{r bi1 alt results, echo = FALSE}
+# Print datatable
+nldfdt("Response Beliefs",
+     "Behavioral Intention",
+     mobi1alt,
+     mobi1altex,
+     sumbomobi1alt)
+```
+
+For the alternate model with Response Beliefs as a quadratic influence, the effect size is negligible, as is the t-value.
+This points to a linear effect of Response Beliefs on Behavioral Intention.
+
+# Summary
+We did not find evidence for a quadratic influence of any of the exogenous variables.

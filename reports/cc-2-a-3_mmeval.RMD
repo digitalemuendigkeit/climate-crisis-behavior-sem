@@ -1,0 +1,255 @@
+---
+title: "Climate Crisis Iteration 2-a-3 (Diet) Measurement Model Evaluation"
+site: 
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, echo =FALSE, include=FALSE}
+# Thought: It's possible that the targets pipeline would have to be included in each report
+knitr::opts_chunk$set(echo = TRUE)
+# Include libraries
+library(tidyverse)
+library(seminr)
+library(DT)
+library(htmltools)
+library(distill)
+library(targets)
+# source(here::here("R", "00_data-wrangling.R"))
+# source(here::here("R", "01_sem-estimation.R"))
+source(here::here("R", "02_sem-evaluation.R"))
+# Load models
+tar_config_set(here::here("_targets"))
+model <- tar_read("cc_model_2_a_3")
+bootmodel <- tar_read("cc_model_2_a_3_boot")
+bootfsmodel <- tar_read("cc_model_2_a_3_fs_boot")
+ralist <- tar_read("cc_model_2_a_3_ra")
+# Create summaries
+summo <- summary(model)
+sumfs <- summary(model$first_stage_model)
+sumbomo <- summary(bootmodel)
+sumbofsmo <- summary(bootfsmodel)
+# Set seminr plot theme
+thm <-
+  seminr_theme_create(
+    construct.compositeA.arrow = "backward",
+    construct.compositeA.use_weights = FALSE,
+    plot.adj = FALSE
+  )
+seminr_theme_set(thm)
+```
+
+# Model plots
+## Original Estimate Path Model
+
+This is the original estimate path model.
+
+```{r plot model, echo=FALSE, layout="l-page"}
+plot(model, title = "Original Estimate Model")
+# p <- plot(model, title = "Original Estimate Model")
+# save_plot(here::here("reports", "figures", "plot_cc_1_model.svg"))
+# knitr::include_graphics(here::here("reports", "figures", "plot_cc_1_model.svg"))
+```
+
+## Bootstrapped Path Model
+
+This is the bootstrapped path model.
+
+```{r plot bootmodel, echo=FALSE, layout="l-page"}
+plot(bootmodel, title = "Bootstrapped Model")
+```
+
+## Measurement Model Only
+
+This is a path model showing only the measurement model components.
+
+```{r plot mm model, echo=FALSE}
+plot(bootmodel, measurement_only = TRUE)
+```
+
+```{r eval-df, echo = FALSE, include=FALSE}
+# Base DF
+evalmm <- get_mm_details(model)
+```
+
+# Evaluation of the mode A measurement model
+```{r ref-eval prep, echo = FALSE, include=FALSE}
+# get measurement evaluation
+refevalmmbase <- measurement_evaluation_composite_A(model)
+
+#Next step is HTMT
+boothtmt <- get_htmt(bootmodel, bootfsmodel)
+htmt_problems <- get_htmt_problems(boothtmt)
+
+# Make final data frame
+refevalmm <- refevalmmbase %>% 
+  left_join(htmt_problems, by = "Construct")
+```
+
+## Convergent validity
+
+Ideally, outer loadings (<font face="Symbol">l</font>) should be $\geq$ 0.70. Loadings below 0.40 are unacceptable. AVE should be > 0.50. 
+
+## Internal consistency reliability
+
+Both Cronbach's <font face="Symbol">a</font> and composite reliability <font face="Symbol">r</font><sub>c</sub> should be $\geq$ 0.60 and $\leq$ 0.90. The upper threshold of acceptability is 0.95.
+
+## Discriminant validity
+
+Discriminant validity is evaluated using the heterotrait-monotrait ratio (HTMT). The HTMT bootstrap confidence interval should not contain 1.
+
+```{r ref-eval, echo=FALSE}
+print_composite_A_evaluation_DT(refevalmm)
+```
+
+```{r ref-eval-HTMT,echo=FALSE, layout="l-page"}
+#If there are problems with the HTMT, here is a detailed table
+datatable(
+  boothtmt,
+  filter = 'top',
+  options = list(pageLength = nrow(boothtmt)),
+  rownames = FALSE,
+  colnames = c(
+    "Construct 1" = 1,
+    "Construct 2" = 2,
+    "Lower CI HTMT" = 3,
+    "Upper CI HTMT" = 4
+  ),
+  caption = 'Details of the bootstrapped HTMT ratios'
+) %>%
+  formatRound(3:4,
+              digits = 3) %>%
+  formatStyle('Lower CI HTMT', backgroundColor = styleInterval(
+    cuts = c(0.9, 1),
+    values = c('#00', '#ffe5e5', '#ff9999')
+  )) %>%
+  formatStyle('Upper CI HTMT', backgroundColor = styleInterval(
+    cuts = c(0.9, 1),
+    values = c('#00', '#ffe5e5', '#ff9999')
+  ))
+```
+As before, the HTMT bootstrap confidence intervals are only problematic for the Distrusting Beliefs lower-order constructs.
+All others are below the critical thresholds.
+
+## Results of the evaluation of the mode A measurement model
+
+The mode A measurement model meets all quality criteria and can be retained as-is.
+
+# Evaluation of the mode B measurement model
+
+There are no simple mode B constructs to evaluate.
+
+# Evaluation of the mode B higher-order constructs
+
+```{r hoc-eval base, echo=FALSE, include=FALSE}
+forhocevalbase <- evalmm %>% filter(Mode == "HOCB") %>% rename(HOC = Construct, LOC = Indicator.or.LOC) %>% 
+  mutate(Type = NULL, Mode = NULL)
+```
+
+## Convergent validity
+
+Convergent validity cannot be evaluated.
+
+## Collinearity
+
+The variance inflation factor (VIF) should be < 5, ideally $\leq$ 3.
+
+```{r hoc-for-eval col, echo = FALSE, include = FALSE}
+hocvif <- data.frame(HOC = character(),
+                    LOC = character(),
+                    VIF = double())
+for (i in 1:length(unique(forhocevalbase$HOC))){
+  for (j in 1:nrow(filter(forhocevalbase, HOC == unique(forhocevalbase$HOC)[i]))){
+    x = unique(forhocevalbase$HOC)[i]
+    y = (filter(forhocevalbase, HOC == x))[j,"LOC"]
+    hocvif <- hocvif %>% rbind(data.frame(HOC = x,
+                              LOC = y,
+                              VIF = unlist(summo$validity$vif_items)[paste0({{x}}, ".", {{y}})]))
+  }}
+```
+
+## Significance and relevance
+
+Indicator weights should be significant (t $\geq$ 1.65, bootstrapping CI does not include 0). Otherwise, the loading  <font face="Symbol">l</font> should be $\geq$ 0.50. Any positive indicator weight implies relevance.
+
+```{r hoc-for-eval sar, echo=FALSE, include=FALSE}
+# Make weights df
+bthocwtbase <- rownames_to_column(as.data.frame(sumbomo$bootstrapped_weights)) %>% rename (
+  Construct.Rel. = rowname,
+  Original.Est.Wt. = "Original Est.",
+  Bootstrap.Mean.Wt. = "Bootstrap Mean",
+  Bootstrap.SD.Wt. = "Bootstrap SD",
+  T.Stat.Wt. = "T Stat.",
+  Lower.Bounds.CI.Wt. = "2.5% CI",
+  Upper.Bounds.CI.Wt. = "97.5% CI"
+)
+bthocwtsplit <- base::strsplit(bthocwtbase$Construct.Rel., "  ->  ")
+bthocwtsplit1 <- c()
+bthocwtsplit2 <- c()
+for (i in 1:length(bthocwtsplit)){
+  bthocwtsplit1 <- append(bthocwtsplit1, bthocwtsplit[[i]][1])
+  bthocwtsplit2 <- append(bthocwtsplit2, bthocwtsplit[[i]][2])
+}
+bthocwt <- bthocwtbase %>%
+  cbind(data.frame(LOC = bthocwtsplit1, HOC = bthocwtsplit2)) %>%
+  mutate(Construct.Rel. = NULL,
+         Bootstrap.SD.Wt. = NULL,
+         '0.in.Wt.CI' = ifelse(Lower.Bounds.CI.Wt. < 0 &  Upper.Bounds.CI.Wt. > 0, TRUE, FALSE),
+         Lower.Bounds.CI.Wt. = NULL,
+         Upper.Bounds.CI.Wt. = NULL)
+# Make loadings df
+bthocldbase <- rownames_to_column(as.data.frame(sumbomo$bootstrapped_loadings))[,1:2] %>% rename(
+  Construct.Rel. = rowname,
+  Original.Est.Ld. = "Original Est."
+)
+bthocldsplit <- base::strsplit(bthocldbase$Construct.Rel., "  ->  ")
+bthocldsplit1 <- c()
+bthocldsplit2 <- c()
+for (i in 1:length(bthocldsplit)){
+  bthocldsplit1 <- append(bthocldsplit1, bthocldsplit[[i]][1])
+  bthocldsplit2 <- append(bthocldsplit2, bthocldsplit[[i]][2])
+}
+bthocld <- bthocldbase %>%
+  cbind(data.frame(LOC = bthocldsplit1, HOC = bthocldsplit2)) %>%
+  mutate(Construct.Rel. = NULL)
+
+#Make final data frame
+forhocevalmm <- forhocevalbase %>%
+  left_join(hocvif[,2:3]) %>%
+  left_join(bthocwt[,-5]) %>%
+  left_join(bthocld)
+colnames(forhocevalmm)[6] <- paste0("t(", nrow(model$data), ") (weight)")
+```
+
+```{r hoc-for-eval, echo=FALSE, layout="l-page"}
+datatable(forhocevalmm,
+          filter = 'top',
+          options = list(pageLength = nrow(forhocevalmm)),
+          rownames = FALSE,
+          colnames = c("Weight (original estimate)" = 4, 
+                       "Weight (bootstrap mean)" = 5,
+                       "0 in CI (weight)" = 7,
+                       "Loading (original estimate)" = 8
+                       ),
+          caption = 'Results of the mode B higher-order construct evaluation') %>%
+  formatRound(c(3:6, 8),
+              digits = 3) %>%
+  formatStyle('VIF', backgroundColor = styleInterval(cuts = c(3,5), values = c('#00', '#ffe5e5','#ff9999'))) %>%
+  formatStyle(colnames(forhocevalmm)[6], backgroundColor = styleInterval(cuts = c(1.649), values = c('#ffe5e5', '#00'))) %>%
+  formatStyle('Loading (original estimate)', backgroundColor = styleInterval(cuts = c(0.499), values = c('#ff9999', '#00'))) %>%
+  formatStyle('0 in CI (weight)', backgroundColor = styleEqual(c(1,0), c('#ffe5e5', '#00'), default = NULL))
+```
+
+The VIFs for the Distrusting Beliefs are above 3, but still below 5.
+With that, there are no issues with collinearity.
+All other weights are significant and relevant.
+
+## Results of the mode B higher-order constructs evaluation
+
+All mode B higher-order constructs can be retained as-is.
+
+# Results summary
+
+All measurement model parts meet quality criteria.
+Therefore, structural model evaluation can commence.

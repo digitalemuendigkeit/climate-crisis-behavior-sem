@@ -19,14 +19,10 @@ source(here::here("R", "02_sem-evaluation.R"))
 tar_config_set(here::here("_targets"))
 model <- tar_read("cc_model_2_a_2")
 bootmodel <- tar_read("cc_model_2_a_2_boot")
-bootfsmodel <- tar_read("cc_model_2_a_2_fs_boot")
-ralist <- tar_read("cc_model_2_a_2_ra")
 sumplspre <- tar_read("cc_model_2_a_2_plspre")
 # Make summaries
 summo <- summary(model)
-sumfs <- summary(model$first_stage_model)
 sumbomo <- summary(bootmodel)
-sumbofsmo <- summary(bootfsmodel)
 # Set seminr plot theme
 thm <-
   seminr_theme_create(
