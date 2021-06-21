@@ -306,9 +306,48 @@ list(
   tar_target(
     cc_model_2_c_2_plspre,
     pls_predict(cc_model_2_c_2_proxy)
+  ),
+  tar_target(
+    cc_model_2_c_3_a,
+    estimate_cc_2_c_3_a(survey_data_cc_sem)
+  ),
+  tar_target(
+    cc_model_2_c_3_a_boot,
+    bootstrap_model(cc_model_2_c_3_a, 5000)
+  ),
+  tar_target(
+    cc_model_2_c_3_a_ra,
+    redundancy_cc(cc_model_2_c_3_a)
+  ),
+  tar_target(
+    cc_model_2_c_3_b,
+    estimate_cc_2_c_3_b(survey_data_cc_sem)
+  ),
+  tar_target(
+    cc_model_2_c_3_b_boot,
+    bootstrap_model(cc_model_2_c_3_b, 5000)
+  ),
+  tar_target(
+    cc_model_2_c_3_b_fs_boot,
+    bootstrap_model(cc_model_2_c_3_b$first_stage_model, 5000)
+  ),
+  tar_target(
+    cc_model_2_c_3_b_ra,
+    redundancy_cc(cc_model_2_c_3_b)
+  ),
+  tar_target(
+    cc_model_2_c_3_b_proxy,
+    estimate_cc_2_c_3_b_proxy(survey_data_cc_sem)
+  ),
+  tar_target(
+    cc_model_2_c_3_b_proxy_boot,
+    bootstrap_model(cc_model_2_c_3_b_proxy, 500)
+  ),
+  tar_target(
+    cc_model_2_c_3_b_plspre,
+    pls_predict(cc_model_2_c_3_b_proxy)
   )
 )
-
 # Data import
 # we should start with anonymized data
 # so the analysis can be fully reproduced with targets

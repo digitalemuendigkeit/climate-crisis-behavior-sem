@@ -1,5 +1,5 @@
 ---
-title: "Climate Crisis Iteration 2-b-2 (Heating) Endogeneity Evaluation"
+title: "Climate Crisis Iteration 2-c-2 (Driving) Endogeneity Evaluation"
 output:
   distill::distill_article:
     toc: true
@@ -20,8 +20,8 @@ library(targets)
 source(here::here("R", "02_sem-evaluation.R"))
 # Load models
 tar_config_set(here::here("_targets"))
-model <- tar_read("cc_model_2_b_2")
-proxymodel <- tar_read("cc_model_2_b_2_proxy")
+model <- tar_read("cc_model_2_c_2")
+proxymodel <- tar_read("cc_model_2_c_2_proxy")
 # Make summaries
 summo <- summary(model)
 sumprmo <- summary(proxymodel)
@@ -170,7 +170,7 @@ rbdft %>%
 ```
 
 
-The Distrusting Beliefs copula is not significant, indicating that there is no endogeneity in the regression of Response Beliefs on its predictors.
+None of the copulas is significant, indicating that there is no endogeneity in the regression of Response Beliefs on its predictors.
 
 # Regression of Threat Beliefs on Distrusting Beliefs and Knowledge
 
@@ -584,11 +584,12 @@ bidft %>%
               digits = 3)
 ```
 
-The copula for Descriptive Norm achieves a significant p-value (p < 0.1) both in the model with only the Descriptive Norm copula and in combination with other copulas.
-However, the addition of the copula leads to the path coefficient of Descriptive Norm being inverted.
-In terms of interpretation, that would imply that Descriptive Norm has a negative influence on Behavioral Intention, which is not theoretically grounded.
-Other than that, there is a significant copula  for Threat Beliefs in the model with the Descriptive Norm copula.
-As the inclusion does not lead to a substantial increase of the path coefficient, this can likely be disregarded.
-There is nothing pointing to endogeneity in any of the other predictors.
+The copula for Response Beliefs achieves a significant p-value (p < 0.1) in all model constellations.
+Including the copula, however, does not lead to a large or significant path coefficient for Response Beliefs.
+For Threat Beliefs, the copula is significant in one constellation (copulas for both Threat Beliefs and Personal Moral Norm).
+However, the copula inclusion does not lead to a significant or substantial path coefficient for Threat Beliefs in that constellation.
+For Personal Moral Norm, none of the copulas is significant.
+For Descriptive Norm, the copula is significant for some of the constellations.
+As for Threat Beliefs and Response Beliefs, the inclusion does not lead to a substantial or significant path coefficient.
 
 As the copula cannot be integrated in iterative model improvement, the copula test will be repeated for the final models.

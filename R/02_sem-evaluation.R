@@ -28,10 +28,11 @@ get_mm_details <- function(model) {
 #' has_fs_model(model)
 #' }
 has_fs_model <- function(model){
-  if(!is.null(model$first_stage_model)) {
+  if(is.null(model$first_stage_model)) {
     return (FALSE)
-  }
-  TRUE
+  } else {
+    return (TRUE)
+    }
 }
 
 

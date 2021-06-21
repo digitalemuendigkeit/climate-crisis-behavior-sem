@@ -1,5 +1,5 @@
 ---
-title: "Climate Crisis Iteration 2-b-2 (Heating) Nonlinearity Evaluation"
+title: "Climate Crisis Iteration 2-b-3 (Heating) Nonlinearity Evaluation"
 output:
   distill::distill_article:
     toc: true

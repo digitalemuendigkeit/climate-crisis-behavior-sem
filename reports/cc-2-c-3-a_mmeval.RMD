@@ -1,0 +1,147 @@
+---
+title: "Climate Crisis Iteration 2-c-3-a (Driving) Measurement Model Evaluation"
+site: 
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, echo =FALSE, include=FALSE}
+# Thought: It's possible that the targets pipeline would have to be included in each report
+knitr::opts_chunk$set(echo = TRUE)
+# Include libraries
+library(tidyverse)
+library(seminr)
+library(DT)
+library(htmltools)
+library(distill)
+library(targets)
+# source(here::here("R", "00_data-wrangling.R"))
+# source(here::here("R", "01_sem-estimation.R"))
+source(here::here("R", "02_sem-evaluation.R"))
+# Load models
+tar_config_set(here::here("_targets"))
+model <- tar_read("cc_model_2_c_3_a")
+bootmodel <- tar_read("cc_model_2_c_3_a_boot")
+#bootfsmodel <- tar_read("cc_model_2_c_3_a_fs_boot")
+#ralist <- tar_read("cc_model_2_c_3-a_ra")
+# Create summaries
+summo <- summary(model)
+sumfs <- summary(model$first_stage_model)
+sumbomo <- summary(bootmodel)
+#sumbofsmo <- summary(bootfsmodel)
+# Set seminr plot theme
+thm <-
+  seminr_theme_create(
+    construct.compositeA.arrow = "backward",
+    construct.compositeA.use_weights = FALSE,
+    plot.adj = FALSE
+  )
+seminr_theme_set(thm)
+```
+
+# Model plots
+## Original Estimate Path Model
+
+This is the original estimate path model.
+
+```{r plot model, echo=FALSE, layout="l-page"}
+plot(model, title = "Original Estimate Model")
+# p <- plot(model, title = "Original Estimate Model")
+# save_plot(here::here("reports", "figures", "plot_cc_1_model.svg"))
+# knitr::include_graphics(here::here("reports", "figures", "plot_cc_1_model.svg"))
+```
+
+## Bootstrapped Path Model
+
+This is the bootstrapped path model.
+
+```{r plot bootmodel, echo=FALSE, layout="l-page"}
+plot(bootmodel, title = "Bootstrapped Model")
+```
+
+## Measurement Model Only
+
+This is a path model showing only the measurement model components.
+
+```{r plot mm model, echo=FALSE}
+plot(bootmodel, measurement_only = TRUE)
+```
+
+```{r eval-df, echo = FALSE, include=FALSE}
+# Base DF
+evalmm <- get_mm_details(model)
+```
+
+# Evaluation of the mode A measurement model
+```{r ref-eval prep, echo = FALSE, include=FALSE}
+# get measurement evaluation
+refevalmmbase <- measurement_evaluation_composite_A(model)
+
+#Next step is HTMT
+boothtmt <- get_htmt(bootmodel, bootmodel)
+htmt_problems <- get_htmt_problems(boothtmt)
+
+# Make final data frame
+refevalmm <- refevalmmbase %>% 
+  left_join(htmt_problems, by = "Construct")
+```
+
+## Convergent validity
+
+Ideally, outer loadings (<font face="Symbol">l</font>) should be $\geq$ 0.70. Loadings below 0.40 are unacceptable. AVE should be > 0.50. 
+
+## Internal consistency reliability
+
+Both Cronbach's <font face="Symbol">a</font> and composite reliability <font face="Symbol">r</font><sub>c</sub> should be $\geq$ 0.60 and $\leq$ 0.90. The upper threshold of acceptability is 0.95.
+
+## Discriminant validity
+
+Discriminant validity is evaluated using the heterotrait-monotrait ratio (HTMT). The HTMT bootstrap confidence interval should not contain 1.
+
+```{r ref-eval, echo=FALSE}
+print_composite_A_evaluation_DT(refevalmm)
+```
+
+```{r ref-eval-HTMT,echo=FALSE, layout="l-page"}
+#If there are problems with the HTMT, here is a detailed table
+datatable(
+  boothtmt,
+  filter = 'top',
+  options = list(pageLength = nrow(boothtmt)),
+  rownames = FALSE,
+  colnames = c(
+    "Construct 1" = 1,
+    "Construct 2" = 2,
+    "Lower CI HTMT" = 3,
+    "Upper CI HTMT" = 4
+  ),
+  caption = 'Details of the bootstrapped HTMT ratios'
+) %>%
+  formatRound(3:4,
+              digits = 3) %>%
+  formatStyle('Lower CI HTMT', backgroundColor = styleInterval(
+    cuts = c(0.9, 1),
+    values = c('#00', '#ffe5e5', '#ff9999')
+  )) %>%
+  formatStyle('Upper CI HTMT', backgroundColor = styleInterval(
+    cuts = c(0.9, 1),
+    values = c('#00', '#ffe5e5', '#ff9999')
+  ))
+```
+
+## Results of the evaluation of the mode A measurement model
+The mode A measurement model meets all quality criteria and can be retained as-is.
+
+# Evaluation of the mode B measurement model
+
+There are no mode B constructs to evaluate.
+
+# Evaluation of the mode B higher-order constructs
+
+There are no mode B higher-order constructs to evaluate.
+
+# Results summary
+
+The measurement model can be retained as is.
+Structural model evaluation can commence.
