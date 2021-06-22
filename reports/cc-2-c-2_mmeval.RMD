@@ -138,143 +138,7 @@ The mode A measurement model meets all quality criteria and can be retained as-i
 
 # Evaluation of the mode B measurement model
 
-```{r for-eval prep, echo = FALSE, include=FALSE}
-forevalbase <- evalmm %>% 
-  filter(Mode == "B") %>% 
-  rename(Indicator = Indicator.or.LOC) %>% 
-  mutate(Type = NULL, Mode = NULL)
-```
-
-## Convergent validity
-
-To evaluate convergent validity, a redundancy analysis is conducted. The path coefficient $\beta$ should be $\geq$ 0.70 and R² should be $\geq$ 0.50.
-
-```{r for-eval redundancy analysis, echo=FALSE}
-all_reduds <- list(model = ralist, 
-                   title = list("Descriptive Norm"
-                                ))
-# Unfortunately, this does not knit 
-# forevalci <- purrr::map2_df(all_reduds$model, all_reduds$title, redundancy_analysis)
-# distill does not seem to plot multiple html widgets in one block
-# for (i in 1:length(all_reduds$title)) {
-#    print(plot(all_reduds$model[[i]], title = all_reduds$title[[i]]))
-#   }
-# Alternate approach
-forevalci <- data.frame(
-    'Construct' = character(),
-    'C.V.R^2' = double(),
-    'C.V.PC' = double())
-for (i in 1:length(all_reduds$title)) {
-  forevalci <- forevalci %>% rbind(
-    redundancy_analysis_df(all_reduds$model[[i]], all_reduds$title[[i]]),
-    deparse.level = 0)
-}
-```
-```{r ra1, echo =FALSE}
-plot(all_reduds$model[[1]], title = all_reduds$title[[1]])
-```
-
-Reiterating: For sufficient convergent validity, the path coefficient should be $\geq$ 0.70 and R² should be $\geq$ 0.50.
-
-## Collinearity
-The variance inflation factor (VIF) should be < 5, ideally $\leq$ 3.
-
-```{r for-eval col, echo = FALSE, include = FALSE}
-mmvif <- data.frame(Construct = character(),
-                      Indicator = character(),
-                      VIF = double())
-for (i in 1:length(unique(forevalbase$Construct))){
-  for (j in 1:nrow(filter(forevalbase, Construct == unique(forevalbase$Construct)[i]))){
-    x = unique(forevalbase$Construct)[i]
-    y = (filter(forevalbase, Construct == x))[j,"Indicator"]
-    mmvif <- mmvif %>% rbind(data.frame(Construct = x,
-                              Indicator = y,
-                              VIF = unlist(sumfs$validity$vif_items)[paste0({{x}}, ".", {{y}})]))
-  }}
-```
-
-## Significance and relevance
-
-Indicator weights should be significant (t $\geq$ 1.65, bootstrapping CI does not include 0). Otherwise, the loading  <font face="Symbol">l</font> should be $\geq$ 0.50. Any positive indicator weight implies relevance.
-
-```{r for-eval sar, echo=FALSE, include=FALSE}
-# Make weights df
-btwtbase <- rownames_to_column(as.data.frame(sumbomo$bootstrapped_weights)) %>% rename (
-  Construct.Rel. = rowname,
-  Original.Est.Wt. = "Original Est.",
-  Bootstrap.Mean.Wt. = "Bootstrap Mean",
-  Bootstrap.SD.Wt. = "Bootstrap SD",
-  T.Stat.Wt. = "T Stat.",
-  Lower.Bounds.CI.Wt. = "2.5% CI",
-  Upper.Bounds.CI.Wt. = "97.5% CI"
-)
-btwtsplit <- base::strsplit(btwtbase$Construct.Rel., "  ->  ")
-btwtsplit1 <- c()
-btwtsplit2 <- c()
-for (i in 1:length(btwtsplit)){
-  btwtsplit1 <- append(btwtsplit1, btwtsplit[[i]][1])
-  btwtsplit2 <- append(btwtsplit2, btwtsplit[[i]][2])
-}
-btwt <- btwtbase %>%
-  cbind(data.frame(Indicator = btwtsplit1, Construct = btwtsplit2)) %>%
-  mutate(Construct.Rel. = NULL,
-         Bootstrap.SD.Wt. = NULL,
-         '0.in.Wt.CI' = ifelse(Lower.Bounds.CI.Wt. < 0 &  Upper.Bounds.CI.Wt. > 0, TRUE, FALSE),
-         Lower.Bounds.CI.Wt. = NULL,
-         Upper.Bounds.CI.Wt. = NULL)
-# Make loadings df
-btldbase <- rownames_to_column(as.data.frame(sumbomo$bootstrapped_loadings))[,1:2] %>% rename(
-  Construct.Rel. = rowname,
-  Original.Est.Ld. = "Original Est."
-)
-btldsplit <- base::strsplit(btldbase$Construct.Rel., "  ->  ")
-btldsplit1 <- c()
-btldsplit2 <- c()
-for (i in 1:length(btldsplit)){
-  btldsplit1 <- append(btldsplit1, btldsplit[[i]][1])
-  btldsplit2 <- append(btldsplit2, btldsplit[[i]][2])
-}
-btld <- btldbase %>%
-  cbind(data.frame(Indicator = btldsplit1, Construct = btldsplit2)) %>%
-  mutate(Construct.Rel. = NULL)
-
-#Make final data frame
-forevalmm <- forevalbase %>% 
-  left_join(forevalci) %>%
-  left_join(mmvif[,2:3]) %>%
-  left_join(btwt[,-5]) %>%
-  left_join(btld)
-colnames(forevalmm)[8] <- paste0("t(", nrow(model$data), ") (weight)")
-```
-
-```{r for-eval, echo=FALSE, layout="l-page"}
-datatable(forevalmm,
-          filter = 'top',
-          options = list(pageLength = nrow(forevalmm)),
-          rownames = FALSE,
-          colnames = c("CV R^2" = 3,
-                        "CV pc" = 4, 
-                       "Weight (original estimate)" = 6, 
-                       "Weight (bootstrap mean)" = 7,
-                       "0 in CI (weight)" = 9,
-                       "Loading (original estimate)" = 10
-                      ),
-          caption = 'Results of the mode B measurement model evaluation') %>%
-  formatRound(c(3:8, 10),
-              digits = 3) %>%
-  formatStyle('CV R^2', backgroundColor = styleInterval(cuts = c(0.499), values = c('#ff9999', '#00'))) %>%
-  formatStyle('CV pc', backgroundColor = styleInterval(cuts = c(0.699), values = c('#ff9999', '#00'))) %>%
-  formatStyle('VIF', backgroundColor = styleInterval(cuts = c(3,5), values = c('#00', '#ffe5e5','#ff9999'))) %>%
-  formatStyle(colnames(forevalmm)[8], backgroundColor = styleInterval(cuts = c(1.649), values = c('#ffe5e5', '#00'))) %>%
-  formatStyle('Loading (original estimate)', backgroundColor = styleInterval(cuts = c(0.499), values = c('#ff9999', '#00'))) %>%
-  formatStyle('0 in CI (weight)', backgroundColor = styleEqual(c(1,0), c('#ffe5e5', '#00'), default = NULL))
-```
-Convergent validity is established for both constructs and there is no collinearity.
-The weight of CCDN1 is insignificant, however, the loading is sufficiently large.
-
-## Results of the evaluation of the mode B measurement model
-
-The mode B measurement model meets all quality criteria and can be retained as-is.
+There are no simple mode B constructs to evaluate.
 
 # Evaluation of the mode B higher-order constructs
 
@@ -379,14 +243,14 @@ datatable(forhocevalmm,
 
 The VIFs for the Distrusting Beliefs are above 3, but still below 5.
 With that, there are no issues with collinearity.
-The weights for Perceived Self-Efficacy and Distrusting Beliefs Integrity are non-significant, but the loadings are sufficiently large.
+The weight for Distrusting Beliefs Integrity is non-significant, but with a sufficiently large loading, the construct can be retained.
 All other weights are significant and relevant.
 
 ## Results of the mode B higher-order constructs evaluation
 
-The mode B higher-order constructs can be retained as-is.
+All mode B constructs can be retained as is.
 
 # Results summary
 
-The measurement model can be retained as is.
+The measurement model can be retained as-is.
 Structural model evaluation can commence.

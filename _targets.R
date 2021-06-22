@@ -87,10 +87,6 @@ list(
     cc_model_1_ra,
     redundancy_cc(cc_model_1)
   ),
-  # tar_render(
-  #   cc_1_mmeval,
-  #   "reports/cc-1_mmeval.RMD"
-  # ),
   tar_target(
     cc_model_2_a_1,
     estimate_cc_2_a_1(survey_data_cc_sem)
@@ -280,6 +276,18 @@ list(
     redundancy_cc(cc_model_2_c_1)
   ),
   tar_target(
+    cc_model_2_c_1_proxy,
+    estimate_cc_2_c_1_proxy(survey_data_cc_sem)
+  ),
+  tar_target(
+    cc_model_2_c_1_proxy_boot,
+    bootstrap_model(cc_model_2_c_1_proxy, 500)
+  ),
+  tar_target(
+    cc_model_2_c_1_plspre,
+    pls_predict(cc_model_2_c_1_proxy)
+  ),
+  tar_target(
     cc_model_2_c_2,
     estimate_cc_2_c_2(survey_data_cc_sem)
   ),
@@ -308,44 +316,32 @@ list(
     pls_predict(cc_model_2_c_2_proxy)
   ),
   tar_target(
-    cc_model_2_c_3_a,
-    estimate_cc_2_c_3_a(survey_data_cc_sem)
+    cc_model_2_d_1,
+    estimate_cc_2_d_1(survey_data_cc_sem)
   ),
   tar_target(
-    cc_model_2_c_3_a_boot,
-    bootstrap_model(cc_model_2_c_3_a, 5000)
+    cc_model_2_d_1_boot,
+    bootstrap_model(cc_model_2_d_1, 5000)
   ),
   tar_target(
-    cc_model_2_c_3_a_ra,
-    redundancy_cc(cc_model_2_c_3_a)
+    cc_model_2_d_1_fs_boot,
+    bootstrap_model(cc_model_2_d_1$first_stage_model, 5000)
   ),
   tar_target(
-    cc_model_2_c_3_b,
-    estimate_cc_2_c_3_b(survey_data_cc_sem)
+    cc_model_2_d_1_ra,
+    redundancy_cc(cc_model_2_d_1)
   ),
   tar_target(
-    cc_model_2_c_3_b_boot,
-    bootstrap_model(cc_model_2_c_3_b, 5000)
+    cc_model_2_d_1_proxy,
+    estimate_cc_2_d_1_proxy(survey_data_cc_sem)
   ),
   tar_target(
-    cc_model_2_c_3_b_fs_boot,
-    bootstrap_model(cc_model_2_c_3_b$first_stage_model, 5000)
+    cc_model_2_d_1_proxy_boot,
+    bootstrap_model(cc_model_2_d_1_proxy, 500)
   ),
   tar_target(
-    cc_model_2_c_3_b_ra,
-    redundancy_cc(cc_model_2_c_3_b)
-  ),
-  tar_target(
-    cc_model_2_c_3_b_proxy,
-    estimate_cc_2_c_3_b_proxy(survey_data_cc_sem)
-  ),
-  tar_target(
-    cc_model_2_c_3_b_proxy_boot,
-    bootstrap_model(cc_model_2_c_3_b_proxy, 500)
-  ),
-  tar_target(
-    cc_model_2_c_3_b_plspre,
-    pls_predict(cc_model_2_c_3_b_proxy)
+    cc_model_2_d_1_plspre,
+    pls_predict(cc_model_2_d_1_proxy)
   )
 )
 # Data import
@@ -354,6 +350,5 @@ list(
 # data import
 # data cleaning
 # data upload?
-
 # model creation
 # model evaluation

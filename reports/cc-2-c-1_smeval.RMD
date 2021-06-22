@@ -1,0 +1,177 @@
+---
+title: "Climate Crisis Iteration 2-c-1 (Driving) Structural Model Evaluation"
+output: 
+  distill::distill_article:
+    toc: true
+    toc_depth: 1
+---
+
+```{r setup, echo =FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# Include libraries
+library(tidyverse)
+library(seminr)
+library(DT)
+library(htmltools)
+library(targets)
+source(here::here("R", "02_sem-evaluation.R"))
+# Load models
+tar_config_set(here::here("_targets"))
+model <- tar_read("cc_model_2_c_1")
+bootmodel <- tar_read("cc_model_2_c_1_boot")
+sumplspre <- tar_read("cc_model_2_c_1_plspre")
+# Make summaries
+summo <- summary(model)
+sumbomo <- summary(bootmodel)
+# Set seminr plot theme
+thm <-
+  seminr_theme_create(
+    construct.compositeA.arrow = "backward",
+    construct.compositeA.use_weights = FALSE,
+    plot.adj = FALSE
+  )
+seminr_theme_set(thm)
+# My favorite operator
+`%notin%` <- Negate(`%in%`)
+```
+
+# Model plots
+
+## Structural Model Only
+
+This is a path model showing only the structural model components.
+
+```{r plot mm model, echo=FALSE}
+plot(bootmodel, structure_only = TRUE)
+```
+
+# Collinearity
+
+Collinearity is assessed using the variance inflation factor (VIF). VIF should be < 5, ideally $\leq$ 3.
+
+```{r collinearity vif, echo = FALSE}
+vif <- make_vif_table(summo) 
+vif %>%
+  datatable(
+          filter = 'top',
+          options = list(pageLength = nrow(vif)),
+          rownames = FALSE,
+          colnames = c('Exogenous Construct' = 1,
+                        'Endogenous Construct' = 2),
+          caption = 'Results of the structural collinearity assessment') %>%
+  formatRound(3,
+              digits = 3) %>%
+  formatStyle('VIF', backgroundColor = styleInterval(cuts = c(3,5), values = c('#00', '#ffe5e5','#ff9999')))
+```
+VIF is above 3 for the path from Personal Moral Norm to Behavioral Intention.
+But it is not above 5 for any relationships.
+
+# In-sample predictive power
+
+In-sample predictive power is assessed using variance explained R². R² $\geq$ 0.75 indicates substantial in-sample predictive power, R² $\geq$ 0.5 moderate and R² $\geq$ 0.25 weak in-sample predictive power. R² $\leq$ 0.10 indicates a lack of model predictiveness.
+
+```{r in-sample pp r^2, echo=FALSE}
+r2 <- make_r2_table(summo) 
+r2 %>% 
+  datatable(
+    filter = 'top',
+    options = list(pageLength = nrow(r2)),
+    rownames = FALSE,
+    colnames = c('R²' = 2,
+                  'R²adj' = 3),
+    caption = 'In-sample predictive power') %>%
+  formatRound(2:3,
+              digits = 3) %>%
+  formatStyle('R²', backgroundColor = styleInterval(cuts = c(0.1,0.249,0.9), values = c('#ff9999', '#ffe5e5', '#00','#ff9999')))
+```
+
+R² is below 0.25 for Response Beliefs, but not below 0.1.
+The other R² values are above 0.25, indicating weak in-sample predictive power at a minimum.
+
+# Effect size
+
+Effect size f2² measures the impact of a predictor construct on an endogenous construct. f² $\geq$ 0.35 indicates a large effect, f² $\geq$ 0.15 a medium and f² $\geq$ 0.02 a small effect.
+
+```{r effect size f^2, echo=FALSE}
+f2 <- make_f2_table(model, summo)
+f2 %>%
+  datatable(
+          filter = 'top',
+          rownames = FALSE,
+          colnames = c('f²' = 3),
+          caption = 'Effect sizes') %>%
+  formatRound(3,
+              digits = 3) %>%
+  formatStyle('f²', backgroundColor = styleInterval(cuts = c(0.019), values = c('#ff9999', '#00')))
+```
+
+The effect sizes of Threat Beliefs, Personal Moral Norm, and Subjective Norm on Behavioral Intention, as well as the effect size of Knowledge on Response Beliefs, are below 0.02.
+All other effect sizes are small at a minimum.
+
+# Out-of-sample predictive performance
+
+Out-of-sample predictive performance has to be evaluated using a simplified model without HOCs as an approximation as seminr as of now does not support plspredict for HOC.
+If the root mean square error (RMSE) or the mean absolute deviation (MAD) of the naive LM model is below the ones for the PLS model, this indicates a lack of predictive performance.
+However, a lack of predictive performance does not imply a lack of explanatory power.
+
+```{r plspredict, echo = FALSE, layout="l-page"}
+oospp <- (as.data.frame(sumplspre$PLS_out_of_sample) %>%
+  rbind(as.data.frame(sumplspre$LM_out_of_sample)) %>%
+  rbind((as.data.frame(sumplspre$LM_out_of_sample))[1,] - (as.data.frame(sumplspre$PLS_out_of_sample))[1,]) %>%
+  rbind((as.data.frame(sumplspre$LM_out_of_sample))[2,] - (as.data.frame(sumplspre$PLS_out_of_sample))[2,])  %>%
+  cbind(`Prediction Errors` = c("PLS RMSE", "PLS MAD", "LM RMSE", "LM MAD", "RMSE Difference", "MAD Difference")))[c(1,3,5,2,4,6),c(ncol(sumplspre$PLS_out_of_sample)+1,1:ncol(sumplspre$PLS_out_of_sample))]
+datatable(oospp,
+          options = list(pageLength = nrow(oospp)),
+          rownames = FALSE,
+          caption = 'Out-of-sample predictive performance') %>%
+  formatRound(-1,
+              digits = 3) %>%
+  formatStyle(names(oospp), backgroundColor = styleInterval(cuts = c(0), values = c('#ff9999', '#00')))
+```
+
+Only CCBI3 is predicted better by the model than the LM in terms of both RMSE and MAD.
+This indicates low predictive power.
+
+# Significance and relevance of path coefficients
+
+Significance is denoted by t-test and p values. A t of $\geq$ 1.65 signifies significance at the 10 % level, t $\geq$ 1.96 at the 5 % level and t $\geq$ 2.57 at the 1 % level.
+
+```{r path-coeff, echo = FALSE, layout="l-page"}
+pcdf <- make_pc_table(sumbomo)
+datatable(pcdf,
+          filter = 'top',
+          rownames = FALSE,
+          colnames = c("Original Estimate" = 3),
+          caption = 'Relevance and significance of path coefficients') %>%
+  formatRound(c(3:7, 9:10),
+              digits = 3) %>%
+  formatStyle(colnames(pcdf)[9], backgroundColor = styleInterval(cuts = c(1.649), values = c('#ff9999', '#00'))) %>%
+  formatStyle('p', backgroundColor = styleInterval(cuts = c(0.049), values = c( '#00', '#ff9999'))) %>%
+  formatStyle('0 in CI', backgroundColor = styleEqual(c(1,0), c('#ff9999', '#00'), default = NULL))
+```
+
+The path coefficients from Threat Beliefs, Personal Moral Norm, and Subjective Norm to Behavioral Intention, as well as the path coefficient for the path from Knowledge to Response Beliefs, are all not significant based on both the t-statistic and the bootstrapping confidence interval.
+
+# Summary table
+
+```{r summary table-df print, echo = FALSE, layout="l-page"}
+sumsm <- make_summary_sm(pcdf, f2, vif)
+datatable(sumsm,
+          filter = 'top',
+          options = list(pageLength = nrow(sumsm)),
+          rownames = FALSE,
+          colnames = c("f²" = 7),
+          caption = 'Structural Model Summary') %>%
+  formatRound(c(3,5:8),
+              digits = 3) %>%
+  formatStyle(colnames(sumsm)[5], backgroundColor = styleInterval(cuts = c(1.649), values = c('#ff9999', '#00'))) %>%
+  formatStyle('Path Coefficient p', backgroundColor = styleInterval(cuts = c(0.049), values = c( '#00', '#ff9999'))) %>%
+  formatStyle('0 in Path Coefficient CI', backgroundColor = styleEqual(c(1,0), c('#ff9999', '#00'), default = NULL)) %>%
+  formatStyle('f²', backgroundColor = styleInterval(cuts = c(0.019), values = c('#ff9999', '#00'))) %>%
+  formatStyle('VIF', backgroundColor = styleInterval(cuts = c(3,5), values = c('#00', '#ffe5e5','#ff9999')))
+```
+
+# Results summary
+
+The paths from Threat Beliefs, Personal Moral Norm, and Subjective Norm to Behavioral Intention, and the path from Knowledge to Response Beliefs, are insignificant and the effect sizes are negligible.
+Therefore, those paths can be removed from the model.

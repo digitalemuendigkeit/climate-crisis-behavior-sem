@@ -1,0 +1,584 @@
+---
+title: "Climate Crisis Iteration 2-c-1 (Driving) Endogeneity Evaluation"
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 1
+---
+
+```{r setup, echo =FALSE, include=FALSE}
+# Include libraries
+library(tidyverse)
+library(seminr)
+library(DT)
+library(htmltools)
+library(lmtest)
+library(nortest)
+library(car)
+library(distill)
+library(targets)
+source(here::here("R", "02_sem-evaluation.R"))
+# Load models
+tar_config_set(here::here("_targets"))
+model <- tar_read("cc_model_2_c_1")
+proxymodel <- tar_read("cc_model_2_c_1_proxy")
+# Make summaries
+summo <- summary(model)
+sumprmo <- summary(proxymodel)
+```
+
+The code for the assessment of endogeneity using the Gaussian Copula approach comes from
+
+Hult, G. T. M., J. F. Hair, D. Proksch, M. Sarstedt, A. Pinkwart, & C. M. Ringle (2018).
+Addressing Endogeneity in International Marketing Applications of Partial Least Squares Structural Equation Modeling. Journal of International Marketing, 26(3), 1–21. https://doi.org/10.1509/jim.17.0151
+
+
+# Test of parametricity
+
+The Gaussian Copula approach can only be used if the independent variable in question is not normally distributed.
+So we first test the distribution of the construct scores.
+A significant p value (p < 0.05) for either the Shapiro-Wilk or the Lilliefors test indicates that the data is not normally distributed.
+
+```{r distribution test, echo = FALSE}
+# Find out if independent (i.e., exogenous) variables are non-normally distributed
+# If yes, Gaussian Copula approach can be used.
+testlist <- c(rownames(summo$paths)[-c(1:2)])
+nntest <- data.frame('Variable' = character(),
+             'Shapiro-Wilk W' = double(),
+             'Shapiro Wilk p' = double(),
+             'Lilliefors D' = double(),
+             'Lilliefors p' = double())
+for (i in 1:length(testlist)) {
+  nntest <- nntest %>% base::rbind(nonnormaltest(model, testlist[i]),
+                             deparse.level = 0)
+}
+nntest %>%
+  datatable(
+    caption = 'Results of normality tests',
+    rownames = FALSE,
+    options = list(pageLength = nrow(nntest))
+  ) %>%
+  formatRound(-1,
+              digits = 3)
+```
+```{r distribution graph, echo = FALSE}
+for (i in 1:length(testlist)) {
+  nonnormalgraph(model, testlist[i])
+}
+```
+
+
+
+All independent (or endogenous) variables are non-normally distributed.
+Therefore, the Gaussian Copula approach can be used for all of them.
+
+
+# Regression of Response Beliefs on Distrusting Beliefs and Knowledge
+
+```{r gca rb, echo = FALSE, include = FALSE}
+# Define Variables for easy access
+KN <- model$construct_scores[,"Knowledge"]
+DI <- model$construct_scores[,"Distrusting Beliefs"]
+RB <- model$construct_scores[,"Response Beliefs"]
+
+# Define number of bootstraps: 10.000 for reporting, 100 for testing
+bootrounds <- 10000
+
+# Estimate regression model
+rbmodel <- lm(RB ~ DI + KN)
+summary(rbmodel)
+bootrb <- Boot(rbmodel, R=bootrounds)
+summary(bootrb)
+
+# Make base df
+rbdf <- data.frame(Construct = c("Distrusting Beliefs", "Knowledge", "Copula Distrusting Beliefs", "Copula Knowledge"), 
+                   Original.Model.Value = c(summary(bootrb)[2:3,5],NA,NA),
+                   Original.Model.p = c(bootSig(model$data, bootrb, 2, 0)[2:3],NA,NA)
+)
+
+# Calculate copulas for independent variables
+KN_star <- createCopula(KN)
+DI_star <- createCopula(DI)
+
+
+# Calculate results with copula for Distrusting Beliefs
+# Input is regular model + copula + 0
+copuladirb <- lm(RB ~ DI + KN + DI_star + 0)
+summary(copuladirb)
+# Bootstrap Standard Errors
+bootcopuladirb <- Boot(copuladirb, R=bootrounds)
+summary(bootcopuladirb)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopuladirb, 2,1)
+# Attach to df
+rbdf <- rbdf %>% cbind(
+  DI.Co.Model.Value = c(summary(bootcopuladirb)[1:3,5], NA),
+  DI.Co.Model.p = c(bootSig(model$data, bootcopuladirb, 2,1), NA)
+)
+
+# Calculate results with copula for Knowledge
+# Input is regular model + copula + 0
+copulaknrb <- lm(RB ~ DI + KN + KN_star + 0)
+summary(copulaknrb)
+# Bootstrap Standard Errors
+bootcopulaknrb <- Boot(copulaknrb, R=bootrounds)
+summary(bootcopulaknrb)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopulaknrb, 2,1)
+# Attach to df
+rbdf <- rbdf %>% cbind(
+  KN.Co.Model.Value = c(summary(bootcopulaknrb)[1:2,5], NA, summary(bootcopulaknrb)[3,5]),
+  KN.Co.Model.p = c(bootSig(model$data, bootcopuladirb, 2,1)[1:2], NA, bootSig(model$data, bootcopuladirb, 3,1)[3])
+)
+
+# Calculate results with copula for both DI and KN
+# Input is regular model + copula + 0
+copuladiknrb <- lm(RB ~ DI + KN + DI_star + KN_star + 0)
+summary(copuladiknrb)
+# Bootstrap Standard Errors
+bootcopuladiknrb <- Boot(copuladiknrb, R=bootrounds)
+summary(bootcopuladiknrb)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootstrappedSignificance(model$data, bootcopuladiknrb, 2, 2)
+# Attach to df
+rbdf <- rbdf %>% cbind(
+  DIKN.Co.Model.Value = c(summary(bootcopuladiknrb)[1:4,5]),
+  DIKN.Co.Model.p = c(bootSig(model$data, bootcopuladiknrb, 2, 2))
+)
+colnames(rbdf) <- c("Construct",
+                    "Original model value",
+                    "Original model p",
+                    "DI copula model value",
+                    "DI copula model p",
+                    "KN copula model value",
+                    "KN copula model p",
+                    "DI & KN copula model value",
+                    "DI & KN copula model p"
+                    )
+```
+
+```{r gca rb table, echo = FALSE}
+rbdft <- rbdf[,-1] %>% t() %>% as.data.frame()
+colnames(rbdft) <- rbdf[,1]
+rbdft %>% 
+  datatable(caption = 'Results of the copula procedure for the regression of Response Beliefs') %>%
+  formatRound(1:ncol(rbdft),
+              digits = 3)
+```
+
+Neither the Distrusting Beliefs nor the Knowledge copula is significant, indicating that there is no endogeneity in the regression of Response Beliefs on its predictors.
+
+# Regression of Threat Beliefs on Distrusting Beliefs and Knowledge
+
+```{r gca tb, echo = FALSE, include = FALSE}
+# Define Variables for easy access
+TB <- model$construct_scores[,"Threat Beliefs"]
+
+# Define number of bootstraps: 10.000 for reporting, 100 for testing
+bootrounds <- 10000
+
+# Estimate regression model
+tbmodel <- lm(TB ~ DI + KN)
+summary(tbmodel)
+boottb <- Boot(tbmodel, R=bootrounds)
+summary(boottb)
+
+# Make base df
+tbdf <- data.frame(Construct = c("Distrusting Beliefs", "Knowledge", "Copula Distrusting Beliefs", "Copula Knowledge"), 
+                   Original.Model.Value = c(summary(bootrb)[2:3,5],NA,NA),
+                   Original.Model.p = c(bootSig(model$data, bootrb, 2, 0)[2:3],NA,NA)
+)
+
+# Calculate copulas for independent variables - already happened
+# KN_star <- createCopula(KN)
+# DI_star <- createCopula(DI)
+
+
+# Calculate results with copula for Distrusting Beliefs
+# Input is regular model + copula + 0
+copuladitb <- lm(TB ~ DI + KN + DI_star + 0)
+summary(copuladitb)
+# Bootstrap Standard Errors
+bootcopuladitb <- Boot(copuladitb, R=bootrounds)
+summary(bootcopuladitb)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopuladitb, 2,1)
+# Attach to df
+tbdf <- tbdf %>% cbind(
+  DI.Co.Model.Value = c(summary(bootcopuladitb)[1:3,5], NA),
+  DI.Co.Model.p = c(bootSig(model$data, bootcopuladitb, 2,1), NA)
+)
+
+# Calculate results with copula for Knowledge
+# Input is regular model + copula + 0
+copulakntb <- lm(TB ~ DI + KN + KN_star + 0)
+summary(copulakntb)
+# Bootstrap Standard Errors
+bootcopulakntb <- Boot(copulakntb, R=bootrounds)
+summary(bootcopulakntb)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopulakntb, 2,1)
+# Attach to df
+tbdf <- tbdf %>% cbind(
+  KN.Co.Model.Value = c(summary(bootcopulakntb)[1:2,5], NA, summary(bootcopulakntb)[3,5]),
+  KN.Co.Model.p = c(bootSig(model$data, bootcopuladitb, 2,1)[1:2], NA, bootSig(model$data, bootcopuladitb, 3,1)[3])
+)
+
+# Calculate results with copula for both DI and KN
+# Input is regular model + copula + 0
+copuladikntb <- lm(TB ~ DI + KN + DI_star + KN_star + 0)
+summary(copuladikntb)
+# Bootstrap Standard Errors
+bootcopuladikntb <- Boot(copuladikntb, R=bootrounds)
+summary(bootcopuladikntb)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootstrappedSignificance(model$data, bootcopuladikntb, 2, 2)
+# Attach to df
+tbdf <- tbdf %>% cbind(
+  DIKN.Co.Model.Value = c(summary(bootcopuladikntb)[1:4,5]),
+  DIKN.Co.Model.p = c(bootSig(model$data, bootcopuladikntb, 2, 2))
+)
+colnames(tbdf) <- c("Construct",
+                    "Original model value",
+                    "Original model p",
+                    "DI copula model value",
+                    "DI copula model p",
+                    "KN copula model value",
+                    "KN copula model p",
+                    "DI & KN copula model value",
+                    "DI & KN copula model p"
+                    )
+
+
+```
+```{r gca tb table, echo = FALSE}
+tbdft <- tbdf[,-1] %>% t() %>% as.data.frame()
+colnames(tbdft) <- tbdf[,1]
+tbdft %>% 
+  datatable(caption = 'Results of the copula procedure for the regression of Threat Beliefs') %>%
+  formatRound(1:ncol(tbdft),
+              digits = 3)
+```
+
+Neither the Distrusting Beliefs nor the Knowledge Copula is significant, indicating that there is no endogeneity in the regression of Threat Beliefs on its predictors.
+
+# Regression of Behavioral Intention on its predictors
+
+```{r gca bi, echo = FALSE, include = FALSE}
+# Define Variables for easy access
+BI <- model$construct_scores[,"Behavioral Intention"]
+PN <- model$construct_scores[,"Personal Moral Norm"]
+SN <- model$construct_scores[,"Subjective Norm"]
+
+# Define number of bootstraps: 10.000 for reporting, 100 for testing
+bootrounds <- 10000
+
+# Estimate regression model
+bimodel <- lm(BI ~ RB + TB + PN + SN)
+summary(bimodel)
+bootbi <- Boot(bimodel, R=bootrounds)
+summary(bootbi)
+
+# Make base df
+bidf <- data.frame(Construct = c("Response Beliefs", "Threat Beliefs", "Personal Moral Norm", "Subjective Norm", "Copula Response Beliefs", "Copula Threat Beliefs", "Copula Personal Moral Norm", "Copula Subjective Norm"), 
+                   Original.Model.Value = c(summary(bootbi)[2:5,5],NA,NA,NA,NA),
+                   Original.Model.p = c(bootSig(model$data, bootbi, 4, 0)[2:5],NA,NA,NA,NA)
+)
+
+# Calculate copulas for independent variables - already happened
+RB_star <- createCopula(RB)
+TB_star <- createCopula(TB)
+PN_star <- createCopula(PN)
+SN_star <- createCopula(SN)
+
+# Calculate results with copula for Response Beliefs
+# Input is regular model + copula + 0
+copularbbi <- lm(BI ~ RB + TB + PN + SN + RB_star + 0)
+summary(copularbbi)
+# Bootstrap Standard Errors
+bootcopularbbi <- Boot(copularbbi)
+summary(bootcopularbbi)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopularbbi, 4,1)
+# Attach to df
+bidf <- bidf %>% cbind(
+  RB.Co.Model.Value = c(summary(bootcopularbbi)[,5], NA, NA, NA),
+  RB.Co.Model.p = c(bootSig(model$data, bootcopularbbi, 4,1), NA, NA, NA)
+)
+
+# Calculate results with copula for Threat Beliefs
+# Input is regular model + copula + 0
+copulatbbi <- lm(BI ~ RB + TB + PN + SN + TB_star + 0)
+summary(copulatbbi)
+# Bootstrap Standard Errors
+bootcopulatbbi <- Boot(copulatbbi)
+summary(bootcopulatbbi)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopulatbbi, 4,1)
+# Attach to df
+bidf <- bidf %>% cbind(
+  TB.Co.Model.Value = c(summary(bootcopulatbbi)[1:4,5], NA, summary(bootcopulatbbi)[5,5],  NA, NA),
+  TB.Co.Model.p = c(bootSig(model$data, bootcopulatbbi, 4,1)[1:4], NA, bootSig(model$data, bootcopulatbbi, 4,1)[5], NA, NA)
+)
+
+# Calculate results with copula for Personal Moral Norm
+# Input is regular model + copula + 0
+copulapnbi <- lm(BI ~ RB + TB + PN + SN + PN_star + 0)
+summary(copulapnbi)
+# Bootstrap Standard Errors
+bootcopulapnbi <- Boot(copulapnbi)
+summary(bootcopulapnbi)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopulapnbi, 4,1)
+# Attach to df
+bidf <- bidf %>% cbind(
+  PN.Co.Model.Value = c(summary(bootcopulapnbi)[1:4,5], NA, NA, summary(bootcopulapnbi)[5,5],  NA),
+  PN.Co.Model.p = c(bootSig(model$data, bootcopulapnbi, 4,1)[1:4], NA,  NA, bootSig(model$data, bootcopulapnbi, 4,1)[5],NA)
+)
+
+# Calculate results with copula for Subjective Norm
+# Input is regular model + copula + 0
+copulasnbi <- lm(BI ~ RB + TB + PN + SN + SN_star + 0)
+summary(copulasnbi)
+# Bootstrap Standard Errors
+bootcopulasnbi <- Boot(copulasnbi)
+summary(bootcopulasnbi)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopulasnbi, 4,1)
+# Attach to df
+bidf <- bidf %>% cbind(
+  SN.Co.Model.Value = c(summary(bootcopulasnbi)[1:4,5], NA, NA, NA, summary(bootcopulasnbi)[5,5]),
+  SN.Co.Model.p = c(bootSig(model$data, bootcopulasnbi, 4,1)[1:4], NA,  NA, NA, bootSig(model$data, bootcopulasnbi, 4,1)[5])
+)
+
+# Calculate results with copula for Response Beliefs and Threat Beliefs
+# Input is regular model + copula + 0
+copularbtbbi <- lm(BI ~ RB + TB + PN + SN + RB_star + TB_star + 0)
+summary(copularbtbbi)
+# Bootstrap Standard Errors
+bootcopularbtbbi <- Boot(copularbtbbi)
+summary(bootcopularbtbbi)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopularbtbbi, 4,2)
+# Attach to df
+bidf <- bidf %>% cbind(
+  RB.TB.Co.Model.Value = c(summary(bootcopularbtbbi)[,5], NA, NA),
+  RB.TB.Co.Model.p = c(bootSig(model$data, bootcopularbtbbi, 4,2), NA, NA)
+)
+
+# Calculate results with copula for Response Beliefs and Personal Moral Norm
+# Input is regular model + copula + 0
+copularbpnbi <- lm(BI ~ RB + TB + PN + SN + RB_star + PN_star + 0)
+summary(copularbpnbi)
+# Bootstrap Standard Errors
+bootcopularbpnbi <- Boot(copularbpnbi)
+summary(bootcopularbpnbi)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopularbpnbi, 4,2)
+# Attach to df
+bidf <- bidf %>% cbind(
+  RB.PN.Co.Model.Value = c(summary(bootcopularbpnbi)[1:5,5], NA, summary(bootcopularbpnbi)[6,5], NA),
+  RB.PN.Co.Model.p = c(bootSig(model$data, bootcopularbpnbi, 4,2)[1:5], NA, bootSig(model$data, bootcopularbpnbi, 4,2)[6], NA)
+)
+
+# Calculate results with copula for Response Beliefs and Subjective Norm
+# Input is regular model + copula + 0
+copularbsnbi <- lm(BI ~ RB + TB + PN + SN + RB_star + SN_star + 0)
+summary(copularbsnbi)
+# Bootstrap Standard Errors
+bootcopularbsnbi <- Boot(copularbsnbi)
+summary(bootcopularbsnbi)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopularbsnbi, 4,2)
+# Attach to df
+bidf <- bidf %>% cbind(
+  RB.SN.Co.Model.Value = c(summary(bootcopularbsnbi)[1:5,5], NA, NA, summary(bootcopularbsnbi)[6,5]),
+  RB.SN.Co.Model.p = c(bootSig(model$data, bootcopularbsnbi, 4,2)[1:5], NA, NA, bootSig(model$data, bootcopularbsnbi, 4,2)[6])
+)
+
+# Calculate results with copula for Threat Beliefs and Personal Moral Norm
+# Input is regular model + copula + 0
+copulatbpnbi <- lm(BI ~ RB + TB + PN + SN + TB_star + PN_star + 0)
+summary(copulatbpnbi)
+# Bootstrap Standard Errors
+bootcopulatbpnbi <- Boot(copulatbpnbi)
+summary(bootcopulatbpnbi)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopulatbpnbi, 4,2)
+# Attach to df
+bidf <- bidf %>% cbind(
+  TB.PN.Co.Model.Value = c(summary(bootcopulatbpnbi)[1:4,5], NA, summary(bootcopulatbpnbi)[5:6,5], NA),
+  TB.PN.Co.Model.p = c(bootSig(model$data, bootcopulatbpnbi, 4,2)[1:4], NA, bootSig(model$data, bootcopulatbpnbi, 4,2)[5:6], NA)
+)
+
+# Calculate results with copula for Threat Beliefs and Subjective Norm
+# Input is regular model + copula + 0
+copulatbsnbi <- lm(BI ~ RB + TB + PN + SN + TB_star + SN_star + 0)
+summary(copulatbsnbi)
+# Bootstrap Standard Errors
+bootcopulatbsnbi <- Boot(copulatbsnbi)
+summary(bootcopulatbsnbi)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopulatbsnbi, 4,2)
+# Attach to df
+bidf <- bidf %>% cbind(
+  TB.SN.Co.Model.Value = c(summary(bootcopulatbsnbi)[1:4,5], NA, summary(bootcopulatbsnbi)[5,5], NA, summary(bootcopulatbsnbi)[6,5]),
+  TB.SN.Co.Model.p = c(bootSig(model$data, bootcopulatbsnbi, 4,2)[1:4], NA, bootSig(model$data, bootcopulatbsnbi, 4,2)[6], NA, bootSig(model$data, bootcopulatbsnbi, 4,2)[6])
+)
+
+# Calculate results with copula for Personal Moral Norm and Subjective Norm
+# Input is regular model + copula + 0
+copulapnsnbi <- lm(BI ~ RB + TB + PN + SN + PN_star + SN_star + 0)
+summary(copulapnsnbi)
+# Bootstrap Standard Errors
+bootcopulapnsnbi <- Boot(copulapnsnbi)
+summary(bootcopulapnsnbi)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopulapnsnbi, 4,2)
+# Attach to df
+bidf <- bidf %>% cbind(
+  PN.SN.Co.Model.Value = c(summary(bootcopulapnsnbi)[1:4,5], NA, NA, summary(bootcopulapnsnbi)[5:6,5]),
+  PN.SN.Co.Model.p = c(bootSig(model$data, bootcopulapnsnbi, 4,2)[1:4], NA, NA, bootSig(model$data, bootcopulapnsnbi, 4,2)[5:6])
+)
+
+# Calculate results with copula for Response Beliefs, Threat Beliefs and Personal Moral Norm
+# Input is regular model + copula + 0
+copularbtbpnbi <- lm(BI ~ RB + TB + PN + SN + RB_star + TB_star + PN_star + 0)
+summary(copularbtbpnbi)
+# Bootstrap Standard Errors
+bootcopularbtbpnbi <- Boot(copularbtbpnbi)
+summary(bootcopularbtbpnbi)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopularbtbpnbi, 4,3)
+# Attach to df
+bidf <- bidf %>% cbind(
+  RB.TB.PN.Co.Model.Value = c(summary(bootcopularbtbpnbi)[,5], NA),
+  RB.TB.PN.Co.Model.p = c(bootSig(model$data, bootcopularbtbpnbi, 4,3), NA)
+)
+
+# Calculate results with copula for Response Beliefs, Threat Beliefs and Subjective Norm
+# Input is regular model + copula + 0
+copularbtbsnbi <- lm(BI ~ RB + TB + PN + SN + RB_star + TB_star + SN_star + 0)
+summary(copularbtbsnbi)
+# Bootstrap Standard Errors
+bootcopularbtbsnbi <- Boot(copularbtbsnbi)
+summary(bootcopularbtbsnbi)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopularbtbsnbi, 4,3)
+# Attach to df
+bidf <- bidf %>% cbind(
+  RB.TB.SN.Co.Model.Value = c(summary(bootcopularbtbsnbi)[1:6,5], NA, summary(bootcopularbtbsnbi)[7,5]),
+  RB.TB.SN.Co.Model.p = c(bootSig(model$data, bootcopularbtbsnbi, 4,3)[1:6], NA, bootSig(model$data, bootcopularbtbsnbi, 4,3)[7])
+)
+
+# Calculate results with copula for Response Beliefs, Personal Moral Norm and Subjective Norm
+# Input is regular model + copula + 0
+copularbpnsnbi <- lm(BI ~ RB + TB + PN + SN + RB_star + PN_star + SN_star + 0)
+summary(copularbpnsnbi)
+# Bootstrap Standard Errors
+bootcopularbpnsnbi <- Boot(copularbpnsnbi)
+summary(bootcopularbpnsnbi)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopularbpnsnbi, 4,3)
+# Attach to df
+bidf <- bidf %>% cbind(
+  RB.PN.SN.Co.Model.Value = c(summary(bootcopularbpnsnbi)[1:5,5], NA, summary(bootcopularbpnsnbi)[6:7,5]),
+  RB.PN.SN.Co.Model.p = c(bootSig(model$data, bootcopularbpnsnbi, 4,3)[1:5], NA, bootSig(model$data, bootcopularbpnsnbi, 4,3)[6:7])
+)
+
+# Calculate results with copula for Threat Beliefs, Personal Moral Norm and Subjective Norm
+# Input is regular model + copula + 0
+copulatbpnsnbi <- lm(BI ~ RB + TB + PN + SN + TB_star + PN_star + SN_star + 0)
+summary(copulatbpnsnbi)
+# Bootstrap Standard Errors
+bootcopulatbpnsnbi <- Boot(copulatbpnsnbi)
+summary(bootcopulatbpnsnbi)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopulatbpnsnbi, 4,3)
+# Attach to df
+bidf <- bidf %>% cbind(
+  TB.PN.SN.Co.Model.Value = c(summary(bootcopulatbpnsnbi)[1:4,5], NA, summary(bootcopulatbpnsnbi)[5:7,5]),
+  TB.PN.SN.Co.Model.p = c(bootSig(model$data, bootcopulatbpnsnbi, 4,3)[1:4], NA, bootSig(model$data, bootcopulatbpnsnbi, 4,3)[5:7])
+)
+
+# Calculate results with copula for Response Beliefs, Threat Beliefs, Personal Moral Norm and Subjective Norm
+# Input is regular model + copula + 0
+copularbtbpnsnbi <- lm(BI ~ RB + TB + PN + SN + RB_star + TB_star + PN_star + SN_star + 0)
+summary(copularbtbpnsnbi)
+# Bootstrap Standard Errors
+bootcopularbtbpnsnbi <- Boot(copularbtbpnsnbi)
+summary(bootcopularbtbpnsnbi)
+# Calculate corrected p-values based on bootstrapped standard errors
+# Input is data, bootstrapped results, number of independent variables, number of copulas
+bootSig(model$data, bootcopularbtbpnsnbi, 4,4)
+# Attach to df
+bidf <- bidf %>% cbind(
+  RB.TB.PN.SN.Co.Model.Value = c(summary(bootcopularbtbpnsnbi)[,5]),
+  RB.TB.PN.SN.Co.Model.p = c(bootSig(model$data, bootcopularbtbpnsnbi, 4,4))
+)
+colnames(bidf) <- c("Construct",
+                    "Original model value",
+                    "Original model p",
+                    "RB copula model value",
+                    "RB copula model p",
+                    "TB copula model value",
+                    "TB copula model p",
+                    "PN copula model value",
+                    "PN copula model p",
+                    "SN copula model value",
+                    "SN copula model p",
+                    "RB & TB copula model value",
+                    "RB & TB copula model p",
+                    "RB & PN copula model value",
+                    "RB & PN copula model p",
+                    "RB & SN copula model value",
+                    "RB & SN copula model p",
+                    "TB & PN copula model value",
+                    "TB & PN copula model p",
+                    "TB & SN copula model value",
+                    "TB & SN copula model p",
+                    "PN & SN copula model value",
+                    "PN & SN copula model p",
+                    "RB & TB & PN copula model value",
+                    "RB & TB & PN copula model p",
+                    "RB & TB & SN copula model value",
+                    "RB & TB & SN copula model p",
+                    "RB & PN & SN copula model value",
+                    "RB & PN & SN copula model p",
+                    "TB & PN & SN copula model value",
+                    "TB & PN & SN copula model p",
+                    "RB & TB & PN & SN copula model value",
+                    "RB & TB & PN & SN copula model p"
+                    )
+
+```
+```{r gca bi table, echo = FALSE, layout = "l-page"}
+bidft <- bidf[,-1] %>% t() %>% as.data.frame()
+colnames(bidft) <- bidf[,1]
+bidft %>% 
+  datatable(caption = 'Results of the copula procedure for the regression of Behavioral Intention') %>%
+  formatRound(1:ncol(bidft),
+              digits = 3)
+```
+
+None of the copulas is significant in any of the model constellations, pointing to no endogeneity in the relationships between Behavioral Intention and its predictors.

@@ -63,8 +63,7 @@ vif %>%
               digits = 3) %>%
   formatStyle('VIF', backgroundColor = styleInterval(cuts = c(3,5), values = c('#00', '#ffe5e5','#ff9999')))
 ```
-VIF is above 3 for the path from Personal Moral Norm to Behavioral Intention.
-But it is not above 5 for any relationships.
+As every endogenous construct has only one predictor, there is no VIF information available.
 
 # In-sample predictive power
 
@@ -85,8 +84,8 @@ r2 %>%
   formatStyle('R²', backgroundColor = styleInterval(cuts = c(0.1,0.249,0.9), values = c('#ff9999', '#ffe5e5', '#00','#ff9999')))
 ```
 
-R² is below 0.25 for Response Beliefs and Behavioral Intention, but not below 0.1.
-The R² values for Threat Beliefs is above 0.25, indicating weak in-sample predictive power at a minimum.
+R² is below 0.25 for Response Beliefs, but not below 0.1.
+The R² value for Behavioral Intention is above 0.5, indicating moderate in-sample predictive power.
 
 # Effect size
 
@@ -105,7 +104,7 @@ f2 %>%
   formatStyle('f²', backgroundColor = styleInterval(cuts = c(0.019), values = c('#ff9999', '#00')))
 ```
 
-The effect sizes of Threat Beliefs, Descriptive Norm, and Response Beliefs on Behavioral Intention, as well as the effect size of Knowledge on Response Beliefs, are below 0.02.
+All other effect sizes are substantial.
 
 # Out-of-sample predictive performance
 
@@ -128,7 +127,7 @@ datatable(oospp,
   formatStyle(names(oospp), backgroundColor = styleInterval(cuts = c(0), values = c('#ff9999', '#00')))
 ```
 
-Only CCBI1 is predicted better by the model than the LM in terms of both RMSE and MAD.
+Only CCBI3 is predicted better by the model than the LM in terms of RMSE, but not MAD.
 This indicates low predictive power.
 
 # Significance and relevance of path coefficients
@@ -149,8 +148,7 @@ datatable(pcdf,
   formatStyle('0 in CI', backgroundColor = styleEqual(c(1,0), c('#ff9999', '#00'), default = NULL))
 ```
 
-The path coefficients for the paths from Threat Belief, Descriptive Norm, and Response Beliefs to Behavioral Intention are not significant based on both the t-statistic and the bootstrapping confidence interval.
-So is the path coefficient for the path from Knowledge to Response Beliefs.
+All path coefficients are significant and relevant.
 
 # Summary table
 
@@ -173,6 +171,5 @@ datatable(sumsm,
 
 # Results summary
 
-The path from Knowledge to Response Beliefs as well as the paths from Threat Beliefs, Response Beliefs, and Descriptive Norm to Behavioral Intention are insignificant and the effect sizes are negligible.
-Therefore, those paths can be removed from the model.
-Alternatively, as the measurement model results for the Perceived Self-Efficacy lower-order construct were on the edge, an alternate model with Perceived Response Efficacy instead of Response Beliefs could be estimated.
+The model iteration is complete.
+The model is not tested for non-linearity or hidden endogeneity, because there was no evidence for either in earlier model iterations.

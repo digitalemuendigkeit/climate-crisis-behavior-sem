@@ -382,17 +382,15 @@ datatable(forhocevalmm,
 
 The VIFs for the Distrusting Beliefs are above 3, but still below 5.
 With that, there are no issues with collinearity.
-The weight for Perceived Response Costs is non-significant on the basis of the bootstrap confidence interval, and the loading is not sufficiently large.
-Therefore, the construct should be removed.
 The weight for Distrusting Beliefs Integrity is als non-significant, but with a sufficiently large loading, the construct can be retained.
-For Injunctive Norm, the weight is negative, not relevant, and the loading is bordering the 0.5 threshold.
-Therefore, it should also be removed as a lower-order construct.
+For Injunctive Norm, the weight is negative, not relevant, but the loading is sufficiently large.
 All other weights are significant and relevant.
 
 ## Results of the mode B higher-order constructs evaluation
 
-Perceived Response Costs and Injunctive Norm have to be removed, otherwise the mode B higher-order constructs can be retained as-is.
+All mode B constructs can be retained as is.
 
 # Results summary
 
-Perceived Response Costs and Injunctive Norm have to be removed as a lower-order constructs.
+The measurement model can be retained as-is.
+Structural model evaluation can commence.

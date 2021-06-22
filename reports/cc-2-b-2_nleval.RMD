@@ -61,15 +61,15 @@ resetdf %>%
 ```
 Using p = 0.05 as a threshold, there are potential nonlinear effects in the partial regression equation for the influence of Knowledge on Response Beliefs.
 The same is potentially true for the effects of Distrusting Beliefs and Knowledge on Threat Beliefs.
-But as Threat Beliefs itself has to be removed from the model due to a lack of effect on Behavioral intention, only the effect of Knoweldge on Response Beliefs will be evaluated.
+But as Threat Beliefs itself has to be removed from the model due to a lack of effect on Behavioral intention, only the effect of Knowledge on Response Beliefs will be evaluated.
 
 # Test alternate models with quadratic effects
 To test for nonlinearity, one can model an interaction term of the exogenous construct with itself.
 
 ## Effect of Knowledge on Response Beliefs
 ```{r rb alt nonlinear estimate, echo = FALSE, include = FALSE}
-# Estimate alternate model with quadratic effect - HOCs as proxy
-morbalt <- estimate_pls(
+# Estimate alternate model with quadratic effect - HOCs as proxy, orthogonal
+morbaltort <- estimate_pls(
   data = model$data %>% as.data.frame(),
   measurement_model = constructs(
     composite("Response Beliefs", multi_items("CCRB", c(2,5)), weights = mode_B),
@@ -80,7 +80,41 @@ morbalt <- estimate_pls(
     composite("Threat Beliefs", multi_items("CCTB", 1:6)),
     composite("Subjective Norm", c(multi_items("CCDN", 1:2), multi_items("CCIN",1:2))),
     composite("Personal Moral Norm", multi_items("CCPN", c(1,3))),
-    composite("Behavioral Intention", single_item("CCBI1"))
+    composite("Behavioral Intention", single_item("CCBI2"))
+  ),
+  structural_model = relationships(
+    paths(
+      from = c("Distrusting Beliefs", "Knowledge1"),
+      to = c("Threat Beliefs")
+    ),
+    paths(
+    from = c("Distrusting Beliefs", "Knowledge1*Knowledge2"),
+    to = c("Response Beliefs")
+    ),
+    paths(
+      from = c(
+        "Response Beliefs",
+        "Threat Beliefs",
+        "Personal Moral Norm",
+        "Subjective Norm"
+      ),
+      to = "Behavioral Intention"
+    )
+  )
+)
+# Estimate alternate model with quadratic effect - HOCs as proxy, product-indicator
+morbaltpi <- estimate_pls(
+  data = model$data %>% as.data.frame(),
+  measurement_model = constructs(
+    composite("Response Beliefs", multi_items("CCRB", c(2,5)), weights = mode_B),
+    composite("Distrusting Beliefs", multi_items("CCDI", 1:9), weights = mode_B),
+    composite("Knowledge1", single_item("CCKN")),
+    composite("Knowledge2", single_item("CCKN")),
+    interaction_term("Knowledge1", "Knowledge2", method = product_indicator),
+    composite("Threat Beliefs", multi_items("CCTB", 1:6)),
+    composite("Subjective Norm", c(multi_items("CCDN", 1:2), multi_items("CCIN",1:2))),
+    composite("Personal Moral Norm", multi_items("CCPN", c(1,3))),
+    composite("Behavioral Intention", single_item("CCBI2"))
   ),
   structural_model = relationships(
     paths(
@@ -118,7 +152,7 @@ morbaltex <- estimate_pls(
     composite("Descriptive Norm", multi_items("CCDN", 1:2), mode_B),
     composite("Injunctive Norm", multi_items("CCIN", 1:2), mode_B),
     higher_composite("Subjective Norm", c("Descriptive Norm", "Injunctive Norm"), weights = mode_B),
-    composite("Behavioral Intention", single_item("CCBI1"))
+    composite("Behavioral Intention", single_item("CCBI2"))
   ),
   structural_model = relationships(
     paths(from = c("Distrusting Beliefs"), to = c("Threat Beliefs", "Response Beliefs")),
@@ -126,24 +160,75 @@ morbaltex <- estimate_pls(
   )
 )
 # Bootstrap model for significance (500 samples)
-sumbomorbalt <- morbalt %>%
+sumbomorbaltort <- morbaltort %>%
+  bootstrap_model() %>%
+  summary()
+sumbomorbaltpi <- morbaltpi %>%
   bootstrap_model() %>%
   summary()
 ```
 ```{r bi1 alt results, echo = FALSE}
 # Print datatable
-nldfdt("Knowledge",
-     "Response Beliefs",
-     morbalt,
-     morbaltex,
-     sumbomorbalt)
+df <- data.frame(
+    'Exogenous variable' = c(rep("Knowledge", 4)),
+    'Endogenous variable' = c(rep("Response Beliefs", 4)),
+    'Model' = c("Original", "Proxy", "Quadratic Orthogonal", "Quadratic Product-Indicator"),
+    'f^2' = c(
+      summo$fSquare["Knowledge", "Response Beliefs"],
+      sumprmo$fSquare["Knowledge", "Response Beliefs"],
+      (morbaltort$rSquared[1, "Response Beliefs"] - morbaltex$rSquared[1, "Response Beliefs"]) /
+        (1 - morbaltort$rSquared[1, "Response Beliefs"]),
+      (morbaltpi$rSquared[1, "Response Beliefs"] - morbaltex$rSquared[1, "Response Beliefs"]) /
+        (1 - morbaltpi$rSquared[1, "Response Beliefs"])
+    ),
+    't-value' = c(
+      sumbomo$bootstrapped_paths[(grepl(pattern = "Knowledge",
+                                        rownames(sumbomo$bootstrapped_paths)
+      ) &
+        grepl(rownames(sumbomo$bootstrapped_paths),
+              pattern = "Response Beliefs"
+        )), 4],
+      sumboprmo$bootstrapped_paths[(grepl(rownames(sumboprmo$bootstrapped_paths),
+                                          pattern = "Knowledge"
+      ) &
+        grepl(rownames(sumboprmo$bootstrapped_paths),
+              pattern = "Response Beliefs"
+        )), 4],
+      sumbomorbaltort$bootstrapped_paths[(grepl(rownames(sumbomorbaltort$bootstrapped_paths),
+                                           pattern = "Knowledge"
+      ) &
+        grepl(rownames(sumbomorbaltort$bootstrapped_paths),
+              pattern = "Response Beliefs"
+        )), 4],
+            sumbomorbaltpi$bootstrapped_paths[(grepl(rownames(sumbomorbaltpi$bootstrapped_paths),
+                                           pattern = "Knowledge"
+      ) &
+        grepl(rownames(sumbomorbaltpi$bootstrapped_paths),
+              pattern = "Response Beliefs"
+        )), 4]
+    )
+  )
+colnames(df) <- c(
+    'Exogenous variable',
+    'Endogenous variable',
+    'Model',
+    'f^2',
+    paste0('t (', nrow(model$data), ')')
+  )
+df %>%
+           datatable(rownames = FALSE,
+                     caption = paste0("Comparative effects of ", "Knowledge", " on ", "Response Beliefs")) %>%
+           formatRound(c(4:5),
+                       digits = 3)
 ```
 
 For the alternate model, Knowledge is specified as a quadratic influence.
-Although the correct method would be two-stage, only the orthogonal method worked.
-Using this method, the effect size is just above the 0.02 threshold, but the t-statistic does not indicate significance.
-This points to a linear effect of Knowledge on Response Beliefs.
+Although the correct method would be two-stage, the model could only be estimated using the orthogonal and product-indicator method.
+Using this methods, the effect size is above the 0.02 threshold in both cases, and the t-statistic does indicate significance for the orthogonal method.
+This points to a potential quadratic effect of Knowledge on Response Beliefs.
+However, as this effect is still small, Knowledge will not be excluded in further model iteration. 
 
 
 # Summary
-Using the available tests, we did not find evidence for a quadratic influence of any of the exogenous variables.
+Using the available tests, we found some evidence for a quadratic influence of Knowledge on Response Beliefs.
+We did not find evidence for a quadratic influence of any of the other exogenous variables.
