@@ -380,18 +380,16 @@ datatable(forhocevalmm,
   formatStyle('0 in CI (weight)', backgroundColor = styleEqual(c(1,0), c('#ffe5e5', '#00'), default = NULL))
 ```
 
-The VIFs for the Distrusting Beliefs are above 3, but still below 5.
-With that, there are no issues with collinearity.
-The weights for Perceived Self-Efficacy and Perceived Response Efficacy are non-significant, and the loadings are not sufficiently large.
-Therefore, Response Beliefs as a higher-order construct should be removed and replaced by a Perceived Response Costs construct.
-The weight for Distrusting Beliefs Integrity is also non-significant, but the loading is sufficiently large.
-Therefore it can be retained.
+The VIFs for the Distrusting Beliefs are above 3, but still below 5. 
+The weights for Distrusting Beliefs Integrity and Injunctive Norm are non-significant, but the loadings are sufficiently large.
+Therefore they can be retained.
 All other weights are significant and relevant.
 
 ## Results of the mode B higher-order constructs evaluation
 
-Response Beliefs should be replaced by a Perceived Response Costs construct, otherwise the mode B higher-order constructs can be retained as-is.
+All mode B higher-order constructs meet expectations and can be retained.
 
 # Results summary
 
-Response Beliefs should be replaced by a Perceived Response Costs construct.
+The measurement model can be retained as is.
+Structural model evaluation can commence.

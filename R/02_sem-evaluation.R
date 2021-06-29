@@ -200,6 +200,131 @@ redundancy_analysis_df <- function(model, construct_name) {
   return(df)
 }
 
+# VIF functions for use if summary info is broken ----
+compute_vif <- function (target, predictors, model_data)
+{
+  independents_regr <- stats::lm(paste("`", target, "` ~.",
+                                       sep = ""), data = as.data.frame(model_data[, predictors]))
+  r_squared <- summary(independents_regr)$r.squared
+  1/(1 - r_squared)
+}
+
+items_of_construct <- function (construct, model)
+{
+  model$mmMatrix[model$mmMatrix[, 1] == construct, 2]
+}
+
+independent_vifs <- function (construct, find_independents, seminr_model, data)
+{
+  independents <- find_independents(construct, seminr_model)
+  vifs <- if (length(independents) > 1)
+    sapply(independents, compute_vif, independents, data)
+  else structure(1, names = independents)
+}
+item_vifs <- function (seminr_model)
+{
+  all_constructs <- seminr_model$constructs
+  item_vifs <- sapply(all_constructs, independent_vifs, items_of_construct,
+                      seminr_model, data = seminr_model$data)
+  class(item_vifs) <- append(class(item_vifs), "list_output")
+  item_vifs
+}
+
+antecedents_of <- function (outcome, smMatrix)
+{
+  smMatrix[smMatrix[, 2] == outcome, "source"]
+}
+
+all_endogenous <- function (smMatrix)
+{
+  unique(smMatrix[, "target"])
+}
+
+cor_vifs <- function (cor_matrix, iv_names)
+{
+  sapply(iv_names, function(iv) {
+    rsq_j <- cor_rsq(cor_matrix, dv_name = iv, iv_names = iv_names[iv_names !=
+                                                                     iv])
+    ret <- as.matrix(1/(1 - rsq_j))
+    convert_to_table_output(ret)
+  }, USE.NAMES = TRUE)
+}
+
+cor_rsq <- function (cor_matrix, dv_name, iv_names)
+{
+  iv_cors <- cor_matrix[iv_names, iv_names]
+  dv_cors <- cor_matrix[iv_names, dv_name]
+  as.numeric(t(dv_cors) %*% solve(iv_cors) %*% dv_cors)
+}
+
+convert_to_table_output <- function (matrix)
+{
+  class(matrix) <- append(class(matrix), "table_output")
+  return(matrix)
+}
+
+antecedent_vifs <- function (smMatrix, cor_matrix)
+{
+  endogenous_names <- all_endogenous(smMatrix)
+  ret <- sapply(endogenous_names, function(outcome) {
+    antecedents <- antecedents_of(outcome, smMatrix)
+    if (length(antecedents) == 1) {
+      structure(NA, names = antecedents)
+    }
+    else {
+      cor_vifs(cor_matrix, antecedents)
+    }
+  }, simplify = FALSE, USE.NAMES = TRUE)
+  class(ret) <- append(class(ret), "list_output")
+  ret
+}
+
+fl_criteria_table <- function (seminr_model)
+{
+  table <- stats::cor(seminr_model$construct_scores)
+  table[upper.tri(table)] <- NA
+  diag(table) <- sqrt(rhoC_AVE(seminr_model)[, "AVE"])
+  comment(table) <- "FL Criteria table reports square root of AVE on the diagonal and construct correlations on the lower triangle."
+  convert_to_table_output(table)
+}
+
+validity <- function (seminr_model)
+{
+  list(item_vifs = item_vifs(seminr_model),
+       antecedent_vifs = antecedent_vifs(seminr_model$smMatrix,
+                                         stats::cor(seminr_model$construct_scores))
+       #, fl_criteria = fl_criteria_table(seminr_model)
+       )
+}
+
+# Fsquare-calc if model summary is broken
+
+model_fsquares <- function (seminr_model)
+{
+  if (any(names(seminr_model$measurement_model) == "orthogonal_interaction") |
+      any(names(seminr_model$measurement_model) == "two_stage_interaction") |
+      any(names(seminr_model$measurement_model) == "scaled_interaction")) {
+    return("The fSquare cannot be calculated as the model contains an interaction term and omitting either the antecedent or moderator in the interaction term will cause model estimation to fail")
+  }
+  path_matrix <- seminr_model$path_coef
+  fsquared_matrix <- path_matrix
+  for (dv in all_endogenous(seminr_model$smMatrix)) {
+    for (iv in all_exogenous(seminr_model$smMatrix)) {
+      fsquared_matrix[iv, dv] <- fSquared(seminr_model = seminr_model,
+                                          iv = iv, dv = dv)
+    }
+  }
+  convert_to_table_output(fsquared_matrix)
+}
+
+all_exogenous <- function (smMatrix)
+{
+  unique(smMatrix[, "source"])
+}
+
+
+# Robustness check functions ----
+
 ## Function by https://paulvanderlaken.com/2020/07/28/publication-ready-correlation-matrix-significance-r/
 #' correlation_matrix
 #' Creates a publication-ready / formatted correlation matrix, using `Hmisc::rcorr` in the backend.

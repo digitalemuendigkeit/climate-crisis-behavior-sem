@@ -342,6 +342,34 @@ list(
   tar_target(
     cc_model_2_d_1_plspre,
     pls_predict(cc_model_2_d_1_proxy)
+  ),
+  tar_target(
+    cc_model_2_d_2,
+    estimate_cc_2_d_2(survey_data_cc_sem)
+  ),
+  tar_target(
+    cc_model_2_d_2_boot,
+    bootstrap_model(cc_model_2_d_2, 5000)
+  ),
+  tar_target(
+    cc_model_2_d_2_fs_boot,
+    bootstrap_model(cc_model_2_d_2$first_stage_model, 5000)
+  ),
+  tar_target(
+    cc_model_2_d_2_ra,
+    redundancy_cc(cc_model_2_d_2)
+  ),
+  tar_target(
+    cc_model_2_d_2_proxy,
+    estimate_cc_2_d_2_proxy(survey_data_cc_sem)
+  ),
+  tar_target(
+    cc_model_2_d_2_proxy_boot,
+    bootstrap_model(cc_model_2_d_2_proxy, 500)
+  ),
+  tar_target(
+    cc_model_2_d_2_plspre,
+    pls_predict(cc_model_2_d_2_proxy)
   )
 )
 # Data import
