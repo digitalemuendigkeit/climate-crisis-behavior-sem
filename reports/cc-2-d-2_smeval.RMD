@@ -1,0 +1,262 @@
+---
+title: "Climate Crisis Iteration 2-d-2 (General) Structural Model Evaluation"
+output: 
+  distill::distill_article:
+    toc: true
+    toc_depth: 1
+---
+
+```{r setup, echo =FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# Include libraries
+library(tidyverse)
+library(seminr)
+library(DT)
+library(htmltools)
+library(targets)
+source(here::here("R", "02_sem-evaluation.R"))
+# Load models
+tar_config_set(here::here("_targets"))
+model <- tar_read("cc_model_2_d_2")
+bootmodel <- tar_read("cc_model_2_d_2_boot")
+sumplspre <- tar_read("cc_model_2_d_2_plspre")
+# Make summaries
+# model summary throws error
+# summo <- summary(model)
+sumbomo <- summary(bootmodel)
+# Set seminr plot theme
+thm <-
+  seminr_theme_create(
+    construct.compositeA.arrow = "backward",
+    construct.compositeA.use_weights = FALSE,
+    plot.adj = FALSE
+  )
+seminr_theme_set(thm)
+# My favorite operator
+`%notin%` <- Negate(`%in%`)
+```
+
+# Model plots
+
+## Structural Model Only
+
+This is a path model showing only the structural model components.
+
+```{r plot mm model, echo=FALSE}
+plot(bootmodel, structure_only = TRUE)
+```
+
+# Collinearity
+
+Collinearity is assessed using the variance inflation factor (VIF). VIF should be < 5, ideally $\leq$ 3.
+
+```{r collinearity vif, echo = FALSE}
+modelval <- validity(model)
+vif <- data.frame('Exogenous Construct' = character(),
+                  'Endogenous Construct' = character(),
+                  VIF = double ())
+for (i in 1:length(modelval$antecedent_vifs)){
+  x = names(modelval$antecedent_vifs[i])
+  for (j in 1:length(modelval$antecedent_vifs[[{{x}}]])){
+    y = names(modelval$antecedent_vifs[[{{x}}]])[j]
+    vif <- vif %>% rbind(data.frame('Exogenous Construct' = {{y}},
+                                    'Endogenous Construct' = {{x}},
+                                    VIF = modelval$antecedent_vifs[[{{x}}]][j]))
+    }
+  }
+vif %>%
+  datatable(
+          filter = 'top',
+          options = list(pageLength = nrow(vif)),
+          rownames = FALSE,
+          colnames = c('Exogenous Construct' = 1,
+                        'Endogenous Construct' = 2),
+          caption = 'Results of the structural collinearity assessment') %>%
+  formatRound(3,
+              digits = 3) %>%
+  formatStyle('VIF', backgroundColor = styleInterval(cuts = c(3,5), values = c('#00', '#ffe5e5','#ff9999')))
+```
+There is no VIF information for the path from Distrusting Beliefs to Response Beliefs, as Distrusting Beliefs is the only predictor.
+Other than that, all VIF values are below 3.
+
+# In-sample predictive power
+
+In-sample predictive power is assessed using variance explained R². R² $\geq$ 0.75 indicates substantial in-sample predictive power, R² $\geq$ 0.5 moderate and R² $\geq$ 0.25 weak in-sample predictive power. R² $\leq$ 0.10 indicates a lack of model predictiveness.
+
+```{r in-sample pp r^2, echo=FALSE}
+r2 <- data.frame(Construct = colnames(model$rSquared),
+                      "R^2" = model$rSquared[1,],
+                      "AdjR^2" = model$rSquared[2,])
+r2 %>% 
+  datatable(
+    filter = 'top',
+    options = list(pageLength = nrow(r2)),
+    rownames = FALSE,
+    colnames = c('R²' = 2,
+                  'R²adj' = 3),
+    caption = 'In-sample predictive power') %>%
+  formatRound(2:3,
+              digits = 3) %>%
+  formatStyle('R²', backgroundColor = styleInterval(cuts = c(0.1,0.249,0.9), values = c('#ff9999', '#ffe5e5', '#00','#ff9999')))
+```
+
+All R² values are above 0.25, indicating weak in-sample predictive power at a minimum.
+
+# Effect size
+
+Effect size f2² measures the impact of a predictor construct on an endogenous construct. f² $\geq$ 0.35 indicates a large effect, f² $\geq$ 0.15 a medium and f² $\geq$ 0.02 a small effect.
+
+```{r effect size f^2, echo=FALSE}
+# f2 cannot be calculated automatically for this model 
+# in fact, it is why the summary function fails
+# manual calculation
+# f2 = (r2included - r2excluded)/(1-r2included)
+modelnorb <- estimate_pls(
+  data = model$data, 
+  measurement_model = constructs(
+    composite("Personal Moral Norm", multi_items("CCPN",c(1,3))),
+    composite("Descriptive Norm", multi_items("CCDN", 1:2), mode_B),
+    composite("Injunctive Norm", multi_items("CCIN", 1:2), mode_B),
+    higher_composite("Subjective Norm", c("Descriptive Norm", "Injunctive Norm"), weights = mode_B),
+    composite("Behavioral Intention", single_item("CCBI4"))
+  ),
+  structural_model = relationships(
+    paths(from = c("Personal Moral Norm", "Subjective Norm"), to = "Behavioral Intention")
+  )
+)
+modelnopn <- estimate_pls(
+  data = model$data, 
+  measurement_model = constructs(
+    composite("Perceived Self-Efficacy", single_item("CCRB10")),
+    composite("Perceived Response Efficacy", single_item("CCRB11")),
+    composite("Perceived Response Costs", single_item("CCRB12")),
+    higher_composite("Response Beliefs", c("Perceived Self-Efficacy", "Perceived Response Efficacy", "Perceived Response Costs"), weights = mode_B),
+    composite("Benevolence", multi_items("CCDI", 1:3)),
+    composite("Competence", multi_items("CCDI", 4:6)),
+    composite("Integrity", multi_items("CCDI", 7:9)),
+    higher_composite("Distrusting Beliefs", c("Benevolence", "Competence", "Integrity"), weights = mode_B),
+    composite("Descriptive Norm", multi_items("CCDN", 1:2), mode_B),
+    composite("Injunctive Norm", multi_items("CCIN", 1:2), mode_B),
+    higher_composite("Subjective Norm", c("Descriptive Norm", "Injunctive Norm"), weights = mode_B),
+    composite("Behavioral Intention", single_item("CCBI4"))
+  ),
+  structural_model = relationships(
+    paths(from = "Distrusting Beliefs", to = "Response Beliefs"),
+    paths(from = c("Response Beliefs", "Subjective Norm"), to = "Behavioral Intention")
+  )
+)
+modelnosn <- estimate_pls(
+  data = model$data, 
+  measurement_model = constructs(
+    composite("Perceived Self-Efficacy", single_item("CCRB10")),
+    composite("Perceived Response Efficacy", single_item("CCRB11")),
+    composite("Perceived Response Costs", single_item("CCRB12")),
+    higher_composite("Response Beliefs", c("Perceived Self-Efficacy", "Perceived Response Efficacy", "Perceived Response Costs"), weights = mode_B),
+    composite("Benevolence", multi_items("CCDI", 1:3)),
+    composite("Competence", multi_items("CCDI", 4:6)),
+    composite("Integrity", multi_items("CCDI", 7:9)),
+    higher_composite("Distrusting Beliefs", c("Benevolence", "Competence", "Integrity"), weights = mode_B),
+    composite("Personal Moral Norm", multi_items("CCPN",c(1,3))),
+    composite("Behavioral Intention", single_item("CCBI4"))
+  ),
+  structural_model = relationships(
+    paths(from = "Distrusting Beliefs", to = "Response Beliefs"),
+    paths(from = c("Response Beliefs", "Personal Moral Norm"), to = "Behavioral Intention")
+  )
+)
+f2vec <- c(
+  (model$rSquared[1,1] - 0)/(1-model$rSquared[1,1]),
+  (model$rSquared[1,2] - modelnorb$rSquared[1,1])/(1-model$rSquared[1,2]),
+  (model$rSquared[1,2] - modelnopn$rSquared[1,2])/(1-model$rSquared[1,2]),
+  (model$rSquared[1,2] - modelnosn$rSquared[1,2])/(1-model$rSquared[1,2])
+  )
+f2 <- data.frame("Exogenous Construct" = vif[,1],
+                 "Endogenous Construct" = vif[,2],
+                 f2 = f2vec)
+f2 %>%
+  datatable(
+          filter = 'top',
+          rownames = FALSE,
+          colnames = c('f²' = 3),
+          caption = 'Effect sizes') %>%
+  formatRound(3,
+              digits = 3) %>%
+  formatStyle('f²', backgroundColor = styleInterval(cuts = c(0.019), values = c('#ff9999', '#00')))
+```
+All effects are small at a minimum.
+
+# Out-of-sample predictive performance
+
+Out-of-sample predictive performance has to be evaluated using a simplified model without HOCs as an approximation as seminr as of now does not support plspredict for HOC.
+If the root mean square error (RMSE) or the mean absolute deviation (MAD) of the naive LM model is below the ones for the PLS model, this indicates a lack of predictive performance.
+However, a lack of predictive performance does not imply a lack of explanatory power.
+
+```{r plspredict, echo = FALSE, layout="l-page"}
+oospp <- (as.data.frame(sumplspre$PLS_out_of_sample) %>%
+  rbind(as.data.frame(sumplspre$LM_out_of_sample)) %>%
+  rbind((as.data.frame(sumplspre$LM_out_of_sample))[1,] - (as.data.frame(sumplspre$PLS_out_of_sample))[1,]) %>%
+  rbind((as.data.frame(sumplspre$LM_out_of_sample))[2,] - (as.data.frame(sumplspre$PLS_out_of_sample))[2,])  %>%
+  cbind(`Prediction Errors` = c("PLS RMSE", "PLS MAD", "LM RMSE", "LM MAD", "RMSE Difference", "MAD Difference")))[c(1,3,5,2,4,6),c(ncol(sumplspre$PLS_out_of_sample)+1,1:ncol(sumplspre$PLS_out_of_sample))]
+datatable(oospp,
+          options = list(pageLength = nrow(oospp)),
+          rownames = FALSE,
+          caption = 'Out-of-sample predictive performance') %>%
+  formatRound(-1,
+              digits = 3) %>%
+  formatStyle(names(oospp), backgroundColor = styleInterval(cuts = c(0), values = c('#ff9999', '#00')))
+```
+
+Only CCBI4 is predicted better by the model than the LM in terms of both RMSE and MAD.
+This indicates low predictive power.
+
+# Significance and relevance of path coefficients
+
+Significance is denoted by t-test and p values. A t of $\geq$ 1.65 signifies significance at the 10 % level, t $\geq$ 1.96 at the 5 % level and t $\geq$ 2.57 at the 1 % level.
+
+```{r path-coeff, echo = FALSE, layout="l-page"}
+pcdf <- make_pc_table(sumbomo)
+datatable(pcdf,
+          filter = 'top',
+          rownames = FALSE,
+          colnames = c("Original Estimate" = 3),
+          caption = 'Relevance and significance of path coefficients') %>%
+  formatRound(c(3:7, 9:10),
+              digits = 3) %>%
+  formatStyle(colnames(pcdf)[9], backgroundColor = styleInterval(cuts = c(1.649), values = c('#ff9999', '#00'))) %>%
+  formatStyle('p', backgroundColor = styleInterval(cuts = c(0.049), values = c( '#00', '#ff9999'))) %>%
+  formatStyle('0 in CI', backgroundColor = styleEqual(c(1,0), c('#ff9999', '#00'), default = NULL))
+```
+
+All path coefficients are significant and relevant.
+
+# Summary table
+
+```{r summary table-df print, echo = FALSE, layout="l-page"}
+sumsm <- pcdf[,-c(3,5:7)] %>%
+    left_join(f2 %>% rename('Exogenous Construct' = 'Exogenous.Construct',
+                             'Endogenous Construct' = 'Endogenous.Construct'))  %>%
+    left_join(vif %>% rename('Exogenous Construct' = 'Exogenous.Construct',
+                             'Endogenous Construct' = 'Endogenous.Construct')) %>%
+    rename('Path Coefficient Bootstrap Mean' = 'Bootstrap Mean',
+           '0 in Path Coefficient CI' = '0 in CI',
+           'Path Coefficient p' = 'p')
+colnames(sumsm)[5] <- paste0("Path Coefficient t(", nrow(model$data), ")")
+datatable(sumsm,
+          filter = 'top',
+          options = list(pageLength = nrow(sumsm)),
+          rownames = FALSE,
+          colnames = c("f²" = 7),
+          caption = 'Structural Model Summary') %>%
+  formatRound(c(3,5:8),
+              digits = 3) %>%
+  formatStyle(colnames(sumsm)[5], backgroundColor = styleInterval(cuts = c(1.649), values = c('#ff9999', '#00'))) %>%
+  formatStyle('Path Coefficient p', backgroundColor = styleInterval(cuts = c(0.049), values = c( '#00', '#ff9999'))) %>%
+  formatStyle('0 in Path Coefficient CI', backgroundColor = styleEqual(c(1,0), c('#ff9999', '#00'), default = NULL)) %>%
+  formatStyle('VIF', backgroundColor = styleInterval(cuts = c(3,5), values = c('#00', '#ffe5e5','#ff9999')))
+```
+
+# Results summary
+
+All paths are substantial in terms of both the path coefficients and effect size.
+Structural model evaluation for this model is completed.
+As there have been no indications of nonlinearity in earlier model iterations, this is not tested again.

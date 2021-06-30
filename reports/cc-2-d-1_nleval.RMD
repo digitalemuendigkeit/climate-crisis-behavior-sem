@@ -224,7 +224,7 @@ df %>%
 
 The correct approach for estimating a model with Response Belief as a quadratic influence would be two-stage.
 Unfortunately, estimation was only possible using the orthogonal and product-indicator methods.
-These are thefore used as an approximation.
+These are therefore used as an approximation.
 For the alternate models with Response Beliefs as a quadratic influence, both the the effect size and the t-value are smaller.
 This points to a linear effect of Response Beliefs on Behavioral Intention.
 

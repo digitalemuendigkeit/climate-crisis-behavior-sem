@@ -92,7 +92,7 @@ summary(bootrb)
 # Make base df
 rbdf <- data.frame(Construct = c("Distrusting Beliefs", "Copula Distrusting Beliefs"), 
                    Original.Model.Value = c(summary(bootrb)[2,5],NA),
-                   Original.Model.p = c(bootSig(model$data, bootrb, 2, 0)[2],NA)
+                   Original.Model.p = c(bootSig(model$data, bootrb, 1, 0)[2],NA)
 )
 
 # Calculate copulas for independent variables
@@ -112,7 +112,7 @@ bootSig(model$data, bootcopuladirb, 1,1)
 # Attach to df
 rbdf <- rbdf %>% cbind(
   DI.Co.Model.Value = c(summary(bootcopuladirb)[,5]),
-  DI.Co.Model.p = c(bootSig(model$data, bootcopuladirb, 2,1))
+  DI.Co.Model.p = c(bootSig(model$data, bootcopuladirb, 1,1))
 )
 colnames(rbdf) <- c("Construct",
                     "Original model value",
@@ -150,7 +150,7 @@ summary(bootbi)
 # Make base df
 bidf <- data.frame(Construct = c("Response Beliefs", "Copula Response Beliefs"), 
                    Original.Model.Value = c(summary(bootbi)[2,5],NA),
-                   Original.Model.p = c(bootSig(model$data, bootbi, 4, 0)[2],NA)
+                   Original.Model.p = c(bootSig(model$data, bootbi, 1, 0)[2],NA)
 )
 
 # Calculate copulas for independent variables - already happened
@@ -169,7 +169,7 @@ bootSig(model$data, bootcopularbbi, 1,1)
 # Attach to df
 bidf <- bidf %>% cbind(
   RB.Co.Model.Value = c(summary(bootcopularbbi)[,5]),
-  RB.Co.Model.p = c(bootSig(model$data, bootcopularbbi, 4,1))
+  RB.Co.Model.p = c(bootSig(model$data, bootcopularbbi, 1,1))
 )
 
 colnames(bidf) <- c("Construct",
@@ -190,5 +190,3 @@ bidft %>%
 ```
 The Response Beliefs copula does achieve a significant p-value, however, the inclusion does not increase the path coefficient for Response Beliefs.
 Therefore, it will not be included in the model.
-
-There is nothing pointing to endogeneity in any of the predictors.
