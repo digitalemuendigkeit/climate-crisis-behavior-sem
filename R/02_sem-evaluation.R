@@ -860,14 +860,15 @@ make_pc_table <- function(summarybootstrapmodel){
 }
 
 make_summary_sm <- function(pcdf, f2, vif){
-  sumsm <- pcdf[,-c(3,5:7)] %>%
+  sumsm <- pcdf[,-c(5:7)] %>%
     left_join(f2)  %>%
     left_join(vif %>% rename('Exogenous Construct' = 'Exogenous.Construct',
                              'Endogenous Construct' = 'Endogenous.Construct')) %>%
     rename('Path Coefficient Bootstrap Mean' = 'Bootstrap Mean',
            '0 in Path Coefficient CI' = '0 in CI',
-           'Path Coefficient p' = 'p')
-  colnames(sumsm)[5] <- paste0("Path Coefficient t(", nrow(model$data), ")")
+           'Path Coefficient p' = 'p',
+           'Path Coefficient Original Estimate' = 'Original Est.')
+  colnames(sumsm)[6] <- paste0("Path Coefficient t(", nrow(model$data), ")")
   return(sumsm)
 }
 

@@ -232,24 +232,25 @@ All path coefficients are significant and relevant.
 # Summary table
 
 ```{r summary table-df print, echo = FALSE, layout="l-page"}
-sumsm <- pcdf[,-c(3,5:7)] %>%
+sumsm <- pcdf[,-c(5:7)] %>%
     left_join(f2 %>% rename('Exogenous Construct' = 'Exogenous.Construct',
-                             'Endogenous Construct' = 'Endogenous.Construct'))  %>%
+                            'Endogenous Construct' = 'Endogenous.Construct'))  %>%
     left_join(vif %>% rename('Exogenous Construct' = 'Exogenous.Construct',
                              'Endogenous Construct' = 'Endogenous.Construct')) %>%
     rename('Path Coefficient Bootstrap Mean' = 'Bootstrap Mean',
            '0 in Path Coefficient CI' = '0 in CI',
-           'Path Coefficient p' = 'p')
-colnames(sumsm)[5] <- paste0("Path Coefficient t(", nrow(model$data), ")")
+           'Path Coefficient p' = 'p',
+           'Path Coefficient Original Estimate' = 'Original Est.')
+colnames(sumsm)[6] <- paste0("Path Coefficient t(", nrow(model$data), ")")
 datatable(sumsm,
           filter = 'top',
           options = list(pageLength = nrow(sumsm)),
           rownames = FALSE,
-          colnames = c("f²" = 7),
+          colnames = c("f²" = 8),
           caption = 'Structural Model Summary') %>%
-  formatRound(c(3,5:8),
+  formatRound(c(3:4,6:9),
               digits = 3) %>%
-  formatStyle(colnames(sumsm)[5], backgroundColor = styleInterval(cuts = c(1.649), values = c('#ff9999', '#00'))) %>%
+  formatStyle(colnames(sumsm)[6], backgroundColor = styleInterval(cuts = c(1.649), values = c('#ff9999', '#00'))) %>%
   formatStyle('Path Coefficient p', backgroundColor = styleInterval(cuts = c(0.049), values = c( '#00', '#ff9999'))) %>%
   formatStyle('0 in Path Coefficient CI', backgroundColor = styleEqual(c(1,0), c('#ff9999', '#00'), default = NULL)) %>%
   formatStyle('VIF', backgroundColor = styleInterval(cuts = c(3,5), values = c('#00', '#ffe5e5','#ff9999')))
@@ -260,3 +261,7 @@ datatable(sumsm,
 All paths are substantial in terms of both the path coefficients and effect size.
 Structural model evaluation for this model is completed.
 As there have been no indications of nonlinearity in earlier model iterations, this is not tested again.
+
+```{r table-getter, echo = FALSE, include = FALSE}
+write_excel_csv(sumsm[,-5] %>% mutate(across(c(3:5,7:8),  round, 2)) %>% mutate(across(c(6),  round, 3)), "paper/smeval-cc-2-d-2.csv",delim = ";")
+```

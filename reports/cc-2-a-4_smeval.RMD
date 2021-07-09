@@ -172,3 +172,4 @@ datatable(sumsm,
 # Results summary
 
 All path coefficients are significant and all effects over the minimum threshold.
+However, the adjusted R² for Response Beliefs is larger in the previous model iteration (cc-2-a-3), which is why that one should be preferred.
