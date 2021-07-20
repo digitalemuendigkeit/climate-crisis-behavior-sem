@@ -158,9 +158,9 @@ datatable(sumsm,
           filter = 'top',
           options = list(pageLength = nrow(sumsm)),
           rownames = FALSE,
-          colnames = c("f²" = 7),
+          colnames = c("f²" = 8),
           caption = 'Structural Model Summary') %>%
-  formatRound(c(3,5:8),
+  formatRound(c(3:4,6:9),
               digits = 3) %>%
   formatStyle(colnames(sumsm)[5], backgroundColor = styleInterval(cuts = c(1.649), values = c('#ff9999', '#00'))) %>%
   formatStyle('Path Coefficient p', backgroundColor = styleInterval(cuts = c(0.049), values = c( '#00', '#ff9999'))) %>%
@@ -173,3 +173,7 @@ datatable(sumsm,
 
 The model iteration is complete.
 The model is not tested for non-linearity or hidden endogeneity, because there was no evidence for either in earlier model iterations.
+
+<!-- ```{r table-getter, echo = FALSE, include = FALSE} -->
+<!-- write_excel_csv(sumsm[,-5] %>% mutate(across(c(3:5,7:8),  round, 2)) %>% mutate(across(c(6),  round, 3)), "paper/smeval-cc-2-c-2.csv",delim = ";") -->
+<!-- ``` -->
