@@ -1,0 +1,613 @@
+---
+title: "Additional Analysis Climate Crisis Behavior Study"
+output: 
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(psych)
+library(car)
+library(Hmisc)
+library(DT)
+library(htmltools)
+library(distill)
+# Set targets tools
+tar_config_set(here::here("_targets"))
+source(here::here("R", "03_additional-analysis.R"))
+knitr::opts_chunk$set(echo = TRUE)
+# Get data
+datalist <- tar_read("survey_data_addan")
+descstat <- datalist$descriptive
+data <- datalist$coded
+col_order_1 <- c(
+               grep(colnames(data), 
+                    pattern = "Behavior ", 
+                    value = TRUE),
+               grep(colnames(data), 
+                    pattern = "Behavioral", 
+                    value = TRUE),
+               grep(colnames(data),
+                    pattern = "Perceived Sel",
+                    value = TRUE),
+               grep(colnames(data),
+                    pattern = "Perceived Response E",
+                    value = TRUE),
+               grep(colnames(data),
+                    pattern = "Perceived Response C",
+                    value = TRUE),
+               grep(colnames(data),
+                    pattern = "Perceived Sus",
+                    value = TRUE),
+               grep(colnames(data),
+                    pattern = "Perceived Sev",
+                    value = TRUE),
+               grep(colnames(data),
+                    pattern = "Norm",
+                    value = TRUE),
+               grep(colnames(data),
+                    pattern = "Distr",
+                    value = TRUE),
+               grep(colnames(data),
+                    pattern = "Know",
+               value = TRUE))
+col_order_2 <- c(colnames(data)[!colnames(data) %in% col_order_1])
+col_order <- c(col_order_1, col_order_2)
+data <- data[,col_order]
+data[,grepl("COKN", colnames(data))] <- data[,grepl("COKN", colnames(data))] %>%
+  lapply(FUN = function(x) car::recode(x,
+    "1 = 'incorrect';
+      2 = 'do not know';
+      3 = 'correct'",
+    as.factor = TRUE,
+    levels = c('incorrect',
+               'do not know',
+               'correct')
+  ))
+data[,grepl("CCKN", colnames(data))] <- data[,grepl("CCKN", colnames(data))] %>%
+  lapply(FUN = function(x) car::recode(x,
+    "1 = 'incorrect';
+      2 = 'do not know';
+      3 = 'correct'",
+    as.factor = TRUE,
+    levels = c('incorrect',
+               'do not know',
+               'correct')
+  ))
+```
+
+# Descriptive Statistics
+
+
+```{r descstat, echo = FALSE}
+datatable(
+  descstat[,-2],
+  filter = 'top',
+  rownames = FALSE,
+  caption = 'Descriptive statistics for all continuous variables',
+  colnames = c("Cronbach\'s alpha" = "Cs.Alpha")
+) %>%
+  formatRound(-c(1:2,15),
+              digits = 2)
+```
+
+For variables where a Cronbach's alpha $\geq$ 0.7 could not be attained, we chose the item with the highest item-total correlation or, in case of Internal and External Control Conviction, one of the items based on content.
+
+# Correlation analysis of continous variables
+
+As becomes apparent from the descriptive statistics, response data is not normally distributed.
+Therefore, we use Spearman's rank correlation.
+
+## Correlation of all Climate Crisis model variables, different Knowledge measures and Behavior
+
+```{r ccrm, echo=FALSE, layout="l-page"}
+ccrmv <- correlation_matrix_full(data %>%
+                     select(starts_with("Climate Crisis") & !c(
+                       ends_with("General"), 
+                               ends_with("Diet"), 
+                               ends_with("Heating"), 
+                               ends_with("Driving")
+                       )),
+                   type = "spearman",
+                   digits = 3,
+                   replace_diagonal = TRUE,
+                   replacement = "")
+clrspal <- grDevices::colorRampPalette(c("#EE6677", "#FFFFFF", "#4477AA"))
+brks <- seq(-0.9, 0.9, 0.1)
+clrs <- clrspal(length(brks)+1)
+ccrmvn <- data.frame(Variable = paste(1:17, rownames(ccrmv))) %>%
+  cbind(as.data.frame(ccrmv) %>%
+  rename_with(~ c(1:17)))
+ccrmvn %>%
+  datatable(caption = 'Spearman\'s rank correlation , *p < 0.05, ** p < 0.01, *** p < 0.001',
+            rownames = FALSE,
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(ccrmv),
+                           ordering = FALSE)) %>%
+  formatStyle(names(ccrmvn[,-1]), 
+              backgroundColor = styleInterval(brks, clrs))
+```
+
+This correlation table contains all variables corresponding to constructs in the model, albeit differently specified (see Descriptive Statistics table).
+Further, Knowledge is specified differently: Instead of a pseudo-continuous scale with 1 corresponding to an incorrect answer, 2 to a 'don't know' and 3 to an correct answer, there are counts of how often a respondent answered correctly, incorrectly, or 'don't know'.
+There is also a Subjective Knowledge variable which is a self-assessment of the amount of a respondent's climate crisis related knowledge.
+
+Most of the correlations mirror relationships are already expressed in the model.
+Additionally, there are the following correlations ($\rho > 0.3$) which all are significant at the p < 0.001 level:
+
+Behavior is strongly correlated with Behavioral Intention, moderately correlated with Perceived Self-Efficacy, Perceived Response Efficacy and Personal Moral Norm, and weakly correlated with Perceived Susceptibility, Perceived Severity, Descriptive Norm, and Injunctive Norm.
+It is also weakly and negatively correlated with all dimensions of Distrusting Beliefs in Science.
+
+Behavioral Intention is strongly correlated with Perceived Self-Efficacy and Perceived Response Efficacy, moderately correlated with Perceived Susceptibility, Perceived Severity, and Personal Moral Norm, and weakly correlated with Perceived Response Costs, Descriptive Norm, Injunctive Norm, and Subjective Knowledge.
+It is also weakly and negatively correlated with all dimensions of Distrusting Beliefs in Science.
+
+All Response Beliefs lower-order constructs are intercorrelated, with the correlation between Perceived Self-Efficacy and Perceived Response Efficacy being strong, and those with Perceived Response Costs being weak.
+Perceived Self-Efficacy and Perceived Response Efficacy are (at a minimum) moderately correlated with Perceived Susceptibility, Perceived Severity, Personal Moral Norm, and Descriptive Norm.
+The relationship between Perceived Response Efficacy and Personal Moral Norm is strong, and Perceived Response Efficacy is weakly correlated with Subjective Knowledge.
+Both Perceived Self-Efficacy and Perceived Response Efficacy are weakly and negatively correlated with all Distrust Beliefs variables.
+Perceived Response Costs is weakly correlated with Personal Moral Norm.
+
+Perceived Susceptibility and Perceived Severity are strongly intercorrelated.
+Perceived Susceptibility is moderately correlated with Personal Moral Norm, and negatively and moderately correlated with the Distrusting Beliefs variables.
+It is weakly correlated with Injunctive Norm and Descriptive Norm.
+Perceived Severity on the other hand is strongly correlated with Personal Moral Norm, moderately positively correlated with Descriptive Norm, moderately negatively correlated with the Distrusting Beliefs variables, and weakly correlated with Injunctive Norm and the number of correct answers to Knowledge questions.
+
+All normative variables are moderately intercorrelated.
+Additionally, Personal Moral Norm is moderately and negatively correlated with the Distrusting Beliefs variables, and weakly correlated with Subjective Knowledge.
+Descriptive Norm is weakly and negative correlated with all Distrusting Beliefs dimensions.
+
+All Distrusting Beliefs variables are strongly intercorrelated.
+
+Subjective Knowledge is weakly positively correlated with the number of correct answers, and negatively correlated with the number of questions respondents did not know an answer to.
+
+## Correlation of all continuous variables with behavior and behavioral intention
+
+```{r corall, echo=FALSE, include = FALSE}
+ccrmv2 <- correlation_matrix_2(select(data, !starts_with("Climate Crisis Behavior") & 
+                                        c(starts_with("Climate Crisis"),
+                                          "COVID-19 Behavior",
+                                          "COVID-19 Behavioral Intention",
+                                          "Extraversion",
+                                          "Agreeableness",
+                                          "Neuroticism",
+                                          "Openness to Experience",
+                                          "Internal Control Conviction",
+                                          "External Control Conviction",
+                                          starts_with("Household"),
+                                          "Age")),
+                               select(data, starts_with("Climate Crisis Behavior")),
+                   type = "spearman")
+ccrmv2 <- ccrmv2[c(2:25,1,26,27:35),]
+```
+```{r corallvis, echo = FALSE}
+ccrmv2numbers <- ccrmv2 %>%
+                             unlist() %>%
+                             substring(1,6) %>%
+  as.numeric()
+ccrmv2colors <- c()
+for (i in 1:length(ccrmv2numbers)){
+  ccrmv2colors[i] <- ifelse(brks[closestpos(ccrmv2numbers[i],brks)] < ccrmv2numbers[i],
+                        clrs[closestpos(ccrmv2numbers[i],brks)],
+                        clrs[closestpos(ccrmv2numbers[i],brks)+1])
+}
+ccrmv2clcyph <- data.frame(Names = ccrmv2 %>% unlist(),
+                           Colors = ccrmv2colors)
+ccrmv2 %>%
+  as.data.frame() %>%
+  datatable(caption = 'Spearman\'s rank correlation , *p < 0.05, ** p < 0.01, *** p < 0.001',
+            options = list(list(className = 'dt-right',
+                                targets = 0:6)),
+            filter = 'top') %>%
+  formatStyle(names(ccrmv2), 
+               backgroundColor = styleEqual(ccrmv2clcyph$Names, ccrmv2clcyph$Colors)
+  )
+```
+
+
+
+Next, we focus in on the correlations between all continuous variables and Behavioral Intention as well as Behavior and the different types of Behavior.
+Apart from the correlations already discussed, it becomes apparent that correlations differ between the different types of Behavior.
+
+COVID-19 Behavioral Intention and COVID-19 Behavior are both weakly correlated with Climate Crisis Behavioral Intention and Climate Crisis Behavior.
+None of the Big Five variables show a substantial ($\rho > 0.3$) significant correlation with any type of Behavior or Behavioral Intention, nor do Internal or External Control Conviction
+Further, there are no perceptible correlations for age, the household size, or the number of children living in the household.
+
+# Kruskal-Wallis test and Wilcoxon signed-rank test for categorical variables
+As the data for Behavior is non-parametric, we use the Kruskal Wallis test, the  Pairwise Wilcoxon Rank Sum test and the Wilcoxon-Mann-Whitney test to detect group differences. 
+
+## Gender
+```{r gender, echo = FALSE}
+ggplot(data, aes(Gender, `Climate Crisis Behavior`)) +
+  geom_boxplot()
+kruskaldt(data, 'Climate Crisis Behavior', 'Gender')
+wtg <- pairwise.wilcox.test(data$`Climate Crisis Behavior`, data$Gender, p.adjust="bonferroni", paired = FALSE)
+wtg$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtg$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtg$p.value),
+              digits = 3)
+data.frame(p = wilcox.test(`Climate Crisis Behavior` ~ `Gender`, data %>% filter(Gender != "other"), na.action = "na.omit", paired = FALSE, p.adjust = "bonferroni")$p.value,
+           Z = qnorm(wilcox.test(`Climate Crisis Behavior` ~ `Gender`, data %>% filter(Gender != "other"), na.action = "na.omit", paired = FALSE, p.adjust = "bonferroni")$p.value/2),
+           Median.female = median((data %>% filter(Gender == "female"))[,"Climate Crisis Behavior"], na.rm = TRUE),
+           Median.male = median((data %>% filter(Gender == "male"))[,"Climate Crisis Behavior"], na.rm = TRUE),
+           Mean.female = mean((data %>% filter(Gender == "female"))[,"Climate Crisis Behavior"], na.rm = TRUE),
+           Mean.male = mean((data %>% filter(Gender == "male"))[,"Climate Crisis Behavior"], na.rm = TRUE)) %>%
+  datatable(caption = 'Wilcoxon Rank Sum Test',
+            autoHideNavigation = TRUE,
+            rownames = FALSE,
+            options = list(pageLength = 1,
+                           ordering = FALSE)) %>%
+    formatRound(c(1:2,5:6),
+              digits = 3)
+```
+There is a significant difference between male and female respondents, but the difference in median and mean values is insubstantial.
+
+## Education
+```{r education, echo = FALSE}
+ggplot(data, aes(Education, `Climate Crisis Behavior`)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90))
+kruskaldt(data, 'Climate Crisis Behavior', 'Education')
+```
+
+There is no significant difference in Behavior for different education levels.
+
+
+!!! WIP HERE!!!
+## Occupation
+```{r occupation, echo = FALSE}
+ggplot(data, aes(Occupation, `Climate Crisis Behavior`)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90))
+kruskaldt(data, 'Climate Crisis Behavior', 'Occupation')
+wto <- pairwise.wilcox.test((data %>% filter(Occupation != "student (school)"))$`Climate Crisis Behavior`, (data %>% filter(Occupation != "student (school)"))$Occupation, p.adjust="bonferroni", paired = FALSE)
+wto$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtg$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wto$p.value),
+              digits = 3)
+```
+There a significant difference for occupation, but a pairwise Wilcoxon Rank Sum Test
+
+## Income
+```{r income, echo = FALSE}
+ggplot(data, aes(Income, Behavior)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90))
+kruskaldt(data, 'Behavior', 'Income')
+```
+```{r income2, echo = FALSE, layout="l-page"}
+wti <- pairwise.wilcox.test(data$Behavior,data$Income, p.adjust="bonferroni")
+wti$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wti$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wti$p.value),
+              digits = 3)
+```
+The difference between the second to lowest income group and the 'not specified' group is barely significant (p=0.026) but will not be more closely examined.
+
+## Own Infection Risk
+```{r ownrisk, echo = FALSE}
+ggplot(data, aes(`Own Risk COVID-19`, Behavior)) +
+  geom_boxplot()
+kruskaldt(data, 'Behavior', 'Own Risk COVID-19')
+wtor <- pairwise.wilcox.test(data$Behavior,data$`Own Risk COVID-19`, p.adjust="bonferroni")
+wtor$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtor$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtor$p.value),
+              digits = 3)
+data.frame(p = wilcox.test(Behavior ~ `Own Risk COVID-19`, data %>% filter(!(`Own Risk COVID-19` == "do not know")), na.action = "na.omit", paired = FALSE, p.adjust = "bonferroni")$p.value,
+           Z = qnorm(wilcox.test(Behavior ~ `Own Risk COVID-19`, data %>% filter(!(`Own Risk COVID-19` == "do not know")), na.action = "na.omit", paired = FALSE, p.adjust = "bonferroni")$p.value/2),
+           Median.yes = median((data %>% filter(`Own Risk COVID-19` == "yes"))[,"Behavior"], na.rm = TRUE),
+           Median.no = median((data %>% filter(`Own Risk COVID-19` == "no"))[,"Behavior"], na.rm = TRUE),
+           Mean.yes = mean((data %>% filter(`Own Risk COVID-19` == "yes"))[,"Behavior"], na.rm = TRUE),
+           Mean.no = mean((data %>% filter(`Own Risk COVID-19` == "no"))[,"Behavior"], na.rm = TRUE)) %>%
+  datatable(caption = 'Wilcoxon Rank Sum Test',
+            autoHideNavigation = TRUE,
+            rownames = FALSE,
+            options = list(pageLength = nrow(wtor$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(c(1:2,5:6),
+              digits = 3)
+
+```
+There is a barely significant different in Behavior between people who know they are at risk for an especially severe COVID-19 infection and those who know that they are not.
+
+## Own Infection History
+```{r owninf, echo = FALSE}
+ggplot(data, aes(`Own Infection COVID-19`, Behavior)) +
+  geom_boxplot()
+kruskaldt(data, 'Behavior', 'Own Infection COVID-19')
+```
+There is no significant differences in Behavior for people who have already been infected with COVID-19, those who have not or those who do not know.
+
+## Own Hospitalisation
+```{r ownhosp, echo = FALSE}
+ggplot(data %>% filter(!is.na(`Own Hospitalisation COVID-19`)), aes(`Own Hospitalisation COVID-19`, Behavior)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90))
+wilcox.test(Behavior ~ `Own Hospitalisation COVID-19`, data, na.action = "na.omit", paired = FALSE)
+```
+Although at face value, Behavior of respondents who have been hospitalized for a COVID-19 infections seems to be noticeably higher than if respondents who have not, this difference is not significant.
+This is likely due to the low number of respondents who answered this question (n = 21).
+
+## Cohabitation with High-Risk Person
+```{r cohabrisk, echo = FALSE}
+ggplot(data, aes(`Cohabitate Risk COVID-19`, Behavior)) +
+  geom_boxplot()
+kruskaldt(data, 'Behavior', 'Cohabitate Risk COVID-19')
+wtco <- pairwise.wilcox.test(data$Behavior,data$`Cohabitate Risk COVID-19`, p.adjust="bonferroni")
+wtco$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtco$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtco$p.value),
+              digits = 3)
+data.frame(p = wilcox.test(Behavior ~ `Cohabitate Risk COVID-19`, data %>% filter(!(`Cohabitate Risk COVID-19` == "do not know")), na.action = "na.omit", paired = FALSE, p.adjust = "bonferroni")$p.value,
+           Z = qnorm(wilcox.test(Behavior ~ `Cohabitate Risk COVID-19`, data %>% filter(!(`Cohabitate Risk COVID-19` == "do not know")), na.action = "na.omit", paired = FALSE, p.adjust = "bonferroni")$p.value/2),
+           Median.yes = median((data %>% filter(`Cohabitate Risk COVID-19` == "yes"))[,"Behavior"], na.rm = TRUE),
+           Median.no = median((data %>% filter(`Cohabitate Risk COVID-19` == "no"))[,"Behavior"], na.rm = TRUE),
+           Mean.yes = mean((data %>% filter(`Cohabitate Risk COVID-19` == "yes"))[,"Behavior"], na.rm = TRUE),
+           Mean.no = mean((data %>% filter(`Cohabitate Risk COVID-19` == "no"))[,"Behavior"], na.rm = TRUE)) %>%
+  datatable(caption = 'Wilcoxon Rank Sum Test',
+            autoHideNavigation = TRUE,
+            rownames = FALSE,
+            options = list(pageLength = nrow(wtor$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(c(1:2,5:6),
+              digits = 3)
+data.frame(p = wilcox.test(Behavior ~ `Cohabitate Risk COVID-19`, data %>% filter(!(`Cohabitate Risk COVID-19` == "yes")), na.action = "na.omit", paired = FALSE, p.adjust = "bonferroni")$p.value,
+           Z = qnorm(wilcox.test(Behavior ~ `Cohabitate Risk COVID-19`, data %>% filter(!(`Cohabitate Risk COVID-19` == "yes")), na.action = "na.omit", paired = FALSE, p.adjust = "bonferroni")$p.value/2),
+           Median.do.not.know = median((data %>% filter(`Cohabitate Risk COVID-19` == "do not know"))[,"Behavior"], na.rm = TRUE),
+           Median.no = median((data %>% filter(`Cohabitate Risk COVID-19` == "no"))[,"Behavior"], na.rm = TRUE),
+           Mean.do.not.know = mean((data %>% filter(`Cohabitate Risk COVID-19` == "do not know"))[,"Behavior"], na.rm = TRUE),
+           Mean.no = mean((data %>% filter(`Cohabitate Risk COVID-19` == "no"))[,"Behavior"], na.rm = TRUE)) %>%
+  datatable(caption = 'Wilcoxon Rank Sum Test',
+            autoHideNavigation = TRUE,
+            rownames = FALSE,
+            options = list(pageLength = nrow(wtor$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(c(1:2,5:6),
+              digits = 3)
+```
+Respondents who know that they live with a high-risk person and those who are not sure show a slightly significantly (p < 0.05) higher Behavior than respondents who think they do not live with a high-risk person.
+
+## Working from Home
+```{r wfh, echo = FALSE}
+ggplot(data, aes(`Work From Home COVID-19`, Behavior)) +
+  geom_boxplot()
+kruskaldt(data, 'Behavior', 'Work From Home COVID-19')
+```
+There is no significant difference in Behavior between respondents who have to work or go to school outside and those who do not.
+
+## Knowledge
+In this section, we examine the relationship between specific questions and Behavior as well as Subjective Knowledge.
+
+### Fever is a symptom of coronavirus disease. Correct answer: True.
+```{r knowledge1, echo = FALSE}
+ggplot(data %>% filter(!is.na(COKN1)), aes(COKN1, Behavior)) +
+  geom_boxplot()
+kruskaldt(data, 'Behavior', 'COKN1')
+wtbcokn1 <- pairwise.wilcox.test(data$Behavior,data$COKN1, p.adjust="bonferroni")
+wtbcokn1$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtbcokn1$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtbcokn1$p.value),
+              digits = 3)
+ggplot(data %>% filter(!is.na(COKN1)), aes(COKN1, `Subjective Knowledge`)) +
+  geom_boxplot()
+kruskaldt(data, 'Subjective Knowledge', 'COKN1')
+wtscokn1 <- pairwise.wilcox.test(data$`Subjective Knowledge`,data$COKN1, p.adjust="bonferroni")
+wtscokn1$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtscokn1$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtscokn1$p.value),
+              digits = 3)
+```
+Respondents who are not sure about this question show significantly less behavior than those who do.
+They also report significantly lower Subjective Knowledge.
+
+### An effective vaccine against the virus is currently available. Correct answer: True.
+```{r knowledge2,  echo = FALSE}
+ggplot(data %>% filter(!is.na(COKN2)), aes(COKN2, Behavior)) +
+  geom_boxplot()
+kruskaldt(data, 'Behavior', 'COKN2')
+wtbcokn2 <- pairwise.wilcox.test(data$Behavior,data$COKN2, p.adjust="bonferroni")
+wtbcokn2$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtbcokn2$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtbcokn2$p.value),
+              digits = 3)
+ggplot(data %>% filter(!is.na(COKN2)), aes(COKN2, `Subjective Knowledge`)) +
+  geom_boxplot()
+kruskaldt(data, 'Subjective Knowledge', 'COKN2')
+wtscokn2 <- pairwise.wilcox.test(data$`Subjective Knowledge`,data$COKN2, p.adjust="bonferroni")
+wtscokn2$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtscokn2$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtscokn2$p.value),
+              digits = 3)
+```
+
+Respondents who are not correctly or misinformed about this, show significantly less Behavior than respondents who do.
+Respondents who chose don't know also report lower Subjective Knowledge.
+
+### The disease could be transmitted from asymptomatic persons. Correct answer: True.
+```{r knowledge2_1, echo = FALSE}
+ggplot(data %>% filter(!is.na(COKN2_1)), aes(COKN2_1, Behavior)) +
+  geom_boxplot()
+kruskaldt(data, 'Behavior', 'COKN2_1')
+wtbcokn2_1 <- pairwise.wilcox.test(data$Behavior,data$COKN2_1, p.adjust="bonferroni")
+wtbcokn2_1$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtbcokn2_1$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtbcokn2_1$p.value),
+              digits = 3)
+data.frame(p = wilcox.test(Behavior ~ `COKN2_1`, data %>% filter(!(`COKN2_1` == "do not know")), na.action = "na.omit", paired = FALSE, p.adjust = "bonferroni")$p.value,
+           Z = qnorm(wilcox.test(Behavior ~ `COKN2_1`, data %>% filter(!(`COKN2_1` == "do not know")), na.action = "na.omit", paired = FALSE, p.adjust = "bonferroni")$p.value/2),
+           Median.correct = median((data %>% filter(`COKN2_1` == "correct"))[,"Behavior"], na.rm = TRUE),
+           Median.incorrect = median((data %>% filter(`COKN2_1` == "incorrect"))[,"Behavior"], na.rm = TRUE),
+           Mean.correct = mean((data %>% filter(`COKN2_1` == "correct"))[,"Behavior"], na.rm = TRUE),
+           Mean.incorrect = mean((data %>% filter(`COKN2_1` == "incorrect"))[,"Behavior"], na.rm = TRUE)) %>%
+  datatable(caption = 'Wilcoxon Rank Sum Test',
+            autoHideNavigation = TRUE,
+            rownames = FALSE,
+            options = list(ordering = FALSE)) %>%
+    formatRound(c(1:2,5:6),
+              digits = 3)
+ggplot(data %>% filter(!is.na(COKN2_1)), aes(COKN2_1, `Subjective Knowledge`)) +
+  geom_boxplot()
+kruskaldt(data, 'Subjective Knowledge', 'COKN2_1')
+wtscokn2_1 <- pairwise.wilcox.test(data$`Subjective Knowledge`,data$COKN2_1, p.adjust="bonferroni")
+wtscokn2_1$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtscokn2_1$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtscokn2_1$p.value),
+              digits = 3)
+data.frame(p = wilcox.test(`Subjective Knowledge` ~ `COKN2_1`, data %>% filter(!(`COKN2_1` == "correct")), na.action = "na.omit", paired = FALSE, p.adjust = "bonferroni")$p.value,
+           Z = qnorm(wilcox.test(`Subjective Knowledge` ~ `COKN2_1`, data %>% filter(!(`COKN2_1` == "correct")), na.action = "na.omit", paired = FALSE, p.adjust = "bonferroni")$p.value/2),
+           Median.do.not.know = median((data %>% filter(`COKN2_1` == "do not know"))[,"Subjective Knowledge"], na.rm = TRUE),
+           Median.incorrect = median((data %>% filter(`COKN2_1` == "incorrect"))[,"Subjective Knowledge"], na.rm = TRUE),
+           Mean.do.not.know = mean((data %>% filter(`COKN2_1` == "do not know"))[,"Subjective Knowledge"], na.rm = TRUE),
+           Mean.incorrect = mean((data %>% filter(`COKN2_1` == "incorrect"))[,"Subjective Knowledge"], na.rm = TRUE)) %>%
+  datatable(caption = 'Wilcoxon Rank Sum Test',
+            autoHideNavigation = TRUE,
+            rownames = FALSE,
+            options = list(ordering = FALSE)) %>%
+    formatRound(c(1:2,5:6),
+              digits = 3)
+data.frame(p = wilcox.test(`Subjective Knowledge` ~ `COKN2_1`, data %>% filter(!(`COKN2_1` == "incorrect")), na.action = "na.omit", paired = FALSE, p.adjust = "bonferroni")$p.value,
+           Z = qnorm(wilcox.test(`Subjective Knowledge` ~ `COKN2_1`, data %>% filter(!(`COKN2_1` == "incorrect")), na.action = "na.omit", paired = FALSE, p.adjust = "bonferroni")$p.value/2),
+           Median.do.not.know = median((data %>% filter(`COKN2_1` == "do not know"))[,"Subjective Knowledge"], na.rm = TRUE),
+           Median.correct = median((data %>% filter(`COKN2_1` == "correct"))[,"Subjective Knowledge"], na.rm = TRUE),
+           Mean.do.not.know = mean((data %>% filter(`COKN2_1` == "do not know"))[,"Subjective Knowledge"], na.rm = TRUE),
+           Mean.correct = mean((data %>% filter(`COKN2_1` == "correct"))[,"Subjective Knowledge"], na.rm = TRUE)) %>%
+  datatable(caption = 'Wilcoxon Rank Sum Test',
+            autoHideNavigation = TRUE,
+            rownames = FALSE,
+            options = list(ordering = FALSE)) %>%
+    formatRound(c(1:2,5:6),
+              digits = 3)
+```
+Respondents who hold incorrect information about this show significantly less Behavior.
+Respondents who are unsure report significantly lower Subjective Knowledge than both other groups.
+
+### More than 1% of people reported to have coronavirus infection in Germany have died in association with coronavirus disease. Correct answer: True.
+```{r knowledge3, echo = FALSE}
+ggplot(data %>% filter(!is.na(COKN3)), aes(COKN3, Behavior)) +
+  geom_boxplot()
+kruskaldt(data, 'Behavior', 'COKN3')
+wtbcokn3 <- pairwise.wilcox.test(data$Behavior,data$COKN3, p.adjust="bonferroni")
+wtbcokn3$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtbcokn3$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtbcokn3$p.value),
+              digits = 3)
+ggplot(data %>% filter(!is.na(COKN3)), aes(COKN3, `Subjective Knowledge`)) +
+  geom_boxplot()
+kruskaldt(data, 'Subjective Knowledge', 'COKN3')
+wtscokn3 <- pairwise.wilcox.test(data$`Subjective Knowledge`,data$COKN3, p.adjust="bonferroni")
+wtscokn3$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtscokn3$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtscokn3$p.value),
+              digits = 3)
+```
+There is a slightly significant difference in Behavior for people who do not know the answer to this to those who know it is correct.
+Those who do not know also report significantly lower Subjective Knowledge than both the correctly and the misinformed group.
+
+### Less than 5% of people reported to be infected with coronavirus in Germany required hospitalization. Correct answer: False.
+```{r knowledge4, echo = FALSE}
+ggplot(data %>% filter(!is.na(COKN4)), aes(COKN4, Behavior)) +
+  geom_boxplot()
+kruskaldt(data, 'Behavior', 'COKN4')
+ggplot(data %>% filter(!is.na(COKN4)), aes(COKN4, `Subjective Knowledge`)) +
+  geom_boxplot()
+kruskaldt(data, 'Subjective Knowledge', 'COKN4')
+wtscokn4 <- pairwise.wilcox.test(data$`Subjective Knowledge`,data$COKN4, p.adjust="bonferroni")
+wtscokn4$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtscokn4$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtscokn4$p.value),
+              digits = 3)
+```
+For this question, there is no significant difference in Behavior.
+The group that does not know the answer reports significantly lower Subjective Knowledge than the misinformed group.
+
+### The health effects of COVID-19 coronavirus appear to be more severe in children. Correct answer: False.
+```{r knowledge5, echo = FALSE}
+ggplot(data %>% filter(!is.na(COKN5)), aes(COKN5, Behavior)) +
+  geom_boxplot()
+kruskaldt(data, 'Behavior', 'COKN5')
+ggplot(data %>% filter(!is.na(COKN5)), aes(COKN5, `Subjective Knowledge`)) +
+  geom_boxplot()
+wtbcokn5 <- pairwise.wilcox.test(data$Behavior,data$COKN5, p.adjust="bonferroni")
+wtbcokn5$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtbcokn5$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtbcokn5$p.value),
+              digits = 3)
+kruskaldt(data, 'Subjective Knowledge', 'COKN5')
+wtscokn5 <- pairwise.wilcox.test(data$`Subjective Knowledge`,data$COKN5, p.adjust="bonferroni")
+wtscokn5$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtscokn5$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtscokn5$p.value),
+              digits = 3)
+```
+The group who does not know reports both significantly lower Behavior and significantly lower Subjective Knowledge than both other groups.
+
+### Antibiotics can treat the coronavirus disease. Correct answer: False.
+```{r knowledge6, echo = FALSE}
+ggplot(data %>% filter(!is.na(COKN6)), aes(COKN6, Behavior)) +
+  geom_boxplot()
+kruskaldt(data, 'Behavior', 'COKN6')
+ggplot(data %>% filter(!is.na(COKN6)), aes(COKN6, `Subjective Knowledge`)) +
+  geom_boxplot()
+kruskaldt(data, 'Subjective Knowledge', 'COKN6')
+wtscokn6 <- pairwise.wilcox.test(data$`Subjective Knowledge`,data$COKN6, p.adjust="bonferroni")
+wtscokn6$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtscokn6$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtscokn6$p.value),
+              digits = 3)
+```
+ 
+ There is no significant difference in behavior between the groups.
+ The group that does not know the answer again reports significantly lower Subjective Knowledge.

@@ -88,6 +88,10 @@ list(
     redundancy_cc(cc_model_1)
   ),
   tar_target(
+    survey_data_addan,
+    code_data_addan(survey_data_incidence, cc_model_1)
+  ),
+  tar_target(
     cc_model_2_a_1,
     estimate_cc_2_a_1(survey_data_cc_sem)
   ),
