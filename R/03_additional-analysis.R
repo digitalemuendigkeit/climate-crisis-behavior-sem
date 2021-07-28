@@ -49,7 +49,7 @@ correlation_matrix <- function(df,
   x <- as.matrix(df)
 
   # run correlation analysis using Hmisc package
-  correlation_matrix <- Hmisc::rcorr(x, type = )
+  correlation_matrix <- Hmisc::rcorr(x, type = type)
   R <- correlation_matrix$r # Matrix of correlation coeficients
   p <- correlation_matrix$P # Matrix of p-value
 
@@ -153,7 +153,7 @@ correlation_matrix_2 <- function(df1,
   x2 <- as.matrix(df2)
 
   # run correlation analysis using Hmisc package
-  correlation_matrix <- Hmisc::rcorr(x = x1, y = x2, type = )
+  correlation_matrix <- Hmisc::rcorr(x = x1, y = x2, type = type)
   R <- correlation_matrix$r # Matrix of correlation coeficients
   p <- correlation_matrix$P # Matrix of p-value
 
@@ -268,7 +268,7 @@ correlation_matrix_full <- function(df,
   x <- as.matrix(df)
 
   # run correlation analysis using Hmisc package
-  correlation_matrix <- Hmisc::rcorr(x, type = )
+  correlation_matrix <- Hmisc::rcorr(x, type = type)
   R <- correlation_matrix$r # Matrix of correlation coeficients
   p <- correlation_matrix$P # Matrix of p-value
 

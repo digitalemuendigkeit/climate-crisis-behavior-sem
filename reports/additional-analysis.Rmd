@@ -116,7 +116,7 @@ ccrmv <- correlation_matrix_full(data %>%
                    replace_diagonal = TRUE,
                    replacement = "")
 clrspal <- grDevices::colorRampPalette(c("#EE6677", "#FFFFFF", "#4477AA"))
-brks <- seq(-0.9, 0.9, 0.1)
+brks <- seq(-0.9, 0.9, 0.01)
 clrs <- clrspal(length(brks)+1)
 ccrmvn <- data.frame(Variable = paste(1:17, rownames(ccrmv))) %>%
   cbind(as.data.frame(ccrmv) %>%
@@ -163,6 +163,34 @@ All Distrusting Beliefs variables are strongly intercorrelated.
 
 Subjective Knowledge is weakly positively correlated with the number of correct answers, and negatively correlated with the number of questions respondents did not know an answer to.
 
+## Correlation of behavior and behavioral intention
+
+```{r ccrm3, echo=FALSE, layout="l-page"}
+ccrmv3 <- correlation_matrix_full((data %>%
+                     select(starts_with("Climate Crisis Behavior")
+                       ))[,c(1:4,6:9)],
+                   type = "spearman",
+                   digits = 3,
+                   replace_diagonal = TRUE,
+                   replacement = "")
+clrspal3 <- grDevices::colorRampPalette(c("#EE6677", "#FFFFFF", "#4477AA"))
+brks3 <- brks
+clrs3 <- clrs
+ccrmvn3 <- data.frame(Variable = paste(1:8, rownames(ccrmv3))) %>%
+  cbind(as.data.frame(ccrmv3) %>%
+  rename_with(~ c(1:8)))
+ccrmvn3 %>%
+  datatable(caption = 'Spearman\'s rank correlation , *p < 0.05, ** p < 0.01, *** p < 0.001',
+            rownames = FALSE,
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(ccrmv3),
+                           ordering = FALSE)) %>%
+  formatStyle(names(ccrmvn3[,-1]), 
+              backgroundColor = styleInterval(brks3, clrs3))
+```
+The correlation between Diet, Driving, and General Behavior and Behavioral Intention is strong.
+It is weak for Heating Behavior and Behavioral Intention.
+
 ## Correlation of all continuous variables with behavior and behavioral intention
 
 ```{r corall, echo=FALSE, include = FALSE}
@@ -182,7 +210,7 @@ ccrmv2 <- correlation_matrix_2(select(data, !starts_with("Climate Crisis Behavio
                    type = "spearman")
 ccrmv2 <- ccrmv2[c(2:25,1,26,27:35),]
 ```
-```{r corallvis, echo = FALSE}
+```{r corallvis, echo = FALSE, layout="l-page"}
 ccrmv2numbers <- ccrmv2 %>%
                              unlist() %>%
                              substring(1,6) %>%
@@ -310,6 +338,24 @@ data.frame(p = wilcox.test(`Climate Crisis Behavior` ~ Occupation, data %>% filt
                            ordering = FALSE)) %>%
     formatRound(c(1:2,5:6),
               digits = 3)
+studentdata <- data %>% mutate(Occupation = car::recode(Occupation,
+  "'student (university)' = 'student (university)';
+  else = 'other'",
+  as.factor = TRUE)
+)
+data.frame(p = wilcox.test(`Climate Crisis Behavior` ~ Occupation, studentdata, na.action = "na.omit", paired = FALSE, p.adjust = "bonferroni")$p.value,
+           Z = qnorm(wilcox.test(`Climate Crisis Behavior` ~ Occupation, studentdata, na.action = "na.omit", paired = FALSE, p.adjust = "bonferroni")$p.value/2),
+           Median.student = median((studentdata %>% filter(Occupation == "student (university)"))[,"Climate Crisis Behavior"], na.rm = TRUE),
+           Median.other = median((studentdata %>% filter(Occupation == "other"))[,"Climate Crisis Behavior"], na.rm = TRUE),
+           Mean.student = mean((studentdata %>% filter(Occupation == "student (university)"))[,"Climate Crisis Behavior"], na.rm = TRUE),
+           Mean.other = mean((studentdata %>% filter(Occupation == "other"))[,"Climate Crisis Behavior"], na.rm = TRUE)) %>%
+  datatable(caption = 'Wilcoxon Rank Sum Test: Student (university) and all others',
+            autoHideNavigation = TRUE,
+            rownames = FALSE,
+            options = list(pageLength = 1,
+                           ordering = FALSE)) %>%
+    formatRound(c(1:2,5:6),
+              digits = 3)
 ```
 There are significant difference for behavior according to occupation.
 To further investigate these, a pairwise Wilcoxon Rank Sum Test could only be calculated when excluding the observations for student (school) and in vocational training.
@@ -334,8 +380,8 @@ wti$p.value %>%
 ```
 There is a barely significant difference between some income groups.
 
-## Diet (including diet behavior)
-```{r diet, echo = FALSE}
+## Dietary Habits (including diet behavior)
+```{r dietex, echo = FALSE}
 ggplot(data, aes(Diet, `Climate Crisis Behavior`)) +
   geom_boxplot() +
   theme(axis.text.x = element_text(angle = 90))
@@ -352,7 +398,7 @@ wtd$p.value %>%
 There is a significant difference in climate protective behavior according to the dietary habits respondents report.
 As the overall 'Behavior' variable also includes a measure of avoiding animal products, this is to be expected.
 
-## Diet and Heating Behavior
+## Dietary Habits and Heating Behavior
 ```{r echo = FALSE}
 ggplot(data, aes(Diet, `Climate Crisis Behavior Heating`)) +
   geom_boxplot() +
@@ -368,10 +414,11 @@ wtdh$p.value %>%
               digits = 3)
 ```
 
+
 But the difference persists, albeit weaker, when considering differences in climate protective heating behavior (i.e., concsiously heating less).
 For example, Respondents who report to eat meat every day report significantly less such climate protective behavior than all other groups.
 
-## Diet and Driving Behavior
+## Dietary Habits and Driving Behavior
 
 ```{r echo = FALSE}
 ggplot(data, aes(Diet, `Climate Crisis Behavior Driving`)) +
@@ -391,7 +438,7 @@ wtdd$p.value %>%
 A similar significant trend can be observed when it comes to driving, or the avoidance thereof to protect the climate.
 Respondents who report to eat animal products often seem to be significantly less likely to avoid driving.
 
-## Diet and General Behavior
+## Dietary Habits and General Behavior
 
 ```{r echo = FALSE}
 ggplot(data, aes(Diet, `Climate Crisis Behavior General`)) +
@@ -405,6 +452,28 @@ wtdg$p.value %>%
             options = list(pageLength = nrow(wtdg$p.value),
                            ordering = FALSE)) %>%
     formatRound(1:ncol(wtdg$p.value),
+              digits = 3)
+```
+
+## Dietary Habits (excluding diet behavior)
+
+```{r diet, echo = FALSE}
+nodietdata <- data %>% 
+  mutate(`Climate Crisis Behavior excluding Diet` = rowMeans(
+    select(.,c(`Climate Crisis Behavior Driving`,
+      `Climate Crisis Behavior Heating`,
+      `Climate Crisis Behavior General`)), na.rm = TRUE))
+ggplot(nodietdata, aes(Diet, `Climate Crisis Behavior excluding Diet`)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90))
+kruskaldt(nodietdata, 'Climate Crisis Behavior excluding Diet', 'Diet')
+wtd <- pairwise.wilcox.test(nodietdata$`Climate Crisis Behavior excluding Diet`,nodietdata$Diet, p.adjust="bonferroni", paired = FALSE)
+wtd$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtd$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtd$p.value),
               digits = 3)
 ```
 
@@ -440,6 +509,27 @@ data.frame(p = wilcox.test(`Climate Crisis Behavior` ~ `Car Ownership`, data %>%
 
 There is a significant differences in Behavior between respondents who own a car and respondents who don't.
 Again, one of the behavior questions asks for avoiding driving by car, so this is not too surprising.
+
+## Car Ownership (excluding Driving Behavior)
+```{r coex, echo = FALSE}
+nodrivingdata <- data %>% 
+  mutate(`Climate Crisis Behavior excluding Driving` = rowMeans(
+    select(.,c(`Climate Crisis Behavior Diet`,
+      `Climate Crisis Behavior Heating`,
+      `Climate Crisis Behavior General`)), na.rm = TRUE))
+ggplot(nodrivingdata, aes(`Car Ownership`, `Climate Crisis Behavior excluding Driving`)) +
+  geom_boxplot()
+kruskaldt(nodrivingdata, 'Climate Crisis Behavior', 'Car Ownership')
+wtco <- pairwise.wilcox.test(nodrivingdata$`Climate Crisis Behavior excluding Driving`, nodrivingdata$`Car Ownership`, p.adjust="bonferroni", paired = FALSE)
+wtco$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtco$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtco$p.value),
+              digits = 3)
+```
+This difference vanishes when excluding Driving Behavior.
 
 ## Distance Driven for Business
 ```{r echo = FALSE}
@@ -507,6 +597,15 @@ kruskaldt(data, 'Climate Crisis Behavior General', 'Distance Driven Private')
 ```
 
 There is no difference for general behavior, either.
+
+## Distance Driven Privately (excluding Driving Behavior)
+```{r echo = FALSE}
+ggplot(nodrivingdata, aes(`Distance Driven Private`, `Climate Crisis Behavior excluding Driving`)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90))
+kruskaldt(nodrivingdata, 'Climate Crisis Behavior excluding Driving', 'Distance Driven Private')
+```
+Nor is there a difference when excluding driving behavior.
 
 ## Knowledge
 In this section, we examine the relationship between specific questions and Behavior as well as Subjective Knowledge.
@@ -645,3 +744,13 @@ wtscckn6$p.value %>%
 ```
 
 As before, there are significant though marginal differences in Subjective Knowledge.
+
+<!-- ```{r table-getter} -->
+<!-- ds <- descstat[,c(1,16,3,15,4:5)] %>%  -->
+<!--   filter(grepl("Climate", Variable)) -->
+<!-- ds$Variable <- sub("Climate Crisis ", "", ds$Variable) -->
+<!-- ds <- ds[c(1:2,5,3:4,6,16,20,24,28:30,11,15,12:14,31),] %>% -->
+<!--   mutate(across(4:6, ~ round(.x, digits = 2))) -->
+<!-- write_excel_csv(ds, "paper/descriptive-statistics.csv",delim = ";") -->
+<!-- ``` -->
+
