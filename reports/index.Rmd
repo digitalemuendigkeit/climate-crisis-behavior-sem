@@ -1,0 +1,16 @@
+---
+title: "Predictors for climate protective behavior - accompanying website"
+description:
+  This website contains supplementary material for our paper on predictors for climate protective behavior in Germany.
+  Specifically, we detail the process of model evaluation and provide the full results of the additional exploratory data analysis.
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+```
+

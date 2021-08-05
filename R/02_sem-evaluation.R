@@ -116,7 +116,7 @@ get_htmt_problems <- function(boothtmt){
                  names_to = NULL,  # not needed
                  values_to = "Construct") %>%
     group_by(Construct) %>%
-    summarize(problems = any(problems)) %>%
+    summarise(problems = any(problems)) %>%
     rename('1.in.HTMT.CI' = problems)
 }
 

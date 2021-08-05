@@ -1,6 +1,6 @@
 ---
 title: "Climate Crisis Iteration 2-d-2 (General) Measurement Model Evaluation"
-site: 
+output: 
   distill::distill_article:
     toc: true
     toc_depth: 2

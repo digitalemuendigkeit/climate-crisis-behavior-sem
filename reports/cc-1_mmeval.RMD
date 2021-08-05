@@ -1,6 +1,6 @@
 ---
 title: "Climate Crisis Iteration 1 Measurement Model Evaluation"
-site: 
+output: 
   distill::distill_article:
     toc: true
     toc_depth: 2

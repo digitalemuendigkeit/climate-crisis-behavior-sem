@@ -1,0 +1,111 @@
+name: "climatecrisis"
+title: "Supplementary Website"
+description: |
+  Climate Crisis Model
+output_dir: "../docs"
+include: [".html", "_footer.html"]
+exclude: ["paper", "archive", ".gitignore", "figures", "_targets.yaml"]
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "Complete model evaluation"
+      menu:
+        - text: "Model 1"
+        - text: "Model 1 Measurement evaluation"
+          href: cc-1_mmeval.html
+    - text: "Diet model evaluation"
+      menu:
+        - text: "Model 2-a-1 (Diet)"
+        - text: "Model 2-a-1 (Diet) Measurement evaluation"
+          href: cc-2-a-1_mmeval.html
+        - text: "---------"
+        - text: "Model 2-a-2 (Diet)"
+        - text: "Model 2-a-2 (Diet) Measurement evaluation"
+          href: cc-2-a-2_mmeval.html
+        - text: "Model 2-a-2 (Diet) Nonlinearity evaluation"
+          href: cc-2-a-2_nleval.html
+        - text: "Model 2-a-2 (Diet) Structural evaluation"
+          href: cc-2-a-2_smeval.html
+        - text: "Model 2-a-2 (Diet) Endogeneity evaluation"
+          href: cc-2-a-2_eneval.html
+        - text: "---------"
+        - text: "Model 2-a-3 (Diet)"
+        - text: "Model 2-a-3 (Diet) Measurement evaluation"
+          href: cc-2-a-3_mmeval.html
+        - text: "Model 2-a-3 (Diet) Nonlinearity evaluation"
+          href: cc-2-a-3_nleval.html
+        - text: "Model 2-a-3 (Diet) Structural evaluation"
+          href: cc-2-a-3_smeval.html
+        - text: "Model 2-a-3 (Diet) Endogeneity evaluation"
+          href: cc-2-a-3_eneval.html
+        - text: "---------"
+        - text: "Model 2-a-4 (Diet)"
+        - text: "Model 2-a-4 (Diet) Measurement evaluation"
+          href: cc-2-a-4_mmeval.html
+        - text: "Model 2-a-4 (Diet) Nonlinearity evaluation"
+          href: cc-2-a-4_nleval.html
+        - text: "Model 2-a-4 (Diet) Structural evaluation"
+          href: cc-2-a-4_smeval.html
+        - text: "Model 2-a-3 (Diet) Endogeneity evaluation"
+          href: cc-2-a-4_eneval.html
+    - text: "Heating model evaluation"
+      menu:
+        - text: "Model 2-b-1 (Heating)"
+        - text: "Model 2-b-1 (Heating) Measurement evaluation"
+          href: cc-2-b-1_mmeval.html
+        - text: "---------"
+        - text: "Model 2-b-2 (Heating)"
+        - text: "Model 2-b-2 (Heating) Measurement evaluation"
+          href: cc-2-b-2_mmeval.html
+        - text: "Model 2-b-2 (Heating) Nonlinearity evaluation"
+          href: cc-2-b-2_nleval.html
+        - text: "Model 2-b-2 (Heating) Structural evaluation"
+          href: cc-2-b-2_smeval.html
+        - text: "Model 2-b-2 (Heating) Endogeneity evaluation"
+          href: cc-2-b-2_eneval.html
+        - text: "---------"
+        - text: "Model 2-b-3 (Heating)"
+        - text: "Model 2-b-3 (Heating) Measurement evaluation"
+          href: cc-2-b-3_mmeval.html
+        - text: "Model 2-b-3 (Heating) Nonlinearity evaluation"
+          href: cc-2-b-3_nleval.html
+        - text: "Model 2-b-3 (Heating) Structural evaluation"
+          href: cc-2-b-3_smeval.html
+        - text: "Model 2-b-3 (Heating) Endogeneity evaluation"
+          href: cc-2-b-3_eneval.html
+    - text: "Driving model evaluation"
+      menu:
+        - text: "Model 2-c-1 (Driving)"
+        - text: "Model 2-c-1 (Driving) Measurement evaluation"
+          href: cc-2-c-1_mmeval.html
+        - text: "Model 2-c-1 (Driving) Nonlinearity evaluation"
+          href: cc-2-c-1_nleval.html
+        - text: "Model 2-c-1 (Driving) Structural evaluation"
+          href: cc-2-c-1_smeval.html
+        - text: "Model 2-c-1 (Driving) Endogeneity evaluation"
+          href: cc-2-c-1_eneval.html
+        - text: "---------"
+        - text: "Model 2-c-2 (Driving)"
+        - text: "Model 2-c-2 (Driving) Measurement evaluation"
+          href: cc-2-c-2_mmeval.html
+        - text: "Model 2-c-2 (Driving) Structural evaluation"
+          href: cc-2-c-2_smeval.html
+    - text: "General model evaluation"
+      menu:
+        - text: "Model 2-d-1 (General)"
+        - text: "Model 2-d-1 (General) Measurement evaluation"
+          href: cc-2-d-1_mmeval.html
+        - text: "---------"
+        - text: "Model 2-d-2 (General)"
+        - text: "Model 2-d-2 (General) Measurement evaluation"
+          href: cc-2-d-2_mmeval.html
+        - text: "Model 2-d-2 (General) Nonlinearity evaluation"
+          href: cc-2-d-2_nleval.html
+        - text: "Model 2-d-2 (General) Structural evaluation"
+          href: cc-2-d-2_smeval.html
+        - text: "Model 2-d-2 (General) Endogeneity evaluation"
+          href: cc-2-d-2_eneval.html
+    - text: "Additional analysis"
+      href: additional-analysis.html
+output: distill::distill_article

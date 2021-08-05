@@ -1,0 +1,7 @@
+#html_document:
+#  theme: darkly
+#  number_sections: true
+#  toc: true
+#  toc_depth: 2
+#  toc_float:
+#    collapsed: false

@@ -159,12 +159,12 @@ datatable(sumsm,
           filter = 'top',
           options = list(pageLength = nrow(sumsm)),
           rownames = FALSE,
-          colnames = c("f²" = 7),
+          colnames = c("f²" = 8),
           caption = 'Structural Model Summary') %>%
   formatRound(c(3,5:8),
               digits = 3) %>%
-  formatStyle(colnames(sumsm)[5], backgroundColor = styleInterval(cuts = c(1.649), values = c('#ff9999', '#00'))) %>%
-  formatStyle('Path Coefficient p', backgroundColor = styleInterval(cuts = c(0.049), values = c( '#00', '#ff9999'))) %>%
+  formatStyle(colnames(sumsm)[6], backgroundColor = styleInterval(cuts = c(1.649), values = c('#ff9999', '#00'))) %>%
+  formatStyle('Path Coefficient p', backgroundColor = styleInterval(cuts = c(0.049), values = c('#00', '#ff9999'))) %>%
   formatStyle('0 in Path Coefficient CI', backgroundColor = styleEqual(c(1,0), c('#ff9999', '#00'), default = NULL)) %>%
   formatStyle('f²', backgroundColor = styleInterval(cuts = c(0.019), values = c('#ff9999', '#00'))) %>%
   formatStyle('VIF', backgroundColor = styleInterval(cuts = c(3,5), values = c('#00', '#ffe5e5','#ff9999')))
