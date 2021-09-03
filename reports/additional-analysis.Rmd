@@ -199,6 +199,7 @@ ccrmv2 <- correlation_matrix_2(select(data, !starts_with("Climate Crisis Behavio
                                           "COVID-19 Behavior",
                                           "COVID-19 Behavioral Intention",
                                           "Extraversion",
+                                          "Conscientiousness",
                                           "Agreeableness",
                                           "Neuroticism",
                                           "Openness to Experience",
@@ -208,7 +209,7 @@ ccrmv2 <- correlation_matrix_2(select(data, !starts_with("Climate Crisis Behavio
                                           "Age")),
                                select(data, starts_with("Climate Crisis Behavior")),
                    type = "spearman")
-ccrmv2 <- ccrmv2[c(2:25,1,26,27:35),]
+ccrmv2 <- ccrmv2[c(2:28,1,29:39),]
 ```
 ```{r corallvis, echo = FALSE, layout="l-page"}
 ccrmv2numbers <- ccrmv2 %>%
@@ -398,6 +399,24 @@ wtd$p.value %>%
 There is a significant difference in climate protective behavior according to the dietary habits respondents report.
 As the overall 'Behavior' variable also includes a measure of avoiding animal products, this is to be expected.
 
+## Dietary Habits and Diet Behavior
+```{r echo = FALSE}
+ggplot(data, aes(Diet, `Climate Crisis Behavior Diet`)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90))
+kruskaldt(data, 'Climate Crisis Behavior Diet', 'Diet')
+wtdd <- pairwise.wilcox.test(data$`Climate Crisis Behavior Diet`,data$Diet, p.adjust="bonferroni", paired = FALSE)
+wtdd$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtdd$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtdd$p.value),
+              digits = 3)
+```
+
+There is a strong relationship between the reported diet behavior and the reported diet style. 
+
 ## Dietary Habits and Heating Behavior
 ```{r echo = FALSE}
 ggplot(data, aes(Diet, `Climate Crisis Behavior Heating`)) +
@@ -567,6 +586,25 @@ wtdp$p.value %>%
 
 Respondents that report they have not driven by car in the last year at all also report overall higher climate protective behavior.
 As with dietary climate protective behavior, this is to be expected as the overall climate protective behavior includes driving.
+
+## Distance Driven Privately and Driving Behavior
+```{r echo = FALSE}
+ggplot(data, aes(`Distance Driven Private`, `Climate Crisis Behavior Driving`)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90))
+kruskaldt(data, 'Climate Crisis Behavior Driving', 'Distance Driven Private')
+wtdd2 <- pairwise.wilcox.test(data$`Climate Crisis Behavior Driving`,data$`Distance Driven Private`, p.adjust="bonferroni", paired = FALSE)
+wtdd2$p.value %>%
+  datatable(caption = 'p-values of Pairwise Wilcoxon Rank Sum Tests adjusted using Bonferroni correction',
+            autoHideNavigation = TRUE,
+            options = list(pageLength = nrow(wtdd2$p.value),
+                           ordering = FALSE)) %>%
+    formatRound(1:ncol(wtdd2$p.value),
+              digits = 3)
+```
+
+People who report to have not driven at all show significantly higher behavior than all other groups.
+Other than that, most other groups are rather similar.
 
 ## Distance Driven Privately and Diet Behavior
 ```{r echo = FALSE}

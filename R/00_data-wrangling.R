@@ -578,11 +578,11 @@ code_data_addan = function(data, model){
     Item = c(paste0("CC",
                     c(paste0("DN", 3:4),
                       paste0("IN", 3:4),
-                      paste0("RB", 1:3),
+                      paste0("RB", c(1,4,7)),
                       "BI1",
-                      paste0("RB", 4:6),
+                      paste0("RB", c(2,5,8)),
                       "BI2",
-                      paste0("RB", 7:9),
+                      paste0("RB", c(3,6,9)),
                       "BI3",
                       rep(c(paste0("RB",10:12),
                             "BI4"),2),
@@ -622,8 +622,9 @@ code_data_addan = function(data, model){
   # Without CCRB9:
   psych::alpha(datafull %>% select(c(paste0("CCRB", c(7:8,12)))))
   # Use CCRB12
-  codecc <- ancc %>% filter(!(Item %in% paste0("CCRB", 7:9))) %>%
-    mutate(Variable = paste0("Climate Crisis ", Variable))
+  codecc <- ancc %>%
+    mutate(Variable = paste0("Climate Crisis ", Variable)) %>%
+    filter(!(Variable == "Climate Crisis Perceived Response Costs" & Item %in% paste0("CCRB", 7:9)))
 
   # Make scales for CO data
 
@@ -654,11 +655,11 @@ code_data_addan = function(data, model){
     Item = c(paste0("CO",
                     c(paste0("DN", 3:4),
                       paste0("IN", 3:4),
-                      paste0("RB", 1:3),
+                      paste0("RB", c(1,4,7)),
                       "BI1",
-                      paste0("RB", 4:6),
+                      paste0("RB", c(2,5,8)),
                       "BI2",
-                      paste0("RB", 7:9),
+                      paste0("RB", c(3,6,9)),
                       "BI3",
                       rep(c(paste0("RB",10:12),
                             "BI4"),2),
