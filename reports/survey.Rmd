@@ -1,0 +1,88 @@
+---
+title: "Survey"
+output: 
+  distill::distill_article:
+    toc: true
+    toc_depth: 1
+bibliography: biblio.bib
+nocite: |
+  @*
+---
+
+```{r setup, include=FALSE}
+# libraries
+library(bibtex)
+library(distill)
+library(DT)
+library(here)
+library(tidyverse)
+library(RefManageR)
+# load bibliography
+bib <- ReadBib(here::here("Reports", "biblio.bib"))
+invisible(data_frame(citation = RefManageR::TextCite(bib = bib)))
+# load survey data
+sample <- read.csv2(here::here("reports","data", "sample-questions.csv"), 
+                    allowEscapes = TRUE) %>% 
+  as_tibble()
+sample$Scale..translated. <- gsub(pattern = "\n", replacement = "<br/>", x = sample$Scale..translated.)
+survey1 <- read.csv2(here::here("reports","data", "survey-1.csv"), 
+                    allowEscapes = TRUE) %>% 
+  as_tibble()
+survey1$Scale..translated. <- gsub(pattern = "\n", replacement = "<br/>", x = survey1$Scale..translated.)
+survey2 <- read.csv2(here::here("reports","data", "survey-2.csv"), 
+                    allowEscapes = TRUE) %>% 
+  as_tibble()
+survey2$Scale..translated. <- gsub(pattern = "\n", replacement = "<br/>", x = survey2$Scale..translated.)
+```
+
+
+This is the design of the survey with all survey questions and the associated item names.
+
+# Sample questions
+<!-- These are questions describing the sample and asking for socio-demographic information.[@nadelson_i_2014] -->
+
+```{r echo = FALSE}
+sample %>% datatable(colnames = c("Variable",
+                                  "Abbreviation",
+                                  "Item (translated)",
+                                  "Scale (translated)",
+                                  "Reference"),
+                     escape = FALSE,
+                     rownames = FALSE,
+                     caption = 'Socio-demographic questions, * denotes items that are reversed for analysis',
+                     options = list(pageLength = nrow(sample),
+                           ordering = FALSE))
+```
+
+# Survey 1
+These are the items from survey 1 which form the basis for the structural equation model.
+
+```{r echo = FALSE}
+survey1 %>% datatable(colnames = c("Variable",
+                                  "Abbreviation",
+                                  "Item (translated)",
+                                  "Scale (translated)",
+                                  "Reference"),
+                     escape = FALSE,
+                     rownames = FALSE,
+                     caption = 'Survey 1 questions, * denotes items that are reversed for analysis',
+                     options = list(pageLength = nrow(survey1),
+                           ordering = FALSE))
+```
+
+# Survey 2
+These are the items from survey 2 which was conducted two weeks after survey 1.
+The results are used to measure self-reported behavior change.
+
+```{r echo = FALSE}
+survey2 %>% datatable(colnames = c("Variable",
+                                  "Abbreviation",
+                                  "Item (translated)",
+                                  "Scale (translated)",
+                                  "Reference"),
+                     escape = FALSE,
+                     rownames = FALSE,
+                     caption = 'Survey 2 questions',
+                     options = list(pageLength = nrow(survey2),
+                           ordering = FALSE))
+```

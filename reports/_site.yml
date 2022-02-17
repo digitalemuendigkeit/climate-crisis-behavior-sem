@@ -9,6 +9,8 @@ navbar:
   right:
     - text: "Home"
       href: index.html
+    - text: "Survey design"
+      href: survey.html
     - text: "Complete model evaluation"
       menu:
         - text: "Model 1"

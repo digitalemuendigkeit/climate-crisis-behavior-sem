@@ -1,0 +1,174 @@
+﻿Variable;Abbreviation;Item (translated);Scale (translated);Reference
+(Intro Demographic);;First of all we ask you for some information about yourself. Like all data collected in this study, this information will be completely anonymized, so that a trace back to your identity is impossible. The collection of this data serves only to provide context for the overall results of the study.;;
+Age;SD1;How old are you (in years)?;(Numerical entry);
+Gender;SD2;What is your gender?;"female
+male
+another gender, namely (entry)";
+Education;SD3;What is the highest educational level you have achieved?;"still a student
+dropped out of school without a diploma
+secondary school leaving certificate (Hauptschulabschluss) or equivalent
+Secondary school leaving certificate (Mittlere Reife) or equivalent
+(Specialist) university entrance qualification (Abitur)
+(Specialist) university degree (e.g. Bachelor's degree, Master's degree, Diploma)
+Doctorate
+a different level of education, namely (entry)";
+Occupation;SD4;What best describes your occupational situation?;"employed full-time
+employed part-time
+in vocational training/teaching
+student (school)
+student (university)
+not in paid employment";
+Household income;SD5;What is your average monthly net household income?;"up to 450 euros
+between 451 and 1000 euros
+between 1001 and 1500 euros
+between 1501 and 2000 euros
+between 2001 and 2500 euros
+between 2501 and 3000 euros
+between 3001 and 3500 euros
+between 3501 and 4000 euros
+between 4001 and 4500 euros
+between 4501 and 5000 euros
+more than 5000 euros
+not specified";
+Household size 1;SD6;How many persons live in your household, including yourself? Consider also children living in the household.;(Numerical entry);
+Household size 2;SD7; have indicated that x persons live in your household. How many of them are younger than 14?;(Numerical entry);
+Administrative District;SD8;In which administrative district do you currently live?;(Choice from drop-down menu);
+(Intro Climate Crisis specific variables);;The following questions deal with your personal lifestyle.;;
+Diet;CCS1;What best describes your diet?;"vegan
+vegetarian
+I eat meat on average less than once a week.
+I eat meat on average once a week.
+I eat meat on average several times a week.
+I eat meat every day.";
+Mobility Car 1;CCS2;When it comes to car ownership, what is most applicable to you (multiple answers possible)?;"I do not have a car of my own, nor do I have access to a car.
+I do not have a car of my own, but I have regular access to a car, e.g. a family member's car or a car-sharing car.
+I have a car of my own.";
+Mobility Car 2;CCS3;Please estimate: How many kilometers have you travelled by car in the last year for private purposes?;"I have not traveled any distance by car in the last year for private purposes.
+up to 5,000 km
+between 5,001 and 10,000 km
+between 10,001 and 15,000 km
+between 15,001 and 20,000 km
+more than 20.000 km
+don't know";
+Mobility Car 3;CCS4;And how many kilometers have you travelled by car in the last year for business purposes?;"I have not traveled any distance by car in the last year for business purposes.
+up to 5,000 km
+between 5,001 and 10,000 km
+between 10,001 and 15,000 km
+between 15,001 and 20,000 km
+more than 20,000 km
+don't know";
+(Intro Big Five and Control Convictions);;The following questions are related to your personality. There are no wrong or right answers.;;
+Extraversion*;BFE1;I tend to be quiet.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Rammstedt et al., 2020)
+Agreeableness;BFA1;I am compassionate, I have a soft heart.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Rammstedt et al., 2020)
+Conscientiousness*;BFC1;I tend to be disorganized.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Rammstedt et al., 2020)
+Neuroticism;BFN1;I worry a lot.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Rammstedt et al., 2020)
+Openness to experience;BFO1;I am fascinated by art, music, or literature.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Rammstedt et al., 2020)
+Extraversion;BFE2;I tend to act as a leader.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Rammstedt et al., 2020)
+Agreeableness*;BFA2;I am sometimes rude to others.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Rammstedt et al., 2020)
+Conscientiousness*;BFC2;I have difficulty getting started on tasks.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Rammstedt et al., 2020)
+Neuroticism;BFN2;I tend to feel depressed, blue.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Rammstedt et al., 2020)
+Openness to experience*;BFO2;I have little interest in abstract ideas.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Rammstedt et al., 2020)
+Extraversion;BFE3;I am full of energy.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Rammstedt et al., 2020)
+Agreeableness;BFA3;I trust easily, I assume the best about people.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Rammstedt et al., 2020)
+Conscientiousness;BFC3;I am reliable, I can always be counted on.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Rammstedt et al., 2020)
+Neuroticism*;BFN3;I am emotionally stable, not easily upset.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Rammstedt et al., 2020)
+Openness to experience;BFO3;I am original, I come up with new ideas.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Rammstedt et al., 2020)
+Internal Control Conviction;IC1;I'm my own boss.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Kovaleva et al., 2014)
+Internal Control Conviction;IC2;If I work hard, I will succeed.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Kovaleva et al., 2014)
+External Control Conviction;EC1;Whether at work or in my private life: What I do is mainly determined by others.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Kovaleva et al., 2014)
+External Control Conviction;EC2;Fate often gets in the way of my plans.;"Do not agree at all
+Do not agree
+Rather not agree
+Rather agree
+Agree
+Agree completely";(Kovaleva et al., 2014)
