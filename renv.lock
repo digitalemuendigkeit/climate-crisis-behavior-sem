@@ -422,6 +422,17 @@
         "bitops"
       ]
     },
+    "cachem": {
+      "Package": "cachem",
+      "Version": "1.0.6",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "648c5b3d71e6a37e3043617489a0a0e9",
+      "Requirements": [
+        "fastmap",
+        "rlang"
+      ]
+    },
     "callr": {
       "Package": "callr",
       "Version": "3.7.0",
@@ -599,6 +610,21 @@
         "htmltools",
         "jsonlite",
         "lazyeval"
+      ]
+    },
+    "crul": {
+      "Package": "crul",
+      "Version": "1.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "607162d6f0d735014263cb0160c5be72",
+      "Requirements": [
+        "R6",
+        "curl",
+        "httpcode",
+        "jsonlite",
+        "mime",
+        "urltools"
       ]
     },
     "curl": {
@@ -1121,6 +1147,14 @@
         "yaml"
       ]
     },
+    "httpcode": {
+      "Package": "httpcode",
+      "Version": "0.3.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "13641a1c6d2cc98801b76764078e17ea",
+      "Requirements": []
+    },
     "httr": {
       "Package": "httr",
       "Version": "1.4.2",
@@ -1441,6 +1475,17 @@
       "Hash": "45a2fee40a2f1bcad392cbe8a5f10d4f",
       "Requirements": []
     },
+    "memoise": {
+      "Package": "memoise",
+      "Version": "2.0.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "e2817ccf4a065c5d9d7f2cfbe7c1d78c",
+      "Requirements": [
+        "cachem",
+        "rlang"
+      ]
+    },
     "mgcv": {
       "Package": "mgcv",
       "Version": "1.8-36",
@@ -1587,6 +1632,24 @@
       "Hash": "f4dbc5a47fd93d3415249884d31d6791",
       "Requirements": [
         "askpass"
+      ]
+    },
+    "osfr": {
+      "Package": "osfr",
+      "Version": "0.2.8",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "446d64bb6df6b43f853e6e54eb740165",
+      "Requirements": [
+        "crul",
+        "fs",
+        "httr",
+        "jsonlite",
+        "memoise",
+        "purrr",
+        "rlang",
+        "stringi",
+        "tibble"
       ]
     },
     "pbapply": {
@@ -2201,6 +2264,27 @@
       "Repository": "CRAN",
       "Hash": "50470c7ed0cc8099cbc17b38f0ef621f",
       "Requirements": []
+    },
+    "triebeard": {
+      "Package": "triebeard",
+      "Version": "0.3.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "847a9d113b78baca4a9a8639609ea228",
+      "Requirements": [
+        "Rcpp"
+      ]
+    },
+    "urltools": {
+      "Package": "urltools",
+      "Version": "1.7.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "e86a704261a105f4703f653e05defa3e",
+      "Requirements": [
+        "Rcpp",
+        "triebeard"
+      ]
     },
     "utf8": {
       "Package": "utf8",

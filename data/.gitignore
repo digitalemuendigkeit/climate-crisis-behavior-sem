@@ -1,3 +1,4 @@
 *.csv
 *.RDS
 password.R
+!external/*
