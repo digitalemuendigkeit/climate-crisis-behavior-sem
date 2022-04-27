@@ -1,4 +1,5 @@
 # This script contains code to get the raw data from a private OSF repository.
+# In order to download the data, you need to authenticate with you OSF PAT using osf_auth()
 
 library(osfr)
 library(tidyverse)
