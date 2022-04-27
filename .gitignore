@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
+# For data protection:
+_targets/objects/survey_data*

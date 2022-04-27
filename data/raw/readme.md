@@ -1,1 +1,3 @@
-# This folder will contain the raw data for anonymization
+# Raw data
+
+This folder contains the raw data for anonymization.

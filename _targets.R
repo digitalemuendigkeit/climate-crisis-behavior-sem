@@ -1,3 +1,4 @@
+# Setup ----
 library(targets)
 library(tarchetypes)
 #source(here::here("R", "functions.R"))
@@ -18,77 +19,16 @@ tar_option_set(packages = c("careless",
                             "psych",
                             "seminr",
                             "tidyverse"))
-# If you have the raw data
-# Uncomment and run the list below
-# Otherwise run this list
 
 
+# Workplan starting with open data ----
+# Comment out this list if you start with raw data
+# And uncomment the list below
 list(
   tar_target(
-    raw_S1_file,
-    "data/raw/S1-Raw-Data-20210118.csv",
-    format = "file"
-  ),
-  tar_target(
-    raw_S1_text_file,
-    "data/raw/S1-data-choicetext.csv",
-    format = "file"
-  ),
-  tar_target(
-    raw_S2_file,
-    "data/raw/S2-Raw-Data-20210208.csv",
-    format = "file"
-  ),
-  tar_target(
-    raw_incidence_20210112,
-    "data/external/20210112-Fallzahlen.csv",
-    format = "file"
-  ),
-  tar_target(
-    raw_incidence_20210201,
-    "data/external/20210201-Fallzahlen.csv",
-    format = "file"
-  ),
-  tar_target(
-    survey_data_cleaned,
-    import_clean(raw_S1_file, raw_S2_file)
-  ),
-  tar_target(
-    survey_data_incidence,
-    include_incidence(survey_data_cleaned, raw_S1_text_file, raw_incidence_20210112, raw_incidence_20210201)
-  ),
-  tar_target(
-    survey_data_param,
-    param_clean(survey_data_cleaned)
-  ),
-  tar_target(
-    survey_data_inc_param,
-    param_clean(survey_data_incidence)
-  ),
-  tar_target(
-    survey_data_sem,
-    treat_missing(survey_data_param)
-  ),
-  tar_target(
     survey_data_cc_sem,
-    survey_data_sem %>%
-      select(starts_with("CC")) %>%
-      filter(!is.na(CCSKN))
-  ),
-  # code broken here
-  # to do:
-  # remove id and then
-  # make target that writes into "open" folder and can be uploaded to OSF
-  # so that it can be downloaded and used openly for sem recreation
-  # and in the new pipeline: leave off/comment out first part
-  # and repair OSF uplink/download
-  tar_target(
-    survey_data_cc_sem_open,
-    survey_data_sem %>%
-      select(starts_with("CC")) %>%
-      filter(!is.na(CCSKN)),
     "data/open/survey_data_cc_sem.RDS",
-    format = "rds"
+    format = "file"
   ),
   tar_target(
     cc_model_1,
@@ -105,10 +45,6 @@ list(
   tar_target(
     cc_model_1_ra,
     redundancy_cc(cc_model_1)
-  ),
-  tar_target(
-    survey_data_addan,
-    code_data_addan(survey_data_incidence, cc_model_1)
   ),
   tar_target(
     cc_model_2_a_1,
@@ -396,8 +332,7 @@ list(
   )
 )
 
-
-
+# Workplan starting with raw data ----
 # Uncomment this if you start with RAW data
 # list(
 #   tar_target(
@@ -414,7 +349,7 @@ list(
 #     raw_S2_file,
 #     "data/raw/S2-Raw-Data-20210208.csv",
 #     format = "file"
-#     ),
+#   ),
 #   tar_target(
 #     raw_incidence_20210112,
 #     "data/external/20210112-Fallzahlen.csv",
@@ -447,9 +382,25 @@ list(
 #   ),
 #   tar_target(
 #     survey_data_cc_sem,
-#       survey_data_sem %>%
-#         select(starts_with("CC")) %>%
+#     survey_data_sem %>%
+#       select(starts_with("CC")) %>%
 #       filter(!is.na(CCSKN))
+#   ),
+#   tar_target(
+#     survey_data_cc_sem_RDS,
+#     {
+#       saveRDS(survey_data_cc_sem, "data/open/survey_data_cc_sem.RDS")
+#       "data/open/survey_data_cc_sem.RDS"
+#     },
+#     format = "file"
+#   ),
+#   tar_target(
+#     survey_data_cc_sem_csv,
+#    {
+#      write.csv(survey_data_cc_sem, "data/open/survey_data_cc_sem.csv")
+#      "data/open/survey_data_cc_sem.csv"
+#      },
+#     format = "file"
 #   ),
 #   tar_target(
 #     cc_model_1,
