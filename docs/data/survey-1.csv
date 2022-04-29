@@ -1,4 +1,4 @@
-﻿Variable;Abbreviation;Item (translated);Scale (translated);Reference
+Variable;Abbreviation;Item (translated);Scale (translated);Reference
 (Intro Climate Crisis Behavioral Intention);;Please now rate the following statements on climate protection measures.;;
 Climate Crisis Behavioral Intention;CCBI1;I plan (to continue) to avoid the consumption of animal products such as meat, dairy or eggs.;"Do not agree at all
 Do not agree
@@ -89,7 +89,7 @@ Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";\cite{nadelson_i_2014}
+Agree completely";(Nadelson et al., 2014)
 Distrusting Beliefs in Science (Integrity);CCDI7;Scientists researching the climate ignore evidence that contradicts their work.;"Do not agree at all
 Do not agree
 Rather not agree
