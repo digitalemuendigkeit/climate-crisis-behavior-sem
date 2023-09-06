@@ -1,4 +1,5 @@
 # This file will download the open data from the OSF repository.
+# In order to download the data, you need to authenticate with you OSF PAT using osf_auth()
 #
 # WARNING: DO NOT RUN IF YOU HAVE UPDATED DATA!
 

@@ -1,4 +1,4 @@
-﻿Variable;Abbreviation;Item (translated);Scale (translated);Reference
+Variable;Abbreviation;Item (translated);Scale (translated);Reference
 (Intro Demographic);;First of all we ask you for some information about yourself. Like all data collected in this study, this information will be completely anonymized, so that a trace back to your identity is impossible. The collection of this data serves only to provide context for the overall results of the study.;;
 Age;SD1;How old are you (in years)?;(Numerical entry);
 Gender;SD2;What is your gender?;"female
@@ -63,112 +63,112 @@ Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Rammstedt et al., 2020)
+Agree completely";Rammstedt et al., 2020
 Agreeableness;BFA1;I am compassionate, I have a soft heart.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Rammstedt et al., 2020)
+Agree completely";Rammstedt et al., 2020
 Conscientiousness*;BFC1;I tend to be disorganized.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Rammstedt et al., 2020)
+Agree completely";Rammstedt et al., 2020
 Neuroticism;BFN1;I worry a lot.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Rammstedt et al., 2020)
+Agree completely";Rammstedt et al., 2020
 Openness to experience;BFO1;I am fascinated by art, music, or literature.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Rammstedt et al., 2020)
+Agree completely";Rammstedt et al., 2020
 Extraversion;BFE2;I tend to act as a leader.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Rammstedt et al., 2020)
+Agree completely";Rammstedt et al., 2020
 Agreeableness*;BFA2;I am sometimes rude to others.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Rammstedt et al., 2020)
+Agree completely";Rammstedt et al., 2020
 Conscientiousness*;BFC2;I have difficulty getting started on tasks.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Rammstedt et al., 2020)
+Agree completely";Rammstedt et al., 2020
 Neuroticism;BFN2;I tend to feel depressed, blue.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Rammstedt et al., 2020)
+Agree completely";Rammstedt et al., 2020
 Openness to experience*;BFO2;I have little interest in abstract ideas.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Rammstedt et al., 2020)
+Agree completely";Rammstedt et al., 2020
 Extraversion;BFE3;I am full of energy.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Rammstedt et al., 2020)
+Agree completely";Rammstedt et al., 2020
 Agreeableness;BFA3;I trust easily, I assume the best about people.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Rammstedt et al., 2020)
+Agree completely";Rammstedt et al., 2020
 Conscientiousness;BFC3;I am reliable, I can always be counted on.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Rammstedt et al., 2020)
+Agree completely";Rammstedt et al., 2020
 Neuroticism*;BFN3;I am emotionally stable, not easily upset.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Rammstedt et al., 2020)
+Agree completely";Rammstedt et al., 2020
 Openness to experience;BFO3;I am original, I come up with new ideas.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Rammstedt et al., 2020)
+Agree completely";Rammstedt et al., 2020
 Internal Control Conviction;IC1;I'm my own boss.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Kovaleva et al., 2014)
+Agree completely";Kovaleva et al., 2014
 Internal Control Conviction;IC2;If I work hard, I will succeed.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Kovaleva et al., 2014)
+Agree completely";Kovaleva et al., 2014
 External Control Conviction;EC1;Whether at work or in my private life: What I do is mainly determined by others.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Kovaleva et al., 2014)
+Agree completely";Kovaleva et al., 2014
 External Control Conviction;EC2;Fate often gets in the way of my plans.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Kovaleva et al., 2014)
+Agree completely";Kovaleva et al., 2014

@@ -119,8 +119,7 @@ clrspal <- grDevices::colorRampPalette(c("#EE6677", "#FFFFFF", "#4477AA"))
 brks <- seq(-0.9, 0.9, 0.01)
 clrs <- clrspal(length(brks)+1)
 ccrmvn <- data.frame(Variable = paste(1:17, rownames(ccrmv))) %>%
-  cbind(as.data.frame(ccrmv) %>%
-  rename_with(~ c(1:17)))
+  cbind(as.data.frame(ccrmv) )
 ccrmvn %>%
   datatable(caption = 'Spearman\'s rank correlation , *p < 0.05, ** p < 0.01, *** p < 0.001',
             rownames = FALSE,
@@ -177,8 +176,7 @@ clrspal3 <- grDevices::colorRampPalette(c("#EE6677", "#FFFFFF", "#4477AA"))
 brks3 <- brks
 clrs3 <- clrs
 ccrmvn3 <- data.frame(Variable = paste(1:8, rownames(ccrmv3))) %>%
-  cbind(as.data.frame(ccrmv3) %>%
-  rename_with(~ c(1:8)))
+  cbind(as.data.frame(ccrmv3))
 ccrmvn3 %>%
   datatable(caption = 'Spearman\'s rank correlation , *p < 0.05, ** p < 0.01, *** p < 0.001',
             rownames = FALSE,

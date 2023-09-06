@@ -5,19 +5,19 @@ Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Sorrell et al., 2020)
+Agree completely";Based on Sorrel et al., 2020
 Climate Crisis Behavioral Intention;CCBI2;I plan to deliberately heat my home less.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Sorrell et al., 2020)
+Agree completely";Based on Sorrel et al., 2020
 Climate Crisis Behavioral Intention;CCBI3;I plan to avoid trips by car.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Sorrell et al., 2020)
+Agree completely";Based on Sorrel et al., 2020
 Climate Crisis Behavioral Intention;CCBI4;In general, I plan to take measures to protect the climate.;"Do not agree at all
 Do not agree
 Rather not agree
@@ -35,22 +35,22 @@ Knowledge;CCKN1;"Today's global CO2 concentration in the
 atmosphere already occurred in the past
 650,000 years.";"true
 false
-don't know";(Tobler et al., 2012)
+don't know";Tobler et al., 2012
 Knowledge;CCKN2;Despite its very low concentration in the atmosphere, nitrous oxide contributes about 6 % to the anthropogenic greenhouse effect, as its effect as a greenhouse gas is 298 times stronger than that of CO2.;"true
 false
-don't know";(PlÃ¶ger, 2020)
+don't know";Based on Plöger, 2020
 Knowledge*;CCKN3;CO2 usually remains in the atmosphere for between 10 and 20 years.;"true
 false
-don't know";(PlÃ¶ger, 2020)
+don't know";Based on Plöger, 2020
 Knowledge;CCKN4;The Earth has been in a phase of rewarming from the Little Ice Age since about 1850, which is roughly the beginning of the Industrial Revolution.;"true
 false
-don't know";(PlÃ¶ger, 2020)
+don't know";Based on Plöger, 2020
 Knowledge*;CCKN5;The ozone hole is one of the major causes of global warming.;"true
 false
-don't know";(PlÃ¶ger, 2020)
+don't know";Based on Plöger, 2020
 Knowledge*;CCKN6;Large volcanic eruptions significantly amplify global warming.;"true
 false
-don't know";"(PlÃ¶ger, 2020; Tobler et al. 2012)"
+don't know";Adapted from Tobler et al. 2012
 (Intro Distrusting Beliefs);;"Climate science is concerned with the laws that govern the development of the climate. Many scientific disciplines play a role in climate research, for example meteorology and physics. Computer models also constitute an important tool.
 
 The following questions ask for your opinion about science and scientists who study the climate. There are no wrong or right answers. We are only interested in your personal opinion.";;Parker 2018
@@ -59,232 +59,231 @@ Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";"(Nadelson et al., 2014; McKnight and Choudhury, 2006)"
+Agree completely";Adapted from Nadelson et al., 2014, and McKnight and Choudhury, 2006
 Distrusting Beliefs in Science (Benevolence)*;CCDI2;Climate science acts in the interest of mankind.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Grimmelikhuijsen & Knies, 2017)
+Agree completely";Adapted from Grimmelikhuijsen & Knies, 2017
 Distrusting Beliefs in Science (Benevolence);CCDI3;Climate science is not interested in the well-being of mankind.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(McKnight and Choudhury, 2006)
+Agree completely";Adapted from McKnight and Choudhury, 2006
 Distrusting Beliefs in Science (Competence)*;CCDI4;When it concerns the topic of climate change, scientists are generally capable.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";"(Grimmelikhuijsen & Knies, 2017; McKnight et al., 2002)"
+Agree completely";Adapted from Nadelson et al., 2014, and McKnight and Choudhury, 2006
 Distrusting Beliefs in Science (Competence);CCDI5;It is questionable how good scientists are at researching climate change.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(McKnight and Choudhury, 2006)
+Agree completely";Adapted from McKnight and Choudhury, 2006
 Distrusting Beliefs in Science (Competence);CCDI6;The scientific theories and recommendations on climate change are dubious.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Nadelson et al., 2014)
+Agree completely";Adapted from Nadelson et al., 2014
 Distrusting Beliefs in Science (Integrity);CCDI7;Scientists researching the climate ignore evidence that contradicts their work.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Nadelson et al., 2014)
+Agree completely";Adapted from Nadelson et al., 2014
 Distrusting Beliefs in Science (Integrity);CCDI8;Scientific research about climate change is often biased.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Nadelson et al., 2014)
+Agree completely";Adapted from Nadelson et al., 2014
 Trusting Beliefs in Science (Integrity)*;CCDI9;When it comes to climate change, science is honest.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Grimmelikhuijsen & Knies, 2017)
+Agree completely";Adapted from Grimmelikhuijsen & Knies, 2017
 (Intro Beliefs);;The following questions concern your attitudes towards climate change and climate protection. There are no wrong or right answers, we are only asking your personal opinion.;;
 Threat Beliefs (Susceptibility);CCTB1;I will experience the negative effects of climate change in my lifetime.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Shafiei & Maleksaeidi, 2020)
+Agree completely";Adapted from Shafiei & Maleksaeidi, 2020
 Threat Beliefs (Susceptibility)*;CCTB2;Climate change has no influence on my own life.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Taddicken and Neverla, 2011)
+Agree completely";Taddicken and Neverla, 2011
 Threat Beliefs (Susceptibility);CCTB3;I am vulnerable to the negative effects of climate change.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Shafiei & Maleksaeidi, 2020)
+Agree completely";Adapted from Shafiei & Maleksaeidi, 2020
 Threat Beliefs (Severity);CCTB4;Climate change is one of the greatest challenges humanity is facing.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Taddicken and Neverla, 2011)
+Agree completely";Taddicken and Neverla, 2011
 Threat Beliefs (Severity);CCTB5;The negative impacts of climate change are severe.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Shafiei & Maleksaeidi, 2020)
+Agree completely";Adapted from Shafiei & Maleksaeidi, 2020
 Threat Beliefs (Severity);CCTB6;The thought of climate change scares me.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Shafiei & Maleksaeidi, 2020)
+Agree completely";Adapted from Shafiei & Maleksaeidi, 2020
 (Intro 2 Beliefs);;In the first part of the survey, we mentioned climate protection measures that can be taken by individuals. Examples are not eating meat, conserving energy in the form of electricity and heat and not driving by car. Please rate the following statements about climate protection.;;
 Response Beliefs (Self-Efficacy);CCRB1;I have the ability to avoid the consumption of animal products such as meat, dairy or eggs.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";"(Bubeck et al., 2018; Cheng and Ng, 2006)"
+Agree completely";Adapted from Bubeck et al., 2018, and Cheng and Ng, 2006
 Response Beliefs (Self-Efficacy);CCRB2;I have the ability to deliberately heat less.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";"(Bubeck et al., 2018; Cheng and Ng, 2006)"
+Agree completely";Adapted from Bubeck et al., 2018, and Cheng and Ng, 2006
 Response Beliefs (Self-Efficacy);CCRB3;I have the ability to avoid driving by car.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";"(Bubeck et al., 2018; Cheng and Ng, 2006)"
+Agree completely";Adapted from Bubeck et al., 2018, and Cheng and Ng, 2006
 Response Beliefs (Response Efficacy);CCRB4;Avoiding the consumption of animal products is effective.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Bubeck et al., 2018)
+Agree completely";Adapted from Bubeck et al., 2018
 Response Beliefs (Response Efficacy);CCRB5;Deliberately heating less is effective.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Bubeck et al., 2018)
+Agree completely";Adapted from Bubeck et al., 2018
 Response Beliefs (Response Efficacy);CCRB6;Avoiding driving is effective.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Bubeck et al., 2018)
+Agree completely";Adapted from Bubeck et al., 2018
 Response Beliefs (Response Costs)*;CCRB7;Avoiding the consumption of animal products costs me much time, financial and/or emotional effort.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Bubeck et al., 2018)
+Agree completely";Adapted from Bubeck et al., 2018
 Response Beliefs (Response Costs)*;CCRB8;Deliberately heating less costs me much time, financial and/or emotional effort.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Bubeck et al., 2018)
+Agree completely";Adapted from Bubeck et al., 2018
 Response Beliefs (Response Costs)*;CCRB9;Avoiding driving cost me much time, financial and/or emotional effort.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Bubeck et al., 2018)
+Agree completely";Adapted from Bubeck et al., 2018
 Response Beliefs (Self-Efficacy);CCRB10;I have the ability to take measures for climate protection.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";"(Bubeck et al., 2018; Cheng and Ng, 2006)"
+Agree completely";Adapted from Bubeck et al., 2018, and Cheng and Ng, 2006
 Response Beliefs (Response Efficacy);CCRB11;Climate protection measures taken by individuals are effective.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Bubeck et al., 2018)
+Agree completely";Adapted from Bubeck et al., 2018
 Response Beliefs (Response Costs)*;CCRB12;Climate protection measures cost me much time, financial and/or emotional effort.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Bubeck et al., 2018)
+Agree completely";Adapted from Bubeck et al., 2018
 Personal Moral Norm;CCPN1;I have a moral obligation to do something about climate change.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";"(Brody et al., 2012)
-(Chen, 2020)"
+Agree completely";Adapted from Brody et al., 2012, and Chen, 2020
 Personal Moral Norm;CCPN2;I think that I should contribute to climate protection.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";"(Brody et al., 2012; Chen, 2020)"
+Agree completely";Adapted from Brody et al., 2012, and Chen, 2020
 Personal Moral Norm;CCPN3;I think it's important for everyone to protect the climate.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";(Chen, 2020)
+Agree completely";Adapted from Chen, 2020
 Subjective Norm (Injunctive);CCIN1;My friends think I should behave in a climate-friendly way.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";"(Rhodes et al., 2006; Niemic et al., 2020)"
+Agree completely";Adapted from Rhodes et al., 2006, and Niemic et al., 2020
 Subjective Norm (Injunctive);CCIN2;My family thinks I should behave in a climate-friendly way.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";"(Rhodes et al., 2006; Niemic et al., 2020)"
+Agree completely";Adapted from Rhodes et al., 2006, and Niemic et al., 2020
 Subjective Norm (Injunctive);CCIN3;My colleagues  think I should behave in a climate-friendly way.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
 Agree completely
-I don't have colleagues.";"(Rhodes et al., 2006; Niemic et al., 2020)"
+I don't have colleagues.";Adapted from Rhodes et al., 2006, and Niemic et al., 2020
 Subjective Norm (Injunctive);CCIN4;People who are important to me think I should behave in a climate-friendly way.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";"(Rhodes et al., 2006; Niemic et al., 2020)"
+Agree completely";Adapted from Rhodes et al., 2006, and Niemic et al., 2020
 Subjective Norm (Descriptive);CCDN1;My friends are taking action to protect the climate.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";"(Rhodes et al., 2006; Niemic et al., 2020)"
+Agree completely";Adapted from Rhodes et al., 2006, and Niemic et al., 2020
 Subjective Norm (Descriptive);CCDN2;My family is taking action to protect the climate.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
-Agree completely";"(Rhodes et al., 2006; Niemic et al., 2020)"
+Agree completely";Adapted from Rhodes et al., 2006, and Niemic et al., 2020
 Subjective Norm (Descriptive);CCDN3;My colleagues are taking action to protect the climate.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
 Agree completely
-I don't have colleagues.";"(Rhodes et al., 2006; Niemic et al., 2020)"
+I don't have colleagues.";Adapted from Rhodes et al., 2006, and Niemic et al., 2020
 Subjective Norm (Descriptive);CCDN4;People who are important to me are taking action to protect the climate.;"Do not agree at all
 Do not agree
 Rather not agree
 Rather agree
 Agree
 Agree completely
-I don't have colleagues.";"(Rhodes et al., 2006; Niemic et al., 2020)"
+I don't have colleagues.";Adapted from Rhodes et al., 2006, and Niemic et al., 2020

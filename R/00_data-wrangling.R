@@ -485,7 +485,7 @@ x2a <- imput2a$SD1[abs(imput2a$SD1-40) %in% sort(abs(imput2a$SD1-40),partial=1:1
 imput2 <- mean(unlist(imput2a[imput2a$SD1 %in% x2a,"CCDN4"]))
 
 #co data
-cotest <- data %>% select(starts_with("CO")) %>% filter(!is.na(COKN2))
+cotest <- data %>% select(starts_with("CO")) %>% filter(!is.na(COKN3))
 
 #Imputate mean replacement values
 dataimp <- data

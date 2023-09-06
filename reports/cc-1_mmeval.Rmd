@@ -20,7 +20,7 @@ library(targets)
 # source(here::here("R", "01_sem-estimation.R"))
 source(here::here("R", "02_sem-evaluation.R"))
 # Load models
-tar_config_set(here::here("_targets"))
+tar_config_set(store = here::here("_targets"))
 model <- tar_read("cc_model_1")
 bootmodel <- tar_read("cc_model_1_boot")
 bootfsmodel <- tar_read("cc_model_1_fs_boot")

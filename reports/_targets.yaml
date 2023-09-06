@@ -1,1 +1,3 @@
-store: C:/Users/lilia/Documents/R/01_paper/climate-crisis-behavior-sem/_targets
+main:
+  store: C:/Users/kojan/Documents/R/02_Publications/climate-crisis-behavior-sem/_targets
+  inherits: C:/Users/kojan/Documents/R/02_Publications/climate-crisis-behavior-sem/_targets

@@ -1,5 +1,5 @@
 # Prepare redundancy analyses ----
-redundancy_cc = function(model) {
+redundancy_cc = function(model, data) {
   # list of possible mode B constructs and their ra indicators
   B_list = data.frame(
     Constructs = c(
@@ -28,7 +28,7 @@ redundancy_cc = function(model) {
   ra_list = lapply(B_constructs,
                    FUN = function(x)
                    estimate_pls(
-                     model$data,
+                     data,
                      measurement_model = constructs(
                      composite(paste0(x,
                                       " mode B"),

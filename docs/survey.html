@@ -20,19 +20,19 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,11 +74,11 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
@@ -85,39 +86,61 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
+</style>
+
   <!--radix_placeholder_meta_tags-->
   <title>Supplementary Website: Survey</title>
-  
-  
-  
-  
+
+
+
+
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Supplementary Website: Survey"/>
   <meta property="og:type" content="article"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Supplementary Website"/>
-  
+
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Supplementary Website: Survey"/>
-  
+
   <!--/radix_placeholder_meta_tags-->
   
   <!--radix_placeholder_rmarkdown_metadata-->
-  
+
   <script type="text/json" id="radix-rmarkdown-metadata">
   {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","bibliography","nocite"]}},"value":[{"type":"character","attributes":{},"value":["Survey"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[1]}]}]},{"type":"character","attributes":{},"value":["biblio.bib"]},{"type":"character","attributes":{},"value":["@*"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
   <meta name="distill:offset" content=""/>
-  
+
   <script type="application/javascript">
-  
+
     window.headroom_prevent_pin = false;
-  
+
     window.document.addEventListener("DOMContentLoaded", function (event) {
-  
+
       // initialize headroom for banner
       var header = $('header').get(0);
       var headerHeight = header.offsetHeight;
@@ -134,13 +157,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       if(window.location.hash)
         headroom.unpin();
       $(header).addClass('headroom--transition');
-  
+
       // offset scroll location for banner on hash change
       // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
       window.addEventListener("hashchange", function(event) {
         window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
       });
-  
+
       // responsive menu
       $('.distill-site-header').each(function(i, val) {
         var topnav = $(this);
@@ -149,7 +172,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           topnav.toggleClass('responsive');
         });
       });
-  
+
       // nav dropdowns
       $('.nav-dropbtn').click(function(e) {
         $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
@@ -164,99 +187,99 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       });
     });
   </script>
-  
+
   <style type="text/css">
-  
+
   /* Theme (user-documented overrideables for nav appearance) */
-  
+
   .distill-site-nav {
     color: rgba(255, 255, 255, 0.8);
     background-color: #0F2E3D;
     font-size: 15px;
     font-weight: 300;
   }
-  
+
   .distill-site-nav a {
     color: inherit;
     text-decoration: none;
   }
-  
+
   .distill-site-nav a:hover {
     color: white;
   }
-  
+
   @media print {
     .distill-site-nav {
       display: none;
     }
   }
-  
+
   .distill-site-header {
-  
+
   }
-  
+
   .distill-site-footer {
-  
+
   }
-  
-  
+
+
   /* Site Header */
-  
+
   .distill-site-header {
     width: 100%;
     box-sizing: border-box;
     z-index: 3;
   }
-  
+
   .distill-site-header .nav-left {
     display: inline-block;
     margin-left: 8px;
   }
-  
+
   @media screen and (max-width: 768px) {
     .distill-site-header .nav-left {
       margin-left: 0;
     }
   }
-  
-  
+
+
   .distill-site-header .nav-right {
     float: right;
     margin-right: 8px;
   }
-  
+
   .distill-site-header a,
   .distill-site-header .title {
     display: inline-block;
     text-align: center;
     padding: 14px 10px 14px 10px;
   }
-  
+
   .distill-site-header .title {
     font-size: 18px;
     min-width: 150px;
   }
-  
+
   .distill-site-header .logo {
     padding: 0;
   }
-  
+
   .distill-site-header .logo img {
     display: none;
     max-height: 20px;
     width: auto;
     margin-bottom: -4px;
   }
-  
+
   .distill-site-header .nav-image img {
     max-height: 18px;
     width: auto;
     display: inline-block;
     margin-bottom: -3px;
   }
-  
-  
-  
+
+
+
   @media screen and (min-width: 1000px) {
     .distill-site-header .logo img {
       display: inline-block;
@@ -271,17 +294,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       padding-left: 12px;
     }
   }
-  
-  
+
+
   .distill-site-header .nav-toggle {
     display: none;
   }
-  
+
   .nav-dropdown {
     display: inline-block;
     position: relative;
   }
-  
+
   .nav-dropdown .nav-dropbtn {
     border: none;
     outline: none;
@@ -295,7 +318,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1px;
     z-index: 2;
   }
-  
+
   .nav-dropdown-content {
     display: none;
     position: absolute;
@@ -310,18 +333,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-top: 4px;
     padding-bottom: 4px;
   }
-  
+
   .nav-dropdown-content hr {
     margin-top: 4px;
     margin-bottom: 4px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .nav-dropdown-active {
     display: block;
   }
-  
+
   .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
     color: black;
     padding: 6px 24px;
@@ -329,7 +352,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     display: block;
     text-align: left;
   }
-  
+
   .nav-dropdown-content .nav-dropdown-header {
     display: block;
     padding: 5px 24px;
@@ -339,21 +362,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: #999999;
     white-space: nowrap;
   }
-  
+
   .nav-dropdown:hover .nav-dropbtn {
     color: white;
   }
-  
+
   .nav-dropdown-content a:hover {
     background-color: #ddd;
     color: black;
   }
-  
+
   .nav-right .nav-dropdown-content {
     margin-left: -45%;
     right: 0;
   }
-  
+
   @media screen and (max-width: 768px) {
     .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
     .distill-site-header a.nav-toggle {
@@ -373,8 +396,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       margin-left: 0;
     }
   }
-  
-  
+
+
   @media screen and (max-width: 768px) {
     .distill-site-header.responsive {position: relative; min-height: 500px; }
     .distill-site-header.responsive a.nav-toggle {
@@ -399,9 +422,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       text-align: left;
     }
   }
-  
+
   /* Site Footer */
-  
+
   .distill-site-footer {
     width: 100%;
     overflow: hidden;
@@ -412,19 +435,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-bottom: 30px;
     text-align: center;
   }
-  
+
   /* Headroom */
-  
+
   d-title {
     padding-top: 6rem;
   }
-  
+
   @media print {
     d-title {
       padding-top: 4rem;
     }
   }
-  
+
   .headroom {
     z-index: 1000;
     position: fixed;
@@ -432,36 +455,36 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     left: 0;
     right: 0;
   }
-  
+
   .headroom--transition {
     transition: all .4s ease-in-out;
   }
-  
+
   .headroom--unpinned {
     top: -100px;
   }
-  
+
   .headroom--pinned {
     top: 0;
   }
-  
+
   /* adjust viewport for navbar height */
   /* helps vertically center bootstrap (non-distill) content */
   .min-vh-100 {
     min-height: calc(100vh - 100px) !important;
   }
-  
+
   </style>
-  
+
   <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
   <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
   <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-  
+
   <script type="application/javascript">
-  
+
   function getMeta(metaName) {
     var metas = document.getElementsByTagName('meta');
     for (let i = 0; i < metas.length; i++) {
@@ -471,14 +494,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     }
     return '';
   }
-  
+
   function offsetURL(url) {
     var offset = getMeta('distill:offset');
     return offset ? offset + '/' + url : url;
   }
-  
+
   function createFuseIndex() {
-  
+
     // create fuse index
     var options = {
       keys: [
@@ -491,7 +514,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       threshold: 0
     };
     var fuse = new window.Fuse([], options);
-  
+
     // fetch the main search.json
     return fetch(offsetURL('search.json'))
       .then(function(response) {
@@ -521,7 +544,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
               return fuse;
             });
           });
-  
+
         } else {
           return Promise.reject(
             new Error('Unexpected status from search index request: ' +
@@ -530,20 +553,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
         }
       });
   }
-  
+
   window.document.addEventListener("DOMContentLoaded", function (event) {
-  
+
     // get search element (bail if we don't have one)
     var searchEl = window.document.getElementById('distill-search');
     if (!searchEl)
       return;
-  
+
     createFuseIndex()
       .then(function(fuse) {
-  
+
         // make search box visible
         searchEl.classList.remove('hidden');
-  
+
         // initialize autocomplete
         var options = {
           autoselect: true,
@@ -592,19 +615,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       .catch(function(error) {
         console.log(error);
       });
-  
+
   });
-  
+
   </script>
-  
+
   <style type="text/css">
-  
+
   .nav-search {
     font-size: x-small;
   }
-  
+
   /* Algolioa Autocomplete */
-  
+
   .algolia-autocomplete {
     display: inline-block;
     margin-left: 10px;
@@ -618,8 +641,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border: 1px #0F2E3D solid;
     width: 180px;
   }
-  
-  
+
+
   @media screen and (max-width: 768px) {
     .distill-site-nav .algolia-autocomplete {
       display: none;
@@ -635,13 +658,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       max-height: 400px;
     }
   }
-  
+
   .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
     width: 90%;
     outline: none;
     border: none;
   }
-  
+
   .algolia-autocomplete .aa-hint {
     color: #999;
   }
@@ -658,30 +681,30 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border: 1px solid #999;
     border-top: none;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
     cursor: pointer;
     padding: 5px 4px;
     border-bottom: 1px solid #eee;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
     border-bottom: none;
     margin-bottom: 2px;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
     overflow: hidden;
     font-size: 0.8em;
     line-height: 1.4em;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
     font-size: 1rem;
     margin-block-start: 0;
     margin-block-end: 5px;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
     display: inline-block;
     overflow: hidden;
@@ -689,22 +712,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 80%;
     margin-right: 4%;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
     display: inline-block;
     width: 15%;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
     height: 3em;
     width: auto;
     display: none;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
     display: initial;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
     background-color: #eee;
   }
@@ -712,47 +735,47 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     font-weight: bold;
     font-style: normal;
   }
-  
+
   </style>
-  
-  
+
+
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
-  
+
   <style type="text/css">
-  
+
   body {
     background-color: white;
   }
-  
+
   .pandoc-table {
     width: 100%;
   }
-  
+
   .pandoc-table>caption {
     margin-bottom: 10px;
   }
-  
+
   .pandoc-table th:not([align]) {
     text-align: left;
   }
-  
+
   .pagedtable-footer {
     font-size: 15px;
   }
-  
+
   d-byline .byline {
     grid-template-columns: 2fr 2fr;
   }
-  
+
   d-byline .byline h3 {
     margin-block-start: 1.5em;
   }
-  
+
   d-byline .byline .authors-affiliations h3 {
     margin-block-start: 0.5em;
   }
-  
+
   .authors-affiliations .orcid-id {
     width: 16px;
     height:16px;
@@ -761,12 +784,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     vertical-align: middle;
     padding-bottom: 2px;
   }
-  
+
   d-title .dt-tags {
     margin-top: 1em;
     grid-column: text;
   }
-  
+
   .dt-tags .dt-tag {
     text-decoration: none;
     display: inline-block;
@@ -780,24 +803,25 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-transform: uppercase;
     font-weight: 500;
   }
-  
+
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
-  
+
   .html-widget {
     margin-bottom: 2.0em;
   }
-  
+
   .l-screen-inset {
     padding-right: 16px;
   }
-  
+
   .l-screen .caption {
     margin-left: 10px;
   }
-  
+
   .shaded {
     background: rgb(247, 247, 247);
     padding-top: 20px;
@@ -805,75 +829,75 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .shaded .html-widget {
     margin-bottom: 0;
     border: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .shaded .shaded-content {
     background: white;
   }
-  
+
   .text-output {
     margin-top: 0;
     line-height: 1.5em;
   }
-  
+
   .hidden {
     display: none !important;
   }
-  
+
   d-article {
     padding-top: 2.5rem;
     padding-bottom: 30px;
   }
-  
+
   d-appendix {
     padding-top: 30px;
   }
-  
+
   d-article>p>img {
     width: 100%;
   }
-  
+
   d-article h2 {
     margin: 1rem 0 1.5rem 0;
   }
-  
+
   d-article h3 {
     margin-top: 1.5rem;
   }
-  
+
   d-article iframe {
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 2.0em;
     width: 100%;
   }
-  
+
   /* Tweak code blocks */
-  
+
   d-article div.sourceCode code,
   d-article pre code {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
-  
+
   d-article pre,
   d-article div.sourceCode,
   d-article div.sourceCode pre {
     overflow: auto;
   }
-  
+
   d-article div.sourceCode {
     background-color: white;
   }
-  
+
   d-article div.sourceCode pre {
     padding-left: 10px;
     font-size: 12px;
     border-left: 2px solid rgba(0,0,0,0.1);
   }
-  
+
   d-article pre {
     font-size: 12px;
     color: black;
@@ -885,50 +909,50 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
-  
+
     -moz-tab-size: 4;
     -o-tab-size: 4;
     tab-size: 4;
-  
+
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
   }
-  
+
   d-article pre a {
     border-bottom: none;
   }
-  
+
   d-article pre a:hover {
     border-bottom: none;
     text-decoration: underline;
   }
-  
+
   d-article details {
     grid-column: text;
     margin-bottom: 0.8em;
   }
-  
+
   @media(min-width: 768px) {
-  
+
   d-article pre,
   d-article div.sourceCode,
   d-article div.sourceCode pre {
     overflow: visible !important;
   }
-  
+
   d-article div.sourceCode pre {
     padding-left: 18px;
     font-size: 14px;
   }
-  
+
   d-article pre {
     font-size: 14px;
   }
-  
+
   }
-  
+
   figure img.external {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -936,9 +960,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding: 18px;
     box-sizing: border-box;
   }
-  
+
   /* CSS for d-contents */
-  
+
   .d-contents {
     grid-column: text;
     color: rgba(0,0,0,0.8);
@@ -950,7 +974,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-left: 0.25em;
     justify-self: start;
   }
-  
+
   @media(min-width: 1000px) {
     .d-contents.d-contents-float {
       height: 0;
@@ -961,82 +985,78 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       padding-left: 2em;
     }
   }
-  
+
   .d-contents nav h3 {
     font-size: 18px;
     margin-top: 0;
     margin-bottom: 1em;
   }
-  
+
   .d-contents li {
     list-style-type: none
   }
-  
+
   .d-contents nav > ul {
     padding-left: 0;
   }
-  
+
   .d-contents ul {
     padding-left: 1em
   }
-  
+
   .d-contents nav ul li {
     margin-top: 0.6em;
     margin-bottom: 0.2em;
   }
-  
+
   .d-contents nav a {
     font-size: 13px;
     border-bottom: none;
     text-decoration: none
     color: rgba(0, 0, 0, 0.8);
   }
-  
+
   .d-contents nav a:hover {
     text-decoration: underline solid rgba(0, 0, 0, 0.6)
   }
-  
+
   .d-contents nav > ul > li > a {
     font-weight: 600;
   }
-  
+
   .d-contents nav > ul > li > ul {
     font-weight: inherit;
   }
-  
+
   .d-contents nav > ul > li > ul > li {
     margin-top: 0.2em;
   }
-  
-  
+
+
   .d-contents nav ul {
     margin-top: 0;
     margin-bottom: 0.25em;
   }
-  
+
   .d-article-with-toc h2:nth-child(2) {
     margin-top: 0;
   }
-  
-  
+
+
   /* Figure */
-  
+
   .figure {
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
   }
-  
-  .figure img {
-    width: 100%;
-  }
-  
+
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
     line-height: 1.5em;
   }
-  
+
   .figure img.external {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -1044,42 +1064,42 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding: 18px;
     box-sizing: border-box;
   }
-  
+
   .figure .caption a {
     color: rgba(0, 0, 0, 0.6);
   }
-  
+
   .figure .caption b,
   .figure .caption strong, {
     font-weight: 600;
     color: rgba(0, 0, 0, 1.0);
   }
-  
+
   /* Citations */
-  
+
   d-article .citation {
     color: inherit;
     cursor: inherit;
   }
-  
+
   div.hanging-indent{
     margin-left: 1em; text-indent: -1em;
   }
-  
+
   /* Citation hover box */
-  
+
   .tippy-box[data-theme~=light-border] {
     background-color: rgba(250, 250, 250, 0.95);
   }
-  
+
   .tippy-content > p {
     margin-bottom: 0;
     padding: 2px;
   }
-  
-  
+
+
   /* Tweak 1000px media break to show more text */
-  
+
   @media(min-width: 1000px) {
     .base-grid,
     distill-header,
@@ -1095,11 +1115,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
       grid-column-gap: 16px;
     }
-  
+
     .grid {
       grid-column-gap: 16px;
     }
-  
+
     d-article {
       font-size: 1.06rem;
       line-height: 1.7em;
@@ -1108,7 +1128,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       font-size: 13px;
     }
   }
-  
+
   @media(min-width: 1180px) {
     .base-grid,
     distill-header,
@@ -1124,16 +1144,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
       grid-column-gap: 32px;
     }
-  
+
     .grid {
       grid-column-gap: 32px;
     }
   }
-  
-  
+
+
   /* Get the citation styles for the appendix (not auto-injected on render since
      we do our own rendering of the citation appendix) */
-  
+
   d-appendix .citation-appendix,
   .d-appendix .citation-appendix {
     font-size: 11px;
@@ -1150,9 +1170,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     white-space: pre-wrap;
     word-wrap: break-word;
   }
-  
+
   /* Include appendix styles here so they can be overridden */
-  
+
   d-appendix {
     contain: layout style;
     font-size: 0.8em;
@@ -1164,7 +1184,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-top: 60px;
     padding-bottom: 48px;
   }
-  
+
   d-appendix h3 {
     grid-column: page-start / text-start;
     font-size: 15px;
@@ -1173,59 +1193,59 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-bottom: 0;
     color: rgba(0,0,0,0.65);
   }
-  
+
   d-appendix h3 + * {
     margin-top: 1em;
   }
-  
+
   d-appendix ol {
     padding: 0 0 0 15px;
   }
-  
+
   @media (min-width: 768px) {
     d-appendix ol {
       padding: 0 0 0 30px;
       margin-left: -30px;
     }
   }
-  
+
   d-appendix li {
     margin-bottom: 1em;
   }
-  
+
   d-appendix a {
     color: rgba(0, 0, 0, 0.6);
   }
-  
+
   d-appendix > * {
     grid-column: text;
   }
-  
+
   d-appendix > d-footnote-list,
   d-appendix > d-citation-list,
   d-appendix > distill-appendix {
     grid-column: screen;
   }
-  
+
   /* Include footnote styles here so they can be overridden */
-  
+
   d-footnote-list {
     contain: layout style;
   }
-  
+
   d-footnote-list > * {
     grid-column: text;
   }
-  
+
   d-footnote-list a.footnote-backlink {
     color: rgba(0,0,0,0.3);
     padding-left: 0.5em;
   }
-  
-  
-  
+
+
+
   /* Anchor.js */
-  
+
   .anchorjs-link {
     /*transition: all .25s linear; */
     text-decoration: none;
@@ -1236,86 +1256,86 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-decoration: none;
     border-bottom: none;
   }
-  
+
   /* Social footer */
-  
+
   .social_footer {
     margin-top: 30px;
     margin-bottom: 0;
     color: rgba(0,0,0,0.67);
   }
-  
+
   .disqus-comments {
     margin-right: 30px;
   }
-  
+
   .disqus-comment-count {
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
     cursor: pointer;
   }
-  
+
   #disqus_thread {
     margin-top: 30px;
   }
-  
+
   .article-sharing a {
     border-bottom: none;
     margin-right: 8px;
   }
-  
+
   .article-sharing a:hover {
     border-bottom: none;
   }
-  
+
   .sidebar-section.subscribe {
     font-size: 12px;
     line-height: 1.6em;
   }
-  
+
   .subscribe p {
     margin-bottom: 0.5em;
   }
-  
-  
+
+
   .article-footer .subscribe {
     font-size: 15px;
     margin-top: 45px;
   }
-  
-  
+
+
   .sidebar-section.custom {
     font-size: 12px;
     line-height: 1.6em;
   }
-  
+
   .custom p {
     margin-bottom: 0.5em;
   }
-  
+
   /* Styles for listing layout (hide title) */
   .layout-listing d-title, .layout-listing .d-title {
     display: none;
   }
-  
+
   /* Styles for posts lists (not auto-injected) */
-  
-  
+
+
   .posts-with-sidebar {
     padding-left: 45px;
     padding-right: 45px;
   }
-  
+
   .posts-list .description h2,
   .posts-list .description p {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
   }
-  
+
   .posts-list .description h2 {
     font-weight: 700;
     border-bottom: none;
     padding-bottom: 0;
   }
-  
+
   .posts-list h2.post-tag {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     padding-bottom: 12px;
@@ -1324,7 +1344,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 60px;
     margin-bottom: 24px;
   }
-  
+
   .posts-list .post-preview {
     text-decoration: none;
     overflow: hidden;
@@ -1332,29 +1352,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding: 24px 0;
   }
-  
+
   .post-preview-last {
     border-bottom: none !important;
   }
-  
+
   .posts-list .posts-list-caption {
     grid-column: screen;
     font-weight: 400;
   }
-  
+
   .posts-list .post-preview h2 {
     margin: 0 0 6px 0;
     line-height: 1.2em;
     font-style: normal;
     font-size: 24px;
   }
-  
+
   .posts-list .post-preview p {
     margin: 0 0 12px 0;
     line-height: 1.4em;
     font-size: 16px;
   }
-  
+
   .posts-list .post-preview .thumbnail {
     box-sizing: border-box;
     margin-bottom: 24px;
@@ -1365,32 +1385,32 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
     display: block;
   }
-  
+
   .posts-list .metadata {
     font-size: 12px;
     line-height: 1.4em;
     margin-bottom: 18px;
   }
-  
+
   .posts-list .metadata > * {
     display: inline-block;
   }
-  
+
   .posts-list .metadata .publishedDate {
     margin-right: 2em;
   }
-  
+
   .posts-list .metadata .dt-authors {
     display: block;
     margin-top: 0.3em;
     margin-right: 2em;
   }
-  
+
   .posts-list .dt-tags {
     display: block;
     line-height: 1em;
   }
-  
+
   .posts-list .dt-tags .dt-tag {
     display: inline-block;
     color: rgba(0,0,0,0.6);
@@ -1403,24 +1423,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-transform: uppercase;
     font-weight: 500;
   }
-  
+
   .posts-list img {
     opacity: 1;
   }
-  
+
   .posts-list img[data-src] {
     opacity: 0;
   }
-  
+
   .posts-more {
     clear: both;
   }
-  
-  
+
+
   .posts-sidebar {
     font-size: 16px;
   }
-  
+
   .posts-sidebar h3 {
     font-size: 16px;
     margin-top: 0;
@@ -1428,39 +1448,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     font-weight: 400;
     text-transform: uppercase;
   }
-  
+
   .sidebar-section {
     margin-bottom: 30px;
   }
-  
+
   .categories ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
   }
-  
+
   .categories li {
     color: rgba(0, 0, 0, 0.8);
     margin-bottom: 0;
   }
-  
+
   .categories li>a {
     border-bottom: none;
   }
-  
+
   .categories li>a:hover {
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   }
-  
+
   .categories .active {
     font-weight: 600;
   }
-  
+
   .categories .category-count {
     color: rgba(0, 0, 0, 0.4);
   }
-  
-  
+
+
   @media(min-width: 768px) {
     .posts-list .post-preview h2 {
       font-size: 26px;
@@ -1496,55 +1516,55 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       padding-bottom: 24px;
     }
   }
-  
-  
+
+
   /* Improve display for browsers without grid (IE/Edge <= 15) */
-  
+
   .downlevel {
     line-height: 1.6em;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
     margin: 0;
   }
-  
+
   .downlevel .d-title {
     padding-top: 6rem;
     padding-bottom: 1.5rem;
   }
-  
+
   .downlevel .d-title h1 {
     font-size: 50px;
     font-weight: 700;
     line-height: 1.1em;
     margin: 0 0 0.5rem;
   }
-  
+
   .downlevel .d-title p {
     font-weight: 300;
     font-size: 1.2rem;
     line-height: 1.55em;
     margin-top: 0;
   }
-  
+
   .downlevel .d-byline {
     padding-top: 0.8em;
     padding-bottom: 0.8em;
     font-size: 0.8rem;
     line-height: 1.8em;
   }
-  
+
   .downlevel .section-separator {
     border: none;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .downlevel .d-article {
     font-size: 1.06rem;
     line-height: 1.7em;
     padding-top: 1rem;
     padding-bottom: 2rem;
   }
-  
-  
+
+
   .downlevel .d-appendix {
     padding-left: 0;
     padding-right: 0;
@@ -1556,11 +1576,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-top: 40px;
     padding-bottom: 48px;
   }
-  
+
   .downlevel .footnotes ol {
     padding-left: 13px;
   }
-  
+
   .downlevel .base-grid,
   .downlevel .distill-header,
   .downlevel .d-title,
@@ -1577,7 +1597,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-left: 40px;
     padding-right: 40px;
   }
-  
+
   @media(min-width: 768px) {
     .downlevel .base-grid,
     .downlevel .distill-header,
@@ -1597,14 +1617,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     max-width: 900px;
   }
   }
-  
+
   .downlevel pre code {
     display: block;
     border-left: 2px solid rgba(0, 0, 0, .1);
     padding: 0 0 0 20px;
     font-size: 14px;
   }
-  
+
   .downlevel code, .downlevel pre {
     color: black;
     background: none;
@@ -1615,27 +1635,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
-  
+
     -moz-tab-size: 4;
     -o-tab-size: 4;
     tab-size: 4;
-  
+
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
   }
-  
+
   .downlevel .posts-list .post-preview {
     color: inherit;
   }
-  
-  
-  
+
+
+
   </style>
-  
+
   <script type="application/javascript">
-  
+
   function is_downlevel_browser() {
     if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
                                    window.navigator.userAgent)) {
@@ -1644,20 +1664,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       return window.load_distill_framework === undefined;
     }
   }
-  
+
   // show body when load is complete
   function on_load_complete() {
-  
+
     // add anchors
     if (window.anchors) {
       window.anchors.options.placement = 'left';
       window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
     }
-  
-  
+
+
     // set body to visible
     document.body.style.visibility = 'visible';
-  
+
     // force redraw for leaflet widgets
     if (window.HTMLWidgets) {
       var maps = window.HTMLWidgets.findAll(".leaflet");
@@ -1670,39 +1690,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
         });
       });
     }
-  
+
     // trigger 'shown' so htmlwidgets resize
     $('d-article').trigger('shown');
   }
-  
+
   function init_distill() {
-  
+
     init_common();
-  
+
     // create front matter
     var front_matter = $('<d-front-matter></d-front-matter>');
     $('#distill-front-matter').wrap(front_matter);
-  
+
     // create d-title
     $('.d-title').changeElementType('d-title');
-  
+
     // create d-byline
     var byline = $('<d-byline></d-byline>');
     $('.d-byline').replaceWith(byline);
-  
+
     // create d-article
     var article = $('<d-article></d-article>');
     $('.d-article').wrap(article).children().unwrap();
-  
+
     // move posts container into article
     $('.posts-container').appendTo($('d-article'));
-  
+
     // create d-appendix
     $('.d-appendix').changeElementType('d-appendix');
-  
+
     // flag indicating that we have appendix items
     var appendix = $('.appendix-bottom').children('h3').length > 0;
-  
+
     // replace footnotes with <d-footnote>
     $('.footnote-ref').each(function(i, val) {
       appendix = true;
@@ -1718,10 +1738,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     });
     // remove footnotes
     $('.footnotes').remove();
-  
+
     // move refs into #references-listing
     $('#references-listing').replaceWith($('#refs'));
-  
+
     $('h1.appendix, h2.appendix').each(function(i, val) {
       $(this).changeElementType('h3');
     });
@@ -1731,16 +1751,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       appendix = true;
       $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
     });
-  
+
     // show d-appendix if we have appendix content
     $("d-appendix").css('display', appendix ? 'grid' : 'none');
-  
+
     // localize layout chunks to just output
     $('.layout-chunk').each(function(i, val) {
-  
+
       // capture layout
       var layout = $(this).attr('data-layout');
-  
+
       // apply layout to markdown level block elements
       var elements = $(this).children().not('details, div.sourceCode, pre, script');
       elements.each(function(i, el) {
@@ -1753,40 +1773,40 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           $(this).wrap(layout_div);
         }
       });
-  
-  
+
+
       // unwrap the layout-chunk div
       $(this).children().unwrap();
     });
-  
+
     // remove code block used to force  highlighting css
     $('.distill-force-highlighting-css').parent().remove();
-  
+
     // remove empty line numbers inserted by pandoc when using a
     // custom syntax highlighting theme
     $('code.sourceCode a:empty').remove();
-  
+
     // load distill framework
     load_distill_framework();
-  
+
     // wait for window.distillRunlevel == 4 to do post processing
     function distill_post_process() {
-  
+
       if (!window.distillRunlevel || window.distillRunlevel < 4)
         return;
-  
+
       // hide author/affiliations entirely if we have no authors
       var front_matter = JSON.parse($("#distill-front-matter").html());
       var have_authors = front_matter.authors && front_matter.authors.length > 0;
       if (!have_authors)
         $('d-byline').addClass('hidden');
-  
+
       // article with toc class
       $('.d-contents').parent().addClass('d-article-with-toc');
-  
+
       // strip links that point to #
       $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
-  
+
       // add orcid ids
       $('.authors-affiliations').find('.author').each(function(i, el) {
         var orcid_id = front_matter.authors[i].orcidID;
@@ -1801,12 +1821,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           $(this).append(a);
         }
       });
-  
+
       // hide elements of author/affiliations grid that have no value
       function hide_byline_column(caption) {
         $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
       }
-  
+
       // affiliations
       var have_affiliations = false;
       for (var i = 0; i<front_matter.authors.length; ++i) {
@@ -1818,11 +1838,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       }
       if (!have_affiliations)
         $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
-  
+
       // published date
       if (!front_matter.publishedDate)
         hide_byline_column("Published");
-  
+
       // document object identifier
       var doi = $('d-byline').find('h3:contains("DOI")');
       var doi_p = doi.next().empty();
@@ -1842,25 +1862,40 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
            .html(front_matter.doi)
            .appendTo(doi_p);
       }
-  
+
        // change plural form of authors/affiliations
       if (front_matter.authors.length === 1) {
         var grid = $('.authors-affiliations');
         grid.children('h3:contains("Authors")').text('Author');
         grid.children('h3:contains("Affiliations")').text('Affiliation');
       }
-  
+
       // remove d-appendix and d-footnote-list local styles
       $('d-appendix > style:first-child').remove();
       $('d-footnote-list > style:first-child').remove();
-  
+
       // move appendix-bottom entries to the bottom
       $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
       $('.appendix-bottom').remove();
-  
+
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1871,39 +1906,64 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
-  
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
+
       // clear polling timer
       clearInterval(tid);
-  
+
       // show body now that everything is ready
       on_load_complete();
     }
-  
+
     var tid = setInterval(distill_post_process, 50);
     distill_post_process();
-  
+
   }
-  
+
   function init_downlevel() {
-  
+
     init_common();
-  
+
      // insert hr after d-title
     $('.d-title').after($('<hr class="section-separator"/>'));
-  
+
     // check if we have authors
     var front_matter = JSON.parse($("#distill-front-matter").html());
     var have_authors = front_matter.authors && front_matter.authors.length > 0;
-  
+
     // manage byline/border
     if (!have_authors)
       $('.d-byline').remove();
     $('.d-byline').after($('<hr class="section-separator"/>'));
     $('.d-byline a').remove();
-  
+
     // remove toc
     $('.d-contents').remove();
-  
+
     // move appendix elements
     $('h1.appendix, h2.appendix').each(function(i, val) {
       $(this).changeElementType('h3');
@@ -1911,65 +1971,67 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     $('h3.appendix').each(function(i, val) {
       $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
     });
-  
-  
+
+
     // inject headers into references and footnotes
     var refs_header = $('<h3></h3>');
     refs_header.text('References');
     $('#refs').prepend(refs_header);
-  
+
     var footnotes_header = $('<h3></h3');
     footnotes_header.text('Footnotes');
     $('.footnotes').children('hr').first().replaceWith(footnotes_header);
-  
+
     // move appendix-bottom entries to the bottom
     $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
     $('.appendix-bottom').remove();
-  
+
     // remove appendix if it's empty
     if ($('.d-appendix').children().length === 0)
       $('.d-appendix').remove();
-  
+
     // prepend separator above appendix
     $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
-  
+
     // trim code
     $('pre>code').each(function(i, val) {
       $(this).html($.trim($(this).html()));
     });
-  
+
     // move posts-container right before article
     $('.posts-container').insertBefore($('.d-article'));
-  
+
     $('body').addClass('downlevel');
-  
+
     on_load_complete();
   }
-  
-  
+
+
   function init_common() {
-  
+
     // jquery plugin to change element types
     (function($) {
       $.fn.changeElementType = function(newType) {
         var attrs = {};
-  
+
         $.each(this[0].attributes, function(idx, attr) {
           attrs[attr.nodeName] = attr.nodeValue;
         });
-  
+
         this.replaceWith(function() {
           return $("<" + newType + "/>", attrs).append($(this).contents());
         });
       };
     })(jQuery);
-  
+
     // prevent underline for linked images
     $('a > img').parent().css({'border-bottom' : 'none'});
-  
+
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1978,35 +2040,35 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           var fig = $(this);
           fig.css('width', fig.attr('width') + 'px');
         });
-  
+
       }
     });
-  
+
     // auto-append index.html to post-preview links in file: protocol
     // and in rstudio ide preview
     $('.post-preview').each(function(i, val) {
       if (window.location.protocol === "file:")
         $(this).attr('href', $(this).attr('href') + "index.html");
     });
-  
+
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
-  
+
     // add class to pandoc style tables
     $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
     $('.kable-table').children('table').addClass('pandoc-table');
-  
+
     // add figcaption style to table captions
     $('caption').parent('table').addClass("figcaption");
-  
+
     // initialize posts list
     if (window.init_posts_list)
       window.init_posts_list();
-  
+
     // implmement disqus comment link
     $('.disqus-comment-count').click(function() {
       window.headroom_prevent_pin = true;
@@ -2020,26 +2082,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       }
     });
   }
-  
+
   document.addEventListener('DOMContentLoaded', function() {
     if (is_downlevel_browser())
       init_downlevel();
     else
       window.addEventListener('WebComponentsReady', init_distill);
   });
-  
+
   </script>
-  
+
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-  <script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+  <script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+  <script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
   <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-  <script src="site_libs/datatables-binding-0.18/datatables.js"></script>
-  <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
-  <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
-  <script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
-  <link href="site_libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
-  <script src="site_libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+  <script src="site_libs/datatables-binding-0.29/datatables.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="site_libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+  <link href="site_libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+  <script src="site_libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
+  <link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+  <script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2192,9 +2255,9 @@ General model evaluation
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#sample-questions">Sample questions</a></li>
-<li><a href="#survey-1">Survey 1</a></li>
-<li><a href="#survey-2">Survey 2</a></li>
+<li><a href="#sample-questions" id="toc-sample-questions">Sample questions</a></li>
+<li><a href="#survey-1" id="toc-survey-1">Survey 1</a></li>
+<li><a href="#survey-2" id="toc-survey-2">Survey 2</a></li>
 </ul>
 </nav>
 </div>
@@ -2202,76 +2265,77 @@ General model evaluation
 <h1 id="sample-questions">Sample questions</h1>
 <!-- These are questions describing the sample and asking for socio-demographic information.[@nadelson_i_2014] -->
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-081085ac725f7821eede" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-081085ac725f7821eede">{"x":{"filter":"none","caption":"<caption>Socio-demographic questions, * denotes items that are reversed for analysis<\/caption>","data":[["(Intro Demographic)","Age","Gender","Education","Occupation","Household income","Household size 1","Household size 2","Administrative District","(Intro Climate Crisis specific variables)","Diet","Mobility Car 1","Mobility Car 2","Mobility Car 3","(Intro Big Five and Control Convictions)","Extraversion*","Agreeableness","Conscientiousness*","Neuroticism","Openness to experience","Extraversion","Agreeableness*","Conscientiousness*","Neuroticism","Openness to experience*","Extraversion","Agreeableness","Conscientiousness","Neuroticism*","Openness to experience","Internal Control Conviction","Internal Control Conviction","External Control Conviction","External Control Conviction"],["","SD1","SD2","SD3","SD4","SD5","SD6","SD7","SD8","","CCS1","CCS2","CCS3","CCS4","","BFE1","BFA1","BFC1","BFN1","BFO1","BFE2","BFA2","BFC2","BFN2","BFO2","BFE3","BFA3","BFC3","BFN3","BFO3","IC1","IC2","EC1","EC2"],["First of all we ask you for some information about yourself. Like all data collected in this study, this information will be completely anonymized, so that a trace back to your identity is impossible. The collection of this data serves only to provide context for the overall results of the study.","How old are you (in years)?","What is your gender?","What is the highest educational level you have achieved?","What best describes your occupational situation?","What is your average monthly net household income?","How many persons live in your household, including yourself? Consider also children living in the household."," have indicated that x persons live in your household. How many of them are younger than 14?","In which administrative district do you currently live?","The following questions deal with your personal lifestyle.","What best describes your diet?","When it comes to car ownership, what is most applicable to you (multiple answers possible)?","Please estimate: How many kilometers have you travelled by car in the last year for private purposes?","And how many kilometers have you travelled by car in the last year for business purposes?","The following questions are related to your personality. There are no wrong or right answers.","I tend to be quiet.","I am compassionate, I have a soft heart.","I tend to be disorganized.","I worry a lot.","I am fascinated by art, music, or literature.","I tend to act as a leader.","I am sometimes rude to others.","I have difficulty getting started on tasks.","I tend to feel depressed, blue.","I have little interest in abstract ideas.","I am full of energy.","I trust easily, I assume the best about people.","I am reliable, I can always be counted on.","I am emotionally stable, not easily upset.","I am original, I come up with new ideas.","I'm my own boss.","If I work hard, I will succeed.","Whether at work or in my private life: What I do is mainly determined by others.","Fate often gets in the way of my plans."],["","(Numerical entry)","female<br/>male<br/>another gender, namely (entry)","still a student<br/>dropped out of school without a diploma<br/>secondary school leaving certificate (Hauptschulabschluss) or equivalent<br/>Secondary school leaving certificate (Mittlere Reife) or equivalent<br/>(Specialist) university entrance qualification (Abitur)<br/>(Specialist) university degree (e.g. Bachelor's degree, Master's degree, Diploma)<br/>Doctorate<br/>a different level of education, namely (entry)","employed full-time<br/>employed part-time<br/>in vocational training/teaching<br/>student (school)<br/>student (university)<br/>not in paid employment","up to 450 euros<br/>between 451 and 1000 euros<br/>between 1001 and 1500 euros<br/>between 1501 and 2000 euros<br/>between 2001 and 2500 euros<br/>between 2501 and 3000 euros<br/>between 3001 and 3500 euros<br/>between 3501 and 4000 euros<br/>between 4001 and 4500 euros<br/>between 4501 and 5000 euros<br/>more than 5000 euros<br/>not specified","(Numerical entry)","(Numerical entry)","(Choice from drop-down menu)","","vegan<br/>vegetarian<br/>I eat meat on average less than once a week.<br/>I eat meat on average once a week.<br/>I eat meat on average several times a week.<br/>I eat meat every day.","I do not have a car of my own, nor do I have access to a car.<br/>I do not have a car of my own, but I have regular access to a car, e.g. a family member's car or a car-sharing car.<br/>I have a car of my own.","I have not traveled any distance by car in the last year for private purposes.<br/>up to 5,000 km<br/>between 5,001 and 10,000 km<br/>between 10,001 and 15,000 km<br/>between 15,001 and 20,000 km<br/>more than 20.000 km<br/>don't know","I have not traveled any distance by car in the last year for business purposes.<br/>up to 5,000 km<br/>between 5,001 and 10,000 km<br/>between 10,001 and 15,000 km<br/>between 15,001 and 20,000 km<br/>more than 20,000 km<br/>don't know","","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely"],["","","","","","","","","","","","","","","","(Rammstedt et al., 2020)","(Rammstedt et al., 2020)","(Rammstedt et al., 2020)","(Rammstedt et al., 2020)","(Rammstedt et al., 2020)","(Rammstedt et al., 2020)","(Rammstedt et al., 2020)","(Rammstedt et al., 2020)","(Rammstedt et al., 2020)","(Rammstedt et al., 2020)","(Rammstedt et al., 2020)","(Rammstedt et al., 2020)","(Rammstedt et al., 2020)","(Rammstedt et al., 2020)","(Rammstedt et al., 2020)","(Kovaleva et al., 2014)","(Kovaleva et al., 2014)","(Kovaleva et al., 2014)","(Kovaleva et al., 2014)"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Variable<\/th>\n      <th>Abbreviation<\/th>\n      <th>Item (translated)<\/th>\n      <th>Scale (translated)<\/th>\n      <th>Reference<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":34,"ordering":false,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,25,34,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c40a94c62a1341c019c0" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c40a94c62a1341c019c0">{"x":{"filter":"none","vertical":false,"caption":"<caption>Socio-demographic questions, * denotes items that are reversed for analysis<\/caption>","data":[["(Intro Demographic)","Age","Gender","Education","Occupation","Household income","Household size 1","Household size 2","Administrative District","(Intro Climate Crisis specific variables)","Diet","Mobility Car 1","Mobility Car 2","Mobility Car 3","(Intro Big Five and Control Convictions)","Extraversion*","Agreeableness","Conscientiousness*","Neuroticism","Openness to experience","Extraversion","Agreeableness*","Conscientiousness*","Neuroticism","Openness to experience*","Extraversion","Agreeableness","Conscientiousness","Neuroticism*","Openness to experience","Internal Control Conviction","Internal Control Conviction","External Control Conviction","External Control Conviction"],["","SD1","SD2","SD3","SD4","SD5","SD6","SD7","SD8","","CCS1","CCS2","CCS3","CCS4","","BFE1","BFA1","BFC1","BFN1","BFO1","BFE2","BFA2","BFC2","BFN2","BFO2","BFE3","BFA3","BFC3","BFN3","BFO3","IC1","IC2","EC1","EC2"],["First of all we ask you for some information about yourself. Like all data collected in this study, this information will be completely anonymized, so that a trace back to your identity is impossible. The collection of this data serves only to provide context for the overall results of the study.","How old are you (in years)?","What is your gender?","What is the highest educational level you have achieved?","What best describes your occupational situation?","What is your average monthly net household income?","How many persons live in your household, including yourself? Consider also children living in the household."," have indicated that x persons live in your household. How many of them are younger than 14?","In which administrative district do you currently live?","The following questions deal with your personal lifestyle.","What best describes your diet?","When it comes to car ownership, what is most applicable to you (multiple answers possible)?","Please estimate: How many kilometers have you travelled by car in the last year for private purposes?","And how many kilometers have you travelled by car in the last year for business purposes?","The following questions are related to your personality. There are no wrong or right answers.","I tend to be quiet.","I am compassionate, I have a soft heart.","I tend to be disorganized.","I worry a lot.","I am fascinated by art, music, or literature.","I tend to act as a leader.","I am sometimes rude to others.","I have difficulty getting started on tasks.","I tend to feel depressed, blue.","I have little interest in abstract ideas.","I am full of energy.","I trust easily, I assume the best about people.","I am reliable, I can always be counted on.","I am emotionally stable, not easily upset.","I am original, I come up with new ideas.","I'm my own boss.","If I work hard, I will succeed.","Whether at work or in my private life: What I do is mainly determined by others.","Fate often gets in the way of my plans."],["","(Numerical entry)","female<br/>male<br/>another gender, namely (entry)","still a student<br/>dropped out of school without a diploma<br/>secondary school leaving certificate (Hauptschulabschluss) or equivalent<br/>Secondary school leaving certificate (Mittlere Reife) or equivalent<br/>(Specialist) university entrance qualification (Abitur)<br/>(Specialist) university degree (e.g. Bachelor's degree, Master's degree, Diploma)<br/>Doctorate<br/>a different level of education, namely (entry)","employed full-time<br/>employed part-time<br/>in vocational training/teaching<br/>student (school)<br/>student (university)<br/>not in paid employment","up to 450 euros<br/>between 451 and 1000 euros<br/>between 1001 and 1500 euros<br/>between 1501 and 2000 euros<br/>between 2001 and 2500 euros<br/>between 2501 and 3000 euros<br/>between 3001 and 3500 euros<br/>between 3501 and 4000 euros<br/>between 4001 and 4500 euros<br/>between 4501 and 5000 euros<br/>more than 5000 euros<br/>not specified","(Numerical entry)","(Numerical entry)","(Choice from drop-down menu)","","vegan<br/>vegetarian<br/>I eat meat on average less than once a week.<br/>I eat meat on average once a week.<br/>I eat meat on average several times a week.<br/>I eat meat every day.","I do not have a car of my own, nor do I have access to a car.<br/>I do not have a car of my own, but I have regular access to a car, e.g. a family member's car or a car-sharing car.<br/>I have a car of my own.","I have not traveled any distance by car in the last year for private purposes.<br/>up to 5,000 km<br/>between 5,001 and 10,000 km<br/>between 10,001 and 15,000 km<br/>between 15,001 and 20,000 km<br/>more than 20.000 km<br/>don't know","I have not traveled any distance by car in the last year for business purposes.<br/>up to 5,000 km<br/>between 5,001 and 10,000 km<br/>between 10,001 and 15,000 km<br/>between 15,001 and 20,000 km<br/>more than 20,000 km<br/>don't know","","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely"],["","","","","","","","","","","","","","","","Rammstedt et al., 2020","Rammstedt et al., 2020","Rammstedt et al., 2020","Rammstedt et al., 2020","Rammstedt et al., 2020","Rammstedt et al., 2020","Rammstedt et al., 2020","Rammstedt et al., 2020","Rammstedt et al., 2020","Rammstedt et al., 2020","Rammstedt et al., 2020","Rammstedt et al., 2020","Rammstedt et al., 2020","Rammstedt et al., 2020","Rammstedt et al., 2020","Kovaleva et al., 2014","Kovaleva et al., 2014","Kovaleva et al., 2014","Kovaleva et al., 2014"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Variable<\/th>\n      <th>Abbreviation<\/th>\n      <th>Item (translated)<\/th>\n      <th>Scale (translated)<\/th>\n      <th>Reference<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":34,"ordering":false,"columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,25,34,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <h1 id="survey-1">Survey 1</h1>
 <p>These are the items from survey 1 which form the basis for the structural equation model.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-965c49e3850eb81e1890" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-965c49e3850eb81e1890">{"x":{"filter":"none","caption":"<caption>Survey 1 questions, * denotes items that are reversed for analysis<\/caption>","data":[["(Intro Climate Crisis Behavioral Intention)","Climate Crisis Behavioral Intention","Climate Crisis Behavioral Intention","Climate Crisis Behavioral Intention","Climate Crisis Behavioral Intention","Subjective Knowledge","(Intro Knowledge)","Knowledge","Knowledge","Knowledge*","Knowledge","Knowledge*","Knowledge*","(Intro Distrusting Beliefs)","Distrusting Beliefs in Science (Benevolence)","Distrusting Beliefs in Science (Benevolence)*","Distrusting Beliefs in Science (Benevolence)","Distrusting Beliefs in Science (Competence)*","Distrusting Beliefs in Science (Competence)","Distrusting Beliefs in Science (Competence)","Distrusting Beliefs in Science (Integrity)","Distrusting Beliefs in Science (Integrity)","Trusting Beliefs in Science (Integrity)*","(Intro Beliefs)","Threat Beliefs (Susceptibility)","Threat Beliefs (Susceptibility)*","Threat Beliefs (Susceptibility)","Threat Beliefs (Severity)","Threat Beliefs (Severity)","Threat Beliefs (Severity)","(Intro 2 Beliefs)","Response Beliefs (Self-Efficacy)","Response Beliefs (Self-Efficacy)","Response Beliefs (Self-Efficacy)","Response Beliefs (Response Efficacy)","Response Beliefs (Response Efficacy)","Response Beliefs (Response Efficacy)","Response Beliefs (Response Costs)*","Response Beliefs (Response Costs)*","Response Beliefs (Response Costs)*","Response Beliefs (Self-Efficacy)","Response Beliefs (Response Efficacy)","Response Beliefs (Response Costs)*","Personal Moral Norm","Personal Moral Norm","Personal Moral Norm","Subjective Norm (Injunctive)","Subjective Norm (Injunctive)","Subjective Norm (Injunctive)","Subjective Norm (Injunctive)","Subjective Norm (Descriptive)","Subjective Norm (Descriptive)","Subjective Norm (Descriptive)","Subjective Norm (Descriptive)"],["","CCBI1","CCBI2","CCBI3","CCBI4","CCSKN","","CCKN1","CCKN2","CCKN3","CCKN4","CCKN5","CCKN6","","CCDI1","CCDI2","CCDI3","CCDI4","CCDI5","CCDI6","CCDI7","CCDI8","CCDI9","","CCTB1","CCTB2","CCTB3","CCTB4","CCTB5","CCTB6","","CCRB1","CCRB2","CCRB3","CCRB4","CCRB5","CCRB6","CCRB7","CCRB8","CCRB9","CCRB10","CCRB11","CCRB12","CCPN1","CCPN2","CCPN3","CCIN1","CCIN2","CCIN3","CCIN4","CCDN1","CCDN2","CCDN3","CCDN4"],["Please now rate the following statements on climate protection measures.","I plan (to continue) to avoid the consumption of animal products such as meat, dairy or eggs.","I plan to deliberately heat my home less.","I plan to avoid trips by car.","In general, I plan to take measures to protect the climate.","How would you rate your level of knowledge about climate change?","Please rate the following statements about climate change.","Today's global CO2 concentration in the\natmosphere already occurred in the past\n650,000 years.","Despite its very low concentration in the atmosphere, nitrous oxide contributes about 6 % to the anthropogenic greenhouse effect, as its effect as a greenhouse gas is 298 times stronger than that of CO2.","CO2 usually remains in the atmosphere for between 10 and 20 years.","The Earth has been in a phase of rewarming from the Little Ice Age since about 1850, which is roughly the beginning of the Industrial Revolution.","The ozone hole is one of the major causes of global warming.","Large volcanic eruptions significantly amplify global warming.","Climate science is concerned with the laws that govern the development of the climate. Many scientific disciplines play a role in climate research, for example meteorology and physics. Computer models also constitute an important tool.\n\nThe following questions ask for your opinion about science and scientists who study the climate. There are no wrong or right answers. We are only interested in your personal opinion.","Scientists who study the climate are more interested in their own advancement than in the welfare of people.","Climate science acts in the interest of mankind.","Climate science is not interested in the well-being of mankind.","When it concerns the topic of climate change, scientists are generally capable.","It is questionable how good scientists are at researching climate change.","The scientific theories and recommendations on climate change are dubious.","Scientists researching the climate ignore evidence that contradicts their work.","Scientific research about climate change is often biased.","When it comes to climate change, science is honest.","The following questions concern your attitudes towards climate change and climate protection. There are no wrong or right answers, we are only asking your personal opinion.","I will experience the negative effects of climate change in my lifetime.","Climate change has no influence on my own life.","I am vulnerable to the negative effects of climate change.","Climate change is one of the greatest challenges humanity is facing.","The negative impacts of climate change are severe.","The thought of climate change scares me.","In the first part of the survey, we mentioned climate protection measures that can be taken by individuals. Examples are not eating meat, conserving energy in the form of electricity and heat and not driving by car. Please rate the following statements about climate protection.","I have the ability to avoid the consumption of animal products such as meat, dairy or eggs.","I have the ability to deliberately heat less.","I have the ability to avoid driving by car.","Avoiding the consumption of animal products is effective.","Deliberately heating less is effective.","Avoiding driving is effective.","Avoiding the consumption of animal products costs me much time, financial and/or emotional effort.","Deliberately heating less costs me much time, financial and/or emotional effort.","Avoiding driving cost me much time, financial and/or emotional effort.","I have the ability to take measures for climate protection.","Climate protection measures taken by individuals are effective.","Climate protection measures cost me much time, financial and/or emotional effort.","I have a moral obligation to do something about climate change.","I think that I should contribute to climate protection.","I think it's important for everyone to protect the climate.","My friends think I should behave in a climate-friendly way.","My family thinks I should behave in a climate-friendly way.","My colleagues  think I should behave in a climate-friendly way.","People who are important to me think I should behave in a climate-friendly way.","My friends are taking action to protect the climate.","My family is taking action to protect the climate.","My colleagues are taking action to protect the climate.","People who are important to me are taking action to protect the climate."],["","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","no knowledge at all<br/>little knowledge<br/>rather little knowledge<br/>rather a lot of knowledge<br/>a lot of knowledge<br/>very much knowledge","","true<br/>false<br/>don't know","true<br/>false<br/>don't know","true<br/>false<br/>don't know","true<br/>false<br/>don't know","true<br/>false<br/>don't know","true<br/>false<br/>don't know","","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely<br/>I don't have colleagues.","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely<br/>I don't have colleagues.","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely<br/>I don't have colleagues."],["","(Sorrell et al., 2020)","(Sorrell et al., 2020)","(Sorrell et al., 2020)","","","","(Tobler et al., 2012)","(Plöger, 2020)","(Plöger, 2020)","(Plöger, 2020)","(Plöger, 2020)","(Plöger, 2020; Tobler et al. 2012)","Parker 2018","(Nadelson et al., 2014; McKnight and Choudhury, 2006)","(Grimmelikhuijsen & Knies, 2017)","(McKnight and Choudhury, 2006)","(Grimmelikhuijsen & Knies, 2017; McKnight et al., 2002)","(McKnight and Choudhury, 2006)","(Nadelson et al., 2014)","(Nadelson et al., 2014)","(Nadelson et al., 2014)","(Grimmelikhuijsen & Knies, 2017)","","(Shafiei & Maleksaeidi, 2020)","(Taddicken and Neverla, 2011)","(Shafiei & Maleksaeidi, 2020)","(Taddicken and Neverla, 2011)","(Shafiei & Maleksaeidi, 2020)","(Shafiei & Maleksaeidi, 2020)","","(Bubeck et al., 2018; Cheng and Ng, 2006)","(Bubeck et al., 2018; Cheng and Ng, 2006)","(Bubeck et al., 2018; Cheng and Ng, 2006)","(Bubeck et al., 2018)","(Bubeck et al., 2018)","(Bubeck et al., 2018)","(Bubeck et al., 2018)","(Bubeck et al., 2018)","(Bubeck et al., 2018)","(Bubeck et al., 2018; Cheng and Ng, 2006)","(Bubeck et al., 2018)","(Bubeck et al., 2018)","(Brody et al., 2012)\n(Chen, 2020)","(Brody et al., 2012; Chen, 2020)","(Chen, 2020)","(Rhodes et al., 2006; Niemic et al., 2020)","(Rhodes et al., 2006; Niemic et al., 2020)","(Rhodes et al., 2006; Niemic et al., 2020)","(Rhodes et al., 2006; Niemic et al., 2020)","(Rhodes et al., 2006; Niemic et al., 2020)","(Rhodes et al., 2006; Niemic et al., 2020)","(Rhodes et al., 2006; Niemic et al., 2020)","(Rhodes et al., 2006; Niemic et al., 2020)"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Variable<\/th>\n      <th>Abbreviation<\/th>\n      <th>Item (translated)<\/th>\n      <th>Scale (translated)<\/th>\n      <th>Reference<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":54,"ordering":false,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,25,50,54,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-afc1ff3b130bd0c05097" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-afc1ff3b130bd0c05097">{"x":{"filter":"none","vertical":false,"caption":"<caption>Survey 1 questions, * denotes items that are reversed for analysis<\/caption>","data":[["(Intro Climate Crisis Behavioral Intention)","Climate Crisis Behavioral Intention","Climate Crisis Behavioral Intention","Climate Crisis Behavioral Intention","Climate Crisis Behavioral Intention","Subjective Knowledge","(Intro Knowledge)","Knowledge","Knowledge","Knowledge*","Knowledge","Knowledge*","Knowledge*","(Intro Distrusting Beliefs)","Distrusting Beliefs in Science (Benevolence)","Distrusting Beliefs in Science (Benevolence)*","Distrusting Beliefs in Science (Benevolence)","Distrusting Beliefs in Science (Competence)*","Distrusting Beliefs in Science (Competence)","Distrusting Beliefs in Science (Competence)","Distrusting Beliefs in Science (Integrity)","Distrusting Beliefs in Science (Integrity)","Trusting Beliefs in Science (Integrity)*","(Intro Beliefs)","Threat Beliefs (Susceptibility)","Threat Beliefs (Susceptibility)*","Threat Beliefs (Susceptibility)","Threat Beliefs (Severity)","Threat Beliefs (Severity)","Threat Beliefs (Severity)","(Intro 2 Beliefs)","Response Beliefs (Self-Efficacy)","Response Beliefs (Self-Efficacy)","Response Beliefs (Self-Efficacy)","Response Beliefs (Response Efficacy)","Response Beliefs (Response Efficacy)","Response Beliefs (Response Efficacy)","Response Beliefs (Response Costs)*","Response Beliefs (Response Costs)*","Response Beliefs (Response Costs)*","Response Beliefs (Self-Efficacy)","Response Beliefs (Response Efficacy)","Response Beliefs (Response Costs)*","Personal Moral Norm","Personal Moral Norm","Personal Moral Norm","Subjective Norm (Injunctive)","Subjective Norm (Injunctive)","Subjective Norm (Injunctive)","Subjective Norm (Injunctive)","Subjective Norm (Descriptive)","Subjective Norm (Descriptive)","Subjective Norm (Descriptive)","Subjective Norm (Descriptive)"],["","CCBI1","CCBI2","CCBI3","CCBI4","CCSKN","","CCKN1","CCKN2","CCKN3","CCKN4","CCKN5","CCKN6","","CCDI1","CCDI2","CCDI3","CCDI4","CCDI5","CCDI6","CCDI7","CCDI8","CCDI9","","CCTB1","CCTB2","CCTB3","CCTB4","CCTB5","CCTB6","","CCRB1","CCRB2","CCRB3","CCRB4","CCRB5","CCRB6","CCRB7","CCRB8","CCRB9","CCRB10","CCRB11","CCRB12","CCPN1","CCPN2","CCPN3","CCIN1","CCIN2","CCIN3","CCIN4","CCDN1","CCDN2","CCDN3","CCDN4"],["Please now rate the following statements on climate protection measures.","I plan (to continue) to avoid the consumption of animal products such as meat, dairy or eggs.","I plan to deliberately heat my home less.","I plan to avoid trips by car.","In general, I plan to take measures to protect the climate.","How would you rate your level of knowledge about climate change?","Please rate the following statements about climate change.","Today's global CO2 concentration in the\natmosphere already occurred in the past\n650,000 years.","Despite its very low concentration in the atmosphere, nitrous oxide contributes about 6 % to the anthropogenic greenhouse effect, as its effect as a greenhouse gas is 298 times stronger than that of CO2.","CO2 usually remains in the atmosphere for between 10 and 20 years.","The Earth has been in a phase of rewarming from the Little Ice Age since about 1850, which is roughly the beginning of the Industrial Revolution.","The ozone hole is one of the major causes of global warming.","Large volcanic eruptions significantly amplify global warming.","Climate science is concerned with the laws that govern the development of the climate. Many scientific disciplines play a role in climate research, for example meteorology and physics. Computer models also constitute an important tool.\n\nThe following questions ask for your opinion about science and scientists who study the climate. There are no wrong or right answers. We are only interested in your personal opinion.","Scientists who study the climate are more interested in their own advancement than in the welfare of people.","Climate science acts in the interest of mankind.","Climate science is not interested in the well-being of mankind.","When it concerns the topic of climate change, scientists are generally capable.","It is questionable how good scientists are at researching climate change.","The scientific theories and recommendations on climate change are dubious.","Scientists researching the climate ignore evidence that contradicts their work.","Scientific research about climate change is often biased.","When it comes to climate change, science is honest.","The following questions concern your attitudes towards climate change and climate protection. There are no wrong or right answers, we are only asking your personal opinion.","I will experience the negative effects of climate change in my lifetime.","Climate change has no influence on my own life.","I am vulnerable to the negative effects of climate change.","Climate change is one of the greatest challenges humanity is facing.","The negative impacts of climate change are severe.","The thought of climate change scares me.","In the first part of the survey, we mentioned climate protection measures that can be taken by individuals. Examples are not eating meat, conserving energy in the form of electricity and heat and not driving by car. Please rate the following statements about climate protection.","I have the ability to avoid the consumption of animal products such as meat, dairy or eggs.","I have the ability to deliberately heat less.","I have the ability to avoid driving by car.","Avoiding the consumption of animal products is effective.","Deliberately heating less is effective.","Avoiding driving is effective.","Avoiding the consumption of animal products costs me much time, financial and/or emotional effort.","Deliberately heating less costs me much time, financial and/or emotional effort.","Avoiding driving cost me much time, financial and/or emotional effort.","I have the ability to take measures for climate protection.","Climate protection measures taken by individuals are effective.","Climate protection measures cost me much time, financial and/or emotional effort.","I have a moral obligation to do something about climate change.","I think that I should contribute to climate protection.","I think it's important for everyone to protect the climate.","My friends think I should behave in a climate-friendly way.","My family thinks I should behave in a climate-friendly way.","My colleagues  think I should behave in a climate-friendly way.","People who are important to me think I should behave in a climate-friendly way.","My friends are taking action to protect the climate.","My family is taking action to protect the climate.","My colleagues are taking action to protect the climate.","People who are important to me are taking action to protect the climate."],["","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","no knowledge at all<br/>little knowledge<br/>rather little knowledge<br/>rather a lot of knowledge<br/>a lot of knowledge<br/>very much knowledge","","true<br/>false<br/>don't know","true<br/>false<br/>don't know","true<br/>false<br/>don't know","true<br/>false<br/>don't know","true<br/>false<br/>don't know","true<br/>false<br/>don't know","","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely<br/>I don't have colleagues.","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely<br/>I don't have colleagues.","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely<br/>I don't have colleagues."],["","Based on Sorrel et al., 2020","Based on Sorrel et al., 2020","Based on Sorrel et al., 2020","","","","Tobler et al., 2012","Based on Plöger, 2020","Based on Plöger, 2020","Based on Plöger, 2020","Based on Plöger, 2020","Adapted from Tobler et al. 2012","Parker 2018","Adapted from Nadelson et al., 2014, and McKnight and Choudhury, 2006","Adapted from Grimmelikhuijsen & Knies, 2017","Adapted from McKnight and Choudhury, 2006","Adapted from Nadelson et al., 2014, and McKnight and Choudhury, 2006","Adapted from McKnight and Choudhury, 2006","Adapted from Nadelson et al., 2014","Adapted from Nadelson et al., 2014","Adapted from Nadelson et al., 2014","Adapted from Grimmelikhuijsen & Knies, 2017","","Adapted from Shafiei & Maleksaeidi, 2020","Taddicken and Neverla, 2011","Adapted from Shafiei & Maleksaeidi, 2020","Taddicken and Neverla, 2011","Adapted from Shafiei & Maleksaeidi, 2020","Adapted from Shafiei & Maleksaeidi, 2020","","Adapted from Bubeck et al., 2018, and Cheng and Ng, 2006","Adapted from Bubeck et al., 2018, and Cheng and Ng, 2006","Adapted from Bubeck et al., 2018, and Cheng and Ng, 2006","Adapted from Bubeck et al., 2018","Adapted from Bubeck et al., 2018","Adapted from Bubeck et al., 2018","Adapted from Bubeck et al., 2018","Adapted from Bubeck et al., 2018","Adapted from Bubeck et al., 2018","Adapted from Bubeck et al., 2018, and Cheng and Ng, 2006","Adapted from Bubeck et al., 2018","Adapted from Bubeck et al., 2018","Adapted from Brody et al., 2012, and Chen, 2020","Adapted from Brody et al., 2012, and Chen, 2020","Adapted from Chen, 2020","Adapted from Rhodes et al., 2006, and Niemic et al., 2020","Adapted from Rhodes et al., 2006, and Niemic et al., 2020","Adapted from Rhodes et al., 2006, and Niemic et al., 2020","Adapted from Rhodes et al., 2006, and Niemic et al., 2020","Adapted from Rhodes et al., 2006, and Niemic et al., 2020","Adapted from Rhodes et al., 2006, and Niemic et al., 2020","Adapted from Rhodes et al., 2006, and Niemic et al., 2020","Adapted from Rhodes et al., 2006, and Niemic et al., 2020"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Variable<\/th>\n      <th>Abbreviation<\/th>\n      <th>Item (translated)<\/th>\n      <th>Scale (translated)<\/th>\n      <th>Reference<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":54,"ordering":false,"columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,25,50,54,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <h1 id="survey-2">Survey 2</h1>
-<p>These are the items from survey 2 which was conducted two weeks after survey 1. The results are used to measure self-reported behavior change.</p>
+<p>These are the items from survey 2 which was conducted two weeks after survey 1.
+The results are used to measure self-reported behavior change.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-9012e66c2b0ffb7ebdf6" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9012e66c2b0ffb7ebdf6">{"x":{"filter":"none","caption":"<caption>Survey 2 questions<\/caption>","data":[["(Intro Climate Crisis Behavior )","Climate Crisis Behavior","Climate Crisis Behavior","Climate Crisis Behavior","Climate Crisis Behavior"],["","CCB1","CCB2","CCB3","CCB4"],["In the last survey, we also asked you about your behavioral intentions regarding climate protection. Looking back on the meantime, how do you rate the following statements?","I avoided the consumption of animal products such as meat, dairy or eggs.","I deliberately heated less.","I avoided trips by car.","In general, I took measures to protect the climate."],["","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely"],["","(Sorrell et al., 2020)","(Sorrell et al., 2020)","(Sorrell et al., 2020)",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Variable<\/th>\n      <th>Abbreviation<\/th>\n      <th>Item (translated)<\/th>\n      <th>Scale (translated)<\/th>\n      <th>Reference<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"ordering":false,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-bdd8cc0ad24ffa73729e" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-bdd8cc0ad24ffa73729e">{"x":{"filter":"none","vertical":false,"caption":"<caption>Survey 2 questions<\/caption>","data":[["(Intro Climate Crisis Behavior )","Climate Crisis Behavior","Climate Crisis Behavior","Climate Crisis Behavior","Climate Crisis Behavior"],["","CCB1","CCB2","CCB3","CCB4"],["In the last survey, we also asked you about your behavioral intentions regarding climate protection. Looking back on the meantime, how do you rate the following statements?","I avoided the consumption of animal products such as meat, dairy or eggs.","I deliberately heated less.","I avoided trips by car.","In general, I took measures to protect the climate."],["","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely","Do not agree at all<br/>Do not agree<br/>Rather not agree<br/>Rather agree<br/>Agree<br/>Agree completely"],["","Based on Sorrel et al., 2020","Based on Sorrel et al., 2020","Based on Sorrel et al., 2020",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Variable<\/th>\n      <th>Abbreviation<\/th>\n      <th>Item (translated)<\/th>\n      <th>Scale (translated)<\/th>\n      <th>Reference<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"ordering":false,"columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<div id="refs" class="references" role="doc-bibliography">
-<div id="ref-brody_examining_2012">
-<p>Brody, Samuel, Himanshu Grover, and Arnold Vedlitz. 2012. “Examining the Willingness of Americans to Alter Behaviour to Mitigate Climate Change.” <em>Climate Policy</em> 12 (1): 1–22. <a href="https://doi.org/10.1080/14693062.2011.579261">https://doi.org/10.1080/14693062.2011.579261</a>.</p>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brody_examining_2012" class="csl-entry" role="listitem">
+Brody, Samuel, Himanshu Grover, and Arnold Vedlitz. 2012. <span>“Examining the Willingness of <span>Americans</span> to Alter Behaviour to Mitigate Climate Change.”</span> <em>Climate Policy</em> 12 (1): 1–22. <a href="https://doi.org/10.1080/14693062.2011.579261">https://doi.org/10.1080/14693062.2011.579261</a>.
 </div>
-<div id="ref-bubeck_insights_2018">
-<p>Bubeck, Philip, W. J. Wouter Botzen, Jonas Laudan, Jeroen C. J. H. Aerts, and Annegret H. Thieken. 2018. “Insights into Flood-Coping Appraisals of Protection Motivation Theory: Empirical Evidence from Germany and France.” <em>Risk Analysis</em> 38 (6): 1239–57. <a href="https://doi.org/10.1111/risa.12938">https://doi.org/10.1111/risa.12938</a>.</p>
+<div id="ref-bubeck_insights_2018" class="csl-entry" role="listitem">
+Bubeck, Philip, W. J. Wouter Botzen, Jonas Laudan, Jeroen C. J. H. Aerts, and Annegret H. Thieken. 2018. <span>“Insights into <span>Flood</span>-<span>Coping</span> <span>Appraisals</span> of <span>Protection</span> <span>Motivation</span> <span>Theory</span>: <span>Empirical</span> <span>Evidence</span> from <span>Germany</span> and <span>France</span>.”</span> <em>Risk Analysis</em> 38 (6): 1239–57. <a href="https://doi.org/10.1111/risa.12938">https://doi.org/10.1111/risa.12938</a>.
 </div>
-<div id="ref-chen_impacts_2020">
-<p>Chen, Mei-Fang. 2020. “The Impacts of Perceived Moral Obligation and Sustainability Self-Identity on Sustainability Development: A Theory of Planned Behavior Purchase Intention Model of Sustainability-Labeled Coffee and the Moderating Effect of Climate Change Skepticism.” <em>Business Strategy and the Environment</em> 29 (6). <a href="https://doi.org/10.1002/bse.2510">https://doi.org/10.1002/bse.2510</a>.</p>
+<div id="ref-chen_impacts_2020" class="csl-entry" role="listitem">
+Chen, Mei-Fang. 2020. <span>“The Impacts of Perceived Moral Obligation and Sustainability Self-Identity on Sustainability Development: <span>A</span> Theory of Planned Behavior Purchase Intention Model of Sustainability-Labeled Coffee and the Moderating Effect of Climate Change Skepticism.”</span> <em>Business Strategy and the Environment</em> 29 (6). <a href="https://doi.org/10.1002/bse.2510">https://doi.org/10.1002/bse.2510</a>.
 </div>
-<div id="ref-cheng_psychosocial_2006">
-<p>Cheng, C., and A.-K. Ng. 2006. “Psychosocial Factors Predicting SARS-Preventive Behaviors in Four Major SARS-Affected Regions.” <em>Journal of Applied Social Psychology</em> 36 (1): 222–47. <a href="https://doi.org/10.1111/j.0021-9029.2006.00059.x">https://doi.org/10.1111/j.0021-9029.2006.00059.x</a>.</p>
+<div id="ref-cheng_psychosocial_2006" class="csl-entry" role="listitem">
+Cheng, C., and A.-K. Ng. 2006. <span>“Psychosocial Factors Predicting <span>SARS</span>-Preventive Behaviors in Four Major <span>SARS</span>-Affected Regions.”</span> <em>Journal of Applied Social Psychology</em> 36 (1): 222–47. <a href="https://doi.org/10.1111/j.0021-9029.2006.00059.x">https://doi.org/10.1111/j.0021-9029.2006.00059.x</a>.
 </div>
-<div id="ref-grimmelikhuijsen_validating_2017">
-<p>Grimmelikhuijsen, Stephan, and Eva Knies. 2017. “Validating a Scale for Citizen Trust in Government Organizations.” <em>International Review of Administrative Sciences</em> 83 (3): 583–601. <a href="https://doi.org/10.1177/0020852315585950">https://doi.org/10.1177/0020852315585950</a>.</p>
+<div id="ref-grimmelikhuijsen_validating_2017" class="csl-entry" role="listitem">
+Grimmelikhuijsen, Stephan, and Eva Knies. 2017. <span>“Validating a Scale for Citizen Trust in Government Organizations.”</span> <em>International Review of Administrative Sciences</em> 83 (3): 583–601. <a href="https://doi.org/10.1177/0020852315585950">https://doi.org/10.1177/0020852315585950</a>.
 </div>
-<div id="ref-kovaleva_internale-externale-kontrolluberzeugung-4_2014">
-<p>Kovaleva, A., C. Beierlein, C. J. Kemper, and B. Rammstedt. 2014. “Internale-Externale-Kontrollüberzeugung-4 (IE-4).” <em>Zusammenstellung Sozialwissenschaftlicher Items Und Skalen (ZIS)</em>. <a href="https://doi.org/10.6102/ZIS184">https://doi.org/10.6102/ZIS184</a>.</p>
+<div id="ref-kovaleva_internale-externale-kontrolluberzeugung-4_2014" class="csl-entry" role="listitem">
+Kovaleva, A., C. Beierlein, C. J. Kemper, and B. Rammstedt. 2014. <span>“Internale-<span>Externale</span>-<span>Kontrollüberzeugung</span>-4 (<span>IE</span>-4).”</span> <em>Zusammenstellung Sozialwissenschaftlicher Items Und Skalen (ZIS)</em>. <a href="https://doi.org/10.6102/ZIS184">https://doi.org/10.6102/ZIS184</a>.
 </div>
-<div id="ref-mcknight_developing_2002">
-<p>McKnight, D. Harrison, Vivek Choudhury, and Charles Kacmar. 2002. “Developing and Validating Trust Measures for E-Commerce: An Integrative Typology.” <em>Information Systems Research</em> 13 (3): 334–59. <a href="https://doi.org/10.1287/isre.13.3.334.81">https://doi.org/10.1287/isre.13.3.334.81</a>.</p>
+<div id="ref-mcknight_developing_2002" class="csl-entry" role="listitem">
+McKnight, D. Harrison, Vivek Choudhury, and Charles Kacmar. 2002. <span>“Developing and <span>Validating</span> <span>Trust</span> <span>Measures</span> for e-<span>Commerce</span>: <span>An</span> <span>Integrative</span> <span>Typology</span>.”</span> <em>Information Systems Research</em> 13 (3): 334–59. <a href="https://doi.org/10.1287/isre.13.3.334.81">https://doi.org/10.1287/isre.13.3.334.81</a>.
 </div>
-<div id="ref-mcknight_distrust_2006">
-<p>McKnight, D. H., and V. Choudhury. 2006. “Distrust and Trust in B2C E-Commerce: Do They Differ?” In <em>Proceedings of the 8th International Conference on Electronic Commerce</em>, 482–91. <a href="https://doi.org/10.1145/1151454.1151527">https://doi.org/10.1145/1151454.1151527</a>.</p>
+<div id="ref-mcknight_distrust_2006" class="csl-entry" role="listitem">
+McKnight, D. H., and V. Choudhury. 2006. <span>“Distrust and Trust in <span>B2C</span> e-Commerce: <span>Do</span> They Differ?”</span> In <em>Proceedings of the 8th International Conference on Electronic Commerce</em>, 482–91. <a href="https://doi.org/10.1145/1151454.1151527">https://doi.org/10.1145/1151454.1151527</a>.
 </div>
-<div id="ref-nadelson_i_2014">
-<p>Nadelson, Louis, Cheryl Jorcyk, Dazhi Yang, Mary Jarratt Smith, Sam Matson, Ken Cornell, and Virginia Husting. 2014. “I Just Don’t Trust Them: The Development and Validation of an Assessment Instrument to Measure Trust in Science and Scientists.” <em>School Science and Mathematics</em> 114 (2): 76–86. <a href="https://doi.org/10.1111/ssm.12051">https://doi.org/10.1111/ssm.12051</a>.</p>
+<div id="ref-nadelson_i_2014" class="csl-entry" role="listitem">
+Nadelson, Louis, Cheryl Jorcyk, Dazhi Yang, Mary Jarratt Smith, Sam Matson, Ken Cornell, and Virginia Husting. 2014. <span>“I Just Don’t Trust Them: The Development and Validation of an Assessment Instrument to Measure Trust in Science and Scientists.”</span> <em>School Science and Mathematics</em> 114 (2): 76–86. <a href="https://doi.org/10.1111/ssm.12051">https://doi.org/10.1111/ssm.12051</a>.
 </div>
-<div id="ref-niemiec_does_2020">
-<p>Niemiec, R. M., V. Champine, J. J. Vaske, and A. Mertens. 2020. “Does the Impact of Norms Vary by Type of Norm and Type of Conservation Behavior? A Meta-Analysis.” <em>Society and Natural Resources</em> 33 (8): 1024–40. <a href="https://doi.org/10.1080/08941920.2020.1729912">https://doi.org/10.1080/08941920.2020.1729912</a>.</p>
+<div id="ref-niemiec_does_2020" class="csl-entry" role="listitem">
+Niemiec, R. M., V. Champine, J. J. Vaske, and A. Mertens. 2020. <span>“Does the <span>Impact</span> of <span>Norms</span> <span>Vary</span> by <span>Type</span> of <span>Norm</span> and <span>Type</span> of <span>Conservation</span> <span>Behavior</span>? <span>A</span> <span>Meta</span>-<span>Analysis</span>.”</span> <em>Society and Natural Resources</em> 33 (8): 1024–40. <a href="https://doi.org/10.1080/08941920.2020.1729912">https://doi.org/10.1080/08941920.2020.1729912</a>.
 </div>
-<div id="ref-parker_climate_2018">
-<p>Parker, Wendy. 2018. “Climate Science.” In <em>The Stanford Encyclopedia of Philosophy</em>, edited by Edward N. Zalta, Summer 2018. Metaphysics Research Lab, Stanford University. <a href="https://plato.stanford.edu/archives/sum2018/entries/climate-science/">https://plato.stanford.edu/archives/sum2018/entries/climate-science/</a>.</p>
+<div id="ref-parker_climate_2018" class="csl-entry" role="listitem">
+Parker, Wendy. 2018. <span>“Climate <span>Science</span>.”</span> In <em>The <span>Stanford</span> <span>Encyclopedia</span> of <span>Philosophy</span></em>, edited by Edward N. Zalta, Summer 2018. Metaphysics Research Lab, Stanford University. <a href="https://plato.stanford.edu/archives/sum2018/entries/climate-science/">https://plato.stanford.edu/archives/sum2018/entries/climate-science/</a>.
 </div>
-<div id="ref-ploger_zieht_2020">
-<p>Plöger, Sven. 2020. <em>Zieht Euch Warm an, Es Wird Heiß! Den Klimawandel Verstehen Und Aus Der Krise Für Die Welt von Morgen Lernen [Dress up Warmly, It’s Going to Be Hot! Understanding Climate Change and Learning from the Crisis for the World of Tomorrow]</em>. <a href="https://nbn-resolving.org/urn:nbn:de:101:1-2020061105202962484999">https://nbn-resolving.org/urn:nbn:de:101:1-2020061105202962484999</a>.</p>
+<div id="ref-ploger_zieht_2020" class="csl-entry" role="listitem">
+Plöger, Sven. 2020. <em>Zieht Euch Warm an, Es Wird Heiß! Den <span>Klimawandel</span> Verstehen Und Aus Der <span>Krise</span> Für Die <span>Welt</span> von Morgen Lernen [Dress up Warmly, It’s Going to Be Hot! Understanding <span>Climate Change</span> and Learning from the <span>Crisis</span> for the <span>World</span> of Tomorrow]</em>. <a href="https://nbn-resolving.org/urn:nbn:de:101:1-2020061105202962484999">https://nbn-resolving.org/urn:nbn:de:101:1-2020061105202962484999</a>.
 </div>
-<div id="ref-rammstedt_validation_2020">
-<p>Rammstedt, Beatrice, Daniel Danner, Christopher J. Soto, and Oliver P. John. 2020. “Validation of the Short and Extra-Short Forms of the Big Five Inventory-2 (BFI-2) and Their German Adaptations.” <em>European Journal of Psychological Assessment</em> 36 (1): 149–61. <a href="https://doi.org/10.1027/1015-5759/a000481">https://doi.org/10.1027/1015-5759/a000481</a>.</p>
+<div id="ref-rammstedt_validation_2020" class="csl-entry" role="listitem">
+Rammstedt, Beatrice, Daniel Danner, Christopher J. Soto, and Oliver P. John. 2020. <span>“Validation of the Short and Extra-Short Forms of the <span>Big</span> <span>Five</span> <span>Inventory</span>-2 (<span>BFI</span>-2) and Their <span>German</span> Adaptations.”</span> <em>European Journal of Psychological Assessment</em> 36 (1): 149–61. <a href="https://doi.org/10.1027/1015-5759/a000481">https://doi.org/10.1027/1015-5759/a000481</a>.
 </div>
-<div id="ref-rhodes_multicomponent_2006">
-<p>Rhodes, R. E., C. M. Blanchard, and D. H. Matheson. 2006. “A Multicomponent Model of the Theory of Planned Behaviour.” <em>British Journal of Health Psychology</em> 11 (1): 119–37. <a href="https://doi.org/10.1348/135910705X52633">https://doi.org/10.1348/135910705X52633</a>.</p>
+<div id="ref-rhodes_multicomponent_2006" class="csl-entry" role="listitem">
+Rhodes, R. E., C. M. Blanchard, and D. H. Matheson. 2006. <span>“A Multicomponent Model of the Theory of Planned Behaviour.”</span> <em>British Journal of Health Psychology</em> 11 (1): 119–37. <a href="https://doi.org/10.1348/135910705X52633">https://doi.org/10.1348/135910705X52633</a>.
 </div>
-<div id="ref-shafiei_pro-environmental_2020">
-<p>Shafiei, A., and H. Maleksaeidi. 2020. “Pro-Environmental Behavior of University Students: Application of Protection Motivation Theory.” <em>Global Ecology and Conservation</em> 22. <a href="https://doi.org/10.1016/j.gecco.2020.e00908">https://doi.org/10.1016/j.gecco.2020.e00908</a>.</p>
+<div id="ref-shafiei_pro-environmental_2020" class="csl-entry" role="listitem">
+Shafiei, A., and H. Maleksaeidi. 2020. <span>“Pro-Environmental Behavior of University Students: <span>Application</span> of Protection Motivation Theory.”</span> <em>Global Ecology and Conservation</em> 22. <a href="https://doi.org/10.1016/j.gecco.2020.e00908">https://doi.org/10.1016/j.gecco.2020.e00908</a>.
 </div>
-<div id="ref-sorrell_limits_2020">
-<p>Sorrell, S., B. Gatersleben, and A. Druckman. 2020. “The Limits of Energy Sufficiency: A Review of the Evidence for Rebound Effects and Negative Spillovers from Behavioural Change.” <em>Energy Research and Social Science</em> 64. <a href="https://doi.org/10.1016/j.erss.2020.101439">https://doi.org/10.1016/j.erss.2020.101439</a>.</p>
+<div id="ref-sorrell_limits_2020" class="csl-entry" role="listitem">
+Sorrell, S., B. Gatersleben, and A. Druckman. 2020. <span>“The Limits of Energy Sufficiency: <span>A</span> Review of the Evidence for Rebound Effects and Negative Spillovers from Behavioural Change.”</span> <em>Energy Research and Social Science</em> 64. <a href="https://doi.org/10.1016/j.erss.2020.101439">https://doi.org/10.1016/j.erss.2020.101439</a>.
 </div>
-<div id="ref-taddicken_klimawandel_2011">
-<p>Taddicken, Monika, and Irene Neverla. 2011. “Klimawandel Aus Sicht Der Mediennutzer. Multifaktorielles Wirkungsmodell Der Medienerfahrung Zur Komplexen Wissensdomäne Klimawandel.” <em>Medien &amp; Kommunikationswissenschaft</em> 59 (4): 505–25. <a href="https://doi.org/10.5771/1615-634x-2011-4-505">https://doi.org/10.5771/1615-634x-2011-4-505</a>.</p>
+<div id="ref-taddicken_klimawandel_2011" class="csl-entry" role="listitem">
+Taddicken, Monika, and Irene Neverla. 2011. <span>“Klimawandel Aus <span>Sicht</span> Der <span>Mediennutzer</span>. <span>Multifaktorielles</span> <span>Wirkungsmodell</span> Der <span>Medienerfahrung</span> Zur Komplexen <span>Wissensdomäne</span> <span>Klimawandel</span>.”</span> <em>Medien &amp; Kommunikationswissenschaft</em> 59 (4): 505–25. <a href="https://doi.org/10.5771/1615-634x-2011-4-505">https://doi.org/10.5771/1615-634x-2011-4-505</a>.
 </div>
-<div id="ref-tobler_consumers_2012">
-<p>Tobler, C., V. H. M. Visschers, and M. Siegrist. 2012. “Consumers’ Knowledge About Climate Change.” <em>Climatic Change</em> 114 (2): 189–209. <a href="https://doi.org/10.1007/s10584-011-0393-1">https://doi.org/10.1007/s10584-011-0393-1</a>.</p>
+<div id="ref-tobler_consumers_2012" class="csl-entry" role="listitem">
+Tobler, C., V. H. M. Visschers, and M. Siegrist. 2012. <span>“Consumers’ Knowledge about Climate Change.”</span> <em>Climatic Change</em> 114 (2): 189–209. <a href="https://doi.org/10.1007/s10584-011-0393-1">https://doi.org/10.1007/s10584-011-0393-1</a>.
 </div>
 </div>
 <!--radix_placeholder_article_footer-->
@@ -2291,9 +2355,6 @@ General model evaluation
 </div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
-<div class="distill-site-nav distill-site-footer">
-<p>© Copyright 2022 Anonymous</p>
-</div>
 <!--/radix_placeholder_navigation_after_body-->
 
 </body>

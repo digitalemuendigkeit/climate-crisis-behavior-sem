@@ -27,7 +27,7 @@ sample <- read.csv2(here::here("reports","data", "sample-questions.csv"),
 sample$Scale..translated. <- gsub(pattern = "\n", replacement = "<br/>", x = sample$Scale..translated.)
 survey1 <- read.csv2(here::here("reports","data", "survey-1.csv"), 
                     allowEscapes = TRUE,
-                    encoding = "UTF-8") %>% 
+                    encoding = "latin1") %>% 
   as_tibble()
 survey1$Scale..translated. <- gsub(pattern = "\n", replacement = "<br/>", x = survey1$Scale..translated.)
 survey2 <- read.csv2(here::here("reports","data", "survey-2.csv"), 

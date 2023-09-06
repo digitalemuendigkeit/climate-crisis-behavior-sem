@@ -176,6 +176,28 @@ datatable(sumsm,
 
 The structural model can be retained as is.
 
+# Achieved power
+
+To calculate the achieved power of our model, we use the inverse square root method described by Kock and Hadaya (2018).
+```{r}
+# Achieved sample size
+n <- nrow(model$data)
+# Significance level
+siglevel <- 0.1
+# smallest path coefficient
+minb <- (min(abs(sumsm$`Path Coefficient Original Estimate`)))
+# achieved power given the achieved sample size and provided significance level
+acp <- pnorm(sqrt(n-1)*minb-qnorm(1-siglevel))
+# manual adjustment if necessary
+acp <- acp - 0.01
+# test: is the achieved sample size larger than the necessary sample size?
+minn <- ceiling(((qnorm(1-siglevel)+qnorm(acp))/minb)^2)
+ifelse(n > minn,
+      paste0("The achieved power given the achieved sample size of ", n, ", a ", siglevel*100,"% significance level, and the smallest absolute effect size in this model being ", round(minb,3), " is ", round(acp,2), "."),
+      "Please manually adjust the calculation."
+    )
+```
+
 <!-- ```{r table-getter, echo = FALSE, include = FALSE} -->
 <!-- write_excel_csv(sumsm[,-5] %>% mutate(across(c(3:5,7:8),  round, 2)) %>% mutate(across(c(6),  round, 3)), "paper/smeval-cc-2-b-3.csv",delim = ";") -->
 <!-- ``` -->
