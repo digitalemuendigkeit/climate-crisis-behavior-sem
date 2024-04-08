@@ -198,6 +198,6 @@ ifelse(n > minn,
     )
 ```
 
-<!-- ```{r table-getter, echo = FALSE, include = FALSE} -->
-<!-- write_excel_csv(sumsm[,-5] %>% mutate(across(c(3:5,7:8),  round, 2)) %>% mutate(across(c(6),  round, 3)), "paper/smeval-cc-2-a-3.csv",delim = ";") -->
-<!-- ``` -->
+```{r table-getter, echo = FALSE, include = FALSE}
+# write_excel_csv(sumsm[,-5] %>% mutate(across(c(3:5,7:8),  round, 2)) %>% mutate(across(c(6),  round, 3)), "paper/smeval-cc-2-a-3.csv",delim = ";")
+```

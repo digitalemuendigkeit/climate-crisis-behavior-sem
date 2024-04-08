@@ -20,19 +20,19 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,11 +74,11 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
@@ -85,38 +86,39 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+
   <!--radix_placeholder_meta_tags-->
   <title>Supplementary Website: Climate Crisis Iteration 2-b-2 (Heating) Structural Model Evaluation</title>
-  
-  
-  
-  
+
+
+
+
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Supplementary Website: Climate Crisis Iteration 2-b-2 (Heating) Structural Model Evaluation"/>
   <meta property="og:type" content="article"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Supplementary Website"/>
-  
+
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Supplementary Website: Climate Crisis Iteration 2-b-2 (Heating) Structural Model Evaluation"/>
-  
+
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
-  
+
   <script type="text/json" id="radix-rmarkdown-metadata">
   {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Climate Crisis Iteration 2-b-2 (Heating) Structural Model Evaluation"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[1]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
   <meta name="distill:offset" content=""/>
-  
+
   <script type="application/javascript">
-  
+
     window.headroom_prevent_pin = false;
-  
+
     window.document.addEventListener("DOMContentLoaded", function (event) {
-  
+
       // initialize headroom for banner
       var header = $('header').get(0);
       var headerHeight = header.offsetHeight;
@@ -133,13 +135,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       if(window.location.hash)
         headroom.unpin();
       $(header).addClass('headroom--transition');
-  
+
       // offset scroll location for banner on hash change
       // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
       window.addEventListener("hashchange", function(event) {
         window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
       });
-  
+
       // responsive menu
       $('.distill-site-header').each(function(i, val) {
         var topnav = $(this);
@@ -148,7 +150,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           topnav.toggleClass('responsive');
         });
       });
-  
+
       // nav dropdowns
       $('.nav-dropbtn').click(function(e) {
         $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
@@ -163,99 +165,99 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       });
     });
   </script>
-  
+
   <style type="text/css">
-  
+
   /* Theme (user-documented overrideables for nav appearance) */
-  
+
   .distill-site-nav {
     color: rgba(255, 255, 255, 0.8);
     background-color: #0F2E3D;
     font-size: 15px;
     font-weight: 300;
   }
-  
+
   .distill-site-nav a {
     color: inherit;
     text-decoration: none;
   }
-  
+
   .distill-site-nav a:hover {
     color: white;
   }
-  
+
   @media print {
     .distill-site-nav {
       display: none;
     }
   }
-  
+
   .distill-site-header {
-  
+
   }
-  
+
   .distill-site-footer {
-  
+
   }
-  
-  
+
+
   /* Site Header */
-  
+
   .distill-site-header {
     width: 100%;
     box-sizing: border-box;
     z-index: 3;
   }
-  
+
   .distill-site-header .nav-left {
     display: inline-block;
     margin-left: 8px;
   }
-  
+
   @media screen and (max-width: 768px) {
     .distill-site-header .nav-left {
       margin-left: 0;
     }
   }
-  
-  
+
+
   .distill-site-header .nav-right {
     float: right;
     margin-right: 8px;
   }
-  
+
   .distill-site-header a,
   .distill-site-header .title {
     display: inline-block;
     text-align: center;
     padding: 14px 10px 14px 10px;
   }
-  
+
   .distill-site-header .title {
     font-size: 18px;
     min-width: 150px;
   }
-  
+
   .distill-site-header .logo {
     padding: 0;
   }
-  
+
   .distill-site-header .logo img {
     display: none;
     max-height: 20px;
     width: auto;
     margin-bottom: -4px;
   }
-  
+
   .distill-site-header .nav-image img {
     max-height: 18px;
     width: auto;
     display: inline-block;
     margin-bottom: -3px;
   }
-  
-  
-  
+
+
+
   @media screen and (min-width: 1000px) {
     .distill-site-header .logo img {
       display: inline-block;
@@ -270,17 +272,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       padding-left: 12px;
     }
   }
-  
-  
+
+
   .distill-site-header .nav-toggle {
     display: none;
   }
-  
+
   .nav-dropdown {
     display: inline-block;
     position: relative;
   }
-  
+
   .nav-dropdown .nav-dropbtn {
     border: none;
     outline: none;
@@ -294,7 +296,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1px;
     z-index: 2;
   }
-  
+
   .nav-dropdown-content {
     display: none;
     position: absolute;
@@ -309,18 +311,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-top: 4px;
     padding-bottom: 4px;
   }
-  
+
   .nav-dropdown-content hr {
     margin-top: 4px;
     margin-bottom: 4px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .nav-dropdown-active {
     display: block;
   }
-  
+
   .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
     color: black;
     padding: 6px 24px;
@@ -328,7 +330,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     display: block;
     text-align: left;
   }
-  
+
   .nav-dropdown-content .nav-dropdown-header {
     display: block;
     padding: 5px 24px;
@@ -338,21 +340,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: #999999;
     white-space: nowrap;
   }
-  
+
   .nav-dropdown:hover .nav-dropbtn {
     color: white;
   }
-  
+
   .nav-dropdown-content a:hover {
     background-color: #ddd;
     color: black;
   }
-  
+
   .nav-right .nav-dropdown-content {
     margin-left: -45%;
     right: 0;
   }
-  
+
   @media screen and (max-width: 768px) {
     .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
     .distill-site-header a.nav-toggle {
@@ -372,8 +374,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       margin-left: 0;
     }
   }
-  
-  
+
+
   @media screen and (max-width: 768px) {
     .distill-site-header.responsive {position: relative; min-height: 500px; }
     .distill-site-header.responsive a.nav-toggle {
@@ -398,9 +400,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       text-align: left;
     }
   }
-  
+
   /* Site Footer */
-  
+
   .distill-site-footer {
     width: 100%;
     overflow: hidden;
@@ -411,19 +413,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-bottom: 30px;
     text-align: center;
   }
-  
+
   /* Headroom */
-  
+
   d-title {
     padding-top: 6rem;
   }
-  
+
   @media print {
     d-title {
       padding-top: 4rem;
     }
   }
-  
+
   .headroom {
     z-index: 1000;
     position: fixed;
@@ -431,36 +433,36 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     left: 0;
     right: 0;
   }
-  
+
   .headroom--transition {
     transition: all .4s ease-in-out;
   }
-  
+
   .headroom--unpinned {
     top: -100px;
   }
-  
+
   .headroom--pinned {
     top: 0;
   }
-  
+
   /* adjust viewport for navbar height */
   /* helps vertically center bootstrap (non-distill) content */
   .min-vh-100 {
     min-height: calc(100vh - 100px) !important;
   }
-  
+
   </style>
-  
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
   <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
   <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-  
+
   <script type="application/javascript">
-  
+
   function getMeta(metaName) {
     var metas = document.getElementsByTagName('meta');
     for (let i = 0; i < metas.length; i++) {
@@ -470,14 +472,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     }
     return '';
   }
-  
+
   function offsetURL(url) {
     var offset = getMeta('distill:offset');
     return offset ? offset + '/' + url : url;
   }
-  
+
   function createFuseIndex() {
-  
+
     // create fuse index
     var options = {
       keys: [
@@ -490,7 +492,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       threshold: 0
     };
     var fuse = new window.Fuse([], options);
-  
+
     // fetch the main search.json
     return fetch(offsetURL('search.json'))
       .then(function(response) {
@@ -520,7 +522,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
               return fuse;
             });
           });
-  
+
         } else {
           return Promise.reject(
             new Error('Unexpected status from search index request: ' +
@@ -529,20 +531,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
         }
       });
   }
-  
+
   window.document.addEventListener("DOMContentLoaded", function (event) {
-  
+
     // get search element (bail if we don't have one)
     var searchEl = window.document.getElementById('distill-search');
     if (!searchEl)
       return;
-  
+
     createFuseIndex()
       .then(function(fuse) {
-  
+
         // make search box visible
         searchEl.classList.remove('hidden');
-  
+
         // initialize autocomplete
         var options = {
           autoselect: true,
@@ -591,19 +593,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       .catch(function(error) {
         console.log(error);
       });
-  
+
   });
-  
+
   </script>
-  
+
   <style type="text/css">
-  
+
   .nav-search {
     font-size: x-small;
   }
-  
+
   /* Algolioa Autocomplete */
-  
+
   .algolia-autocomplete {
     display: inline-block;
     margin-left: 10px;
@@ -617,8 +619,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border: 1px #0F2E3D solid;
     width: 180px;
   }
-  
-  
+
+
   @media screen and (max-width: 768px) {
     .distill-site-nav .algolia-autocomplete {
       display: none;
@@ -634,13 +636,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       max-height: 400px;
     }
   }
-  
+
   .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
     width: 90%;
     outline: none;
     border: none;
   }
-  
+
   .algolia-autocomplete .aa-hint {
     color: #999;
   }
@@ -657,30 +659,30 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border: 1px solid #999;
     border-top: none;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
     cursor: pointer;
     padding: 5px 4px;
     border-bottom: 1px solid #eee;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
     border-bottom: none;
     margin-bottom: 2px;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
     overflow: hidden;
     font-size: 0.8em;
     line-height: 1.4em;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
     font-size: 1rem;
     margin-block-start: 0;
     margin-block-end: 5px;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
     display: inline-block;
     overflow: hidden;
@@ -688,22 +690,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 80%;
     margin-right: 4%;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
     display: inline-block;
     width: 15%;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
     height: 3em;
     width: auto;
     display: none;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
     display: initial;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
     background-color: #eee;
   }
@@ -711,47 +713,47 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     font-weight: bold;
     font-style: normal;
   }
-  
+
   </style>
-  
-  
+
+
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
-  
+
   <style type="text/css">
-  
+
   body {
     background-color: white;
   }
-  
+
   .pandoc-table {
     width: 100%;
   }
-  
+
   .pandoc-table>caption {
     margin-bottom: 10px;
   }
-  
+
   .pandoc-table th:not([align]) {
     text-align: left;
   }
-  
+
   .pagedtable-footer {
     font-size: 15px;
   }
-  
+
   d-byline .byline {
     grid-template-columns: 2fr 2fr;
   }
-  
+
   d-byline .byline h3 {
     margin-block-start: 1.5em;
   }
-  
+
   d-byline .byline .authors-affiliations h3 {
     margin-block-start: 0.5em;
   }
-  
+
   .authors-affiliations .orcid-id {
     width: 16px;
     height:16px;
@@ -760,12 +762,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     vertical-align: middle;
     padding-bottom: 2px;
   }
-  
+
   d-title .dt-tags {
     margin-top: 1em;
     grid-column: text;
   }
-  
+
   .dt-tags .dt-tag {
     text-decoration: none;
     display: inline-block;
@@ -779,24 +781,25 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-transform: uppercase;
     font-weight: 500;
   }
-  
+
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
-  
+
   .html-widget {
     margin-bottom: 2.0em;
   }
-  
+
   .l-screen-inset {
     padding-right: 16px;
   }
-  
+
   .l-screen .caption {
     margin-left: 10px;
   }
-  
+
   .shaded {
     background: rgb(247, 247, 247);
     padding-top: 20px;
@@ -804,75 +807,75 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .shaded .html-widget {
     margin-bottom: 0;
     border: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .shaded .shaded-content {
     background: white;
   }
-  
+
   .text-output {
     margin-top: 0;
     line-height: 1.5em;
   }
-  
+
   .hidden {
     display: none !important;
   }
-  
+
   d-article {
     padding-top: 2.5rem;
     padding-bottom: 30px;
   }
-  
+
   d-appendix {
     padding-top: 30px;
   }
-  
+
   d-article>p>img {
     width: 100%;
   }
-  
+
   d-article h2 {
     margin: 1rem 0 1.5rem 0;
   }
-  
+
   d-article h3 {
     margin-top: 1.5rem;
   }
-  
+
   d-article iframe {
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 2.0em;
     width: 100%;
   }
-  
+
   /* Tweak code blocks */
-  
+
   d-article div.sourceCode code,
   d-article pre code {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
-  
+
   d-article pre,
   d-article div.sourceCode,
   d-article div.sourceCode pre {
     overflow: auto;
   }
-  
+
   d-article div.sourceCode {
     background-color: white;
   }
-  
+
   d-article div.sourceCode pre {
     padding-left: 10px;
     font-size: 12px;
     border-left: 2px solid rgba(0,0,0,0.1);
   }
-  
+
   d-article pre {
     font-size: 12px;
     color: black;
@@ -884,50 +887,50 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
-  
+
     -moz-tab-size: 4;
     -o-tab-size: 4;
     tab-size: 4;
-  
+
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
   }
-  
+
   d-article pre a {
     border-bottom: none;
   }
-  
+
   d-article pre a:hover {
     border-bottom: none;
     text-decoration: underline;
   }
-  
+
   d-article details {
     grid-column: text;
     margin-bottom: 0.8em;
   }
-  
+
   @media(min-width: 768px) {
-  
+
   d-article pre,
   d-article div.sourceCode,
   d-article div.sourceCode pre {
     overflow: visible !important;
   }
-  
+
   d-article div.sourceCode pre {
     padding-left: 18px;
     font-size: 14px;
   }
-  
+
   d-article pre {
     font-size: 14px;
   }
-  
+
   }
-  
+
   figure img.external {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -935,9 +938,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding: 18px;
     box-sizing: border-box;
   }
-  
+
   /* CSS for d-contents */
-  
+
   .d-contents {
     grid-column: text;
     color: rgba(0,0,0,0.8);
@@ -949,7 +952,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-left: 0.25em;
     justify-self: start;
   }
-  
+
   @media(min-width: 1000px) {
     .d-contents.d-contents-float {
       height: 0;
@@ -960,82 +963,78 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       padding-left: 2em;
     }
   }
-  
+
   .d-contents nav h3 {
     font-size: 18px;
     margin-top: 0;
     margin-bottom: 1em;
   }
-  
+
   .d-contents li {
     list-style-type: none
   }
-  
+
   .d-contents nav > ul {
     padding-left: 0;
   }
-  
+
   .d-contents ul {
     padding-left: 1em
   }
-  
+
   .d-contents nav ul li {
     margin-top: 0.6em;
     margin-bottom: 0.2em;
   }
-  
+
   .d-contents nav a {
     font-size: 13px;
     border-bottom: none;
     text-decoration: none
     color: rgba(0, 0, 0, 0.8);
   }
-  
+
   .d-contents nav a:hover {
     text-decoration: underline solid rgba(0, 0, 0, 0.6)
   }
-  
+
   .d-contents nav > ul > li > a {
     font-weight: 600;
   }
-  
+
   .d-contents nav > ul > li > ul {
     font-weight: inherit;
   }
-  
+
   .d-contents nav > ul > li > ul > li {
     margin-top: 0.2em;
   }
-  
-  
+
+
   .d-contents nav ul {
     margin-top: 0;
     margin-bottom: 0.25em;
   }
-  
+
   .d-article-with-toc h2:nth-child(2) {
     margin-top: 0;
   }
-  
-  
+
+
   /* Figure */
-  
+
   .figure {
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
   }
-  
-  .figure img {
-    width: 100%;
-  }
-  
+
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
     line-height: 1.5em;
   }
-  
+
   .figure img.external {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -1043,42 +1042,42 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding: 18px;
     box-sizing: border-box;
   }
-  
+
   .figure .caption a {
     color: rgba(0, 0, 0, 0.6);
   }
-  
+
   .figure .caption b,
   .figure .caption strong, {
     font-weight: 600;
     color: rgba(0, 0, 0, 1.0);
   }
-  
+
   /* Citations */
-  
+
   d-article .citation {
     color: inherit;
     cursor: inherit;
   }
-  
+
   div.hanging-indent{
     margin-left: 1em; text-indent: -1em;
   }
-  
+
   /* Citation hover box */
-  
+
   .tippy-box[data-theme~=light-border] {
     background-color: rgba(250, 250, 250, 0.95);
   }
-  
+
   .tippy-content > p {
     margin-bottom: 0;
     padding: 2px;
   }
-  
-  
+
+
   /* Tweak 1000px media break to show more text */
-  
+
   @media(min-width: 1000px) {
     .base-grid,
     distill-header,
@@ -1094,11 +1093,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
       grid-column-gap: 16px;
     }
-  
+
     .grid {
       grid-column-gap: 16px;
     }
-  
+
     d-article {
       font-size: 1.06rem;
       line-height: 1.7em;
@@ -1107,7 +1106,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       font-size: 13px;
     }
   }
-  
+
   @media(min-width: 1180px) {
     .base-grid,
     distill-header,
@@ -1123,16 +1122,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
       grid-column-gap: 32px;
     }
-  
+
     .grid {
       grid-column-gap: 32px;
     }
   }
-  
-  
+
+
   /* Get the citation styles for the appendix (not auto-injected on render since
      we do our own rendering of the citation appendix) */
-  
+
   d-appendix .citation-appendix,
   .d-appendix .citation-appendix {
     font-size: 11px;
@@ -1149,9 +1148,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     white-space: pre-wrap;
     word-wrap: break-word;
   }
-  
+
   /* Include appendix styles here so they can be overridden */
-  
+
   d-appendix {
     contain: layout style;
     font-size: 0.8em;
@@ -1163,7 +1162,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-top: 60px;
     padding-bottom: 48px;
   }
-  
+
   d-appendix h3 {
     grid-column: page-start / text-start;
     font-size: 15px;
@@ -1172,59 +1171,59 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-bottom: 0;
     color: rgba(0,0,0,0.65);
   }
-  
+
   d-appendix h3 + * {
     margin-top: 1em;
   }
-  
+
   d-appendix ol {
     padding: 0 0 0 15px;
   }
-  
+
   @media (min-width: 768px) {
     d-appendix ol {
       padding: 0 0 0 30px;
       margin-left: -30px;
     }
   }
-  
+
   d-appendix li {
     margin-bottom: 1em;
   }
-  
+
   d-appendix a {
     color: rgba(0, 0, 0, 0.6);
   }
-  
+
   d-appendix > * {
     grid-column: text;
   }
-  
+
   d-appendix > d-footnote-list,
   d-appendix > d-citation-list,
   d-appendix > distill-appendix {
     grid-column: screen;
   }
-  
+
   /* Include footnote styles here so they can be overridden */
-  
+
   d-footnote-list {
     contain: layout style;
   }
-  
+
   d-footnote-list > * {
     grid-column: text;
   }
-  
+
   d-footnote-list a.footnote-backlink {
     color: rgba(0,0,0,0.3);
     padding-left: 0.5em;
   }
-  
-  
-  
+
+
+
   /* Anchor.js */
-  
+
   .anchorjs-link {
     /*transition: all .25s linear; */
     text-decoration: none;
@@ -1235,86 +1234,86 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-decoration: none;
     border-bottom: none;
   }
-  
+
   /* Social footer */
-  
+
   .social_footer {
     margin-top: 30px;
     margin-bottom: 0;
     color: rgba(0,0,0,0.67);
   }
-  
+
   .disqus-comments {
     margin-right: 30px;
   }
-  
+
   .disqus-comment-count {
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
     cursor: pointer;
   }
-  
+
   #disqus_thread {
     margin-top: 30px;
   }
-  
+
   .article-sharing a {
     border-bottom: none;
     margin-right: 8px;
   }
-  
+
   .article-sharing a:hover {
     border-bottom: none;
   }
-  
+
   .sidebar-section.subscribe {
     font-size: 12px;
     line-height: 1.6em;
   }
-  
+
   .subscribe p {
     margin-bottom: 0.5em;
   }
-  
-  
+
+
   .article-footer .subscribe {
     font-size: 15px;
     margin-top: 45px;
   }
-  
-  
+
+
   .sidebar-section.custom {
     font-size: 12px;
     line-height: 1.6em;
   }
-  
+
   .custom p {
     margin-bottom: 0.5em;
   }
-  
+
   /* Styles for listing layout (hide title) */
   .layout-listing d-title, .layout-listing .d-title {
     display: none;
   }
-  
+
   /* Styles for posts lists (not auto-injected) */
-  
-  
+
+
   .posts-with-sidebar {
     padding-left: 45px;
     padding-right: 45px;
   }
-  
+
   .posts-list .description h2,
   .posts-list .description p {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
   }
-  
+
   .posts-list .description h2 {
     font-weight: 700;
     border-bottom: none;
     padding-bottom: 0;
   }
-  
+
   .posts-list h2.post-tag {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     padding-bottom: 12px;
@@ -1323,7 +1322,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 60px;
     margin-bottom: 24px;
   }
-  
+
   .posts-list .post-preview {
     text-decoration: none;
     overflow: hidden;
@@ -1331,29 +1330,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding: 24px 0;
   }
-  
+
   .post-preview-last {
     border-bottom: none !important;
   }
-  
+
   .posts-list .posts-list-caption {
     grid-column: screen;
     font-weight: 400;
   }
-  
+
   .posts-list .post-preview h2 {
     margin: 0 0 6px 0;
     line-height: 1.2em;
     font-style: normal;
     font-size: 24px;
   }
-  
+
   .posts-list .post-preview p {
     margin: 0 0 12px 0;
     line-height: 1.4em;
     font-size: 16px;
   }
-  
+
   .posts-list .post-preview .thumbnail {
     box-sizing: border-box;
     margin-bottom: 24px;
@@ -1364,32 +1363,32 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
     display: block;
   }
-  
+
   .posts-list .metadata {
     font-size: 12px;
     line-height: 1.4em;
     margin-bottom: 18px;
   }
-  
+
   .posts-list .metadata > * {
     display: inline-block;
   }
-  
+
   .posts-list .metadata .publishedDate {
     margin-right: 2em;
   }
-  
+
   .posts-list .metadata .dt-authors {
     display: block;
     margin-top: 0.3em;
     margin-right: 2em;
   }
-  
+
   .posts-list .dt-tags {
     display: block;
     line-height: 1em;
   }
-  
+
   .posts-list .dt-tags .dt-tag {
     display: inline-block;
     color: rgba(0,0,0,0.6);
@@ -1402,24 +1401,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-transform: uppercase;
     font-weight: 500;
   }
-  
+
   .posts-list img {
     opacity: 1;
   }
-  
+
   .posts-list img[data-src] {
     opacity: 0;
   }
-  
+
   .posts-more {
     clear: both;
   }
-  
-  
+
+
   .posts-sidebar {
     font-size: 16px;
   }
-  
+
   .posts-sidebar h3 {
     font-size: 16px;
     margin-top: 0;
@@ -1427,39 +1426,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     font-weight: 400;
     text-transform: uppercase;
   }
-  
+
   .sidebar-section {
     margin-bottom: 30px;
   }
-  
+
   .categories ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
   }
-  
+
   .categories li {
     color: rgba(0, 0, 0, 0.8);
     margin-bottom: 0;
   }
-  
+
   .categories li>a {
     border-bottom: none;
   }
-  
+
   .categories li>a:hover {
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   }
-  
+
   .categories .active {
     font-weight: 600;
   }
-  
+
   .categories .category-count {
     color: rgba(0, 0, 0, 0.4);
   }
-  
-  
+
+
   @media(min-width: 768px) {
     .posts-list .post-preview h2 {
       font-size: 26px;
@@ -1495,55 +1494,55 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       padding-bottom: 24px;
     }
   }
-  
-  
+
+
   /* Improve display for browsers without grid (IE/Edge <= 15) */
-  
+
   .downlevel {
     line-height: 1.6em;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
     margin: 0;
   }
-  
+
   .downlevel .d-title {
     padding-top: 6rem;
     padding-bottom: 1.5rem;
   }
-  
+
   .downlevel .d-title h1 {
     font-size: 50px;
     font-weight: 700;
     line-height: 1.1em;
     margin: 0 0 0.5rem;
   }
-  
+
   .downlevel .d-title p {
     font-weight: 300;
     font-size: 1.2rem;
     line-height: 1.55em;
     margin-top: 0;
   }
-  
+
   .downlevel .d-byline {
     padding-top: 0.8em;
     padding-bottom: 0.8em;
     font-size: 0.8rem;
     line-height: 1.8em;
   }
-  
+
   .downlevel .section-separator {
     border: none;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .downlevel .d-article {
     font-size: 1.06rem;
     line-height: 1.7em;
     padding-top: 1rem;
     padding-bottom: 2rem;
   }
-  
-  
+
+
   .downlevel .d-appendix {
     padding-left: 0;
     padding-right: 0;
@@ -1555,11 +1554,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-top: 40px;
     padding-bottom: 48px;
   }
-  
+
   .downlevel .footnotes ol {
     padding-left: 13px;
   }
-  
+
   .downlevel .base-grid,
   .downlevel .distill-header,
   .downlevel .d-title,
@@ -1576,7 +1575,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-left: 40px;
     padding-right: 40px;
   }
-  
+
   @media(min-width: 768px) {
     .downlevel .base-grid,
     .downlevel .distill-header,
@@ -1596,14 +1595,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     max-width: 900px;
   }
   }
-  
+
   .downlevel pre code {
     display: block;
     border-left: 2px solid rgba(0, 0, 0, .1);
     padding: 0 0 0 20px;
     font-size: 14px;
   }
-  
+
   .downlevel code, .downlevel pre {
     color: black;
     background: none;
@@ -1614,27 +1613,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
-  
+
     -moz-tab-size: 4;
     -o-tab-size: 4;
     tab-size: 4;
-  
+
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
   }
-  
+
   .downlevel .posts-list .post-preview {
     color: inherit;
   }
-  
-  
-  
+
+
+
   </style>
-  
+
   <script type="application/javascript">
-  
+
   function is_downlevel_browser() {
     if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
                                    window.navigator.userAgent)) {
@@ -1643,20 +1642,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       return window.load_distill_framework === undefined;
     }
   }
-  
+
   // show body when load is complete
   function on_load_complete() {
-  
+
     // add anchors
     if (window.anchors) {
       window.anchors.options.placement = 'left';
       window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
     }
-  
-  
+
+
     // set body to visible
     document.body.style.visibility = 'visible';
-  
+
     // force redraw for leaflet widgets
     if (window.HTMLWidgets) {
       var maps = window.HTMLWidgets.findAll(".leaflet");
@@ -1669,39 +1668,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
         });
       });
     }
-  
+
     // trigger 'shown' so htmlwidgets resize
     $('d-article').trigger('shown');
   }
-  
+
   function init_distill() {
-  
+
     init_common();
-  
+
     // create front matter
     var front_matter = $('<d-front-matter></d-front-matter>');
     $('#distill-front-matter').wrap(front_matter);
-  
+
     // create d-title
     $('.d-title').changeElementType('d-title');
-  
+
     // create d-byline
     var byline = $('<d-byline></d-byline>');
     $('.d-byline').replaceWith(byline);
-  
+
     // create d-article
     var article = $('<d-article></d-article>');
     $('.d-article').wrap(article).children().unwrap();
-  
+
     // move posts container into article
     $('.posts-container').appendTo($('d-article'));
-  
+
     // create d-appendix
     $('.d-appendix').changeElementType('d-appendix');
-  
+
     // flag indicating that we have appendix items
     var appendix = $('.appendix-bottom').children('h3').length > 0;
-  
+
     // replace footnotes with <d-footnote>
     $('.footnote-ref').each(function(i, val) {
       appendix = true;
@@ -1717,10 +1716,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     });
     // remove footnotes
     $('.footnotes').remove();
-  
+
     // move refs into #references-listing
     $('#references-listing').replaceWith($('#refs'));
-  
+
     $('h1.appendix, h2.appendix').each(function(i, val) {
       $(this).changeElementType('h3');
     });
@@ -1730,16 +1729,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       appendix = true;
       $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
     });
-  
+
     // show d-appendix if we have appendix content
     $("d-appendix").css('display', appendix ? 'grid' : 'none');
-  
+
     // localize layout chunks to just output
     $('.layout-chunk').each(function(i, val) {
-  
+
       // capture layout
       var layout = $(this).attr('data-layout');
-  
+
       // apply layout to markdown level block elements
       var elements = $(this).children().not('details, div.sourceCode, pre, script');
       elements.each(function(i, el) {
@@ -1752,40 +1751,40 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           $(this).wrap(layout_div);
         }
       });
-  
-  
+
+
       // unwrap the layout-chunk div
       $(this).children().unwrap();
     });
-  
+
     // remove code block used to force  highlighting css
     $('.distill-force-highlighting-css').parent().remove();
-  
+
     // remove empty line numbers inserted by pandoc when using a
     // custom syntax highlighting theme
     $('code.sourceCode a:empty').remove();
-  
+
     // load distill framework
     load_distill_framework();
-  
+
     // wait for window.distillRunlevel == 4 to do post processing
     function distill_post_process() {
-  
+
       if (!window.distillRunlevel || window.distillRunlevel < 4)
         return;
-  
+
       // hide author/affiliations entirely if we have no authors
       var front_matter = JSON.parse($("#distill-front-matter").html());
       var have_authors = front_matter.authors && front_matter.authors.length > 0;
       if (!have_authors)
         $('d-byline').addClass('hidden');
-  
+
       // article with toc class
       $('.d-contents').parent().addClass('d-article-with-toc');
-  
+
       // strip links that point to #
       $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
-  
+
       // add orcid ids
       $('.authors-affiliations').find('.author').each(function(i, el) {
         var orcid_id = front_matter.authors[i].orcidID;
@@ -1800,12 +1799,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           $(this).append(a);
         }
       });
-  
+
       // hide elements of author/affiliations grid that have no value
       function hide_byline_column(caption) {
         $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
       }
-  
+
       // affiliations
       var have_affiliations = false;
       for (var i = 0; i<front_matter.authors.length; ++i) {
@@ -1817,11 +1816,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       }
       if (!have_affiliations)
         $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
-  
+
       // published date
       if (!front_matter.publishedDate)
         hide_byline_column("Published");
-  
+
       // document object identifier
       var doi = $('d-byline').find('h3:contains("DOI")');
       var doi_p = doi.next().empty();
@@ -1841,25 +1840,40 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
            .html(front_matter.doi)
            .appendTo(doi_p);
       }
-  
+
        // change plural form of authors/affiliations
       if (front_matter.authors.length === 1) {
         var grid = $('.authors-affiliations');
         grid.children('h3:contains("Authors")').text('Author');
         grid.children('h3:contains("Affiliations")').text('Affiliation');
       }
-  
+
       // remove d-appendix and d-footnote-list local styles
       $('d-appendix > style:first-child').remove();
       $('d-footnote-list > style:first-child').remove();
-  
+
       // move appendix-bottom entries to the bottom
       $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
       $('.appendix-bottom').remove();
-  
+
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1870,39 +1884,64 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
-  
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
+
       // clear polling timer
       clearInterval(tid);
-  
+
       // show body now that everything is ready
       on_load_complete();
     }
-  
+
     var tid = setInterval(distill_post_process, 50);
     distill_post_process();
-  
+
   }
-  
+
   function init_downlevel() {
-  
+
     init_common();
-  
+
      // insert hr after d-title
     $('.d-title').after($('<hr class="section-separator"/>'));
-  
+
     // check if we have authors
     var front_matter = JSON.parse($("#distill-front-matter").html());
     var have_authors = front_matter.authors && front_matter.authors.length > 0;
-  
+
     // manage byline/border
     if (!have_authors)
       $('.d-byline').remove();
     $('.d-byline').after($('<hr class="section-separator"/>'));
     $('.d-byline a').remove();
-  
+
     // remove toc
     $('.d-contents').remove();
-  
+
     // move appendix elements
     $('h1.appendix, h2.appendix').each(function(i, val) {
       $(this).changeElementType('h3');
@@ -1910,65 +1949,67 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     $('h3.appendix').each(function(i, val) {
       $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
     });
-  
-  
+
+
     // inject headers into references and footnotes
     var refs_header = $('<h3></h3>');
     refs_header.text('References');
     $('#refs').prepend(refs_header);
-  
+
     var footnotes_header = $('<h3></h3');
     footnotes_header.text('Footnotes');
     $('.footnotes').children('hr').first().replaceWith(footnotes_header);
-  
+
     // move appendix-bottom entries to the bottom
     $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
     $('.appendix-bottom').remove();
-  
+
     // remove appendix if it's empty
     if ($('.d-appendix').children().length === 0)
       $('.d-appendix').remove();
-  
+
     // prepend separator above appendix
     $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
-  
+
     // trim code
     $('pre>code').each(function(i, val) {
       $(this).html($.trim($(this).html()));
     });
-  
+
     // move posts-container right before article
     $('.posts-container').insertBefore($('.d-article'));
-  
+
     $('body').addClass('downlevel');
-  
+
     on_load_complete();
   }
-  
-  
+
+
   function init_common() {
-  
+
     // jquery plugin to change element types
     (function($) {
       $.fn.changeElementType = function(newType) {
         var attrs = {};
-  
+
         $.each(this[0].attributes, function(idx, attr) {
           attrs[attr.nodeName] = attr.nodeValue;
         });
-  
+
         this.replaceWith(function() {
           return $("<" + newType + "/>", attrs).append($(this).contents());
         });
       };
     })(jQuery);
-  
+
     // prevent underline for linked images
     $('a > img').parent().css({'border-bottom' : 'none'});
-  
+
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1977,35 +2018,35 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           var fig = $(this);
           fig.css('width', fig.attr('width') + 'px');
         });
-  
+
       }
     });
-  
+
     // auto-append index.html to post-preview links in file: protocol
     // and in rstudio ide preview
     $('.post-preview').each(function(i, val) {
       if (window.location.protocol === "file:")
         $(this).attr('href', $(this).attr('href') + "index.html");
     });
-  
+
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
-  
+
     // add class to pandoc style tables
     $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
     $('.kable-table').children('table').addClass('pandoc-table');
-  
+
     // add figcaption style to table captions
     $('caption').parent('table').addClass("figcaption");
-  
+
     // initialize posts list
     if (window.init_posts_list)
       window.init_posts_list();
-  
+
     // implmement disqus comment link
     $('.disqus-comment-count').click(function() {
       window.headroom_prevent_pin = true;
@@ -2019,33 +2060,34 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       }
     });
   }
-  
+
   document.addEventListener('DOMContentLoaded', function() {
     if (is_downlevel_browser())
       init_downlevel();
     else
       window.addEventListener('WebComponentsReady', init_distill);
   });
-  
+
   </script>
-  
+
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+  <script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+  <script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
   <script src="site_libs/viz-1.8.2/viz.js"></script>
   <link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-  <script src="site_libs/grViz-binding-1.0.6.1/grViz.js"></script>
-  <script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+  <script src="site_libs/grViz-binding-1.0.10/grViz.js"></script>
   <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-  <script src="site_libs/datatables-binding-0.18/datatables.js"></script>
-  <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
-  <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
-  <script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="site_libs/datatables-binding-0.29/datatables.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="site_libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+  <link href="site_libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+  <script src="site_libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
   <link href="site_libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet" />
   <script src="site_libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
   <link href="site_libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
   <script src="site_libs/selectize-0.12.0/selectize.min.js"></script>
-  <link href="site_libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
-  <script src="site_libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+  <link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+  <script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2198,14 +2240,14 @@ General model evaluation
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#model-plots">Model plots</a></li>
-<li><a href="#collinearity">Collinearity</a></li>
-<li><a href="#in-sample-predictive-power">In-sample predictive power</a></li>
-<li><a href="#effect-size">Effect size</a></li>
-<li><a href="#out-of-sample-predictive-performance">Out-of-sample predictive performance</a></li>
-<li><a href="#significance-and-relevance-of-path-coefficients">Significance and relevance of path coefficients</a></li>
-<li><a href="#summary-table">Summary table</a></li>
-<li><a href="#results-summary">Results summary</a></li>
+<li><a href="#model-plots" id="toc-model-plots">Model plots</a></li>
+<li><a href="#collinearity" id="toc-collinearity">Collinearity</a></li>
+<li><a href="#in-sample-predictive-power" id="toc-in-sample-predictive-power">In-sample predictive power</a></li>
+<li><a href="#effect-size" id="toc-effect-size">Effect size</a></li>
+<li><a href="#out-of-sample-predictive-performance" id="toc-out-of-sample-predictive-performance">Out-of-sample predictive performance</a></li>
+<li><a href="#significance-and-relevance-of-path-coefficients" id="toc-significance-and-relevance-of-path-coefficients">Significance and relevance of path coefficients</a></li>
+<li><a href="#summary-table" id="toc-summary-table">Summary table</a></li>
+<li><a href="#results-summary" id="toc-results-summary">Results summary</a></li>
 </ul>
 </nav>
 </div>
@@ -2213,51 +2255,58 @@ General model evaluation
 <h2 id="structural-model-only">Structural Model Only</h2>
 <p>This is a path model showing only the structural model components.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-86260a04382838d64759" style="width:624px;height:384px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-86260a04382838d64759">{"x":{"diagram":"digraph G {\n\n// ----------------------\n// General graph settings\n// ----------------------\ngraph [\ncharset = \"UTF-8\",\nlayout = dot,\nlabel = \"\",\nfontsize = 24,\nfontcolor = black,\nfontname = helvetica,\nrankdir = LR,\nlabelloc = t,\nsplines = TRUE\nbgcolor = transparent\n]\n\n// --------------------\n// The structural model\n// --------------------\nsubgraph sm {\nrankdir = LR;\nnode [\nshape = ellipse,\ncolor = black,\nfillcolor = white,\nstyle = filled,\nfontsize = 12,\nfontcolor = black,\nheight = 1.00833333333333,\nwidth = 2.37916666666667,\nfontname = helvetica,\nfixedsize = true\n]\n\"Distrusting Beliefs\" [label=<<B>Distrusting Beliefs <\/B>>, shape = hexagon]\n\"Knowledge\" [label=<<B>Knowledge <\/B>>, shape = hexagon]\n\"Response Beliefs\" [label=<<B>Response Beliefs <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.161<\/FONT>>, shape = hexagon]\n\"Threat Beliefs\" [label=<<B>Threat Beliefs <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.501<\/FONT>>, shape = hexagon]\n\"Personal Moral Norm\" [label=<<B>Personal Moral Norm <\/B>>, shape = hexagon]\n\"Descriptive Norm\" [label=<<B>Descriptive Norm <\/B>>, shape = hexagon]\n\"Behavioral Intention\" [label=<<B>Behavioral Intention <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.29<\/FONT>>, shape = hexagon]\nedge [\ncolor = black,\nfontsize = 9,\nfontcolor = black,\nfontname = helvetica,\ndir = both,\narrowhead = normal,\narrowtail = none\n]\n\"Distrusting Beliefs\" -> {\"Response Beliefs\"}[weight = 1, label = < 𝛽 = -0.384***<BR /><FONT POINT-SIZE=\"7\">95% CI [-0.496, -0.269]   <\/FONT> >, penwidth = 2.42, style = dashed, color = black]\n\"Knowledge\" -> {\"Response Beliefs\"}[weight = 1, label = < 𝛽 = 0.074<BR /><FONT POINT-SIZE=\"7\">95% CI [-0.018, 0.163]   <\/FONT> >, penwidth = 0.87, style = solid, color = black]\n\"Distrusting Beliefs\" -> {\"Threat Beliefs\"}[weight = 1, label = < 𝛽 = -0.675***<BR /><FONT POINT-SIZE=\"7\">95% CI [-0.731, -0.619]   <\/FONT> >, penwidth = 3.875, style = dashed, color = black]\n\"Knowledge\" -> {\"Threat Beliefs\"}[weight = 1, label = < 𝛽 = 0.136***<BR /><FONT POINT-SIZE=\"7\">95% CI [0.066, 0.204]   <\/FONT> >, penwidth = 1.18, style = solid, color = black]\n\"Response Beliefs\" -> {\"Behavioral Intention\"}[weight = 1, label = < 𝛽 = 0.338***<BR /><FONT POINT-SIZE=\"7\">95% CI [0.211, 0.46]   <\/FONT> >, penwidth = 2.19, style = solid, color = black]\n\"Threat Beliefs\" -> {\"Behavioral Intention\"}[weight = 1, label = < 𝛽 = 0.029<BR /><FONT POINT-SIZE=\"7\">95% CI [-0.1, 0.162]   <\/FONT> >, penwidth = 0.645, style = solid, color = black]\n\"Personal Moral Norm\" -> {\"Behavioral Intention\"}[weight = 1, label = < 𝛽 = 0.246***<BR /><FONT POINT-SIZE=\"7\">95% CI [0.089, 0.384]   <\/FONT> >, penwidth = 1.73, style = solid, color = black]\n\"Descriptive Norm\" -> {\"Behavioral Intention\"}[weight = 1, label = < 𝛽 = 0.007<BR /><FONT POINT-SIZE=\"7\">95% CI [-0.093, 0.133]   <\/FONT> >, penwidth = 0.535, style = solid, color = black]\n}\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-603846958b658f81b811" style="width:624px;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-603846958b658f81b811">{"x":{"diagram":"digraph G {\n\n// ----------------------\n// General graph settings\n// ----------------------\ngraph [\ncharset = \"UTF-8\",\nlayout = dot,\nlabel = \"\",\nfontsize = 24,\nfontcolor = black,\nfontname = helvetica,\nrankdir = LR,\nlabelloc = t,\nsplines = TRUE\nbgcolor = transparent\n]\n\n// --------------------\n// The structural model\n// --------------------\nsubgraph sm {\nrankdir = LR;\nnode [\nshape = ellipse,\ncolor = black,\nfillcolor = white,\nstyle = filled,\nfontsize = 12,\nfontcolor = black,\nheight = 1.00833333333333,\nwidth = 2.37916666666667,\nfontname = helvetica,\nfixedsize = true\n]\n\"Distrusting Beliefs\" [label=<<B>Distrusting Beliefs <\/B>>, shape = hexagon]\n\"Knowledge\" [label=<<B>Knowledge <\/B>>, shape = hexagon]\n\"Response Beliefs\" [label=<<B>Response Beliefs <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.161<\/FONT>>, shape = hexagon]\n\"Threat Beliefs\" [label=<<B>Threat Beliefs <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.501<\/FONT>>, shape = hexagon]\n\"Personal Moral Norm\" [label=<<B>Personal Moral Norm <\/B>>, shape = hexagon]\n\"Descriptive Norm\" [label=<<B>Descriptive Norm <\/B>>, shape = hexagon]\n\"Behavioral Intention\" [label=<<B>Behavioral Intention <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.29<\/FONT>>, shape = hexagon]\nedge [\ncolor = black,\nfontsize = 9,\nfontcolor = black,\nfontname = helvetica,\ndir = both,\narrowhead = normal,\narrowtail = none\n]\n\"Distrusting Beliefs\" -> {\"Response Beliefs\"}[weight = 1, label = < 𝛽 = -0.384***<BR /><FONT POINT-SIZE=\"7\">95% CI [-0.496, -0.269]   <\/FONT> >, penwidth = 2.42, style = dashed, color = black]\n\"Knowledge\" -> {\"Response Beliefs\"}[weight = 1, label = < 𝛽 = 0.074<BR /><FONT POINT-SIZE=\"7\">95% CI [-0.018, 0.163]   <\/FONT> >, penwidth = 0.87, style = solid, color = black]\n\"Distrusting Beliefs\" -> {\"Threat Beliefs\"}[weight = 1, label = < 𝛽 = -0.675***<BR /><FONT POINT-SIZE=\"7\">95% CI [-0.731, -0.619]   <\/FONT> >, penwidth = 3.875, style = dashed, color = black]\n\"Knowledge\" -> {\"Threat Beliefs\"}[weight = 1, label = < 𝛽 = 0.136***<BR /><FONT POINT-SIZE=\"7\">95% CI [0.066, 0.204]   <\/FONT> >, penwidth = 1.18, style = solid, color = black]\n\"Response Beliefs\" -> {\"Behavioral Intention\"}[weight = 1, label = < 𝛽 = 0.338***<BR /><FONT POINT-SIZE=\"7\">95% CI [0.211, 0.46]   <\/FONT> >, penwidth = 2.19, style = solid, color = black]\n\"Threat Beliefs\" -> {\"Behavioral Intention\"}[weight = 1, label = < 𝛽 = 0.029<BR /><FONT POINT-SIZE=\"7\">95% CI [-0.1, 0.162]   <\/FONT> >, penwidth = 0.645, style = solid, color = black]\n\"Personal Moral Norm\" -> {\"Behavioral Intention\"}[weight = 1, label = < 𝛽 = 0.246***<BR /><FONT POINT-SIZE=\"7\">95% CI [0.089, 0.384]   <\/FONT> >, penwidth = 1.73, style = solid, color = black]\n\"Descriptive Norm\" -> {\"Behavioral Intention\"}[weight = 1, label = < 𝛽 = 0.007<BR /><FONT POINT-SIZE=\"7\">95% CI [-0.093, 0.133]   <\/FONT> >, penwidth = 0.535, style = solid, color = black]\n}\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <h1 id="collinearity">Collinearity</h1>
 <p>Collinearity is assessed using the variance inflation factor (VIF). VIF should be &lt; 5, ideally <span class="math inline">\(\leq\)</span> 3.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-68a3080e450f3b66818d" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-68a3080e450f3b66818d">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"1.02236223435832\" data-max=\"3.05862228748723\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Results of the structural collinearity assessment<\/caption>","data":[["Distrusting Beliefs","Knowledge","Distrusting Beliefs","Knowledge","Response Beliefs","Threat Beliefs","Personal Moral Norm","Descriptive Norm"],["Response Beliefs","Response Beliefs","Threat Beliefs","Threat Beliefs","Behavioral Intention","Behavioral Intention","Behavioral Intention","Behavioral Intention"],[1.02236223435832,1.02236223435832,1.02236223435832,1.02236223435832,1.46969688535831,2.56038144852419,3.05862228748723,1.65805625802018]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Exogenous Construct<\/th>\n      <th>Endogenous Construct<\/th>\n      <th>VIF<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":2}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[8,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 3 ? \"#00\" : value <= 5 ? \"#ffe5e5\" : \"#ff9999\"});\n}"}},"evals":["options.columnDefs.0.render","options.rowCallback"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ad02ca848d4a69b9266f" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ad02ca848d4a69b9266f">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1.02236223435832\" data-max=\"3.05862228748723\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Results of the structural collinearity assessment<\/caption>","data":[["Distrusting Beliefs","Knowledge","Distrusting Beliefs","Knowledge","Response Beliefs","Threat Beliefs","Personal Moral Norm","Descriptive Norm"],["Response Beliefs","Response Beliefs","Threat Beliefs","Threat Beliefs","Behavioral Intention","Behavioral Intention","Behavioral Intention","Behavioral Intention"],[1.02236223435832,1.02236223435832,1.02236223435832,1.02236223435832,1.469696885358315,2.560381448524193,3.058622287487228,1.658056258020178]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Exogenous Construct<\/th>\n      <th>Endogenous Construct<\/th>\n      <th>VIF<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":2}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[8,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 3 ? \"#00\" : value <= 5 ? \"#ffe5e5\" : \"#ff9999\"});\n}"}},"evals":["options.columnDefs.0.render","options.rowCallback"],"jsHooks":[]}</script>
 </div>
-<p>VIF is above 3 for the path from Personal Moral Norm to Behavioral Intention. But it is not above 5 for any relationships.</p>
+<p>VIF is above 3 for the path from Personal Moral Norm to Behavioral Intention.
+But it is not above 5 for any relationships.</p>
 <h1 id="in-sample-predictive-power">In-sample predictive power</h1>
 <p>In-sample predictive power is assessed using variance explained R². R² <span class="math inline">\(\geq\)</span> 0.75 indicates substantial in-sample predictive power, R² <span class="math inline">\(\geq\)</span> 0.5 moderate and R² <span class="math inline">\(\geq\)</span> 0.25 weak in-sample predictive power. R² <span class="math inline">\(\leq\)</span> 0.10 indicates a lack of model predictiveness.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-fd1bff2082346c9cf923" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fd1bff2082346c9cf923">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.16126250878034\" data-max=\"0.501132086406554\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.157333995940904\" data-max=\"0.49879546854429\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>In-sample predictive power<\/caption>","data":[["Response Beliefs","Threat Beliefs","Behavioral Intention"],[0.161262508780341,0.501132086406554,0.289729164909188],[0.157333995940904,0.498795468544289,0.283044262931863]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Construct<\/th>\n      <th>R²<\/th>\n      <th>R²adj<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":3,"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[3,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"#ff9999\" : value <= 0.249 ? \"#ffe5e5\" : value <= 0.9 ? \"#00\" : \"#ff9999\"});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.rowCallback"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-615caaa36e9488dee4b2" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-615caaa36e9488dee4b2">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.16126250878034\" data-max=\"0.501132086406554\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.157333995940904\" data-max=\"0.49879546854429\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>In-sample predictive power<\/caption>","data":[["Response Beliefs","Threat Beliefs","Behavioral Intention"],[0.1612625087803405,0.5011320864065536,0.2897291649091882],[0.1573339959409042,0.4987954685442892,0.2830442629318628]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Construct<\/th>\n      <th>R²<\/th>\n      <th>R²adj<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":3,"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[3,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"#ff9999\" : value <= 0.249 ? \"#ffe5e5\" : value <= 0.9 ? \"#00\" : \"#ff9999\"});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.rowCallback"],"jsHooks":[]}</script>
 </div>
-<p>R² is below 0.25 for Response Beliefs, but not below 0.1. The other R² values are above 0.25, indicating weak in-sample predictive power at a minimum.</p>
+<p>R² is below 0.25 for Response Beliefs, but not below 0.1.
+The other R² values are above 0.25, indicating weak in-sample predictive power at a minimum.</p>
 <h1 id="effect-size">Effect size</h1>
 <p>Effect size f2² measures the impact of a predictor construct on an endogenous construct. f² <span class="math inline">\(\geq\)</span> 0.35 indicates a large effect, f² <span class="math inline">\(\geq\)</span> 0.15 a medium and f² <span class="math inline">\(\geq\)</span> 0.02 a small effect.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-470d4c51be15fbce39db" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-470d4c51be15fbce39db">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"3.8623887467e-05\" data-max=\"0.886904846712665\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Effect sizes<\/caption>","data":[["Distrusting Beliefs","Knowledge","Distrusting Beliefs","Knowledge","Response Beliefs","Threat Beliefs","Personal Moral Norm","Descriptive Norm"],["Response Beliefs","Response Beliefs","Threat Beliefs","Threat Beliefs","Behavioral Intention","Behavioral Intention","Behavioral Intention","Behavioral Intention"],[0.169871002892662,0.00533352069083323,0.886904846712665,0.034068998684434,0.109763775440995,0.000454733353642854,0.027902507303691,3.86238874676951e-05]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Exogenous Construct<\/th>\n      <th>Endogenous Construct<\/th>\n      <th>f²<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":2}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.019 ? \"#ff9999\" : \"#00\"});\n}"}},"evals":["options.columnDefs.0.render","options.rowCallback"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c8ede4f557b12e6d6d7b" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c8ede4f557b12e6d6d7b">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"3.8623887467e-05\" data-max=\"0.886904846712665\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Effect sizes<\/caption>","data":[["Distrusting Beliefs","Knowledge","Distrusting Beliefs","Knowledge","Response Beliefs","Threat Beliefs","Personal Moral Norm","Descriptive Norm"],["Response Beliefs","Response Beliefs","Threat Beliefs","Threat Beliefs","Behavioral Intention","Behavioral Intention","Behavioral Intention","Behavioral Intention"],[0.169871002892662,0.005333520690833227,0.8869048467126646,0.03406899868443404,0.1097637754409948,0.0004547333536428542,0.02790250730369096,3.862388746769506e-05]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Exogenous Construct<\/th>\n      <th>Endogenous Construct<\/th>\n      <th>f²<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":2}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.019 ? \"#ff9999\" : \"#00\"});\n}"}},"evals":["options.columnDefs.0.render","options.rowCallback"],"jsHooks":[]}</script>
 </div>
 <p>The effect sizes of Threat Beliefs and Descriptive Norm on Behavioral Intention, as well as the effect size of Knowledge on Response Beliefs, are below 0.02.</p>
 <h1 id="out-of-sample-predictive-performance">Out-of-sample predictive performance</h1>
-<p>Out-of-sample predictive performance has to be evaluated using a simplified model without HOCs as an approximation as seminr as of now does not support plspredict for HOC. If the root mean square error (RMSE) or the mean absolute deviation (MAD) of the naive LM model is below the ones for the PLS model, this indicates a lack of predictive performance. However, a lack of predictive performance does not imply a lack of explanatory power.</p>
+<p>Out-of-sample predictive performance has to be evaluated using a simplified model without HOCs as an approximation as seminr as of now does not support plspredict for HOC.
+If the root mean square error (RMSE) or the mean absolute deviation (MAD) of the naive LM model is below the ones for the PLS model, this indicates a lack of predictive performance.
+However, a lack of predictive performance does not imply a lack of explanatory power.</p>
 <div class="layout-chunk" data-layout="l-page">
-<div id="htmlwidget-d00571b944db4acd931c" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d00571b944db4acd931c">{"x":{"filter":"none","caption":"<caption>Out-of-sample predictive performance<\/caption>","data":[["PLS RMSE","LM RMSE","RMSE Difference","PLS MAD","LM MAD","MAD Difference"],[1.18697164965727,1.15470184066702,-0.0322698089902493,0.905892315248336,0.881895568079232,-0.0239967471691046],[1.08042912116126,0.988631580706392,-0.0917975404548634,0.819285998642368,0.763479300838082,-0.0558066978042864],[1.11852529143271,1.0624379444388,-0.0560873469939167,0.869348234466774,0.818853195015193,-0.0504950394515811],[1.23023001306484,1.14359858900665,-0.086631424058192,0.952795118938443,0.864755208479992,-0.0880399104584516],[1.1354237783148,1.06680574607651,-0.068618032238295,0.882575811294478,0.830982489025616,-0.0515933222688616],[0.995737006281608,0.882289804016418,-0.11344720226519,0.753437438495196,0.662309415224631,-0.0911280232705645],[0.876439668956925,0.767624106838174,-0.108815562118752,0.692210274942197,0.579137389323365,-0.113072885618833],[1.24607449645165,1.10146598137364,-0.144608515078003,0.952623847960052,0.851197272333505,-0.101426575626547],[1.30735479425364,1.35397108605783,0.0466162918041939,1.02921979198633,1.06993264310365,0.0407128511173156]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Prediction Errors<\/th>\n      <th>CCRB2<\/th>\n      <th>CCRB5<\/th>\n      <th>CCTB1<\/th>\n      <th>CCTB2<\/th>\n      <th>CCTB3<\/th>\n      <th>CCTB4<\/th>\n      <th>CCTB5<\/th>\n      <th>CCTB6<\/th>\n      <th>CCBI1<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":6,"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9]}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[9]; $(this.api().cell(row, 9).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.columnDefs.7.render","options.columnDefs.8.render","options.rowCallback"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-cdaed52fea98b591f06b" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-cdaed52fea98b591f06b">{"x":{"filter":"none","vertical":false,"caption":"<caption>Out-of-sample predictive performance<\/caption>","data":[["PLS RMSE","LM RMSE","RMSE Difference","PLS MAD","LM MAD","MAD Difference"],[1.186971649657273,1.154701840667024,-0.03226980899024934,0.9058923152483361,0.8818955680792315,-0.0239967471691046],[1.080429121161256,0.9886315807063921,-0.09179754045486344,0.8192859986423682,0.7634793008380818,-0.05580669780428638],[1.118525291432712,1.062437944438795,-0.05608734699391671,0.8693482344667737,0.8188531950151926,-0.05049503945158107],[1.230230013064845,1.143598589006653,-0.08663142405819202,0.9527951189384434,0.8647552084799918,-0.08803991045845161],[1.135423778314802,1.066805746076507,-0.06861803223829499,0.8825758112944776,0.830982489025616,-0.0515933222688616],[0.9957370062816078,0.8822898040164181,-0.1134472022651897,0.7534374384951958,0.6623094152246314,-0.09112802327056446],[0.8764396689569255,0.7676241068381736,-0.1088155621187519,0.6922102749421973,0.5791373893233647,-0.1130728856188327],[1.246074496451647,1.101465981373644,-0.1446085150780025,0.952623847960052,0.8511972723335048,-0.1014265756265471],[1.307354794253635,1.353971086057829,0.04661629180419391,1.029219791986331,1.069932643103646,0.0407128511173156]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Prediction Errors<\/th>\n      <th>CCRB2<\/th>\n      <th>CCRB5<\/th>\n      <th>CCTB1<\/th>\n      <th>CCTB2<\/th>\n      <th>CCTB3<\/th>\n      <th>CCTB4<\/th>\n      <th>CCTB5<\/th>\n      <th>CCTB6<\/th>\n      <th>CCBI1<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":6,"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9]}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\nvar value=data[9]; $(this.api().cell(row, 9).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0 ? \"#ff9999\" : \"#00\"});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.columnDefs.7.render","options.columnDefs.8.render","options.rowCallback"],"jsHooks":[]}</script>
 </div>
-<p>Only CCBI1 is predicted better by the model than the LM in terms of both RMSE and MAD. This indicates low predictive power.</p>
+<p>Only CCBI1 is predicted better by the model than the LM in terms of both RMSE and MAD.
+This indicates low predictive power.</p>
 <h1 id="significance-and-relevance-of-path-coefficients">Significance and relevance of path coefficients</h1>
 <p>Significance is denoted by t-test and p values. A t of <span class="math inline">\(\geq\)</span> 1.65 signifies significance at the 10 % level, t <span class="math inline">\(\geq\)</span> 1.96 at the 5 % level and t <span class="math inline">\(\geq\)</span> 2.57 at the 1 % level.</p>
 <div class="layout-chunk" data-layout="l-page">
-<div id="htmlwidget-42873d098d629b208a76" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-42873d098d629b208a76">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"-0.674899326441192\" data-max=\"0.338495525584968\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"-0.677425669131249\" data-max=\"0.339127783990613\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.028479348992078\" data-max=\"0.074854407409401\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"-0.730967886014059\" data-max=\"0.211298816177143\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"-0.618522549977706\" data-max=\"0.459995154981544\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.115554506416857\" data-max=\"23.697849505932\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0\" data-max=\"0.454029781250664\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Relevance and significance of path coefficients<\/caption>","data":[["Distrusting Beliefs","Distrusting Beliefs","Knowledge","Knowledge","Response Beliefs","Threat Beliefs","Personal Moral Norm","Descriptive Norm"],["Response Beliefs","Threat Beliefs","Response Beliefs","Threat Beliefs","Behavioral Intention","Behavioral Intention","Behavioral Intention","Behavioral Intention"],[-0.383973983807578,-0.674899326441192,0.0737928458333448,0.135994501429868,0.338495525584967,0.0287155528536227,0.2462048085434,0.00674434244729545],[-0.387761332930717,-0.677425669131248,0.0738719078417075,0.134603426769754,0.339127783990613,0.0309183770006523,0.237173148501387,0.0182828586337781],[0.0577324617090653,0.0284793489920785,0.0462479878104435,0.0354020328766327,0.0638058000716555,0.0677468195338443,0.0748544074094004,0.0583650318488276],[-0.495898680362893,-0.730967886014059,-0.0177563833648855,0.0658043351429834,0.211298816177142,-0.100193825337889,0.0892642313760948,-0.0927382541296537],[-0.26911926811404,-0.618522549977705,0.162676467138252,0.203537988749779,0.459995154981544,0.161944526194412,0.383905070607271,0.133486290221228],[false,false,true,false,false,true,false,true],[6.65091999268213,23.697849505932,1.59559041002604,3.84143198510028,5.3050902144449,0.423865696592254,3.28911572563569,0.115554506416858],[4.43512144959786e-11,2.46095398738641e-80,0.0556574639498756,7.03695132316698e-05,9.03284545823087e-08,0.335937857328632,0.000543834227017802,0.454029781250663]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Exogenous Construct<\/th>\n      <th>Endogenous Construct<\/th>\n      <th>Original Estimate<\/th>\n      <th>Bootstrap Mean<\/th>\n      <th>Bootstrap SD<\/th>\n      <th>2.5% CI<\/th>\n      <th>97.5% CI<\/th>\n      <th>0 in CI<\/th>\n      <th>t(430)<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3,4,5,6,8,9]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 1.649 ? \"#ff9999\" : \"#00\"});\nvar value=data[9]; $(this.api().cell(row, 9).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.049 ? \"#00\" : \"#ff9999\"});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'background-color':value == 1 ? \"#ff9999\" : value == 0 ? \"#00\" : null});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.rowCallback"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c02e4b3f62f5009a4f1d" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c02e4b3f62f5009a4f1d">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"-0.674899326441192\" data-max=\"0.338495525584968\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"-0.677425669131249\" data-max=\"0.339127783990613\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.028479348992078\" data-max=\"0.074854407409401\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"-0.730967886014059\" data-max=\"0.211298816177143\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"-0.618522549977706\" data-max=\"0.459995154981544\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.115554506416857\" data-max=\"23.697849505932\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"0.454029781250664\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Relevance and significance of path coefficients<\/caption>","data":[["Distrusting Beliefs","Distrusting Beliefs","Knowledge","Knowledge","Response Beliefs","Threat Beliefs","Personal Moral Norm","Descriptive Norm"],["Response Beliefs","Threat Beliefs","Response Beliefs","Threat Beliefs","Behavioral Intention","Behavioral Intention","Behavioral Intention","Behavioral Intention"],[-0.3839739838075779,-0.6748993264411915,0.07379284583334485,0.1359945014298685,0.3384955255849674,0.02871555285362266,0.2462048085433999,0.006744342447295451],[-0.3877613329307165,-0.6774256691312484,0.07387190784170751,0.1346034267697542,0.3391277839906128,0.03091837700065228,0.2371731485013866,0.01828285863377813],[0.05773246170906533,0.02847934899207847,0.04624798781044352,0.0354020328766327,0.06380580007165552,0.06774681953384432,0.07485440740940039,0.05836503184882763],[-0.4958986803628925,-0.730967886014059,-0.01775638336488553,0.06580433514298344,0.2112988161771424,-0.1001938253378894,0.08926423137609481,-0.09273825412965368],[-0.2691192681140396,-0.6185225499777052,0.162676467138252,0.2035379887497788,0.4599951549815436,0.1619445261944119,0.3839050706072713,0.1334862902212282],[false,false,true,false,false,true,false,true],[6.650919992682127,23.69784950593199,1.59559041002604,3.841431985100279,5.305090214444899,0.4238656965922543,3.289115725635694,0.1155545064168576],[4.435121449597857e-11,2.460953987386411e-80,0.05565746394987556,7.036951323166976e-05,9.032845458230867e-08,0.3359378573286324,0.0005438342270178017,0.4540297812506634]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Exogenous Construct<\/th>\n      <th>Endogenous Construct<\/th>\n      <th>Original Estimate<\/th>\n      <th>Bootstrap Mean<\/th>\n      <th>Bootstrap SD<\/th>\n      <th>2.5% CI<\/th>\n      <th>97.5% CI<\/th>\n      <th>0 in CI<\/th>\n      <th>t(430)<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[2,3,4,5,6,8,9]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 1.649 ? \"#ff9999\" : \"#00\"});\nvar value=data[9]; $(this.api().cell(row, 9).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.049 ? \"#00\" : \"#ff9999\"});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'background-color':value == 1 ? \"#ff9999\" : value == 0 ? \"#00\" : null});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.rowCallback"],"jsHooks":[]}</script>
 </div>
-<p>The path coefficients for the paths from Threat Belief and Descriptive Norm to Behavioral Intention are not significant based on both the t-statistic and the bootstrapping confidence interval. So is the path coefficient for the path from Knowledge to Response Beliefs.</p>
+<p>The path coefficients for the paths from Threat Belief and Descriptive Norm to Behavioral Intention are not significant based on both the t-statistic and the bootstrapping confidence interval.
+So is the path coefficient for the path from Knowledge to Response Beliefs.</p>
 <h1 id="summary-table">Summary table</h1>
 <div class="layout-chunk" data-layout="l-page">
-<div id="htmlwidget-debc3da4a5d3ca189607" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-debc3da4a5d3ca189607">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"-0.674899326441192\" data-max=\"0.338495525584968\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"-0.677425669131249\" data-max=\"0.339127783990613\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.115554506416857\" data-max=\"23.697849505932\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0\" data-max=\"0.454029781250664\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"3.8623887467e-05\" data-max=\"0.886904846712665\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"1.02236223435832\" data-max=\"3.05862228748723\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Structural Model Summary<\/caption>","data":[["Distrusting Beliefs","Distrusting Beliefs","Knowledge","Knowledge","Response Beliefs","Threat Beliefs","Personal Moral Norm","Descriptive Norm"],["Response Beliefs","Threat Beliefs","Response Beliefs","Threat Beliefs","Behavioral Intention","Behavioral Intention","Behavioral Intention","Behavioral Intention"],[-0.383973983807578,-0.674899326441192,0.0737928458333448,0.135994501429868,0.338495525584967,0.0287155528536227,0.2462048085434,0.00674434244729545],[-0.387761332930717,-0.677425669131248,0.0738719078417075,0.134603426769754,0.339127783990613,0.0309183770006523,0.237173148501387,0.0182828586337781],[false,false,true,false,false,true,false,true],[6.65091999268213,23.697849505932,1.59559041002604,3.84143198510028,5.3050902144449,0.423865696592254,3.28911572563569,0.115554506416858],[4.43512144959786e-11,2.46095398738641e-80,0.0556574639498756,7.03695132316698e-05,9.03284545823087e-08,0.335937857328632,0.000543834227017802,0.454029781250663],[0.169871002892662,0.886904846712665,0.00533352069083323,0.034068998684434,0.109763775440995,0.000454733353642854,0.027902507303691,3.86238874676951e-05],[1.02236223435832,1.02236223435832,1.02236223435832,1.02236223435832,1.46969688535831,2.56038144852419,3.05862228748723,1.65805625802018]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Exogenous Construct<\/th>\n      <th>Endogenous Construct<\/th>\n      <th>Path Coefficient Original Estimate<\/th>\n      <th>Path Coefficient Bootstrap Mean<\/th>\n      <th>0 in Path Coefficient CI<\/th>\n      <th>Path Coefficient t(430)<\/th>\n      <th>Path Coefficient p<\/th>\n      <th>f²<\/th>\n      <th>VIF<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3,5,6,7,8]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[8,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 1.649 ? \"#ff9999\" : \"#00\"});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.049 ? \"#00\" : \"#ff9999\"});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'background-color':value == 1 ? \"#ff9999\" : value == 0 ? \"#00\" : null});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.019 ? \"#ff9999\" : \"#00\"});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 3 ? \"#00\" : value <= 5 ? \"#ffe5e5\" : \"#ff9999\"});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.rowCallback"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-031cc3e7fe396ca47139" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-031cc3e7fe396ca47139">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"-0.674899326441192\" data-max=\"0.338495525584968\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"-0.677425669131249\" data-max=\"0.339127783990613\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.115554506416857\" data-max=\"23.697849505932\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"0.454029781250664\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"3.8623887467e-05\" data-max=\"0.886904846712665\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1.02236223435832\" data-max=\"3.05862228748723\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Structural Model Summary<\/caption>","data":[["Distrusting Beliefs","Distrusting Beliefs","Knowledge","Knowledge","Response Beliefs","Threat Beliefs","Personal Moral Norm","Descriptive Norm"],["Response Beliefs","Threat Beliefs","Response Beliefs","Threat Beliefs","Behavioral Intention","Behavioral Intention","Behavioral Intention","Behavioral Intention"],[-0.3839739838075779,-0.6748993264411915,0.07379284583334485,0.1359945014298685,0.3384955255849674,0.02871555285362266,0.2462048085433999,0.006744342447295451],[-0.3877613329307165,-0.6774256691312484,0.07387190784170751,0.1346034267697542,0.3391277839906128,0.03091837700065228,0.2371731485013866,0.01828285863377813],[false,false,true,false,false,true,false,true],[6.650919992682127,23.69784950593199,1.59559041002604,3.841431985100279,5.305090214444899,0.4238656965922543,3.289115725635694,0.1155545064168576],[4.435121449597857e-11,2.460953987386411e-80,0.05565746394987556,7.036951323166976e-05,9.032845458230867e-08,0.3359378573286324,0.0005438342270178017,0.4540297812506634],[0.169871002892662,0.8869048467126646,0.005333520690833227,0.03406899868443404,0.1097637754409948,0.0004547333536428542,0.02790250730369096,3.862388746769506e-05],[1.02236223435832,1.02236223435832,1.02236223435832,1.02236223435832,1.469696885358315,2.560381448524193,3.058622287487228,1.658056258020178]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Exogenous Construct<\/th>\n      <th>Endogenous Construct<\/th>\n      <th>Path Coefficient Original Estimate<\/th>\n      <th>Path Coefficient Bootstrap Mean<\/th>\n      <th>0 in Path Coefficient CI<\/th>\n      <th>Path Coefficient t(430)<\/th>\n      <th>Path Coefficient p<\/th>\n      <th>f²<\/th>\n      <th>VIF<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[2,3,5,6,7,8]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[8,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 1.649 ? \"#ff9999\" : \"#00\"});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.049 ? \"#00\" : \"#ff9999\"});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'background-color':value == 1 ? \"#ff9999\" : value == 0 ? \"#00\" : null});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.019 ? \"#ff9999\" : \"#00\"});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 3 ? \"#00\" : value <= 5 ? \"#ffe5e5\" : \"#ff9999\"});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.rowCallback"],"jsHooks":[]}</script>
 </div>
 <h1 id="results-summary">Results summary</h1>
-<p>The path from Knowledge to Response Beliefs as well as the paths from Threat Beliefs and Descriptive Norm to Behavioral Intention are insignificant and the effect sizes are negligible. Therefore, those paths can be removed from the model.</p>
+<p>The path from Knowledge to Response Beliefs as well as the paths from Threat Beliefs and Descriptive Norm to Behavioral Intention are insignificant and the effect sizes are negligible.
+Therefore, those paths can be removed from the model.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2282,9 +2331,6 @@ General model evaluation
 <div class="appendix-bottom"></div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
-<div class="distill-site-nav distill-site-footer">
-<p>© Copyright 2021 Anonymous</p>
-</div>
 <!--/radix_placeholder_navigation_after_body-->
 
 </body>

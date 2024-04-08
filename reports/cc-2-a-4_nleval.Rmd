@@ -99,11 +99,10 @@ mobi1altex <- estimate_pls(
     composite("Competence", multi_items("CCDI", 4:6)),
     composite("Integrity", multi_items("CCDI", 7:9)),
     higher_composite("Distrusting Beliefs", c("Benevolence", "Competence", "Integrity"), weights = mode_B),
-    composite("Knowledge", single_item("CCKN")),
     composite("Behavioral Intention", single_item("CCBI1"))
   ),
   structural_model = relationships(
-    paths(from = c("Knowledge"), to = "Behavioral Intention")
+    paths(from = c("Distrusting Beliefs"), to = "Behavioral Intention")
   )
 )
 # Bootstrap model for significance (500 samples)

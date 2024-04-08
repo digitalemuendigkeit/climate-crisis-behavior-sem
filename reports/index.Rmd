@@ -1,8 +1,8 @@
 ---
-title: "Predictors for climate protective behavior - accompanying website"
+title: "Applying an integrated model of behaviour change to the climate crisis and the COVID-19 pandemic"
 description:
-  This website contains supplementary material for our paper on predictors for climate protective behavior in Germany.
-  Specifically, we detail the process of model evaluation and provide the full results of the additional exploratory data analysis.
+  This website contains supplementary material for our paper comparing correlates of behaviour change in the climate crisiis and the COVID-19 pandemic.
+  Specifically, we detail the process of model evaluation and provide the full results of the additional exploratory data analysis for models and data concerning the climate crisis.
 site: distill::distill_website
 ---
 

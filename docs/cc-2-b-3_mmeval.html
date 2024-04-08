@@ -20,19 +20,19 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,11 +74,11 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
@@ -85,38 +86,39 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+
   <!--radix_placeholder_meta_tags-->
   <title>Supplementary Website: Climate Crisis Iteration 2-b-3 (Heating) Measurement Model Evaluation</title>
-  
-  
-  
-  
+
+
+
+
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Supplementary Website: Climate Crisis Iteration 2-b-3 (Heating) Measurement Model Evaluation"/>
   <meta property="og:type" content="article"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Supplementary Website"/>
-  
+
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Supplementary Website: Climate Crisis Iteration 2-b-3 (Heating) Measurement Model Evaluation"/>
-  
+
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
-  
+
   <script type="text/json" id="radix-rmarkdown-metadata">
   {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Climate Crisis Iteration 2-b-3 (Heating) Measurement Model Evaluation"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
   <meta name="distill:offset" content=""/>
-  
+
   <script type="application/javascript">
-  
+
     window.headroom_prevent_pin = false;
-  
+
     window.document.addEventListener("DOMContentLoaded", function (event) {
-  
+
       // initialize headroom for banner
       var header = $('header').get(0);
       var headerHeight = header.offsetHeight;
@@ -133,13 +135,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       if(window.location.hash)
         headroom.unpin();
       $(header).addClass('headroom--transition');
-  
+
       // offset scroll location for banner on hash change
       // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
       window.addEventListener("hashchange", function(event) {
         window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
       });
-  
+
       // responsive menu
       $('.distill-site-header').each(function(i, val) {
         var topnav = $(this);
@@ -148,7 +150,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           topnav.toggleClass('responsive');
         });
       });
-  
+
       // nav dropdowns
       $('.nav-dropbtn').click(function(e) {
         $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
@@ -163,99 +165,99 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       });
     });
   </script>
-  
+
   <style type="text/css">
-  
+
   /* Theme (user-documented overrideables for nav appearance) */
-  
+
   .distill-site-nav {
     color: rgba(255, 255, 255, 0.8);
     background-color: #0F2E3D;
     font-size: 15px;
     font-weight: 300;
   }
-  
+
   .distill-site-nav a {
     color: inherit;
     text-decoration: none;
   }
-  
+
   .distill-site-nav a:hover {
     color: white;
   }
-  
+
   @media print {
     .distill-site-nav {
       display: none;
     }
   }
-  
+
   .distill-site-header {
-  
+
   }
-  
+
   .distill-site-footer {
-  
+
   }
-  
-  
+
+
   /* Site Header */
-  
+
   .distill-site-header {
     width: 100%;
     box-sizing: border-box;
     z-index: 3;
   }
-  
+
   .distill-site-header .nav-left {
     display: inline-block;
     margin-left: 8px;
   }
-  
+
   @media screen and (max-width: 768px) {
     .distill-site-header .nav-left {
       margin-left: 0;
     }
   }
-  
-  
+
+
   .distill-site-header .nav-right {
     float: right;
     margin-right: 8px;
   }
-  
+
   .distill-site-header a,
   .distill-site-header .title {
     display: inline-block;
     text-align: center;
     padding: 14px 10px 14px 10px;
   }
-  
+
   .distill-site-header .title {
     font-size: 18px;
     min-width: 150px;
   }
-  
+
   .distill-site-header .logo {
     padding: 0;
   }
-  
+
   .distill-site-header .logo img {
     display: none;
     max-height: 20px;
     width: auto;
     margin-bottom: -4px;
   }
-  
+
   .distill-site-header .nav-image img {
     max-height: 18px;
     width: auto;
     display: inline-block;
     margin-bottom: -3px;
   }
-  
-  
-  
+
+
+
   @media screen and (min-width: 1000px) {
     .distill-site-header .logo img {
       display: inline-block;
@@ -270,17 +272,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       padding-left: 12px;
     }
   }
-  
-  
+
+
   .distill-site-header .nav-toggle {
     display: none;
   }
-  
+
   .nav-dropdown {
     display: inline-block;
     position: relative;
   }
-  
+
   .nav-dropdown .nav-dropbtn {
     border: none;
     outline: none;
@@ -294,7 +296,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1px;
     z-index: 2;
   }
-  
+
   .nav-dropdown-content {
     display: none;
     position: absolute;
@@ -309,18 +311,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-top: 4px;
     padding-bottom: 4px;
   }
-  
+
   .nav-dropdown-content hr {
     margin-top: 4px;
     margin-bottom: 4px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .nav-dropdown-active {
     display: block;
   }
-  
+
   .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
     color: black;
     padding: 6px 24px;
@@ -328,7 +330,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     display: block;
     text-align: left;
   }
-  
+
   .nav-dropdown-content .nav-dropdown-header {
     display: block;
     padding: 5px 24px;
@@ -338,21 +340,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: #999999;
     white-space: nowrap;
   }
-  
+
   .nav-dropdown:hover .nav-dropbtn {
     color: white;
   }
-  
+
   .nav-dropdown-content a:hover {
     background-color: #ddd;
     color: black;
   }
-  
+
   .nav-right .nav-dropdown-content {
     margin-left: -45%;
     right: 0;
   }
-  
+
   @media screen and (max-width: 768px) {
     .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
     .distill-site-header a.nav-toggle {
@@ -372,8 +374,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       margin-left: 0;
     }
   }
-  
-  
+
+
   @media screen and (max-width: 768px) {
     .distill-site-header.responsive {position: relative; min-height: 500px; }
     .distill-site-header.responsive a.nav-toggle {
@@ -398,9 +400,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       text-align: left;
     }
   }
-  
+
   /* Site Footer */
-  
+
   .distill-site-footer {
     width: 100%;
     overflow: hidden;
@@ -411,19 +413,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-bottom: 30px;
     text-align: center;
   }
-  
+
   /* Headroom */
-  
+
   d-title {
     padding-top: 6rem;
   }
-  
+
   @media print {
     d-title {
       padding-top: 4rem;
     }
   }
-  
+
   .headroom {
     z-index: 1000;
     position: fixed;
@@ -431,36 +433,36 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     left: 0;
     right: 0;
   }
-  
+
   .headroom--transition {
     transition: all .4s ease-in-out;
   }
-  
+
   .headroom--unpinned {
     top: -100px;
   }
-  
+
   .headroom--pinned {
     top: 0;
   }
-  
+
   /* adjust viewport for navbar height */
   /* helps vertically center bootstrap (non-distill) content */
   .min-vh-100 {
     min-height: calc(100vh - 100px) !important;
   }
-  
+
   </style>
-  
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
   <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
   <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-  
+
   <script type="application/javascript">
-  
+
   function getMeta(metaName) {
     var metas = document.getElementsByTagName('meta');
     for (let i = 0; i < metas.length; i++) {
@@ -470,14 +472,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     }
     return '';
   }
-  
+
   function offsetURL(url) {
     var offset = getMeta('distill:offset');
     return offset ? offset + '/' + url : url;
   }
-  
+
   function createFuseIndex() {
-  
+
     // create fuse index
     var options = {
       keys: [
@@ -490,7 +492,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       threshold: 0
     };
     var fuse = new window.Fuse([], options);
-  
+
     // fetch the main search.json
     return fetch(offsetURL('search.json'))
       .then(function(response) {
@@ -520,7 +522,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
               return fuse;
             });
           });
-  
+
         } else {
           return Promise.reject(
             new Error('Unexpected status from search index request: ' +
@@ -529,20 +531,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
         }
       });
   }
-  
+
   window.document.addEventListener("DOMContentLoaded", function (event) {
-  
+
     // get search element (bail if we don't have one)
     var searchEl = window.document.getElementById('distill-search');
     if (!searchEl)
       return;
-  
+
     createFuseIndex()
       .then(function(fuse) {
-  
+
         // make search box visible
         searchEl.classList.remove('hidden');
-  
+
         // initialize autocomplete
         var options = {
           autoselect: true,
@@ -591,19 +593,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       .catch(function(error) {
         console.log(error);
       });
-  
+
   });
-  
+
   </script>
-  
+
   <style type="text/css">
-  
+
   .nav-search {
     font-size: x-small;
   }
-  
+
   /* Algolioa Autocomplete */
-  
+
   .algolia-autocomplete {
     display: inline-block;
     margin-left: 10px;
@@ -617,8 +619,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border: 1px #0F2E3D solid;
     width: 180px;
   }
-  
-  
+
+
   @media screen and (max-width: 768px) {
     .distill-site-nav .algolia-autocomplete {
       display: none;
@@ -634,13 +636,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       max-height: 400px;
     }
   }
-  
+
   .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
     width: 90%;
     outline: none;
     border: none;
   }
-  
+
   .algolia-autocomplete .aa-hint {
     color: #999;
   }
@@ -657,30 +659,30 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border: 1px solid #999;
     border-top: none;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
     cursor: pointer;
     padding: 5px 4px;
     border-bottom: 1px solid #eee;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
     border-bottom: none;
     margin-bottom: 2px;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
     overflow: hidden;
     font-size: 0.8em;
     line-height: 1.4em;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
     font-size: 1rem;
     margin-block-start: 0;
     margin-block-end: 5px;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
     display: inline-block;
     overflow: hidden;
@@ -688,22 +690,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 80%;
     margin-right: 4%;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
     display: inline-block;
     width: 15%;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
     height: 3em;
     width: auto;
     display: none;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
     display: initial;
   }
-  
+
   .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
     background-color: #eee;
   }
@@ -711,47 +713,47 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     font-weight: bold;
     font-style: normal;
   }
-  
+
   </style>
-  
-  
+
+
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
-  
+
   <style type="text/css">
-  
+
   body {
     background-color: white;
   }
-  
+
   .pandoc-table {
     width: 100%;
   }
-  
+
   .pandoc-table>caption {
     margin-bottom: 10px;
   }
-  
+
   .pandoc-table th:not([align]) {
     text-align: left;
   }
-  
+
   .pagedtable-footer {
     font-size: 15px;
   }
-  
+
   d-byline .byline {
     grid-template-columns: 2fr 2fr;
   }
-  
+
   d-byline .byline h3 {
     margin-block-start: 1.5em;
   }
-  
+
   d-byline .byline .authors-affiliations h3 {
     margin-block-start: 0.5em;
   }
-  
+
   .authors-affiliations .orcid-id {
     width: 16px;
     height:16px;
@@ -760,12 +762,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     vertical-align: middle;
     padding-bottom: 2px;
   }
-  
+
   d-title .dt-tags {
     margin-top: 1em;
     grid-column: text;
   }
-  
+
   .dt-tags .dt-tag {
     text-decoration: none;
     display: inline-block;
@@ -779,24 +781,25 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-transform: uppercase;
     font-weight: 500;
   }
-  
+
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
-  
+
   .html-widget {
     margin-bottom: 2.0em;
   }
-  
+
   .l-screen-inset {
     padding-right: 16px;
   }
-  
+
   .l-screen .caption {
     margin-left: 10px;
   }
-  
+
   .shaded {
     background: rgb(247, 247, 247);
     padding-top: 20px;
@@ -804,75 +807,75 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .shaded .html-widget {
     margin-bottom: 0;
     border: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .shaded .shaded-content {
     background: white;
   }
-  
+
   .text-output {
     margin-top: 0;
     line-height: 1.5em;
   }
-  
+
   .hidden {
     display: none !important;
   }
-  
+
   d-article {
     padding-top: 2.5rem;
     padding-bottom: 30px;
   }
-  
+
   d-appendix {
     padding-top: 30px;
   }
-  
+
   d-article>p>img {
     width: 100%;
   }
-  
+
   d-article h2 {
     margin: 1rem 0 1.5rem 0;
   }
-  
+
   d-article h3 {
     margin-top: 1.5rem;
   }
-  
+
   d-article iframe {
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 2.0em;
     width: 100%;
   }
-  
+
   /* Tweak code blocks */
-  
+
   d-article div.sourceCode code,
   d-article pre code {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
-  
+
   d-article pre,
   d-article div.sourceCode,
   d-article div.sourceCode pre {
     overflow: auto;
   }
-  
+
   d-article div.sourceCode {
     background-color: white;
   }
-  
+
   d-article div.sourceCode pre {
     padding-left: 10px;
     font-size: 12px;
     border-left: 2px solid rgba(0,0,0,0.1);
   }
-  
+
   d-article pre {
     font-size: 12px;
     color: black;
@@ -884,50 +887,50 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
-  
+
     -moz-tab-size: 4;
     -o-tab-size: 4;
     tab-size: 4;
-  
+
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
   }
-  
+
   d-article pre a {
     border-bottom: none;
   }
-  
+
   d-article pre a:hover {
     border-bottom: none;
     text-decoration: underline;
   }
-  
+
   d-article details {
     grid-column: text;
     margin-bottom: 0.8em;
   }
-  
+
   @media(min-width: 768px) {
-  
+
   d-article pre,
   d-article div.sourceCode,
   d-article div.sourceCode pre {
     overflow: visible !important;
   }
-  
+
   d-article div.sourceCode pre {
     padding-left: 18px;
     font-size: 14px;
   }
-  
+
   d-article pre {
     font-size: 14px;
   }
-  
+
   }
-  
+
   figure img.external {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -935,9 +938,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding: 18px;
     box-sizing: border-box;
   }
-  
+
   /* CSS for d-contents */
-  
+
   .d-contents {
     grid-column: text;
     color: rgba(0,0,0,0.8);
@@ -949,7 +952,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-left: 0.25em;
     justify-self: start;
   }
-  
+
   @media(min-width: 1000px) {
     .d-contents.d-contents-float {
       height: 0;
@@ -960,82 +963,78 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       padding-left: 2em;
     }
   }
-  
+
   .d-contents nav h3 {
     font-size: 18px;
     margin-top: 0;
     margin-bottom: 1em;
   }
-  
+
   .d-contents li {
     list-style-type: none
   }
-  
+
   .d-contents nav > ul {
     padding-left: 0;
   }
-  
+
   .d-contents ul {
     padding-left: 1em
   }
-  
+
   .d-contents nav ul li {
     margin-top: 0.6em;
     margin-bottom: 0.2em;
   }
-  
+
   .d-contents nav a {
     font-size: 13px;
     border-bottom: none;
     text-decoration: none
     color: rgba(0, 0, 0, 0.8);
   }
-  
+
   .d-contents nav a:hover {
     text-decoration: underline solid rgba(0, 0, 0, 0.6)
   }
-  
+
   .d-contents nav > ul > li > a {
     font-weight: 600;
   }
-  
+
   .d-contents nav > ul > li > ul {
     font-weight: inherit;
   }
-  
+
   .d-contents nav > ul > li > ul > li {
     margin-top: 0.2em;
   }
-  
-  
+
+
   .d-contents nav ul {
     margin-top: 0;
     margin-bottom: 0.25em;
   }
-  
+
   .d-article-with-toc h2:nth-child(2) {
     margin-top: 0;
   }
-  
-  
+
+
   /* Figure */
-  
+
   .figure {
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
   }
-  
-  .figure img {
-    width: 100%;
-  }
-  
+
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
     line-height: 1.5em;
   }
-  
+
   .figure img.external {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -1043,42 +1042,42 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding: 18px;
     box-sizing: border-box;
   }
-  
+
   .figure .caption a {
     color: rgba(0, 0, 0, 0.6);
   }
-  
+
   .figure .caption b,
   .figure .caption strong, {
     font-weight: 600;
     color: rgba(0, 0, 0, 1.0);
   }
-  
+
   /* Citations */
-  
+
   d-article .citation {
     color: inherit;
     cursor: inherit;
   }
-  
+
   div.hanging-indent{
     margin-left: 1em; text-indent: -1em;
   }
-  
+
   /* Citation hover box */
-  
+
   .tippy-box[data-theme~=light-border] {
     background-color: rgba(250, 250, 250, 0.95);
   }
-  
+
   .tippy-content > p {
     margin-bottom: 0;
     padding: 2px;
   }
-  
-  
+
+
   /* Tweak 1000px media break to show more text */
-  
+
   @media(min-width: 1000px) {
     .base-grid,
     distill-header,
@@ -1094,11 +1093,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
       grid-column-gap: 16px;
     }
-  
+
     .grid {
       grid-column-gap: 16px;
     }
-  
+
     d-article {
       font-size: 1.06rem;
       line-height: 1.7em;
@@ -1107,7 +1106,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       font-size: 13px;
     }
   }
-  
+
   @media(min-width: 1180px) {
     .base-grid,
     distill-header,
@@ -1123,16 +1122,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
       grid-column-gap: 32px;
     }
-  
+
     .grid {
       grid-column-gap: 32px;
     }
   }
-  
-  
+
+
   /* Get the citation styles for the appendix (not auto-injected on render since
      we do our own rendering of the citation appendix) */
-  
+
   d-appendix .citation-appendix,
   .d-appendix .citation-appendix {
     font-size: 11px;
@@ -1149,9 +1148,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     white-space: pre-wrap;
     word-wrap: break-word;
   }
-  
+
   /* Include appendix styles here so they can be overridden */
-  
+
   d-appendix {
     contain: layout style;
     font-size: 0.8em;
@@ -1163,7 +1162,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-top: 60px;
     padding-bottom: 48px;
   }
-  
+
   d-appendix h3 {
     grid-column: page-start / text-start;
     font-size: 15px;
@@ -1172,59 +1171,59 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-bottom: 0;
     color: rgba(0,0,0,0.65);
   }
-  
+
   d-appendix h3 + * {
     margin-top: 1em;
   }
-  
+
   d-appendix ol {
     padding: 0 0 0 15px;
   }
-  
+
   @media (min-width: 768px) {
     d-appendix ol {
       padding: 0 0 0 30px;
       margin-left: -30px;
     }
   }
-  
+
   d-appendix li {
     margin-bottom: 1em;
   }
-  
+
   d-appendix a {
     color: rgba(0, 0, 0, 0.6);
   }
-  
+
   d-appendix > * {
     grid-column: text;
   }
-  
+
   d-appendix > d-footnote-list,
   d-appendix > d-citation-list,
   d-appendix > distill-appendix {
     grid-column: screen;
   }
-  
+
   /* Include footnote styles here so they can be overridden */
-  
+
   d-footnote-list {
     contain: layout style;
   }
-  
+
   d-footnote-list > * {
     grid-column: text;
   }
-  
+
   d-footnote-list a.footnote-backlink {
     color: rgba(0,0,0,0.3);
     padding-left: 0.5em;
   }
-  
-  
-  
+
+
+
   /* Anchor.js */
-  
+
   .anchorjs-link {
     /*transition: all .25s linear; */
     text-decoration: none;
@@ -1235,86 +1234,86 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-decoration: none;
     border-bottom: none;
   }
-  
+
   /* Social footer */
-  
+
   .social_footer {
     margin-top: 30px;
     margin-bottom: 0;
     color: rgba(0,0,0,0.67);
   }
-  
+
   .disqus-comments {
     margin-right: 30px;
   }
-  
+
   .disqus-comment-count {
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
     cursor: pointer;
   }
-  
+
   #disqus_thread {
     margin-top: 30px;
   }
-  
+
   .article-sharing a {
     border-bottom: none;
     margin-right: 8px;
   }
-  
+
   .article-sharing a:hover {
     border-bottom: none;
   }
-  
+
   .sidebar-section.subscribe {
     font-size: 12px;
     line-height: 1.6em;
   }
-  
+
   .subscribe p {
     margin-bottom: 0.5em;
   }
-  
-  
+
+
   .article-footer .subscribe {
     font-size: 15px;
     margin-top: 45px;
   }
-  
-  
+
+
   .sidebar-section.custom {
     font-size: 12px;
     line-height: 1.6em;
   }
-  
+
   .custom p {
     margin-bottom: 0.5em;
   }
-  
+
   /* Styles for listing layout (hide title) */
   .layout-listing d-title, .layout-listing .d-title {
     display: none;
   }
-  
+
   /* Styles for posts lists (not auto-injected) */
-  
-  
+
+
   .posts-with-sidebar {
     padding-left: 45px;
     padding-right: 45px;
   }
-  
+
   .posts-list .description h2,
   .posts-list .description p {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
   }
-  
+
   .posts-list .description h2 {
     font-weight: 700;
     border-bottom: none;
     padding-bottom: 0;
   }
-  
+
   .posts-list h2.post-tag {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     padding-bottom: 12px;
@@ -1323,7 +1322,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 60px;
     margin-bottom: 24px;
   }
-  
+
   .posts-list .post-preview {
     text-decoration: none;
     overflow: hidden;
@@ -1331,29 +1330,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding: 24px 0;
   }
-  
+
   .post-preview-last {
     border-bottom: none !important;
   }
-  
+
   .posts-list .posts-list-caption {
     grid-column: screen;
     font-weight: 400;
   }
-  
+
   .posts-list .post-preview h2 {
     margin: 0 0 6px 0;
     line-height: 1.2em;
     font-style: normal;
     font-size: 24px;
   }
-  
+
   .posts-list .post-preview p {
     margin: 0 0 12px 0;
     line-height: 1.4em;
     font-size: 16px;
   }
-  
+
   .posts-list .post-preview .thumbnail {
     box-sizing: border-box;
     margin-bottom: 24px;
@@ -1364,32 +1363,32 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
     display: block;
   }
-  
+
   .posts-list .metadata {
     font-size: 12px;
     line-height: 1.4em;
     margin-bottom: 18px;
   }
-  
+
   .posts-list .metadata > * {
     display: inline-block;
   }
-  
+
   .posts-list .metadata .publishedDate {
     margin-right: 2em;
   }
-  
+
   .posts-list .metadata .dt-authors {
     display: block;
     margin-top: 0.3em;
     margin-right: 2em;
   }
-  
+
   .posts-list .dt-tags {
     display: block;
     line-height: 1em;
   }
-  
+
   .posts-list .dt-tags .dt-tag {
     display: inline-block;
     color: rgba(0,0,0,0.6);
@@ -1402,24 +1401,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-transform: uppercase;
     font-weight: 500;
   }
-  
+
   .posts-list img {
     opacity: 1;
   }
-  
+
   .posts-list img[data-src] {
     opacity: 0;
   }
-  
+
   .posts-more {
     clear: both;
   }
-  
-  
+
+
   .posts-sidebar {
     font-size: 16px;
   }
-  
+
   .posts-sidebar h3 {
     font-size: 16px;
     margin-top: 0;
@@ -1427,39 +1426,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     font-weight: 400;
     text-transform: uppercase;
   }
-  
+
   .sidebar-section {
     margin-bottom: 30px;
   }
-  
+
   .categories ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
   }
-  
+
   .categories li {
     color: rgba(0, 0, 0, 0.8);
     margin-bottom: 0;
   }
-  
+
   .categories li>a {
     border-bottom: none;
   }
-  
+
   .categories li>a:hover {
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   }
-  
+
   .categories .active {
     font-weight: 600;
   }
-  
+
   .categories .category-count {
     color: rgba(0, 0, 0, 0.4);
   }
-  
-  
+
+
   @media(min-width: 768px) {
     .posts-list .post-preview h2 {
       font-size: 26px;
@@ -1495,55 +1494,55 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       padding-bottom: 24px;
     }
   }
-  
-  
+
+
   /* Improve display for browsers without grid (IE/Edge <= 15) */
-  
+
   .downlevel {
     line-height: 1.6em;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
     margin: 0;
   }
-  
+
   .downlevel .d-title {
     padding-top: 6rem;
     padding-bottom: 1.5rem;
   }
-  
+
   .downlevel .d-title h1 {
     font-size: 50px;
     font-weight: 700;
     line-height: 1.1em;
     margin: 0 0 0.5rem;
   }
-  
+
   .downlevel .d-title p {
     font-weight: 300;
     font-size: 1.2rem;
     line-height: 1.55em;
     margin-top: 0;
   }
-  
+
   .downlevel .d-byline {
     padding-top: 0.8em;
     padding-bottom: 0.8em;
     font-size: 0.8rem;
     line-height: 1.8em;
   }
-  
+
   .downlevel .section-separator {
     border: none;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .downlevel .d-article {
     font-size: 1.06rem;
     line-height: 1.7em;
     padding-top: 1rem;
     padding-bottom: 2rem;
   }
-  
-  
+
+
   .downlevel .d-appendix {
     padding-left: 0;
     padding-right: 0;
@@ -1555,11 +1554,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-top: 40px;
     padding-bottom: 48px;
   }
-  
+
   .downlevel .footnotes ol {
     padding-left: 13px;
   }
-  
+
   .downlevel .base-grid,
   .downlevel .distill-header,
   .downlevel .d-title,
@@ -1576,7 +1575,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-left: 40px;
     padding-right: 40px;
   }
-  
+
   @media(min-width: 768px) {
     .downlevel .base-grid,
     .downlevel .distill-header,
@@ -1596,14 +1595,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     max-width: 900px;
   }
   }
-  
+
   .downlevel pre code {
     display: block;
     border-left: 2px solid rgba(0, 0, 0, .1);
     padding: 0 0 0 20px;
     font-size: 14px;
   }
-  
+
   .downlevel code, .downlevel pre {
     color: black;
     background: none;
@@ -1614,27 +1613,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
-  
+
     -moz-tab-size: 4;
     -o-tab-size: 4;
     tab-size: 4;
-  
+
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
   }
-  
+
   .downlevel .posts-list .post-preview {
     color: inherit;
   }
-  
-  
-  
+
+
+
   </style>
-  
+
   <script type="application/javascript">
-  
+
   function is_downlevel_browser() {
     if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
                                    window.navigator.userAgent)) {
@@ -1643,20 +1642,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       return window.load_distill_framework === undefined;
     }
   }
-  
+
   // show body when load is complete
   function on_load_complete() {
-  
+
     // add anchors
     if (window.anchors) {
       window.anchors.options.placement = 'left';
       window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
     }
-  
-  
+
+
     // set body to visible
     document.body.style.visibility = 'visible';
-  
+
     // force redraw for leaflet widgets
     if (window.HTMLWidgets) {
       var maps = window.HTMLWidgets.findAll(".leaflet");
@@ -1669,39 +1668,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
         });
       });
     }
-  
+
     // trigger 'shown' so htmlwidgets resize
     $('d-article').trigger('shown');
   }
-  
+
   function init_distill() {
-  
+
     init_common();
-  
+
     // create front matter
     var front_matter = $('<d-front-matter></d-front-matter>');
     $('#distill-front-matter').wrap(front_matter);
-  
+
     // create d-title
     $('.d-title').changeElementType('d-title');
-  
+
     // create d-byline
     var byline = $('<d-byline></d-byline>');
     $('.d-byline').replaceWith(byline);
-  
+
     // create d-article
     var article = $('<d-article></d-article>');
     $('.d-article').wrap(article).children().unwrap();
-  
+
     // move posts container into article
     $('.posts-container').appendTo($('d-article'));
-  
+
     // create d-appendix
     $('.d-appendix').changeElementType('d-appendix');
-  
+
     // flag indicating that we have appendix items
     var appendix = $('.appendix-bottom').children('h3').length > 0;
-  
+
     // replace footnotes with <d-footnote>
     $('.footnote-ref').each(function(i, val) {
       appendix = true;
@@ -1717,10 +1716,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     });
     // remove footnotes
     $('.footnotes').remove();
-  
+
     // move refs into #references-listing
     $('#references-listing').replaceWith($('#refs'));
-  
+
     $('h1.appendix, h2.appendix').each(function(i, val) {
       $(this).changeElementType('h3');
     });
@@ -1730,16 +1729,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       appendix = true;
       $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
     });
-  
+
     // show d-appendix if we have appendix content
     $("d-appendix").css('display', appendix ? 'grid' : 'none');
-  
+
     // localize layout chunks to just output
     $('.layout-chunk').each(function(i, val) {
-  
+
       // capture layout
       var layout = $(this).attr('data-layout');
-  
+
       // apply layout to markdown level block elements
       var elements = $(this).children().not('details, div.sourceCode, pre, script');
       elements.each(function(i, el) {
@@ -1752,40 +1751,40 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           $(this).wrap(layout_div);
         }
       });
-  
-  
+
+
       // unwrap the layout-chunk div
       $(this).children().unwrap();
     });
-  
+
     // remove code block used to force  highlighting css
     $('.distill-force-highlighting-css').parent().remove();
-  
+
     // remove empty line numbers inserted by pandoc when using a
     // custom syntax highlighting theme
     $('code.sourceCode a:empty').remove();
-  
+
     // load distill framework
     load_distill_framework();
-  
+
     // wait for window.distillRunlevel == 4 to do post processing
     function distill_post_process() {
-  
+
       if (!window.distillRunlevel || window.distillRunlevel < 4)
         return;
-  
+
       // hide author/affiliations entirely if we have no authors
       var front_matter = JSON.parse($("#distill-front-matter").html());
       var have_authors = front_matter.authors && front_matter.authors.length > 0;
       if (!have_authors)
         $('d-byline').addClass('hidden');
-  
+
       // article with toc class
       $('.d-contents').parent().addClass('d-article-with-toc');
-  
+
       // strip links that point to #
       $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
-  
+
       // add orcid ids
       $('.authors-affiliations').find('.author').each(function(i, el) {
         var orcid_id = front_matter.authors[i].orcidID;
@@ -1800,12 +1799,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           $(this).append(a);
         }
       });
-  
+
       // hide elements of author/affiliations grid that have no value
       function hide_byline_column(caption) {
         $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
       }
-  
+
       // affiliations
       var have_affiliations = false;
       for (var i = 0; i<front_matter.authors.length; ++i) {
@@ -1817,11 +1816,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       }
       if (!have_affiliations)
         $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
-  
+
       // published date
       if (!front_matter.publishedDate)
         hide_byline_column("Published");
-  
+
       // document object identifier
       var doi = $('d-byline').find('h3:contains("DOI")');
       var doi_p = doi.next().empty();
@@ -1841,25 +1840,40 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
            .html(front_matter.doi)
            .appendTo(doi_p);
       }
-  
+
        // change plural form of authors/affiliations
       if (front_matter.authors.length === 1) {
         var grid = $('.authors-affiliations');
         grid.children('h3:contains("Authors")').text('Author');
         grid.children('h3:contains("Affiliations")').text('Affiliation');
       }
-  
+
       // remove d-appendix and d-footnote-list local styles
       $('d-appendix > style:first-child').remove();
       $('d-footnote-list > style:first-child').remove();
-  
+
       // move appendix-bottom entries to the bottom
       $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
       $('.appendix-bottom').remove();
-  
+
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1870,39 +1884,64 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
-  
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
+
       // clear polling timer
       clearInterval(tid);
-  
+
       // show body now that everything is ready
       on_load_complete();
     }
-  
+
     var tid = setInterval(distill_post_process, 50);
     distill_post_process();
-  
+
   }
-  
+
   function init_downlevel() {
-  
+
     init_common();
-  
+
      // insert hr after d-title
     $('.d-title').after($('<hr class="section-separator"/>'));
-  
+
     // check if we have authors
     var front_matter = JSON.parse($("#distill-front-matter").html());
     var have_authors = front_matter.authors && front_matter.authors.length > 0;
-  
+
     // manage byline/border
     if (!have_authors)
       $('.d-byline').remove();
     $('.d-byline').after($('<hr class="section-separator"/>'));
     $('.d-byline a').remove();
-  
+
     // remove toc
     $('.d-contents').remove();
-  
+
     // move appendix elements
     $('h1.appendix, h2.appendix').each(function(i, val) {
       $(this).changeElementType('h3');
@@ -1910,65 +1949,67 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     $('h3.appendix').each(function(i, val) {
       $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
     });
-  
-  
+
+
     // inject headers into references and footnotes
     var refs_header = $('<h3></h3>');
     refs_header.text('References');
     $('#refs').prepend(refs_header);
-  
+
     var footnotes_header = $('<h3></h3');
     footnotes_header.text('Footnotes');
     $('.footnotes').children('hr').first().replaceWith(footnotes_header);
-  
+
     // move appendix-bottom entries to the bottom
     $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
     $('.appendix-bottom').remove();
-  
+
     // remove appendix if it's empty
     if ($('.d-appendix').children().length === 0)
       $('.d-appendix').remove();
-  
+
     // prepend separator above appendix
     $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
-  
+
     // trim code
     $('pre>code').each(function(i, val) {
       $(this).html($.trim($(this).html()));
     });
-  
+
     // move posts-container right before article
     $('.posts-container').insertBefore($('.d-article'));
-  
+
     $('body').addClass('downlevel');
-  
+
     on_load_complete();
   }
-  
-  
+
+
   function init_common() {
-  
+
     // jquery plugin to change element types
     (function($) {
       $.fn.changeElementType = function(newType) {
         var attrs = {};
-  
+
         $.each(this[0].attributes, function(idx, attr) {
           attrs[attr.nodeName] = attr.nodeValue;
         });
-  
+
         this.replaceWith(function() {
           return $("<" + newType + "/>", attrs).append($(this).contents());
         });
       };
     })(jQuery);
-  
+
     // prevent underline for linked images
     $('a > img').parent().css({'border-bottom' : 'none'});
-  
+
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1977,35 +2018,35 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           var fig = $(this);
           fig.css('width', fig.attr('width') + 'px');
         });
-  
+
       }
     });
-  
+
     // auto-append index.html to post-preview links in file: protocol
     // and in rstudio ide preview
     $('.post-preview').each(function(i, val) {
       if (window.location.protocol === "file:")
         $(this).attr('href', $(this).attr('href') + "index.html");
     });
-  
+
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
-  
+
     // add class to pandoc style tables
     $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
     $('.kable-table').children('table').addClass('pandoc-table');
-  
+
     // add figcaption style to table captions
     $('caption').parent('table').addClass("figcaption");
-  
+
     // initialize posts list
     if (window.init_posts_list)
       window.init_posts_list();
-  
+
     // implmement disqus comment link
     $('.disqus-comment-count').click(function() {
       window.headroom_prevent_pin = true;
@@ -2019,33 +2060,34 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       }
     });
   }
-  
+
   document.addEventListener('DOMContentLoaded', function() {
     if (is_downlevel_browser())
       init_downlevel();
     else
       window.addEventListener('WebComponentsReady', init_distill);
   });
-  
+
   </script>
-  
+
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+  <script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+  <script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
   <script src="site_libs/viz-1.8.2/viz.js"></script>
   <link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-  <script src="site_libs/grViz-binding-1.0.6.1/grViz.js"></script>
-  <script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+  <script src="site_libs/grViz-binding-1.0.10/grViz.js"></script>
   <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-  <script src="site_libs/datatables-binding-0.18/datatables.js"></script>
-  <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
-  <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
-  <script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="site_libs/datatables-binding-0.29/datatables.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="site_libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+  <link href="site_libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+  <script src="site_libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
   <link href="site_libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet" />
   <script src="site_libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
   <link href="site_libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
   <script src="site_libs/selectize-0.12.0/selectize.min.js"></script>
-  <link href="site_libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
-  <script src="site_libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+  <link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+  <script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2198,25 +2240,28 @@ General model evaluation
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#model-plots">Model plots</a><ul>
-<li><a href="#original-estimate-path-model">Original Estimate Path Model</a></li>
-<li><a href="#bootstrapped-path-model">Bootstrapped Path Model</a></li>
-<li><a href="#measurement-model-only">Measurement Model Only</a></li>
+<li><a href="#model-plots" id="toc-model-plots">Model plots</a>
+<ul>
+<li><a href="#original-estimate-path-model" id="toc-original-estimate-path-model">Original Estimate Path Model</a></li>
+<li><a href="#bootstrapped-path-model" id="toc-bootstrapped-path-model">Bootstrapped Path Model</a></li>
+<li><a href="#measurement-model-only" id="toc-measurement-model-only">Measurement Model Only</a></li>
 </ul></li>
-<li><a href="#evaluation-of-the-mode-a-measurement-model">Evaluation of the mode A measurement model</a><ul>
-<li><a href="#convergent-validity">Convergent validity</a></li>
-<li><a href="#internal-consistency-reliability">Internal consistency reliability</a></li>
-<li><a href="#discriminant-validity">Discriminant validity</a></li>
-<li><a href="#results-of-the-evaluation-of-the-mode-a-measurement-model">Results of the evaluation of the mode A measurement model</a></li>
+<li><a href="#evaluation-of-the-mode-a-measurement-model" id="toc-evaluation-of-the-mode-a-measurement-model">Evaluation of the mode A measurement model</a>
+<ul>
+<li><a href="#convergent-validity" id="toc-convergent-validity">Convergent validity</a></li>
+<li><a href="#internal-consistency-reliability" id="toc-internal-consistency-reliability">Internal consistency reliability</a></li>
+<li><a href="#discriminant-validity" id="toc-discriminant-validity">Discriminant validity</a></li>
+<li><a href="#results-of-the-evaluation-of-the-mode-a-measurement-model" id="toc-results-of-the-evaluation-of-the-mode-a-measurement-model">Results of the evaluation of the mode A measurement model</a></li>
 </ul></li>
-<li><a href="#evaluation-of-the-mode-b-measurement-model">Evaluation of the mode B measurement model</a></li>
-<li><a href="#evaluation-of-the-mode-b-higher-order-constructs">Evaluation of the mode B higher-order constructs</a><ul>
-<li><a href="#convergent-validity-1">Convergent validity</a></li>
-<li><a href="#collinearity">Collinearity</a></li>
-<li><a href="#significance-and-relevance">Significance and relevance</a></li>
-<li><a href="#results-of-the-mode-b-higher-order-constructs-evaluation">Results of the mode B higher-order constructs evaluation</a></li>
+<li><a href="#evaluation-of-the-mode-b-measurement-model" id="toc-evaluation-of-the-mode-b-measurement-model">Evaluation of the mode B measurement model</a></li>
+<li><a href="#evaluation-of-the-mode-b-higher-order-constructs" id="toc-evaluation-of-the-mode-b-higher-order-constructs">Evaluation of the mode B higher-order constructs</a>
+<ul>
+<li><a href="#convergent-validity-1" id="toc-convergent-validity-1">Convergent validity</a></li>
+<li><a href="#collinearity" id="toc-collinearity">Collinearity</a></li>
+<li><a href="#significance-and-relevance" id="toc-significance-and-relevance">Significance and relevance</a></li>
+<li><a href="#results-of-the-mode-b-higher-order-constructs-evaluation" id="toc-results-of-the-mode-b-higher-order-constructs-evaluation">Results of the mode B higher-order constructs evaluation</a></li>
 </ul></li>
-<li><a href="#results-summary">Results summary</a></li>
+<li><a href="#results-summary" id="toc-results-summary">Results summary</a></li>
 </ul>
 </nav>
 </div>
@@ -2224,20 +2269,20 @@ General model evaluation
 <h2 id="original-estimate-path-model">Original Estimate Path Model</h2>
 <p>This is the original estimate path model.</p>
 <div class="layout-chunk" data-layout="l-page">
-<div id="htmlwidget-d25c26c7d535709105b1" style="width:624px;height:384px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d25c26c7d535709105b1">{"x":{"diagram":"digraph G {\n\n// ----------------------\n// General graph settings\n// ----------------------\ngraph [\ncharset = \"UTF-8\",\nlayout = dot,\nlabel = \"Original Estimate Model\",\nfontsize = 24,\nfontcolor = black,\nfontname = helvetica,\nrankdir = LR,\nlabelloc = t,\nsplines = TRUE\nbgcolor = transparent\n]\n\n// --------------------\n// The structural model\n// --------------------\nsubgraph sm {\nrankdir = LR;\nnode [\nshape = ellipse,\ncolor = black,\nfillcolor = white,\nstyle = filled,\nfontsize = 12,\nfontcolor = black,\nheight = 1.00833333333333,\nwidth = 2.37916666666667,\nfontname = helvetica,\nfixedsize = true\n]\n\"Distrusting Beliefs\" [label=<<B>Distrusting Beliefs <\/B>>, shape = hexagon]\n\"Response Beliefs\" [label=<<B>Response Beliefs <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.163<\/FONT>>, shape = hexagon]\n\"Personal Moral Norm\" [label=<<B>Personal Moral Norm <\/B>>, shape = hexagon]\n\"Behavioral Intention\" [label=<<B>Behavioral Intention <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.289<\/FONT>>, shape = hexagon]\n\"Benevolence\" [label=<<B>Benevolence <\/B>>, shape = hexagon]\n\"Competence\" [label=<<B>Competence <\/B>>, shape = hexagon]\n\"Integrity\" [label=<<B>Integrity <\/B>>, shape = hexagon]\n\"Perceived Self-Efficacy\" [label=<<B>Perceived Self-Efficacy <\/B>>, shape = hexagon]\n\"Perceived Response Efficacy\" [label=<<B>Perceived Response Efficacy <\/B>>, shape = hexagon]\nedge [\ncolor = black,\nfontsize = 9,\nfontcolor = black,\nfontname = helvetica,\ndir = both,\narrowhead = normal,\narrowtail = none\n]\n\"Distrusting Beliefs\" -> {\"Response Beliefs\"}[weight = 1, label = < 𝛽 = -0.403<BR /><FONT POINT-SIZE=\"7\">   <\/FONT> >, penwidth = 2.515, style = dashed, color = black]\n\"Response Beliefs\" -> {\"Behavioral Intention\"}[weight = 1, label = < 𝛽 = 0.342<BR /><FONT POINT-SIZE=\"7\">   <\/FONT> >, penwidth = 2.21, style = solid, color = black]\n\"Personal Moral Norm\" -> {\"Behavioral Intention\"}[weight = 1, label = < 𝛽 = 0.27<BR /><FONT POINT-SIZE=\"7\">   <\/FONT> >, penwidth = 1.85, style = solid, color = black]\n}\n// ---------------------\n// The measurement model\n// ---------------------\n\nsubgraph construct_1 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCRB2\" [label = \"CCRB2\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCRB2\" -> {\"Perceived Self-Efficacy\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\nsubgraph construct_2 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCRB5\" [label = \"CCRB5\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCRB5\" -> {\"Perceived Response Efficacy\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\nsubgraph construct_3 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"Perceived Self-Efficacy\" [label = \"Perceived Self-Efficacy\", shape = box]\n\"Perceived Response Efficacy\" [label = \"Perceived Response Efficacy\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Perceived Self-Efficacy\" -> {\"Response Beliefs\"}[weight = 1000, label = < w = 0.421 >, penwidth = 1.763, style = solid, color = dimgrey]\n\"Perceived Response Efficacy\" -> {\"Response Beliefs\"}[weight = 1000, label = < w = 0.67 >, penwidth = 2.51, style = solid, color = dimgrey]\n\n}\nsubgraph construct_4 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI1\" [label = \"CCDI1\", shape = box]\n\"CCDI2\" [label = \"CCDI2\", shape = box]\n\"CCDI3\" [label = \"CCDI3\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI1\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.819 >, penwidth = 2.957, style = solid, color = dimgrey]\n\"CCDI2\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.887 >, penwidth = 3.161, style = solid, color = dimgrey]\n\"CCDI3\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.859 >, penwidth = 3.077, style = solid, color = dimgrey]\n\n}\nsubgraph construct_5 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI4\" [label = \"CCDI4\", shape = box]\n\"CCDI5\" [label = \"CCDI5\", shape = box]\n\"CCDI6\" [label = \"CCDI6\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI4\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.833 >, penwidth = 2.999, style = solid, color = dimgrey]\n\"CCDI5\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.82 >, penwidth = 2.96, style = solid, color = dimgrey]\n\"CCDI6\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.892 >, penwidth = 3.176, style = solid, color = dimgrey]\n\n}\nsubgraph construct_6 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI7\" [label = \"CCDI7\", shape = box]\n\"CCDI8\" [label = \"CCDI8\", shape = box]\n\"CCDI9\" [label = \"CCDI9\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI7\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.829 >, penwidth = 2.987, style = solid, color = dimgrey]\n\"CCDI8\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.878 >, penwidth = 3.134, style = solid, color = dimgrey]\n\"CCDI9\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.851 >, penwidth = 3.053, style = solid, color = dimgrey]\n\n}\nsubgraph construct_7 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"Benevolence\" [label = \"Benevolence\", shape = box]\n\"Competence\" [label = \"Competence\", shape = box]\n\"Integrity\" [label = \"Integrity\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Benevolence\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.534 >, penwidth = 2.102, style = solid, color = dimgrey]\n\"Competence\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.289 >, penwidth = 1.367, style = solid, color = dimgrey]\n\"Integrity\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.242 >, penwidth = 1.226, style = solid, color = dimgrey]\n\n}\nsubgraph construct_8 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCPN1\" [label = \"CCPN1\", shape = box]\n\"CCPN3\" [label = \"CCPN3\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCPN1\" -> {\"Personal Moral Norm\"}[weight = 1000, label = < 𝜆 = 0.922 >, penwidth = 3.266, style = solid, color = dimgrey]\n\"CCPN3\" -> {\"Personal Moral Norm\"}[weight = 1000, label = < 𝜆 = 0.942 >, penwidth = 3.326, style = solid, color = dimgrey]\n\n}\nsubgraph construct_9 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCBI2\" [label = \"CCBI2\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Behavioral Intention\" -> {\"CCBI2\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9f75e2794a09448004f2" style="width:624px;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-9f75e2794a09448004f2">{"x":{"diagram":"digraph G {\n\n// ----------------------\n// General graph settings\n// ----------------------\ngraph [\ncharset = \"UTF-8\",\nlayout = dot,\nlabel = \"Original Estimate Model\",\nfontsize = 24,\nfontcolor = black,\nfontname = helvetica,\nrankdir = LR,\nlabelloc = t,\nsplines = TRUE\nbgcolor = transparent\n]\n\n// --------------------\n// The structural model\n// --------------------\nsubgraph sm {\nrankdir = LR;\nnode [\nshape = ellipse,\ncolor = black,\nfillcolor = white,\nstyle = filled,\nfontsize = 12,\nfontcolor = black,\nheight = 1.00833333333333,\nwidth = 2.37916666666667,\nfontname = helvetica,\nfixedsize = true\n]\n\"Distrusting Beliefs\" [label=<<B>Distrusting Beliefs <\/B>>, shape = hexagon]\n\"Response Beliefs\" [label=<<B>Response Beliefs <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.163<\/FONT>>, shape = hexagon]\n\"Personal Moral Norm\" [label=<<B>Personal Moral Norm <\/B>>, shape = hexagon]\n\"Behavioral Intention\" [label=<<B>Behavioral Intention <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.289<\/FONT>>, shape = hexagon]\n\"Benevolence\" [label=<<B>Benevolence <\/B>>, shape = hexagon]\n\"Competence\" [label=<<B>Competence <\/B>>, shape = hexagon]\n\"Integrity\" [label=<<B>Integrity <\/B>>, shape = hexagon]\n\"Perceived Self-Efficacy\" [label=<<B>Perceived Self-Efficacy <\/B>>, shape = hexagon]\n\"Perceived Response Efficacy\" [label=<<B>Perceived Response Efficacy <\/B>>, shape = hexagon]\nedge [\ncolor = black,\nfontsize = 9,\nfontcolor = black,\nfontname = helvetica,\ndir = both,\narrowhead = normal,\narrowtail = none\n]\n\"Distrusting Beliefs\" -> {\"Response Beliefs\"}[weight = 1, label = < 𝛽 = -0.403<BR /><FONT POINT-SIZE=\"7\">   <\/FONT> >, penwidth = 2.515, style = dashed, color = black]\n\"Response Beliefs\" -> {\"Behavioral Intention\"}[weight = 1, label = < 𝛽 = 0.342<BR /><FONT POINT-SIZE=\"7\">   <\/FONT> >, penwidth = 2.21, style = solid, color = black]\n\"Personal Moral Norm\" -> {\"Behavioral Intention\"}[weight = 1, label = < 𝛽 = 0.27<BR /><FONT POINT-SIZE=\"7\">   <\/FONT> >, penwidth = 1.85, style = solid, color = black]\n}\n// ---------------------\n// The measurement model\n// ---------------------\n\nsubgraph construct_1 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"Benevolence\" [label = \"Benevolence\", shape = box]\n\"Competence\" [label = \"Competence\", shape = box]\n\"Integrity\" [label = \"Integrity\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Benevolence\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.534 >, penwidth = 2.102, style = solid, color = dimgrey]\n\"Competence\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.289 >, penwidth = 1.367, style = solid, color = dimgrey]\n\"Integrity\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.242 >, penwidth = 1.226, style = solid, color = dimgrey]\n\n}\nsubgraph construct_2 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"Perceived Self-Efficacy\" [label = \"Perceived Self-Efficacy\", shape = box]\n\"Perceived Response Efficacy\" [label = \"Perceived Response Efficacy\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Perceived Self-Efficacy\" -> {\"Response Beliefs\"}[weight = 1000, label = < w = 0.421 >, penwidth = 1.763, style = solid, color = dimgrey]\n\"Perceived Response Efficacy\" -> {\"Response Beliefs\"}[weight = 1000, label = < w = 0.67 >, penwidth = 2.51, style = solid, color = dimgrey]\n\n}\nsubgraph construct_3 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCPN1\" [label = \"CCPN1\", shape = box]\n\"CCPN3\" [label = \"CCPN3\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCPN1\" -> {\"Personal Moral Norm\"}[weight = 1000, label = < 𝜆 = 0.922 >, penwidth = 3.266, style = solid, color = dimgrey]\n\"CCPN3\" -> {\"Personal Moral Norm\"}[weight = 1000, label = < 𝜆 = 0.942 >, penwidth = 3.326, style = solid, color = dimgrey]\n\n}\nsubgraph construct_4 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCBI2\" [label = \"CCBI2\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Behavioral Intention\" -> {\"CCBI2\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\nsubgraph construct_5 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCRB2\" [label = \"CCRB2\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCRB2\" -> {\"Perceived Self-Efficacy\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\nsubgraph construct_6 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCRB5\" [label = \"CCRB5\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCRB5\" -> {\"Perceived Response Efficacy\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\nsubgraph construct_7 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI1\" [label = \"CCDI1\", shape = box]\n\"CCDI2\" [label = \"CCDI2\", shape = box]\n\"CCDI3\" [label = \"CCDI3\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI1\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.819 >, penwidth = 2.957, style = solid, color = dimgrey]\n\"CCDI2\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.887 >, penwidth = 3.161, style = solid, color = dimgrey]\n\"CCDI3\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.859 >, penwidth = 3.077, style = solid, color = dimgrey]\n\n}\nsubgraph construct_8 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI4\" [label = \"CCDI4\", shape = box]\n\"CCDI5\" [label = \"CCDI5\", shape = box]\n\"CCDI6\" [label = \"CCDI6\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI4\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.833 >, penwidth = 2.999, style = solid, color = dimgrey]\n\"CCDI5\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.82 >, penwidth = 2.96, style = solid, color = dimgrey]\n\"CCDI6\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.892 >, penwidth = 3.176, style = solid, color = dimgrey]\n\n}\nsubgraph construct_9 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI7\" [label = \"CCDI7\", shape = box]\n\"CCDI8\" [label = \"CCDI8\", shape = box]\n\"CCDI9\" [label = \"CCDI9\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI7\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.829 >, penwidth = 2.987, style = solid, color = dimgrey]\n\"CCDI8\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.878 >, penwidth = 3.134, style = solid, color = dimgrey]\n\"CCDI9\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.851 >, penwidth = 3.053, style = solid, color = dimgrey]\n\n}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <h2 id="bootstrapped-path-model">Bootstrapped Path Model</h2>
 <p>This is the bootstrapped path model.</p>
 <div class="layout-chunk" data-layout="l-page">
-<div id="htmlwidget-53aa5d9c6d6a865173fd" style="width:624px;height:384px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-53aa5d9c6d6a865173fd">{"x":{"diagram":"digraph G {\n\n// ----------------------\n// General graph settings\n// ----------------------\ngraph [\ncharset = \"UTF-8\",\nlayout = dot,\nlabel = \"Bootstrapped Model\",\nfontsize = 24,\nfontcolor = black,\nfontname = helvetica,\nrankdir = LR,\nlabelloc = t,\nsplines = TRUE\nbgcolor = transparent\n]\n\n// --------------------\n// The structural model\n// --------------------\nsubgraph sm {\nrankdir = LR;\nnode [\nshape = ellipse,\ncolor = black,\nfillcolor = white,\nstyle = filled,\nfontsize = 12,\nfontcolor = black,\nheight = 1.00833333333333,\nwidth = 2.37916666666667,\nfontname = helvetica,\nfixedsize = true\n]\n\"Distrusting Beliefs\" [label=<<B>Distrusting Beliefs <\/B>>, shape = hexagon]\n\"Response Beliefs\" [label=<<B>Response Beliefs <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.163<\/FONT>>, shape = hexagon]\n\"Personal Moral Norm\" [label=<<B>Personal Moral Norm <\/B>>, shape = hexagon]\n\"Behavioral Intention\" [label=<<B>Behavioral Intention <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.289<\/FONT>>, shape = hexagon]\n\"Benevolence\" [label=<<B>Benevolence <\/B>>, shape = hexagon]\n\"Competence\" [label=<<B>Competence <\/B>>, shape = hexagon]\n\"Integrity\" [label=<<B>Integrity <\/B>>, shape = hexagon]\n\"Perceived Self-Efficacy\" [label=<<B>Perceived Self-Efficacy <\/B>>, shape = hexagon]\n\"Perceived Response Efficacy\" [label=<<B>Perceived Response Efficacy <\/B>>, shape = hexagon]\nedge [\ncolor = black,\nfontsize = 9,\nfontcolor = black,\nfontname = helvetica,\ndir = both,\narrowhead = normal,\narrowtail = none\n]\n\"Distrusting Beliefs\" -> {\"Response Beliefs\"}[weight = 1, label = < 𝛽 = -0.403***<BR /><FONT POINT-SIZE=\"7\">95% CI [-0.512, -0.309]   <\/FONT> >, penwidth = 2.515, style = dashed, color = black]\n\"Response Beliefs\" -> {\"Behavioral Intention\"}[weight = 1, label = < 𝛽 = 0.342***<BR /><FONT POINT-SIZE=\"7\">95% CI [0.227, 0.461]   <\/FONT> >, penwidth = 2.21, style = solid, color = black]\n\"Personal Moral Norm\" -> {\"Behavioral Intention\"}[weight = 1, label = < 𝛽 = 0.27***<BR /><FONT POINT-SIZE=\"7\">95% CI [0.154, 0.379]   <\/FONT> >, penwidth = 1.85, style = solid, color = black]\n}\n// ---------------------\n// The measurement model\n// ---------------------\n\nsubgraph construct_1 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCRB2\" [label = \"CCRB2\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCRB2\" -> {\"Perceived Self-Efficacy\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\nsubgraph construct_2 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCRB5\" [label = \"CCRB5\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCRB5\" -> {\"Perceived Response Efficacy\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\nsubgraph construct_3 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"Perceived Self-Efficacy\" [label = \"Perceived Self-Efficacy\", shape = box]\n\"Perceived Response Efficacy\" [label = \"Perceived Response Efficacy\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Perceived Self-Efficacy\" -> {\"Response Beliefs\"}[weight = 1000, label = < w = 0.421*** >, penwidth = 1.763, style = solid, color = dimgrey]\n\"Perceived Response Efficacy\" -> {\"Response Beliefs\"}[weight = 1000, label = < w = 0.67*** >, penwidth = 2.51, style = solid, color = dimgrey]\n\n}\nsubgraph construct_4 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI1\" [label = \"CCDI1\", shape = box]\n\"CCDI2\" [label = \"CCDI2\", shape = box]\n\"CCDI3\" [label = \"CCDI3\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI1\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.819*** >, penwidth = 2.957, style = solid, color = dimgrey]\n\"CCDI2\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.887*** >, penwidth = 3.161, style = solid, color = dimgrey]\n\"CCDI3\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.859*** >, penwidth = 3.077, style = solid, color = dimgrey]\n\n}\nsubgraph construct_5 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI4\" [label = \"CCDI4\", shape = box]\n\"CCDI5\" [label = \"CCDI5\", shape = box]\n\"CCDI6\" [label = \"CCDI6\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI4\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.833*** >, penwidth = 2.999, style = solid, color = dimgrey]\n\"CCDI5\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.82*** >, penwidth = 2.96, style = solid, color = dimgrey]\n\"CCDI6\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.892*** >, penwidth = 3.176, style = solid, color = dimgrey]\n\n}\nsubgraph construct_6 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI7\" [label = \"CCDI7\", shape = box]\n\"CCDI8\" [label = \"CCDI8\", shape = box]\n\"CCDI9\" [label = \"CCDI9\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI7\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.829*** >, penwidth = 2.987, style = solid, color = dimgrey]\n\"CCDI8\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.878*** >, penwidth = 3.134, style = solid, color = dimgrey]\n\"CCDI9\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.851*** >, penwidth = 3.053, style = solid, color = dimgrey]\n\n}\nsubgraph construct_7 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"Benevolence\" [label = \"Benevolence\", shape = box]\n\"Competence\" [label = \"Competence\", shape = box]\n\"Integrity\" [label = \"Integrity\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Benevolence\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.534** >, penwidth = 2.102, style = solid, color = dimgrey]\n\"Competence\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.289 >, penwidth = 1.367, style = solid, color = dimgrey]\n\"Integrity\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.242 >, penwidth = 1.226, style = solid, color = dimgrey]\n\n}\nsubgraph construct_8 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCPN1\" [label = \"CCPN1\", shape = box]\n\"CCPN3\" [label = \"CCPN3\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCPN1\" -> {\"Personal Moral Norm\"}[weight = 1000, label = < 𝜆 = 0.922*** >, penwidth = 3.266, style = solid, color = dimgrey]\n\"CCPN3\" -> {\"Personal Moral Norm\"}[weight = 1000, label = < 𝜆 = 0.942*** >, penwidth = 3.326, style = solid, color = dimgrey]\n\n}\nsubgraph construct_9 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCBI2\" [label = \"CCBI2\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Behavioral Intention\" -> {\"CCBI2\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-eb083e7bdab8d0c3dda1" style="width:624px;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-eb083e7bdab8d0c3dda1">{"x":{"diagram":"digraph G {\n\n// ----------------------\n// General graph settings\n// ----------------------\ngraph [\ncharset = \"UTF-8\",\nlayout = dot,\nlabel = \"Bootstrapped Model\",\nfontsize = 24,\nfontcolor = black,\nfontname = helvetica,\nrankdir = LR,\nlabelloc = t,\nsplines = TRUE\nbgcolor = transparent\n]\n\n// --------------------\n// The structural model\n// --------------------\nsubgraph sm {\nrankdir = LR;\nnode [\nshape = ellipse,\ncolor = black,\nfillcolor = white,\nstyle = filled,\nfontsize = 12,\nfontcolor = black,\nheight = 1.00833333333333,\nwidth = 2.37916666666667,\nfontname = helvetica,\nfixedsize = true\n]\n\"Distrusting Beliefs\" [label=<<B>Distrusting Beliefs <\/B>>, shape = hexagon]\n\"Response Beliefs\" [label=<<B>Response Beliefs <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.163<\/FONT>>, shape = hexagon]\n\"Personal Moral Norm\" [label=<<B>Personal Moral Norm <\/B>>, shape = hexagon]\n\"Behavioral Intention\" [label=<<B>Behavioral Intention <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.289<\/FONT>>, shape = hexagon]\n\"Benevolence\" [label=<<B>Benevolence <\/B>>, shape = hexagon]\n\"Competence\" [label=<<B>Competence <\/B>>, shape = hexagon]\n\"Integrity\" [label=<<B>Integrity <\/B>>, shape = hexagon]\n\"Perceived Self-Efficacy\" [label=<<B>Perceived Self-Efficacy <\/B>>, shape = hexagon]\n\"Perceived Response Efficacy\" [label=<<B>Perceived Response Efficacy <\/B>>, shape = hexagon]\nedge [\ncolor = black,\nfontsize = 9,\nfontcolor = black,\nfontname = helvetica,\ndir = both,\narrowhead = normal,\narrowtail = none\n]\n\"Distrusting Beliefs\" -> {\"Response Beliefs\"}[weight = 1, label = < 𝛽 = -0.403***<BR /><FONT POINT-SIZE=\"7\">95% CI [-0.512, -0.309]   <\/FONT> >, penwidth = 2.515, style = dashed, color = black]\n\"Response Beliefs\" -> {\"Behavioral Intention\"}[weight = 1, label = < 𝛽 = 0.342***<BR /><FONT POINT-SIZE=\"7\">95% CI [0.227, 0.461]   <\/FONT> >, penwidth = 2.21, style = solid, color = black]\n\"Personal Moral Norm\" -> {\"Behavioral Intention\"}[weight = 1, label = < 𝛽 = 0.27***<BR /><FONT POINT-SIZE=\"7\">95% CI [0.154, 0.379]   <\/FONT> >, penwidth = 1.85, style = solid, color = black]\n}\n// ---------------------\n// The measurement model\n// ---------------------\n\nsubgraph construct_1 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"Benevolence\" [label = \"Benevolence\", shape = box]\n\"Competence\" [label = \"Competence\", shape = box]\n\"Integrity\" [label = \"Integrity\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Benevolence\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.534** >, penwidth = 2.102, style = solid, color = dimgrey]\n\"Competence\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.289 >, penwidth = 1.367, style = solid, color = dimgrey]\n\"Integrity\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.242 >, penwidth = 1.226, style = solid, color = dimgrey]\n\n}\nsubgraph construct_2 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"Perceived Self-Efficacy\" [label = \"Perceived Self-Efficacy\", shape = box]\n\"Perceived Response Efficacy\" [label = \"Perceived Response Efficacy\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Perceived Self-Efficacy\" -> {\"Response Beliefs\"}[weight = 1000, label = < w = 0.421*** >, penwidth = 1.763, style = solid, color = dimgrey]\n\"Perceived Response Efficacy\" -> {\"Response Beliefs\"}[weight = 1000, label = < w = 0.67*** >, penwidth = 2.51, style = solid, color = dimgrey]\n\n}\nsubgraph construct_3 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCPN1\" [label = \"CCPN1\", shape = box]\n\"CCPN3\" [label = \"CCPN3\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCPN1\" -> {\"Personal Moral Norm\"}[weight = 1000, label = < 𝜆 = 0.922*** >, penwidth = 3.266, style = solid, color = dimgrey]\n\"CCPN3\" -> {\"Personal Moral Norm\"}[weight = 1000, label = < 𝜆 = 0.942*** >, penwidth = 3.326, style = solid, color = dimgrey]\n\n}\nsubgraph construct_4 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCBI2\" [label = \"CCBI2\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Behavioral Intention\" -> {\"CCBI2\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\nsubgraph construct_5 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCRB2\" [label = \"CCRB2\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCRB2\" -> {\"Perceived Self-Efficacy\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\nsubgraph construct_6 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCRB5\" [label = \"CCRB5\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCRB5\" -> {\"Perceived Response Efficacy\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\nsubgraph construct_7 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI1\" [label = \"CCDI1\", shape = box]\n\"CCDI2\" [label = \"CCDI2\", shape = box]\n\"CCDI3\" [label = \"CCDI3\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI1\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.819*** >, penwidth = 2.957, style = solid, color = dimgrey]\n\"CCDI2\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.887*** >, penwidth = 3.161, style = solid, color = dimgrey]\n\"CCDI3\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.859*** >, penwidth = 3.077, style = solid, color = dimgrey]\n\n}\nsubgraph construct_8 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI4\" [label = \"CCDI4\", shape = box]\n\"CCDI5\" [label = \"CCDI5\", shape = box]\n\"CCDI6\" [label = \"CCDI6\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI4\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.833*** >, penwidth = 2.999, style = solid, color = dimgrey]\n\"CCDI5\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.82*** >, penwidth = 2.96, style = solid, color = dimgrey]\n\"CCDI6\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.892*** >, penwidth = 3.176, style = solid, color = dimgrey]\n\n}\nsubgraph construct_9 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI7\" [label = \"CCDI7\", shape = box]\n\"CCDI8\" [label = \"CCDI8\", shape = box]\n\"CCDI9\" [label = \"CCDI9\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI7\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.829*** >, penwidth = 2.987, style = solid, color = dimgrey]\n\"CCDI8\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.878*** >, penwidth = 3.134, style = solid, color = dimgrey]\n\"CCDI9\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.851*** >, penwidth = 3.053, style = solid, color = dimgrey]\n\n}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <h2 id="measurement-model-only">Measurement Model Only</h2>
 <p>This is a path model showing only the measurement model components.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-fd60d9684e24134516e3" style="width:624px;height:384px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fd60d9684e24134516e3">{"x":{"diagram":"digraph G {\n\n// ----------------------\n// General graph settings\n// ----------------------\ngraph [\ncharset = \"UTF-8\",\nlayout = dot,\nlabel = \"\",\nfontsize = 24,\nfontcolor = black,\nfontname = helvetica,\nrankdir = LR,\nlabelloc = t,\nsplines = TRUE\nbgcolor = transparent\n]\n\n// --------------------\n// The structural model\n// --------------------\nsubgraph sm {\nrankdir = LR;\nnode [\nshape = ellipse,\ncolor = black,\nfillcolor = white,\nstyle = filled,\nfontsize = 12,\nfontcolor = black,\nheight = 1.00833333333333,\nwidth = 2.37916666666667,\nfontname = helvetica,\nfixedsize = true\n]\n\"Distrusting Beliefs\" [label=<<B>Distrusting Beliefs <\/B>>, shape = hexagon]\n\"Response Beliefs\" [label=<<B>Response Beliefs <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.163<\/FONT>>, shape = hexagon]\n\"Personal Moral Norm\" [label=<<B>Personal Moral Norm <\/B>>, shape = hexagon]\n\"Behavioral Intention\" [label=<<B>Behavioral Intention <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.289<\/FONT>>, shape = hexagon]\n\"Benevolence\" [label=<<B>Benevolence <\/B>>, shape = hexagon]\n\"Competence\" [label=<<B>Competence <\/B>>, shape = hexagon]\n\"Integrity\" [label=<<B>Integrity <\/B>>, shape = hexagon]\n\"Perceived Self-Efficacy\" [label=<<B>Perceived Self-Efficacy <\/B>>, shape = hexagon]\n\"Perceived Response Efficacy\" [label=<<B>Perceived Response Efficacy <\/B>>, shape = hexagon]\n}\n// ---------------------\n// The measurement model\n// ---------------------\n\nsubgraph construct_1 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCRB2\" [label = \"CCRB2\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCRB2\" -> {\"Perceived Self-Efficacy\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\nsubgraph construct_2 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCRB5\" [label = \"CCRB5\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCRB5\" -> {\"Perceived Response Efficacy\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\nsubgraph construct_3 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"Perceived Self-Efficacy\" [label = \"Perceived Self-Efficacy\", shape = box]\n\"Perceived Response Efficacy\" [label = \"Perceived Response Efficacy\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Perceived Self-Efficacy\" -> {\"Response Beliefs\"}[weight = 1000, label = < w = 0.421*** >, penwidth = 1.763, style = solid, color = dimgrey]\n\"Perceived Response Efficacy\" -> {\"Response Beliefs\"}[weight = 1000, label = < w = 0.67*** >, penwidth = 2.51, style = solid, color = dimgrey]\n\n}\nsubgraph construct_4 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI1\" [label = \"CCDI1\", shape = box]\n\"CCDI2\" [label = \"CCDI2\", shape = box]\n\"CCDI3\" [label = \"CCDI3\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI1\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.819*** >, penwidth = 2.957, style = solid, color = dimgrey]\n\"CCDI2\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.887*** >, penwidth = 3.161, style = solid, color = dimgrey]\n\"CCDI3\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.859*** >, penwidth = 3.077, style = solid, color = dimgrey]\n\n}\nsubgraph construct_5 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI4\" [label = \"CCDI4\", shape = box]\n\"CCDI5\" [label = \"CCDI5\", shape = box]\n\"CCDI6\" [label = \"CCDI6\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI4\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.833*** >, penwidth = 2.999, style = solid, color = dimgrey]\n\"CCDI5\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.82*** >, penwidth = 2.96, style = solid, color = dimgrey]\n\"CCDI6\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.892*** >, penwidth = 3.176, style = solid, color = dimgrey]\n\n}\nsubgraph construct_6 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI7\" [label = \"CCDI7\", shape = box]\n\"CCDI8\" [label = \"CCDI8\", shape = box]\n\"CCDI9\" [label = \"CCDI9\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI7\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.829*** >, penwidth = 2.987, style = solid, color = dimgrey]\n\"CCDI8\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.878*** >, penwidth = 3.134, style = solid, color = dimgrey]\n\"CCDI9\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.851*** >, penwidth = 3.053, style = solid, color = dimgrey]\n\n}\nsubgraph construct_7 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"Benevolence\" [label = \"Benevolence\", shape = box]\n\"Competence\" [label = \"Competence\", shape = box]\n\"Integrity\" [label = \"Integrity\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Benevolence\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.534** >, penwidth = 2.102, style = solid, color = dimgrey]\n\"Competence\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.289 >, penwidth = 1.367, style = solid, color = dimgrey]\n\"Integrity\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.242 >, penwidth = 1.226, style = solid, color = dimgrey]\n\n}\nsubgraph construct_8 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCPN1\" [label = \"CCPN1\", shape = box]\n\"CCPN3\" [label = \"CCPN3\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCPN1\" -> {\"Personal Moral Norm\"}[weight = 1000, label = < 𝜆 = 0.922*** >, penwidth = 3.266, style = solid, color = dimgrey]\n\"CCPN3\" -> {\"Personal Moral Norm\"}[weight = 1000, label = < 𝜆 = 0.942*** >, penwidth = 3.326, style = solid, color = dimgrey]\n\n}\nsubgraph construct_9 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCBI2\" [label = \"CCBI2\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Behavioral Intention\" -> {\"CCBI2\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-6d7681a6ee2b0f5f2f9a" style="width:624px;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-6d7681a6ee2b0f5f2f9a">{"x":{"diagram":"digraph G {\n\n// ----------------------\n// General graph settings\n// ----------------------\ngraph [\ncharset = \"UTF-8\",\nlayout = dot,\nlabel = \"\",\nfontsize = 24,\nfontcolor = black,\nfontname = helvetica,\nrankdir = LR,\nlabelloc = t,\nsplines = TRUE\nbgcolor = transparent\n]\n\n// --------------------\n// The structural model\n// --------------------\nsubgraph sm {\nrankdir = LR;\nnode [\nshape = ellipse,\ncolor = black,\nfillcolor = white,\nstyle = filled,\nfontsize = 12,\nfontcolor = black,\nheight = 1.00833333333333,\nwidth = 2.37916666666667,\nfontname = helvetica,\nfixedsize = true\n]\n\"Distrusting Beliefs\" [label=<<B>Distrusting Beliefs <\/B>>, shape = hexagon]\n\"Response Beliefs\" [label=<<B>Response Beliefs <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.163<\/FONT>>, shape = hexagon]\n\"Personal Moral Norm\" [label=<<B>Personal Moral Norm <\/B>>, shape = hexagon]\n\"Behavioral Intention\" [label=<<B>Behavioral Intention <\/B><BR /><FONT POINT-SIZE=\"10\">r² = 0.289<\/FONT>>, shape = hexagon]\n\"Benevolence\" [label=<<B>Benevolence <\/B>>, shape = hexagon]\n\"Competence\" [label=<<B>Competence <\/B>>, shape = hexagon]\n\"Integrity\" [label=<<B>Integrity <\/B>>, shape = hexagon]\n\"Perceived Self-Efficacy\" [label=<<B>Perceived Self-Efficacy <\/B>>, shape = hexagon]\n\"Perceived Response Efficacy\" [label=<<B>Perceived Response Efficacy <\/B>>, shape = hexagon]\n}\n// ---------------------\n// The measurement model\n// ---------------------\n\nsubgraph construct_1 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"Benevolence\" [label = \"Benevolence\", shape = box]\n\"Competence\" [label = \"Competence\", shape = box]\n\"Integrity\" [label = \"Integrity\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Benevolence\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.534** >, penwidth = 2.102, style = solid, color = dimgrey]\n\"Competence\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.289 >, penwidth = 1.367, style = solid, color = dimgrey]\n\"Integrity\" -> {\"Distrusting Beliefs\"}[weight = 1000, label = < w = 0.242 >, penwidth = 1.226, style = solid, color = dimgrey]\n\n}\nsubgraph construct_2 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"Perceived Self-Efficacy\" [label = \"Perceived Self-Efficacy\", shape = box]\n\"Perceived Response Efficacy\" [label = \"Perceived Response Efficacy\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Perceived Self-Efficacy\" -> {\"Response Beliefs\"}[weight = 1000, label = < w = 0.421*** >, penwidth = 1.763, style = solid, color = dimgrey]\n\"Perceived Response Efficacy\" -> {\"Response Beliefs\"}[weight = 1000, label = < w = 0.67*** >, penwidth = 2.51, style = solid, color = dimgrey]\n\n}\nsubgraph construct_3 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCPN1\" [label = \"CCPN1\", shape = box]\n\"CCPN3\" [label = \"CCPN3\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCPN1\" -> {\"Personal Moral Norm\"}[weight = 1000, label = < 𝜆 = 0.922*** >, penwidth = 3.266, style = solid, color = dimgrey]\n\"CCPN3\" -> {\"Personal Moral Norm\"}[weight = 1000, label = < 𝜆 = 0.942*** >, penwidth = 3.326, style = solid, color = dimgrey]\n\n}\nsubgraph construct_4 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCBI2\" [label = \"CCBI2\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = normal\narrowtail = none\n]\n\"Behavioral Intention\" -> {\"CCBI2\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\nsubgraph construct_5 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCRB2\" [label = \"CCRB2\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCRB2\" -> {\"Perceived Self-Efficacy\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\nsubgraph construct_6 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCRB5\" [label = \"CCRB5\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCRB5\" -> {\"Perceived Response Efficacy\"}[weight = 1000, label = < 𝜆 = 1 >, penwidth = 3.5, style = solid, color = dimgrey]\n\n}\nsubgraph construct_7 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI1\" [label = \"CCDI1\", shape = box]\n\"CCDI2\" [label = \"CCDI2\", shape = box]\n\"CCDI3\" [label = \"CCDI3\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI1\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.819*** >, penwidth = 2.957, style = solid, color = dimgrey]\n\"CCDI2\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.887*** >, penwidth = 3.161, style = solid, color = dimgrey]\n\"CCDI3\" -> {\"Benevolence\"}[weight = 1000, label = < 𝜆 = 0.859*** >, penwidth = 3.077, style = solid, color = dimgrey]\n\n}\nsubgraph construct_8 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI4\" [label = \"CCDI4\", shape = box]\n\"CCDI5\" [label = \"CCDI5\", shape = box]\n\"CCDI6\" [label = \"CCDI6\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI4\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.833*** >, penwidth = 2.999, style = solid, color = dimgrey]\n\"CCDI5\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.82*** >, penwidth = 2.96, style = solid, color = dimgrey]\n\"CCDI6\" -> {\"Competence\"}[weight = 1000, label = < 𝜆 = 0.892*** >, penwidth = 3.176, style = solid, color = dimgrey]\n\n}\nsubgraph construct_9 {\nnode [\nshape = box,\ncolor = dimgrey,\nfillcolor = white,\nstyle = filled,\nfontsize = 8,\nfontcolor = black,\nheight = 0.164583333333333,\nwidth = 1.91145833333333,\nfontname = helvetica,\nfixedsize = true\n]\n\"CCDI7\" [label = \"CCDI7\", shape = box]\n\"CCDI8\" [label = \"CCDI8\", shape = box]\n\"CCDI9\" [label = \"CCDI9\", shape = box]\nedge [\ncolor = dimgrey,\nfontsize = 7,\nfontcolor = black,\nfontname = helvetica,\nminlen = 1,\ndir = both\narrowhead = none\narrowtail = normal\n]\n\"CCDI7\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.829*** >, penwidth = 2.987, style = solid, color = dimgrey]\n\"CCDI8\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.878*** >, penwidth = 3.134, style = solid, color = dimgrey]\n\"CCDI9\" -> {\"Integrity\"}[weight = 1000, label = < 𝜆 = 0.851*** >, penwidth = 3.053, style = solid, color = dimgrey]\n\n}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <h1 id="evaluation-of-the-mode-a-measurement-model">Evaluation of the mode A measurement model</h1>
 <h2 id="convergent-validity">Convergent validity</h2>
@@ -2247,14 +2292,15 @@ General model evaluation
 <h2 id="discriminant-validity">Discriminant validity</h2>
 <p>Discriminant validity is evaluated using the heterotrait-monotrait ratio (HTMT). The HTMT bootstrap confidence interval should not contain 1.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-8da139ca12403a93d22d" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8da139ca12403a93d22d">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.819058988885502\" data-max=\"1\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.720677772464669\" data-max=\"1\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.810558376210279\" data-max=\"1\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.885450569438242\" data-max=\"1\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.845456996929608\" data-max=\"1\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Results of the mode A measurement model evaluation<\/caption>","data":[["Perceived Self-Efficacy","Perceived Response Efficacy","Benevolence","Benevolence","Benevolence","Competence","Competence","Competence","Integrity","Integrity","Integrity","Personal Moral Norm","Personal Moral Norm","Behavioral Intention"],["CCRB2","CCRB5","CCDI1","CCDI2","CCDI3","CCDI4","CCDI5","CCDI6","CCDI7","CCDI8","CCDI9","CCPN1","CCPN3","CCBI2"],[1,1,0.819058988885503,0.886832551626718,0.858603806166992,0.833198724823602,0.82009923577864,0.891768156990158,0.829326355751532,0.878142607964517,0.850675836120129,0.922012962465761,0.942418173289858,1],[1,1,0.731510032621114,0.731510032621114,0.731510032621114,0.720677772464669,0.720677772464669,0.720677772464669,0.727522007475173,0.727522007475173,0.727522007475173,0.869129958150941,0.869129958150941,1],[1,1,0.821336696699477,0.821336696699477,0.821336696699477,0.810558376210279,0.810558376210279,0.810558376210279,0.817526106873209,0.817526106873209,0.817526106873209,0.850205684509775,0.850205684509775,1],[1,1,0.890888877644147,0.890888877644147,0.890888877644147,0.885450569438243,0.885450569438243,0.885450569438243,0.888958816846169,0.888958816846169,0.888958816846169,0.929975644876535,0.929975644876535,1],[1,1,0.86997466594353,0.86997466594353,0.86997466594353,0.847572848482331,0.847572848482331,0.847572848482331,0.845456996929608,0.845456996929608,0.845456996929608,0.863228674425377,0.863228674425377,1],[false,false,true,true,true,true,true,true,true,true,true,false,false,false]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Construct<\/th>\n      <th>Indicator<\/th>\n      <th>Loading<\/th>\n      <th>AVE<\/th>\n      <th>Cronbach's alpha<\/th>\n      <th>Composite reliability<\/th>\n      <th>Construct reliability<\/th>\n      <th>1 in HTMT CI<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":14,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3,4,5,6]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,14,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.4 ? \"#ff9999\" : value <= 0.708 ? \"#ffe5e5\" : \"#00\"});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.5 ? \"#ff9999\" : \"#00\"});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.6 ? \"#ff9999\" : value <= 0.9 ? \"#00\" : value <= 0.95 ? \"#ffe5e5\" : value <= 0.999 ? \"#ff9999\" : \"#00\"});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.6 ? \"#ff9999\" : value <= 0.9 ? \"#00\" : value <= 0.95 ? \"#ffe5e5\" : value <= 0.999 ? \"#ff9999\" : \"#00\"});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.6 ? \"#ff9999\" : value <= 0.9 ? \"#00\" : value <= 0.95 ? \"#ffe5e5\" : value <= 0.999 ? \"#ff9999\" : \"#00\"});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'background-color':value == 1 ? \"#ff9999\" : value == 0 ? \"#00\" : null});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.rowCallback"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ada5d26609b25ce069ee" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ada5d26609b25ce069ee">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.819058988885502\" data-max=\"1\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.720677772464669\" data-max=\"1\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.810558376210279\" data-max=\"1\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.885450569438242\" data-max=\"1\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.845456996929608\" data-max=\"1\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Results of the mode A measurement model evaluation<\/caption>","data":[["Perceived Self-Efficacy","Perceived Response Efficacy","Benevolence","Benevolence","Benevolence","Competence","Competence","Competence","Integrity","Integrity","Integrity","Personal Moral Norm","Personal Moral Norm","Behavioral Intention"],["CCRB2","CCRB5","CCDI1","CCDI2","CCDI3","CCDI4","CCDI5","CCDI6","CCDI7","CCDI8","CCDI9","CCPN1","CCPN3","CCBI2"],[0.9999999999999999,0.9999999999999999,0.8190589888855027,0.8868325516267179,0.8586038061669924,0.8331987248236016,0.82009923577864,0.8917681569901579,0.8293263557515316,0.8781426079645169,0.8506758361201292,0.9220129624657608,0.9424181732898584,1],[1,1,0.7315100326211145,0.7315100326211145,0.7315100326211145,0.7206777724646694,0.7206777724646694,0.7206777724646694,0.7275220074751734,0.7275220074751734,0.7275220074751734,0.8691299581509411,0.8691299581509411,1],[1,1,0.821336696699477,0.821336696699477,0.821336696699477,0.8105583762102795,0.8105583762102795,0.8105583762102795,0.8175261068732091,0.8175261068732091,0.8175261068732091,0.8502056845097747,0.8502056845097747,1],[1,1,0.8908888776441475,0.8908888776441475,0.8908888776441475,0.8854505694382426,0.8854505694382426,0.8854505694382426,0.888958816846169,0.888958816846169,0.888958816846169,0.9299756448765346,0.9299756448765346,1],[1,1,0.8699746659435302,0.8699746659435302,0.8699746659435302,0.8475728484823311,0.8475728484823311,0.8475728484823311,0.8454569969296081,0.8454569969296081,0.8454569969296081,0.8632286744253768,0.8632286744253768,1],[false,false,true,true,true,true,true,true,true,true,true,false,false,false]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Construct<\/th>\n      <th>Indicator<\/th>\n      <th>Loading<\/th>\n      <th>AVE<\/th>\n      <th>Cronbach's alpha<\/th>\n      <th>Composite reliability<\/th>\n      <th>Construct reliability<\/th>\n      <th>1 in HTMT CI<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":14,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[2,3,4,5,6]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,14,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.4 ? \"#ff9999\" : value <= 0.708 ? \"#ffe5e5\" : \"#00\"});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.5 ? \"#ff9999\" : \"#00\"});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.6 ? \"#ff9999\" : value <= 0.9 ? \"#00\" : value <= 0.95 ? \"#ffe5e5\" : value <= 0.999 ? \"#ff9999\" : \"#00\"});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.6 ? \"#ff9999\" : value <= 0.9 ? \"#00\" : value <= 0.95 ? \"#ffe5e5\" : value <= 0.999 ? \"#ff9999\" : \"#00\"});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.6 ? \"#ff9999\" : value <= 0.9 ? \"#00\" : value <= 0.95 ? \"#ffe5e5\" : value <= 0.999 ? \"#ff9999\" : \"#00\"});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'background-color':value == 1 ? \"#ff9999\" : value == 0 ? \"#00\" : null});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.rowCallback"],"jsHooks":[]}</script>
 </div>
 <div class="layout-chunk" data-layout="l-page">
-<div id="htmlwidget-6da83d40bea52723d347" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6da83d40bea52723d347">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.162418785641612\" data-max=\"1.03604371636322\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.381641907089402\" data-max=\"1.10990759766203\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Details of the bootstrapped HTMT ratios<\/caption>","data":[["Personal Moral Norm","Personal Moral Norm","Personal Moral Norm","Personal Moral Norm","Personal Moral Norm","Personal Moral Norm","Personal Moral Norm","Perceived Self-Efficacy","Perceived Self-Efficacy","Perceived Self-Efficacy","Perceived Self-Efficacy","Perceived Self-Efficacy","Perceived Response Efficacy","Perceived Response Efficacy","Perceived Response Efficacy","Perceived Response Efficacy","Benevolence","Benevolence","Benevolence","Competence","Competence","Integrity"],["Behavioral Intention","Perceived Self-Efficacy","Perceived Response Efficacy","Benevolence","Competence","Integrity","Behavioral Intention","Perceived Response Efficacy","Benevolence","Competence","Integrity","Behavioral Intention","Benevolence","Competence","Integrity","Behavioral Intention","Competence","Integrity","Behavioral Intention","Integrity","Behavioral Intention","Behavioral Intention"],[0.391691170758153,0.320506706605504,0.493988165374255,0.561507751256907,0.552313160224344,0.526206150957924,0.392599526082599,0.591601839775742,0.202945382163719,0.176916184882867,0.185706748457764,0.352164692083087,0.288717716781258,0.289361144037092,0.287973934156367,0.348593397483417,0.919543046005379,0.9224614056836,0.200362821684325,1.03604371636322,0.170098245532628,0.162418785641613],[0.57724247743264,0.537577573883191,0.683270882801906,0.758478949518396,0.764393582506583,0.741071561517528,0.578261652635921,0.722265887253846,0.432068039301725,0.404825210398034,0.401309557161177,0.544300800107674,0.523928709837061,0.519460608234242,0.511727358061574,0.532086288402454,1.02104360556355,1.01806357016936,0.412009418901628,1.10990759766203,0.39626800247653,0.381641907089402]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Construct 1<\/th>\n      <th>Construct 2<\/th>\n      <th>Lower CI HTMT<\/th>\n      <th>Upper CI HTMT<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":22,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,22,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.9 ? \"#00\" : value <= 1 ? \"#ffe5e5\" : \"#ff9999\"});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.9 ? \"#00\" : value <= 1 ? \"#ffe5e5\" : \"#ff9999\"});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.rowCallback"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9c6753e21f48744a8eaf" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-9c6753e21f48744a8eaf">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.162418785641612\" data-max=\"1.03604371636322\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.371557354900489\" data-max=\"1.11008801117528\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Details of the bootstrapped HTMT ratios<\/caption>","data":[["Personal Moral Norm","Personal Moral Norm","Personal Moral Norm","Personal Moral Norm","Personal Moral Norm","Personal Moral Norm","Behavioral Intention","Behavioral Intention","Behavioral Intention","Behavioral Intention","Behavioral Intention","Perceived Self-Efficacy","Perceived Self-Efficacy","Perceived Self-Efficacy","Perceived Self-Efficacy","Perceived Response Efficacy","Perceived Response Efficacy","Perceived Response Efficacy","Benevolence","Benevolence","Competence","Personal Moral Norm","Personal Moral Norm","Personal Moral Norm","Personal Moral Norm","Personal Moral Norm","Personal Moral Norm","Perceived Self-Efficacy","Perceived Self-Efficacy","Perceived Self-Efficacy","Perceived Self-Efficacy","Perceived Self-Efficacy","Perceived Response Efficacy","Perceived Response Efficacy","Perceived Response Efficacy","Perceived Response Efficacy","Benevolence","Benevolence","Benevolence","Competence","Competence","Integrity"],["Behavioral Intention","Perceived Self-Efficacy","Perceived Response Efficacy","Benevolence","Competence","Integrity","Perceived Self-Efficacy","Perceived Response Efficacy","Benevolence","Competence","Integrity","Perceived Response Efficacy","Benevolence","Competence","Integrity","Benevolence","Competence","Integrity","Competence","Integrity","Integrity","Perceived Self-Efficacy","Perceived Response Efficacy","Benevolence","Competence","Integrity","Behavioral Intention","Perceived Response Efficacy","Benevolence","Competence","Integrity","Behavioral Intention","Benevolence","Competence","Integrity","Behavioral Intention","Competence","Integrity","Behavioral Intention","Integrity","Behavioral Intention","Behavioral Intention"],[0.391691170758153,0.3270248297079701,0.4996176904050685,0.5652439820045546,0.555294775918753,0.5286822242155871,0.3545448771835114,0.3432770551508957,0.1949429739376785,0.1677973712744086,0.164089626249316,0.5939084112697335,0.21046639325445,0.180611509394294,0.1866907683054306,0.295155456948868,0.2909530168673434,0.2932873822018032,0.9189275097262443,0.9233843429137948,1.035214958786947,0.3205067066055041,0.4939881653742548,0.5615077512569066,0.5523131602243442,0.526206150957924,0.3925995260825987,0.5916018397757421,0.2029453821637192,0.1769161848828665,0.185706748457764,0.3521646920830865,0.2887177167812583,0.289361144037092,0.2879739341563669,0.3485933974834167,0.9195430460053787,0.9224614056836005,0.2003628216843249,1.036043716363219,0.1700982455326279,0.1624187856416128],[0.5772424774326403,0.5366258455008054,0.6841203154993027,0.7588962344285113,0.7621643534182883,0.7399561823354558,0.5449790715325824,0.528585402637358,0.4091281932295422,0.3915916465171181,0.3715573549004897,0.7233451823769668,0.428363677841567,0.4073722976614469,0.4017825125994986,0.5195950655005209,0.5174153979599999,0.5091214314003105,1.019830504566466,1.016741659806794,1.110088011175277,0.5375775738831911,0.6832708828019057,0.7584789495183963,0.7643935825065827,0.7410715615175282,0.5782616526359209,0.7222658872538463,0.4320680393017251,0.4048252103980336,0.4013095571611766,0.5443008001076745,0.5239287098370605,0.5194606082342417,0.5117273580615741,0.5320862884024536,1.021043605563551,1.018063570169365,0.4120094189016281,1.10990759766203,0.3962680024765303,0.381641907089402]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Construct 1<\/th>\n      <th>Construct 2<\/th>\n      <th>Lower CI HTMT<\/th>\n      <th>Upper CI HTMT<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":42,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[2,3]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,42,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.9 ? \"#00\" : value <= 1 ? \"#ffe5e5\" : \"#ff9999\"});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.9 ? \"#00\" : value <= 1 ? \"#ffe5e5\" : \"#ff9999\"});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.rowCallback"],"jsHooks":[]}</script>
 </div>
-<p>As before, the HTMT bootstrap confidence intervals are only problematic for the Distrusting Beliefs lower-order constructs. All others are below the critical thresholds.</p>
+<p>As before, the HTMT bootstrap confidence intervals are only problematic for the Distrusting Beliefs lower-order constructs.
+All others are below the critical thresholds.</p>
 <h2 id="results-of-the-evaluation-of-the-mode-a-measurement-model">Results of the evaluation of the mode A measurement model</h2>
 <p>The mode A measurement model meets all quality criteria and can be retained as-is.</p>
 <h1 id="evaluation-of-the-mode-b-measurement-model">Evaluation of the mode B measurement model</h1>
@@ -2267,14 +2313,17 @@ General model evaluation
 <h2 id="significance-and-relevance">Significance and relevance</h2>
 <p>Indicator weights should be significant (t <span class="math inline">\(\geq\)</span> 1.65, bootstrapping CI does not include 0). Otherwise, the loading <font face="Symbol">l</font> should be <span class="math inline">\(\geq\)</span> 0.50. Any positive indicator weight implies relevance.</p>
 <div class="layout-chunk" data-layout="l-page">
-<div id="htmlwidget-77c00315c2d073111ea9" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-77c00315c2d073111ea9">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"1.77996640566249\" data-max=\"4.77585444909667\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.241935030810444\" data-max=\"0.670096079389628\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.251490367516789\" data-max=\"0.666189066942912\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.973124770159853\" data-max=\"7.75221051283564\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.864714920096492\" data-max=\"0.956110140659173\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Results of the mode B higher-order construct evaluation<\/caption>","data":[["Response Beliefs","Response Beliefs","Distrusting Beliefs","Distrusting Beliefs","Distrusting Beliefs"],["Perceived Self-Efficacy","Perceived Response Efficacy","Benevolence","Competence","Integrity"],[1.7799664056625,1.77996640566249,3.07630274434107,4.77585444909667,4.71148403294955],[0.421137814453252,0.670096079389628,0.53406069887205,0.288915506704316,0.241935030810445],[0.422471620409117,0.666189066942912,0.522556637244584,0.277513253129219,0.251490367516789],[4.48388271360639,7.75221051283564,2.93293354909379,1.13115035651506,0.973124770159854],[false,false,false,true,true],[0.864714920096493,0.948872658685915,0.956110140659173,0.925372040788067,0.917704299715787]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>HOC<\/th>\n      <th>LOC<\/th>\n      <th>VIF<\/th>\n      <th>Weight (original estimate)<\/th>\n      <th>Weight (bootstrap mean)<\/th>\n      <th>t(430) (weight)<\/th>\n      <th>0 in CI (weight)<\/th>\n      <th>Loading (original estimate)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3,4,5,7]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[5,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 3 ? \"#00\" : value <= 5 ? \"#ffe5e5\" : \"#ff9999\"});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 1.649 ? \"#ffe5e5\" : \"#00\"});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.499 ? \"#ff9999\" : \"#00\"});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'background-color':value == 1 ? \"#ffe5e5\" : value == 0 ? \"#00\" : null});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.rowCallback"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-e95cb78af6f4de0e7c3f" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e95cb78af6f4de0e7c3f">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1.77996640566249\" data-max=\"4.77585444909667\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.241935030810444\" data-max=\"0.670096079389628\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.251490367516789\" data-max=\"0.666189066942912\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.973124770159853\" data-max=\"7.75221051283564\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.864714920096492\" data-max=\"0.956110140659173\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Results of the mode B higher-order construct evaluation<\/caption>","data":[["Response Beliefs","Response Beliefs","Distrusting Beliefs","Distrusting Beliefs","Distrusting Beliefs"],["Perceived Self-Efficacy","Perceived Response Efficacy","Benevolence","Competence","Integrity"],[1.779966405662493,1.779966405662493,3.076302744341073,4.775854449096673,4.71148403294955],[0.421137814453252,0.6700960793896279,0.53406069887205,0.2889155067043163,0.2419350308104448],[0.4224716204091167,0.6661890669429118,0.5225566372445845,0.2775132531292187,0.251490367516789],[4.483882713606389,7.752210512835635,2.932933549093787,1.131150356515061,0.9731247701598538],[false,false,false,true,true],[0.8647149200964929,0.9488726586859152,0.9561101406591729,0.9253720407880669,0.917704299715787]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>HOC<\/th>\n      <th>LOC<\/th>\n      <th>VIF<\/th>\n      <th>Weight (original estimate)<\/th>\n      <th>Weight (bootstrap mean)<\/th>\n      <th>t(430) (weight)<\/th>\n      <th>0 in CI (weight)<\/th>\n      <th>Loading (original estimate)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[2,3,4,5,7]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[5,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 3 ? \"#00\" : value <= 5 ? \"#ffe5e5\" : \"#ff9999\"});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 1.649 ? \"#ffe5e5\" : \"#00\"});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.499 ? \"#ff9999\" : \"#00\"});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'background-color':value == 1 ? \"#ffe5e5\" : value == 0 ? \"#00\" : null});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.rowCallback"],"jsHooks":[]}</script>
 </div>
-<p>The VIFs for the Distrusting Beliefs are above 3, but still below 5. The weights for Distrusting Beliefs Integrity and Competence are non-significant, but with a sufficiently large loading, the constructs can be retained. All other weights are significant and relevant.</p>
+<p>The VIFs for the Distrusting Beliefs are above 3, but still below 5.
+The weights for Distrusting Beliefs Integrity and Competence are non-significant, but with a sufficiently large loading, the constructs can be retained.
+All other weights are significant and relevant.</p>
 <h2 id="results-of-the-mode-b-higher-order-constructs-evaluation">Results of the mode B higher-order constructs evaluation</h2>
 <p>All mode B higher-order constructs can be retained as-is.</p>
 <h1 id="results-summary">Results summary</h1>
-<p>The measurement model can be retained as is. Structural model evaluation can commence.</p>
+<p>The measurement model can be retained as is.
+Structural model evaluation can commence.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2299,9 +2348,6 @@ General model evaluation
 <div class="appendix-bottom"></div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
-<div class="distill-site-nav distill-site-footer">
-<p>© Copyright 2021 Anonymous</p>
-</div>
 <!--/radix_placeholder_navigation_after_body-->
 
 </body>
