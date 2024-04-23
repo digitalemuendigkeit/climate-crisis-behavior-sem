@@ -1,7 +1,9 @@
 ---
-title: "Applying an integrated model of behaviour change to the climate crisis and the COVID-19 pandemic"
+title: "Applying an integrated model of behaviour change to sustainable consumer behaviour and COVID-19 protective behaviour"
+author: "Lilian Kojan, Laura Halbey, Martina Ziefle, and André Calero Valdez"
 description:
-  This website contains supplementary material for our paper comparing correlates of behaviour change in the climate crisiis and the COVID-19 pandemic.
+  This website contains supplementary material for our comparing correlates of behaviour change in the climate crisiis and the COVID-19 pandemic.
+  The manuscript can be found at https://osf.io/preprints/psyarxiv/7eguk.
   Specifically, we detail the process of model evaluation and provide the full results of the additional exploratory data analysis for models and data concerning the climate crisis.
 site: distill::distill_website
 ---
