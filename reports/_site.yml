@@ -110,4 +110,6 @@ navbar:
           href: cc-2-d-2_eneval.html
     - text: "Additional analysis"
       href: additional-analysis.html
+    - text: "Site notice"
+      href: site-notice.html
 output: distill::distill_article

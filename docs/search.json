@@ -268,6 +268,13 @@
       "last_modified": "2024-04-08T16:23:37+02:00"
     },
     {
+      "path": "site-notice.html",
+      "title": "Site notice",
+      "author": [],
+      "contents": "\r\nLilian Kojan, M.Sc.\r\n📞 +49 (451) 3101 5115\r\nlilian.kojan@uni-luebeck.de\r\nwww.comm.rwth-aachen.de\r\nUniversity of Lübeck\r\nInstitute for Multimedia and interactive Systems (IMIS)\r\nRatzeburger Allee 160, Building 64\r\n23562 Lübeck\r\nGermany\r\nThis website was created using distill for R Markdown.\r\n\r\n\r\n\r\n",
+      "last_modified": "2024-04-23T08:46:18+02:00"
+    },
+    {
       "path": "survey.html",
       "title": "Survey",
       "author": [],

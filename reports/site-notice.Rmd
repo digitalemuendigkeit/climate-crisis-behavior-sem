@@ -1,0 +1,33 @@
+---
+title: "Site notice"
+description:
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+```
+
+Lilian Kojan, M.Sc.
+
+📞 +49 (451) 3101 5115
+
+[lilian.kojan@uni-luebeck.de](mailto:lilian.kojan@uni-luebeck.de)
+
+[www.comm.rwth-aachen.de](https://www.comm.rwth-aachen.de)
+
+University of Lübeck
+
+Institute for Multimedia and interactive Systems (IMIS)  
+
+Ratzeburger Allee 160, Building 64
+
+23562 Lübeck
+
+Germany
+
+This website was created using [distill for R Markdown](https://pkgs.rstudio.com/distill/).
